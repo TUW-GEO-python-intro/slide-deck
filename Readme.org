@@ -1,0 +1,5 @@
+** Slides and code examples for the Introduction to python programming Course
+
+The slides of Christoph Paulik are done in [[http://lab.hakim.se/reveal-js/#/][reveal.js]] and were produced
+from the slides.org files in each directory using emacs
+org-mode and [[https://github.com/yjwen/org-reveal][org-reveal]]. Also PDF files are provided. 
