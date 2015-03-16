@@ -2,7 +2,7 @@
     background: #eeeeee;
     color: #000000;
     border: solid 1px !important;
-    padding: 20px !important;
+    padding: 10px !important;
 }
 
 .example {
@@ -13,3 +13,9 @@
 }
 h1 {font-size: 3em !important;}
 h2 {font-size: 2em !important;}
+code {
+    font-size: 0.9em !important;
+    background: #eeeeee;
+    color:#000000;
+    padding: 0px 5px 0px 5px !important;
+}
