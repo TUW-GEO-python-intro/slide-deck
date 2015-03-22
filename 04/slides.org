@@ -1,0 +1,201 @@
+#+OPTIONS: reveal_center:t reveal_control:t reveal_height:-1
+#+OPTIONS: reveal_history:nil reveal_keyboard:t reveal_mathjax:nil
+#+OPTIONS: reveal_overview:t reveal_progress:t
+#+OPTIONS: reveal_rolling_links:nil reveal_slide_number:t
+#+OPTIONS: reveal_title_slide:t reveal_width:-1
+#+options: toc:nil ^:nil
+#+REVEAL_MARGIN: -1
+#+REVEAL_MIN_SCALE: -1
+#+REVEAL_MAX_SCALE: -1
+#+REVEAL_ROOT: ../reveal.js
+#+REVEAL_TRANS: default
+#+REVEAL_SPEED: default
+#+REVEAL_THEME: black
+#+REVEAL_EXTRA_CSS: ../code_formatting.css
+#+REVEAL_EXTRA_JS: 
+#+REVEAL_HLEVEL: 1
+#+REVEAL_TITLE_SLIDE_TEMPLATE: <h1>%t</h1> <h2>%a</h2> <h2>%e</h2> <h2>%d</h2>
+#+REVEAL_TITLE_SLIDE_BACKGROUND:
+#+REVEAL_TITLE_SLIDE_BACKGROUND_SIZE:
+#+REVEAL_TITLE_SLIDE_BACKGROUND_REPEAT:
+#+REVEAL_TITLE_SLIDE_BACKGROUND_TRANSITION:
+#+REVEAL_MATHJAX_URL: http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+#+REVEAL_PREAMBLE:
+#+REVEAL_HEAD_PREAMBLE:
+#+REVEAL_POSTAMBLE:
+#+REVEAL_MULTIPLEX_ID:
+#+REVEAL_MULTIPLEX_SECRET:
+#+REVEAL_MULTIPLEX_URL:
+#+REVEAL_MULTIPLEX_SOCKETIO_URL:
+#+REVEAL_PLUGINS:
+
+#+AUTHOR: Christoph Paulik
+#+email: 
+#+Title: Intermediate topics and CLI
+
+* List and Dict comprehension
+
+- for creation of lists or dictionaries based on some loop
+- shorter than a classic for loop
+ 
+#+begin_src python :results output pp :exports both :session compr
+  dataset1 = [1.73, 80, 2.4122, -4]
+  threshold = 2.
+  result = [x > threshold for x in dataset1]
+  print(result)
+#+end_src
+
+#+RESULTS:
+: 
+: [False, True, True, False]
+
+** Dictionaries
+
+- we can also construct a dictionary 
+#+begin_src python :results output pp :exports both :session compr
+cl = {True: 'larger', False: 'smaller'}
+result = {k: cl[k>threshold] for k in dataset1}
+print result
+#+end_src
+
+#+RESULTS:
+: 
+: >>> {80: 'larger', 1.73: 'smaller', -4: 'smaller', 2.4122: 'larger'}
+
+** Multiple arguments
+#+begin_src python :results output pp :exports both
+data = ['a', 'b', 'c', 'd']
+result = {i: x for i,x in enumerate(data)}
+print result
+#+end_src
+
+#+RESULTS:
+: {0: 'a', 1: 'b', 2: 'c', 3: 'd'}
+
+** +Mini+ Tiny Exercise
+#+begin_src python :results output pp :exports both
+########################################################
+# Tiny Exercise
+
+# Create a list that contains the square value of every
+# element in dataset1 using list comprehension.
+########################################################
+#+end_src
+* Advanced function arguments
+
+Arguments to functions given as lists or tuples can be unpacked by python
+#+begin_src python :results output pp :exports both :session args
+  def multi(a, b):
+      """Documentation does not fit on slide"""
+      return a * b
+
+  print(multi(2,3))
+  numbers = [3, 4]
+  print(multi(*numbers))
+#+end_src
+
+#+RESULTS:
+: >>> 6
+: >>> 12
+
+** 
+The =*= tells python to unpack the arguments
+#+begin_src python :results output pp :exports both :session args
+print multi(numbers)
+#+end_src
+
+#+RESULTS:
+: Traceback (most recent call last):
+:   File "<stdin>", line 1, in <module>
+: TypeError: multi() takes exactly 2 arguments (1 given)
+
+** Keywords
+#+begin_src python :results output pp :exports both
+  def multikw(arg1="dummy", arg2="text"):
+      """Documentation does not fit on slide"""
+      return " ".join([arg1, arg2])
+
+  kwargs = {'arg1': "this text comes from",
+            'arg2': "a keyword dictionary"}
+
+  print(multikw())
+  print(multikw(**kwargs))
+#+end_src
+
+#+RESULTS:
+: dummy text
+: this text comes from a keyword dictionary
+
+** * and ** in function definitions
+=*= will be a tuple =**= a dictionary
+#+begin_src python :results output pp :exports both
+  def multi(*args):
+      """
+      Multiplies all given numbers
+      """
+      print(type(args))
+      print("{} Arguments to multiply".format(len(args)))
+      res = 1
+      for arg in args:
+          res *= arg
+      return res
+  print(multi(2,3,4,5,6))
+#+end_src
+
+#+RESULTS:
+: <type 'tuple'>
+: 5 Arguments to multiply
+: 720
+** **
+#+begin_src python :results output pp :exports both
+  def print_kw(**kwargs):
+      """print keywords"""
+
+      print(type(kwargs))
+      for key in kwargs:
+          print("{}: {}".format(key, kwargs[key]))
+
+  print_kw(argument1=45, argument2="string", test="hello")
+#+end_src
+
+#+RESULTS:
+: <type 'dict'>
+: test: hello
+: argument2: string
+: argument1: 45
+
+** Functions everywhere
+- Every object can be passed into a function
+- e.g. another function
+#+begin_src python :results output pp :exports both
+def do(f, a, b):
+   print f.__doc__ # this is the docstring of the function
+   return f(a,b) 
+def add(a, b):
+   """addition"""
+   return a+b
+def sub(a, b):
+   """subtraction"""
+   return a-b
+
+print(do(add, 2, 3))
+print(do(sub, 3, 2))
+#+end_src
+
+#+RESULTS:
+: addition
+: 5
+: subtraction
+: 1
+
+* Control Structures
+pass
+assert
+break, continue
+for--else
+finally
+* Command Line Interface (CLI)
+
+** Arguments to your scripts
+
+** Getting user input
