@@ -293,7 +293,7 @@ python cli_1.py test -m hello
           print(args.surname)
 #+end_src
 ** Getting user input
-#+caption: contens of file =user_input.py=
+#+caption: contents of file =user_input.py=
 #+begin_src python :tangle user_input.py
 num = raw_input("Give me a number: ")
 print(type(num))
