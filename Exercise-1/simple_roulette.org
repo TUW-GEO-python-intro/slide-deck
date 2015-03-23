@@ -3,7 +3,7 @@
 #+OPTIONS: num:t p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t timestamp:t
 #+OPTIONS: toc:nil todo:t |:t
 #+TITLE: 120.050 Introduction to Python programming for geoscience - Exercise 1
-#+DATE: <2015-03-20 Fre>
+#+DATE: 2015-03-23
 #+AUTHOR: Christoph Paulik
 #+EMAIL: christoph.paulik@geo.tuwien.ac.at
 #+DESCRIPTION:
@@ -18,7 +18,32 @@
 #+LATEX_HEADER_EXTRA:
 
 * Roulette Game
-For our first exercise we will implement a simple terminal based Roulette game.
+
+For our first exercise we will implement a simple:
+#+begin_src shell :results code pp :exports results
+# from pyfiglet import Figlet
+# f = Figlet(font="slant")
+# print f.renderText("Terminal")
+# print f.renderText("Roulette")
+figlet -c Terminal -f slant
+figlet -c Roulette -f slant
+#+end_src
+#+RESULTS:
+#+begin_example
+                    ______                    _             __
+                   /_  __/__  _________ ___  (_)___  ____ _/ /
+                    / / / _ \/ ___/ __ `__ \/ / __ \/ __ `/ / 
+                   / / /  __/ /  / / / / / / / / / / /_/ / /  
+                  /_/  \___/_/  /_/ /_/ /_/_/_/ /_/\__,_/_/   
+                                                              
+                        ____              __     __  __     
+                       / __ \____  __  __/ /__  / /_/ /____ 
+                      / /_/ / __ \/ / / / / _ \/ __/ __/ _ \
+                     / _, _/ /_/ / /_/ / /  __/ /_/ /_/  __/
+                    /_/ |_|\____/\__,_/_/\___/\__/\__/\___/ 
+                                                            
+#+end_example
+
 If you are not familiar with Roulette please consult the [[http://en.wikipedia.org/wiki/Roulette][Wikipedia]] article on
 the topic. We will be using French Roulette rules meaning that the possible
 numbers that can come up are from zero to 36. When number zero comes then
