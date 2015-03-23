@@ -3,7 +3,8 @@
 #+OPTIONS: reveal_overview:t reveal_progress:t
 #+OPTIONS: reveal_rolling_links:nil reveal_slide_number:t
 #+OPTIONS: reveal_title_slide:t reveal_width:-1
-#+options: toc:nil ^:nil
+#+EXCLUDE_TAGS: 
+#+options: toc:nil ^:nil tags:nil
 #+REVEAL_MARGIN: -1
 #+REVEAL_MIN_SCALE: -1
 #+REVEAL_MAX_SCALE: -1
@@ -31,14 +32,14 @@
 
 #+AUTHOR: Christoph Paulik
 #+email: 
-#+Title: Intermediate topics and CLI
+#+Title: Intermediate topics, CLI and Exceptions
 
 * List and Dict comprehension
 
 - for creation of lists or dictionaries based on some loop
 - shorter than a classic for loop
  
-#+begin_src python :results output pp :exports both :session compr
+#+begin_src python :results output pp :exports both :session compr :tangle lecture4.py
   dataset1 = [1.73, 80, 2.4122, -4]
   threshold = 2.
   result = [x > threshold for x in dataset1]
@@ -47,12 +48,12 @@
 
 #+RESULTS:
 : 
-: [False, True, True, False]
+: >>> >>> [False, True, True, False]
 
 ** Dictionaries
 
 - we can also construct a dictionary 
-#+begin_src python :results output pp :exports both :session compr
+#+begin_src python :results output pp :exports both :session compr :tangle lecture4.py
 cl = {True: 'larger', False: 'smaller'}
 result = {k: cl[k>threshold] for k in dataset1}
 print result
@@ -63,7 +64,7 @@ print result
 : >>> {80: 'larger', 1.73: 'smaller', -4: 'smaller', 2.4122: 'larger'}
 
 ** Multiple arguments
-#+begin_src python :results output pp :exports both
+#+begin_src python :results output pp :exports both :tangle lecture4.py
 data = ['a', 'b', 'c', 'd']
 result = {i: x for i,x in enumerate(data)}
 print result
@@ -73,7 +74,7 @@ print result
 : {0: 'a', 1: 'b', 2: 'c', 3: 'd'}
 
 ** +Mini+ Tiny Exercise
-#+begin_src python :results output pp :exports both
+#+begin_src python :results output pp :exports both :tangle lecture4.py
 ########################################################
 # Tiny Exercise
 
@@ -81,10 +82,21 @@ print result
 # element in dataset1 using list comprehension.
 ########################################################
 #+end_src
+
+** Solution :noexport:
+#+begin_src python :results output pp :exports both :session compr
+square = [x**2 for x in dataset1]
+print(square)
+#+end_src
+
+#+RESULTS:
+: 
+: [2.9929, 6400, 5.818708839999999, 16]
+
 * Advanced function arguments
 
 Arguments to functions given as lists or tuples can be unpacked by python
-#+begin_src python :results output pp :exports both :session args
+#+begin_src python :results output pp :exports both :session args :tangle lecture4.py
   def multi(a, b):
       """Documentation does not fit on slide"""
       return a * b
@@ -100,7 +112,7 @@ Arguments to functions given as lists or tuples can be unpacked by python
 
 ** 
 The =*= tells python to unpack the arguments
-#+begin_src python :results output pp :exports both :session args
+#+begin_src python :results output pp :exports both :session args :tangle lecture4.py
 print multi(numbers)
 #+end_src
 
@@ -110,7 +122,7 @@ print multi(numbers)
 : TypeError: multi() takes exactly 2 arguments (1 given)
 
 ** Keywords
-#+begin_src python :results output pp :exports both
+#+begin_src python :results output pp :exports both :tangle lecture4.py
   def multikw(arg1="dummy", arg2="text"):
       """Documentation does not fit on slide"""
       return " ".join([arg1, arg2])
@@ -127,8 +139,8 @@ print multi(numbers)
 : this text comes from a keyword dictionary
 
 ** * and ** in function definitions
-=*= will be a tuple =**= a dictionary
-#+begin_src python :results output pp :exports both
+=*= will be a tuple, =**= a dictionary
+#+begin_src python :results output pp :exports both :tangle lecture4.py
   def multi(*args):
       """
       Multiplies all given numbers
@@ -147,7 +159,7 @@ print multi(numbers)
 : 5 Arguments to multiply
 : 720
 ** **
-#+begin_src python :results output pp :exports both
+#+begin_src python :results output pp :exports both :tangle lecture4.py
   def print_kw(**kwargs):
       """print keywords"""
 
@@ -167,7 +179,7 @@ print multi(numbers)
 ** Functions everywhere
 - Every object can be passed into a function
 - e.g. another function
-#+begin_src python :results output pp :exports both
+#+begin_src python :results output pp :exports both :tangle lecture4.py
 def do(f, a, b):
    print f.__doc__ # this is the docstring of the function
    return f(a,b) 
@@ -189,13 +201,164 @@ print(do(sub, 3, 2))
 : 1
 
 * Control Structures
-pass
-assert
 break, continue
 for--else
 finally
+
+** pass and assert
+- pass does nothing
+- assert checks something
+#+begin_src python :tangle lecture4.py
+  name = 2
+  assert type(name) == str, "name should be a string"
+  def function():
+      pass # can be useful when planning program structure
+#+end_src
+
+#+begin_example
+Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+AssertionError: name should be a string
+#+end_example
+
+** for loops with break and else
+#+begin_src python :results output pp :exports both :tangle lecture4.py
+  for n in range(2, 8): # lets debug through this
+      for x in range(2, n):
+          if n % x == 0:
+              print n, 'equals', x, '*', n / x
+              break # breaks out of (ends) current loop
+      else:
+          # loop fell through without finding a factor
+          print n, 'is a prime number'
+#+end_src
+
+#+RESULTS:
+: 2 is a prime number
+: 3 is a prime number
+: 4 equals 2 * 2
+: 5 is a prime number
+: 6 equals 2 * 3
+: 7 is a prime number
+
+** for loops and continue
+#+begin_src python :results output pp :exports both :tangle lecture4.py
+  for num in range(2, 8):
+      if num % 2 == 0: # percent sign is modulo
+          print "Found an even number", num
+          continue # continue with the next iteration of the loop
+      print "Found a number", num
+#+end_src
+
+#+RESULTS:
+: Found an even number 2
+: Found a number 3
+: Found an even number 4
+: Found a number 5
+: Found an even number 6
+: Found a number 7
+
+
 * Command Line Interface (CLI)
 
 ** Arguments to your scripts
+Stored in =sys.argv=
+#+caption: contents of file =cli_1.py=
+#+begin_src python :tangle cli_1.py
+  if __name__ == '__main__':
+      import sys
+      print sys.argv
+#+end_src
+#+begin_src shell :exports both :results output pp
+python cli_1.py test -m hello
+#+end_src
 
+#+RESULTS:
+: ['cli_1.py', 'test', '-m', 'hello']
+
+** Argparse
+[[https://docs.python.org/2/howto/argparse.html][official tutorial]]
+#+caption: contents of file =cli_2.py=
+#+begin_src python :tangle cli_2.py
+  import argparse
+  if __name__ == '__main__':
+      parser = argparse.ArgumentParser(
+          description="get the given name, optionally also the surname")
+      parser.add_argument("given_name", help="given name of the person")
+      parser.add_argument(
+          "-s", "--surname", help="the surname of the person")
+      args = parser.parse_args()
+      print(args.given_name)
+      if args.surname:
+          print(args.surname)
+#+end_src
 ** Getting user input
+#+caption: contens of file =user_input.py=
+#+begin_src python :tangle user_input.py
+num = raw_input("Give me a number: ")
+print(type(num))
+num = float(num)
+print("This is the number you have given me: {:.2f}".format(num))
+#+end_src
+What happens if we do not give a number?
+
+* Exceptions 
+
+Are raised when something goes wrong. But can be catched.
+#+begin_src python :results output pp :exports both :tangle lecture4.py
+  def divide(x, y):
+      try:
+          result = x / y
+      except ZeroDivisionError:
+          print "division by zero!"
+      else:
+          print "result is", result
+      finally:
+          print "executing finally clause"
+  divide(2, 1)
+  divide(2, 0)
+#+end_src
+
+#+RESULTS:
+: result is 2
+: executing finally clause
+: division by zero!
+: executing finally clause
+
+** 
+#+begin_src python 
+print(divide("2", "1"))
+#+end_src
+
+#+begin_example
+Traceback (most recent call last):
+  File "<stdin>", line 12, in <module>
+  File "<stdin>", line 3, in divide
+TypeError: unsupported operand type(s) for /: 'str' and 'str'
+#+end_example
+
+*** Mini Exercise
+#+begin_src python :results output pp :exports both :tangle lecture4.py
+########################################################
+# Mini Exercise
+
+# write a function that makes sure that the input is
+# a number
+########################################################
+#+end_src
+
+*** solution                                                       :noexport:
+We can fix the user input problem
+#+begin_src python :tangle user_input_solution.py
+  def get_float():
+      while True:
+          try:
+              num = float(raw_input("Give me a number: "))
+              break
+          except ValueError:
+              print "Oops!  That was no valid number.  Try again..."
+      return num
+
+  num = get_float()
+  print("This is the number you have given me: {:.2f}".format(num))
+#+end_src
