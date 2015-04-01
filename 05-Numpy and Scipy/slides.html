@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Numpy and Scipy Packages</title>
+<meta name="author" content="(Sebastian Hahn)"/>
+
+<link rel="stylesheet" href="../reveal.js/css/reveal.css"/>
+<link rel="stylesheet" href="../reveal.js/css/theme/black.css" id="theme"/>
+<link rel="stylesheet" href="../code_formatting.css"/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '../reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide" data-background="" data-background-size="" data-background-repeat="" data-background-transition="">
+<h1>Numpy and Scipy Packages</h1> <h2>Sebastian Hahn</h2> <h2><a href="mailto:"></a></h2> <h2></h2>
+</section>
+
+<section>
+<section id="slide-sec-1">
+<h2 id="sec-1"><span class="section-number-2">1</span> Numpy</h2>
+<p>
+The `numpy` package (module) is used in almost all numerical computation using
+Python. It is a package that provide high-performance vector, matrix and
+higher-dimensional data structures for Python. It is implemented in C and
+Fortran so when calculations are vectorized (formulated with vectors and
+matrices), performance is very good.
+</p>
+
+<p>
+To use `numpy` need to import the module it using of example:
+</p>
+</section>
+</section>
+</div>
+</div>
+
+<script src="../reveal.js/lib/js/head.min.js"></script>
+<script src="../reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: true,
+rollingLinks: false,
+keyboard: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+
+]
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+#+OPTIONS: reveal_center:t reveal_control:t reveal_height:-1
+#+OPTIONS: reveal_history:nil reveal_keyboard:t reveal_mathjax:nil
+#+OPTIONS: reveal_overview:t reveal_progress:t
+#+OPTIONS: reveal_rolling_links:nil reveal_slide_number:t
+#+OPTIONS: reveal_title_slide:t reveal_width:-1
+#+options: toc:nil ^:nil
+#+REVEAL_MARGIN: -1
+#+REVEAL_MIN_SCALE: -1
+#+REVEAL_MAX_SCALE: -1
+#+REVEAL_ROOT: ../reveal.js
+#+REVEAL_TRANS: default
+#+REVEAL_SPEED: default
+#+REVEAL_THEME: black
+#+REVEAL_EXTRA_CSS: ../code_formatting.css
+#+REVEAL_EXTRA_JS: 
+#+REVEAL_HLEVEL: 1
+#+REVEAL_TITLE_SLIDE_TEMPLATE: <h1>%t</h1> <h2>%a</h2> <h2>%e</h2> <h2>%d</h2>
+#+REVEAL_TITLE_SLIDE_BACKGROUND:
+#+REVEAL_TITLE_SLIDE_BACKGROUND_SIZE:
+#+REVEAL_TITLE_SLIDE_BACKGROUND_REPEAT:
+#+REVEAL_TITLE_SLIDE_BACKGROUND_TRANSITION:
+#+REVEAL_MATHJAX_URL: http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+#+REVEAL_PREAMBLE:
+#+REVEAL_HEAD_PREAMBLE:
+#+REVEAL_POSTAMBLE:
+#+REVEAL_MULTIPLEX_ID:
+#+REVEAL_MULTIPLEX_SECRET:
+#+REVEAL_MULTIPLEX_URL:
+#+REVEAL_MULTIPLEX_SOCKETIO_URL:
+#+REVEAL_PLUGINS:
+
+#+AUTHOR: Sebastian Hahn
+#+EMAIL: 
+#+TITLE: Numpy and Scipy Packages
+
+* Numpy
+The `numpy` package (module) is used in almost all numerical computation using
+Python. It is a package that provide high-performance vector, matrix and
+higher-dimensional data structures for Python. It is implemented in C and
+Fortran so when calculations are vectorized (formulated with vectors and
+matrices), performance is very good.
+
+To use `numpy` need to import the module it using of example:
+** Packages and Modules                                           :noexport:
+- Module :: .py file that contains functions/classes or variables
+- Package :: Collection of python modules. Can be nested in folders
+     
+** Folders on Filesystem                                          :noexport:
+- my_package
+  - __init__.py
+  - my_module.py
+   
+__init__.py tells python that the folder contains modules
+
+code in __init__.py is executed during import!
+
+http://docs.python.org/2/tutorial/modules.html
+
+* Using Packages                                                   :noexport:
+- Packages have to be imported for the program to be able to use them
+#+begin_src python :results output pp :exports code
+import math # import complete module
+import very_long_package_name as vlp # shorten the name 
+from datetime import date # import only certain variables/classes/functions
+#+end_src
+- Avoid SRC_python[:exports code]{from package import *} -> dirty namespace
+
+Example - Open =WinPython Command Prompt.exe= or =Shell=
+
+* Important Standard Library packages                              :noexport:
+
+** datetime module
+Representation of dates and times. [[https://docs.python.org/2.7/library/datetime.html][Documentation.]]
+
+#+begin_src python :results output pp :exports both :tangle lecture3.py
+from datetime import date
+a = date(2015, 3, 1)
+b = date.today()
+print(a, b)
+print(a.year, a.month, a.day) # attribute access
+delta = b - a # difference are a datetime.timedelta object
+print(delta)
+print(type(delta))
+#+end_src
+
+*** datetime
+
+#+begin_src python :results output pp :exports both :tangle lecture3.py
+from datetime import date, datetime, timedelta, time
+a = date(2008, 5, 1)
+b = time(12, 30, 15)
+print(datetime.combine(a, b))
+print(datetime(2008, 5, 1, 12, 30, 16))
+# parsing and formatting
+dt = datetime.strptime("21/11/06 16:30", "%d/%m/%y %H:%M")
+print(dt)
+print(dt.strftime("%A, %d. %B %Y %I:%M%p"))
+#+end_src
+
+#+RESULTS:
+: 2008-05-01 12:30:15
+: 2008-05-01 12:30:16
+: 2006-11-21 16:30:00
+: Tuesday, 21. November 2006 04:30PM
+
+[[https://docs.python.org/2.7/library/datetime.html#strftime-and-strptime-behavior][Formatting codes]]
+
+There is also a [[https://docs.python.org/2.7/library/calendar.html][calendar]] module for e.g. leap year checking, getting days in a month.
+
+** math module
+Mathematical functions and constants.
+#+begin_src python :results output pp :exports both :tangle lecture3.py
+import math
+print(math.pi, math.e)
+print(math.radians(180), math.degrees(2 * math.pi))
+print(math.sin(math.pi / 4))
+#+end_src
+
+[[https://docs.python.org/2.7/library/math.html][Docs]].
+
+These is also cmath for complex numbers.
+
