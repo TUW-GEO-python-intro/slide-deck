@@ -28,18 +28,91 @@
 </section>
 
 <section>
-<section id="slide-sec-1">
-<h2 id="sec-1"><span class="section-number-2">1</span> Numpy</h2>
-<p>
-The `numpy` package (module) is used in almost all numerical computation using
-Python. It is a package that provide high-performance vector, matrix and
-higher-dimensional data structures for Python. It is implemented in C and
-Fortran so when calculations are vectorized (formulated with vectors and
-matrices), performance is very good.
-</p>
+<section id="slide-unnumbered-1">
+<h2 id="unnumbered-1">Numpy</h2>
+<ul >
+<li>The <a href="http://www.numpy.org/">numpy package</a> is used in almost all numerical computation using Python</li>
+<li>It is a package that provide high-performance vector, matrix and
+higher-dimensional data structures</li>
+<li>It is implemented in C and Fortran so when calculations are vectorized
+(formulated with vectors and matrices), performance is very good</li>
+
+</ul>
 
 <p>
-To use `numpy` need to import the module it using of example:
+To use <b>numpy</b> you need to import the module:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">import</span> numpy <span style="color: #A52A2A; font-weight: bold;">as</span> np
+</pre>
+</div>
+
+</section>
+<section id="slide-unnumbered-2">
+<h3 id="unnumbered-2">Getting started</h3>
+<ul >
+<li><a href="http://www.scipy.org/scipylib/download.html">Getting Numpy</a></li>
+<li><a href="http://docs.scipy.org/doc/">Numpy and scipy documentation page</a></li>
+<li><a href="http://www.scipy.org/Tentative_NumPy_Tutorial">Numpy tutorial</a></li>
+<li><a href="http://www.scipy.org/NumPy_for_Matlab_Users">Numpy for MATLAB Users</a></li>
+<li><a href="http://www.scipy.org/Numpy_Functions_by_Category">Numpy functions by category</a></li>
+
+</ul>
+</section>
+<section id="slide-unnumbered-3">
+<h3 id="unnumbered-3">Creating numpy arrays</h3>
+<p>
+There are a number of ways to initialize new numpy arrays, for example from
+</p>
+<ul >
+<li>a Python list or tuples</li>
+<li>using functions that are dedicated to generating numpy arrays, such as
+np.arange, np.linspace, etc.</li>
+<li>reading data from files</li>
+
+</ul>
+</section>
+<section id="slide-unnumbered-4">
+<h4 id="unnumbered-4">From lists</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #204A87;"># </span><span style="color: #204A87;">a vector: the argument to the array function is a Python list</span>
+<span style="color: #0084C8; font-weight: bold;">v</span> = np.array<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span>1, 2, 3, 4<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>v<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; [1 2 3 4]
+</pre>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #204A87;"># </span><span style="color: #204A87;">a matrix: the argument to the array function is a nested Python list</span>
+<span style="color: #0084C8; font-weight: bold;">M</span> = np.array<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span><span style="color: #909183;">[</span>1, 2<span style="color: #909183;">]</span>, <span style="color: #909183;">[</span>3, 4<span style="color: #909183;">]</span><span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>M<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; [[1 2]
+ [3 4]]
+</pre>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #A020F0;">type</span><span style="color: #7388d6;">(</span>v<span style="color: #7388d6;">)</span>, <span style="color: #A020F0;">type</span><span style="color: #7388d6;">(</span>M<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+(&lt;type 'numpy.ndarray'&gt;, &lt;type 'numpy.ndarray'&gt;)
+</pre>
+
+<p>
+The difference between the v and M arrays is only their shapes. We can get
+information about the shape of an array by using the ndarray.shape property.
 </p>
 </section>
 </section>

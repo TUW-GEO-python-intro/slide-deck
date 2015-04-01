@@ -3,7 +3,7 @@
 #+OPTIONS: reveal_overview:t reveal_progress:t
 #+OPTIONS: reveal_rolling_links:nil reveal_slide_number:t
 #+OPTIONS: reveal_title_slide:t reveal_width:-1
-#+options: toc:nil ^:nil
+#+options: toc:nil ^:nil num:nil
 #+REVEAL_MARGIN: -1
 #+REVEAL_MIN_SCALE: -1
 #+REVEAL_MAX_SCALE: -1
@@ -20,6 +20,7 @@
 #+REVEAL_TITLE_SLIDE_BACKGROUND_REPEAT:
 #+REVEAL_TITLE_SLIDE_BACKGROUND_TRANSITION:
 #+REVEAL_MATHJAX_URL: http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+#+REVEAL_SLIDE_NUMBER: t
 #+REVEAL_PREAMBLE:
 #+REVEAL_HEAD_PREAMBLE:
 #+REVEAL_POSTAMBLE:
@@ -34,13 +35,65 @@
 #+TITLE: Numpy and Scipy Packages
 
 * Numpy
-The `numpy` package (module) is used in almost all numerical computation using
-Python. It is a package that provide high-performance vector, matrix and
-higher-dimensional data structures for Python. It is implemented in C and
-Fortran so when calculations are vectorized (formulated with vectors and
-matrices), performance is very good.
+- The [[http://www.numpy.org][numpy package]] is used in almost all numerical computation using Python
+- It is a package that provide high-performance vector, matrix and
+  higher-dimensional data structures
+- It is implemented in C and Fortran so when calculations are vectorized
+  (formulated with vectors and matrices), performance is very good
 
-To use `numpy` need to import the module it using of example:
+To use *numpy* you need to import the module:
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+import numpy as np 
+#+end_src
+
+#+RESULTS:
+
+** Getting started
+- [[http://www.scipy.org/scipylib/download.html][Getting Numpy]]
+- [[http://docs.scipy.org/doc/][Numpy and scipy documentation page]]
+- [[http://www.scipy.org/Tentative_NumPy_Tutorial][Numpy tutorial]]
+- [[http://www.scipy.org/NumPy_for_Matlab_Users][Numpy for MATLAB Users]]
+- [[http://www.scipy.org/Numpy_Functions_by_Category][Numpy functions by category]]
+** Creating numpy arrays
+There are a number of ways to initialize new numpy arrays, for example from
+- a Python list or tuples
+- using functions that are dedicated to generating numpy arrays, such as
+  np.arange, np.linspace, etc.
+- reading data from files
+*** From lists
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+# a vector: the argument to the function is a Python list
+v = np.array([1, 2, 3, 4])
+print(v)
+#+end_src
+
+#+RESULTS:
+: 
+: >>> [1 2 3 4]
+
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+# a matrix: the argument to the function is a nested Python list
+M = np.array([[1, 2], [3, 4]])
+print(M)
+#+end_src
+
+#+RESULTS:
+: 
+: >>> [[1 2]
+:  [3 4]]
+
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+print(type(v), type(M))
+#+end_src
+
+#+RESULTS:
+: (<type 'numpy.ndarray'>, <type 'numpy.ndarray'>)
+
+- The difference between the v and M arrays is only their shapes.
+
+*** Shapes
+- We can get information about the shape of an array by using the ndarray.shape
+  property.
 ** Packages and Modules                                           :noexport:
 - Module :: .py file that contains functions/classes or variables
 - Package :: Collection of python modules. Can be nested in folders
@@ -55,7 +108,6 @@ __init__.py tells python that the folder contains modules
 code in __init__.py is executed during import!
 
 http://docs.python.org/2/tutorial/modules.html
-
 * Using Packages                                                   :noexport:
 - Packages have to be imported for the program to be able to use them
 #+begin_src python :results output pp :exports code
@@ -63,7 +115,10 @@ import math # import complete module
 import very_long_package_name as vlp # shorten the name 
 from datetime import date # import only certain variables/classes/functions
 #+end_src
-- Avoid SRC_python[:exports code]{from package import *} -> dirty namespace
+
+#+RESULTS:
+
+- Avoid SRC_python[:exports code]{from package import *} {{{results(==)}}} -> dirty namespace
 
 Example - Open =WinPython Command Prompt.exe= or =Shell=
 
@@ -82,6 +137,12 @@ delta = b - a # difference are a datetime.timedelta object
 print(delta)
 print(type(delta))
 #+end_src
+
+#+RESULTS:
+: (datetime.date(2015, 3, 1), datetime.date(2015, 4, 2))
+: (2015, 3, 1)
+: 32 days, 0:00:00
+: <type 'datetime.timedelta'>
 
 *** datetime
 
@@ -115,6 +176,11 @@ print(math.pi, math.e)
 print(math.radians(180), math.degrees(2 * math.pi))
 print(math.sin(math.pi / 4))
 #+end_src
+
+#+RESULTS:
+: (3.141592653589793, 2.718281828459045)
+: (3.141592653589793, 360.0)
+: 0.707106781187
 
 [[https://docs.python.org/2.7/library/math.html][Docs]].
 
