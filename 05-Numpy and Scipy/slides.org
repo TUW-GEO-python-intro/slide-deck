@@ -100,15 +100,6 @@ print(v.shape, M.shape)
 
 #+RESULTS:
 : ((4,), (2, 2))
-
-*** Number of elements
-The number of elements in the array is available through the =ndarray.size=
-property:
-
-#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
-print(v.size, M.size)
-#+end_src
-
 ** Numpy.ndarray
 So far the =numpy.ndarray= looks awefully much like a Python list (or nested
 list). Why not simply use Python lists for computations instead of a new array
@@ -119,6 +110,7 @@ There are several reasons:
   are dynamically typed. They do not support mathematical functions such as
   matrix and dot multiplications, etc. Implementating such functions for Python
   lists would not be very efficient because of the dynamic typing
+** 
 - Numpy arrays are statically typed and homogeneous. The type of the elements is
   determined when the array is created.
 - Numpy arrays are memory efficient and element access is fast.
@@ -129,7 +121,7 @@ There are several reasons:
 Using the =ndarray.dtype= (data type) property, we can see the type of an array:
 
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
-print(type(v.dtype), type(M.dtype))
+print(v.dtype, M.dtype)
 #+end_src
 
 We get an error if we try to assign a value of an uncastable type to an element
