@@ -82,18 +82,26 @@ print(M)
 : >>> [[1 2]
 :  [3 4]]
 
+*** Difference between v and M
+
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 print(type(v), type(M))
 #+end_src
 
 #+RESULTS:
 : (<type 'numpy.ndarray'>, <type 'numpy.ndarray'>)
-
 - The difference between the v and M arrays is only their shapes.
-
-*** Shapes
-- We can get information about the shape of an array by using the ndarray.shape
+- The information about the shape of an array by using the ndarray.shape
   property.
+
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+print(v.shape, M.shape)
+#+end_src
+
+#+RESULTS:
+: ((4,), (2, 2))
+
+- 
 ** Packages and Modules                                           :noexport:
 - Module :: .py file that contains functions/classes or variables
 - Package :: Collection of python modules. Can be nested in folders
@@ -118,7 +126,7 @@ from datetime import date # import only certain variables/classes/functions
 
 #+RESULTS:
 
-- Avoid SRC_python[:exports code]{from package import *} {{{results(==)}}} -> dirty namespace
+- Avoid SRC_python[:exports code]{from package import *} {{{results(==)}}} == {{{results(==)}}} -> dirty namespace
 
 Example - Open =WinPython Command Prompt.exe= or =Shell=
 
