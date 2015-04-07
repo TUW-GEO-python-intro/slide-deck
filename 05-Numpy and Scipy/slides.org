@@ -44,11 +44,11 @@
 To use *numpy* you need to import the module:
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 import numpy as np 
+print("Numpy version {:}".format(np.__version__))
 #+end_src
 
-#+RESULTS:
-
-** Getting started
+#+results:
+* Getting started
 - [[http://www.scipy.org/scipylib/download.html][Getting Numpy]]
 - [[http://docs.scipy.org/doc/][Numpy and scipy documentation page]]
 - [[http://www.scipy.org/Tentative_NumPy_Tutorial][Numpy tutorial]]
@@ -58,7 +58,7 @@ import numpy as np
 There are a number of ways to initialize new numpy arrays, for example from
 - a Python list or tuples
 - using functions that are dedicated to generating numpy arrays, such as
-  np.arange, np.linspace, etc.
+  =np.arange=, =np.linspace=, etc.
 - reading data from files
 *** From lists
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
@@ -82,107 +82,59 @@ print(M)
 : >>> [[1 2]
 :  [3 4]]
 
+*** Difference between v and M
+
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 print(type(v), type(M))
 #+end_src
 
 #+RESULTS:
 : (<type 'numpy.ndarray'>, <type 'numpy.ndarray'>)
-
 - The difference between the v and M arrays is only their shapes.
-
-*** Shapes
-- We can get information about the shape of an array by using the ndarray.shape
+- The information about the shape of an array by using the =ndarray.shape=
   property.
-** Packages and Modules                                           :noexport:
-- Module :: .py file that contains functions/classes or variables
-- Package :: Collection of python modules. Can be nested in folders
-     
-** Folders on Filesystem                                          :noexport:
-- my_package
-  - __init__.py
-  - my_module.py
-   
-__init__.py tells python that the folder contains modules
 
-code in __init__.py is executed during import!
-
-http://docs.python.org/2/tutorial/modules.html
-* Using Packages                                                   :noexport:
-- Packages have to be imported for the program to be able to use them
-#+begin_src python :results output pp :exports code
-import math # import complete module
-import very_long_package_name as vlp # shorten the name 
-from datetime import date # import only certain variables/classes/functions
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+print(v.shape, M.shape)
 #+end_src
 
 #+RESULTS:
+: ((4,), (2, 2))
 
-- Avoid SRC_python[:exports code]{from package import *} {{{results(==)}}} -> dirty namespace
+*** Number of elements
+The number of elements in the array is available through the =ndarray.size=
+property:
 
-Example - Open =WinPython Command Prompt.exe= or =Shell=
-
-* Important Standard Library packages                              :noexport:
-
-** datetime module
-Representation of dates and times. [[https://docs.python.org/2.7/library/datetime.html][Documentation.]]
-
-#+begin_src python :results output pp :exports both :tangle lecture3.py
-from datetime import date
-a = date(2015, 3, 1)
-b = date.today()
-print(a, b)
-print(a.year, a.month, a.day) # attribute access
-delta = b - a # difference are a datetime.timedelta object
-print(delta)
-print(type(delta))
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+print(v.size, M.size)
 #+end_src
 
-#+RESULTS:
-: (datetime.date(2015, 3, 1), datetime.date(2015, 4, 2))
-: (2015, 3, 1)
-: 32 days, 0:00:00
-: <type 'datetime.timedelta'>
+** Numpy.ndarray
+So far the =numpy.ndarray= looks awefully much like a Python list (or nested
+list). Why not simply use Python lists for computations instead of a new array
+type?
 
-*** datetime
+There are several reasons:
+- Python lists are very general. Each element can be any kind of object. They
+  are dynamically typed. They do not support mathematical functions such as
+  matrix and dot multiplications, etc. Implementating such functions for Python
+  lists would not be very efficient because of the dynamic typing
+- Numpy arrays are statically typed and homogeneous. The type of the elements is
+  determined when the array is created.
+- Numpy arrays are memory efficient and element access is fast.
+- Because of the static typing, fast implementation of mathematical functions
+  such as multiplication and addition of numpy arrays can be implemented in a
+  compiled language (C and Fortran is used).
+** Type of an array
+Using the =ndarray.dtype= (data type) property, we can see the type of an array:
 
-#+begin_src python :results output pp :exports both :tangle lecture3.py
-from datetime import date, datetime, timedelta, time
-a = date(2008, 5, 1)
-b = time(12, 30, 15)
-print(datetime.combine(a, b))
-print(datetime(2008, 5, 1, 12, 30, 16))
-# parsing and formatting
-dt = datetime.strptime("21/11/06 16:30", "%d/%m/%y %H:%M")
-print(dt)
-print(dt.strftime("%A, %d. %B %Y %I:%M%p"))
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+print(type(v.dtype), type(M.dtype))
 #+end_src
 
-#+RESULTS:
-: 2008-05-01 12:30:15
-: 2008-05-01 12:30:16
-: 2006-11-21 16:30:00
-: Tuesday, 21. November 2006 04:30PM
+We get an error if we try to assign a value of an uncastable type to an element
+in a numpy array:
 
-[[https://docs.python.org/2.7/library/datetime.html#strftime-and-strptime-behavior][Formatting codes]]
-
-There is also a [[https://docs.python.org/2.7/library/calendar.html][calendar]] module for e.g. leap year checking, getting days in a month.
-
-** math module
-Mathematical functions and constants.
-#+begin_src python :results output pp :exports both :tangle lecture3.py
-import math
-print(math.pi, math.e)
-print(math.radians(180), math.degrees(2 * math.pi))
-print(math.sin(math.pi / 4))
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+M[0, 0] = "hello"
 #+end_src
-
-#+RESULTS:
-: (3.141592653589793, 2.718281828459045)
-: (3.141592653589793, 360.0)
-: 0.707106781187
-
-[[https://docs.python.org/2.7/library/math.html][Docs]].
-
-These is also cmath for complex numbers.
-
