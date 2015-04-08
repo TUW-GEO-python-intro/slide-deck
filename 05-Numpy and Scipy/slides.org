@@ -54,13 +54,13 @@ print("Numpy version {:}".format(np.__version__))
 - [[http://www.scipy.org/Tentative_NumPy_Tutorial][Numpy tutorial]]
 - [[http://www.scipy.org/NumPy_for_Matlab_Users][Numpy for MATLAB Users]]
 - [[http://www.scipy.org/Numpy_Functions_by_Category][Numpy functions by category]]
-** Creating numpy arrays
+* Creating numpy arrays
 There are a number of ways to initialize new numpy arrays, for example from
 - a Python list or tuples
 - using functions that are dedicated to generating numpy arrays, such as
   =np.arange=, =np.linspace=, etc.
 - reading data from files
-*** From lists
+** From lists
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 # a vector: the argument to the function is a Python list
 v = np.array([1, 2, 3, 4])
@@ -82,7 +82,7 @@ print(M)
 : >>> [[1 2]
 :  [3 4]]
 
-*** Difference between v and M
+** Difference between v and M
 
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 print(type(v), type(M))
@@ -110,7 +110,7 @@ There are several reasons:
   are dynamically typed. They do not support mathematical functions such as
   matrix and dot multiplications, etc. Implementating such functions for Python
   lists would not be very efficient because of the dynamic typing
-** 
+** Numpy.ndarray
 - Numpy arrays are statically typed and homogeneous. The type of the elements is
   determined when the array is created.
 - Numpy arrays are memory efficient and element access is fast.
@@ -129,4 +129,124 @@ in a numpy array:
 
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 M[0, 0] = "hello"
+#+end_src
+** Type of an array
+But be aware that the type is defined by the array
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+M[0, 0] = 1.2345
+print(M[0, 0], M.dtype)
+#+end_src
+If we want, we can explicitly define the data type of the array during creation,
+using the =dtype= keyword argument:
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+M = np.array([[1, 2], [3, 4]], dtype=np.complex)
+print(M)
+#+end_src
+Common types that can be used with dtype are, e.g.: int16, int32, float64,
+complex, bool, object, etc.
+** Using array-generating functions
+For larger arrays it is inpractical to initialize the data manually, using
+explicit python lists. Instead we can use one of the many functions in numpy
+that generate arrays of different forms. Some of the more common ones are:
+
+=np.arange=
+
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+x = np.arange(10) # creates a range, arguments: [start=0], stop, [step=1]
+print(x)
+#+end_src
+
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+x = np.arange(2, -1, -0.5)
+print(x)
+#+end_src
+** Using array-generating functions
+=np.linspace= and =np.logspace=
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+x = np.linspace(0, 10, 11) # using linspace, both end points ARE included
+print(x)
+#+end_src
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+x = np.logspace(0, 10, 11, base=10)
+print(x)
+#+end_src
+** Using array-generating functions
+=np.random.rand= 
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+x = np.random.rand(5, 5) # each element is from the uniform random distribution [0,1]
+print(x)
+#+end_src
+The standard normal distribution is available as =np.random.randn=
+** Using array-generating functions
+=np.diag=
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+x = np.diag([1, 2, 3]) # specifying the diagonal of an otherwise zero matrix
+print(x)
+#+end_src
+
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+y = np.diag(x)
+print(y)
+#+end_src
+
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+x = np.diag([1, 2, 3], k=1) # diagonal with offset from the main diagonal
+print(x)
+#+end_src
+** Using array-generating functions
+=np.zeros= 
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+x = np.zeros(3, dtype=np.int)
+print(x)
+#+end_src
+
+=np.ones=
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+x = np.ones((3, 3), dtype=np.float)
+print(x)
+#+end_src
+* More properties of the numpy arrays
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+print(M.dtype)
+M.itemsize # bytes per element
+#+end_src
+
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+M.nbytes # number of bytes
+#+end_src
+
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+M.ndim # number of dimensions
+#+end_src
+* Manipulating arrays
+- Indexing
+- 
+** Indexing
+We can index elements in an array using the square bracket and indices:
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+# v is a vector, and has only one dimension, taking one index
+print(v[0])
+#+end_src
+
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+# M is a matrix, or a 2 dimensional array, taking two indices 
+print(M[1, 1]) # same as M[1][1]
+#+end_src
+** Indexing
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+print(M)
+#+end_src
+
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+print(M[1])
+#+end_src
+
+The same thing can be achieved with using =:= instead of an index:
+
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+M[1, :] # second row
+#+end_src
+
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+M[:, 1] # second column
 #+end_src
