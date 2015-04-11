@@ -48,6 +48,8 @@ print("Numpy version {:}".format(np.__version__))
 #+end_src
 
 #+results:
+: 
+: Numpy version 1.8.2
 * Getting started
 - [[http://www.scipy.org/scipylib/download.html][Getting Numpy]]
 - [[http://docs.scipy.org/doc/][Numpy and scipy documentation page]]
@@ -58,7 +60,7 @@ print("Numpy version {:}".format(np.__version__))
 There are a number of ways to initialize new numpy arrays, for example from
 - a Python list or tuples
 - using functions that are dedicated to generating numpy arrays, such as
-  =np.arange=, =np.linspace=, etc.
+  [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.arange.html][np.arange]], [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.linspace.html][np.linspace]], etc.
 - reading data from files
 ** From lists
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
@@ -82,7 +84,7 @@ print(M)
 : >>> [[1 2]
 :  [3 4]]
 
-** Difference between v and M
+*** Difference between v and M
 
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 print(type(v), type(M))
@@ -90,9 +92,8 @@ print(type(v), type(M))
 
 #+RESULTS:
 : (<type 'numpy.ndarray'>, <type 'numpy.ndarray'>)
-- The difference between the v and M arrays is only their shapes.
-- The information about the shape of an array by using the =ndarray.shape=
-  property.
+The difference between the v and M arrays is only their shapes. The information
+about the shape of an array by using the =ndarray.shape= property.
 
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 print(v.shape, M.shape)
@@ -100,7 +101,7 @@ print(v.shape, M.shape)
 
 #+RESULTS:
 : ((4,), (2, 2))
-** Numpy.ndarray
+*** Numpy array vs. lists
 So far the =numpy.ndarray= looks awefully much like a Python list (or nested
 list). Why not simply use Python lists for computations instead of a new array
 type?
@@ -110,19 +111,22 @@ There are several reasons:
   are dynamically typed. They do not support mathematical functions such as
   matrix and dot multiplications, etc. Implementating such functions for Python
   lists would not be very efficient because of the dynamic typing
-** Numpy.ndarray
+*** 
 - Numpy arrays are statically typed and homogeneous. The type of the elements is
   determined when the array is created.
 - Numpy arrays are memory efficient and element access is fast.
 - Because of the static typing, fast implementation of mathematical functions
   such as multiplication and addition of numpy arrays can be implemented in a
   compiled language (C and Fortran is used).
-** Type of an array
+*** Type of an array
 Using the =ndarray.dtype= (data type) property, we can see the type of an array:
 
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 print(v.dtype, M.dtype)
 #+end_src
+
+#+RESULTS:
+: (dtype('int64'), dtype('int64'))
 
 We get an error if we try to assign a value of an uncastable type to an element
 in a numpy array:
@@ -130,123 +134,567 @@ in a numpy array:
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 M[0, 0] = "hello"
 #+end_src
-** Type of an array
-But be aware that the type is defined by the array
+
+#+RESULTS:
+: Traceback (most recent call last):
+:   File "<stdin>", line 1, in <module>
+: ValueError: invalid literal for long() with base 10: 'hello'
+*** 
+But be aware that the type is defined by the array at the initialization and
+won't be changed if a value from another type is assigned
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 M[0, 0] = 1.2345
 print(M[0, 0], M.dtype)
 #+end_src
+
+#+RESULTS:
+: 
+: (1, dtype('int64'))
+
+However, the data type can be changed later if it is desired (e.g. =numpy.ndarray.astype=). 
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+x = M.astype(np.float32)
+print(x, x.dtype)
+#+end_src
+
+#+RESULTS:
+: 
+: (array([[ 1.,  2.],
+:        [ 3.,  4.]], dtype=float32), dtype('float32'))
+*** 
 If we want, we can explicitly define the data type of the array during creation,
-using the =dtype= keyword argument:
+using the =dtype= keyword argument.
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 M = np.array([[1, 2], [3, 4]], dtype=np.complex)
 print(M)
 #+end_src
-Common types that can be used with dtype are, e.g.: int16, int32, float64,
-complex, bool, object, etc.
+
+#+RESULTS:
+: 
+: [[ 1.+0.j  2.+0.j]
+:  [ 3.+0.j  4.+0.j]]
+
+Common types that can be used with =dtype= are, e.g.: =np.int16=, =np.int32=,
+=np.uint32=, =np.float64=, =np.complex=, =np.bool=, =np.object=, etc.
 ** Using array-generating functions
-For larger arrays it is inpractical to initialize the data manually, using
+For larger arrays it is unpractical to initialize the data manually, using
 explicit python lists. Instead we can use one of the many functions in numpy
 that generate arrays of different forms. Some of the more common ones are:
 
-=np.arange=
+Ones and Zeros
 
+[[http://docs.scipy.org/doc/numpy/reference/generated/numpy.empty.html][np.empty]], [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.zeros.html][np.zeros]], [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.ones.html][np.ones]]
+
+Numerical ranges
+
+[[http://docs.scipy.org/doc/numpy/reference/generated/numpy.arange.html][np.arange]], [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.linspace.html][np.linspace]], [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.logspace.html][np.logspace]]
+** 
+Random numbers
+
+[[http://docs.scipy.org/doc/numpy/reference/generated/numpy.random.rand.html][np.random.rand]], [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.random.randn.html][np.random.randn]]
+
+Building matrices
+
+[[http://docs.scipy.org/doc/numpy/reference/generated/numpy.diag.html][np.diag]], [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.tri.html][np.tri]], [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.tril.html][np.tril]], [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.triu.htmln][p.triu]]
+
+From existing data
+
+[[http://docs.scipy.org/doc/numpy/reference/generated/numpy.fromfile.html][np.fromfile]], [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.fromstring.html][np.fromstring]], [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.loadtxt.html][np.loadtxt]]
+** Ones and Zeros
+[[http://docs.scipy.org/doc/numpy/reference/generated/numpy.zeros.html][np.zeros]]
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
-x = np.arange(10) # creates a range, arguments: [start=0], stop, [step=1]
+x = np.zeros(3, dtype=np.int)
 print(x)
 #+end_src
+
+#+RESULTS:
+: 
+: [0 0 0]
+
+[[http://docs.scipy.org/doc/numpy/reference/generated/numpy.ones.html][np.ones]]
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+x = np.ones((3, 3), dtype=np.float)
+print(x)
+#+end_src
+
+#+RESULTS:
+: 
+: [[ 1.  1.  1.]
+:  [ 1.  1.  1.]
+:  [ 1.  1.  1.]]
+** Numerical ranges
+[[http://docs.scipy.org/doc/numpy/reference/generated/numpy.arange.html][np.arange]]
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+# creates a range, arguments: [start=0], stop, [step=1]
+x = np.arange(10) 
+print(x)
+#+end_src
+
+#+RESULTS:
+: 
+: >>> [0 1 2 3 4 5 6 7 8 9]
 
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 x = np.arange(2, -1, -0.5)
 print(x)
 #+end_src
-** Using array-generating functions
-=np.linspace= and =np.logspace=
+
+#+RESULTS:
+: 
+: [ 2.   1.5  1.   0.5  0.  -0.5]
+** 
+[[http://docs.scipy.org/doc/numpy/reference/generated/numpy.linspace.html][np.linspace]]
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
-x = np.linspace(0, 10, 11) # using linspace, both end points ARE included
+# using linspace, both end points ARE included
+x = np.linspace(0, 10, 11)
 print(x)
 #+end_src
+
+#+RESULTS:
+: 
+: >>> [  0.   1.   2.   3.   4.   5.   6.   7.   8.   9.  10.]
+
+[[http://docs.scipy.org/doc/numpy/reference/generated/numpy.logspace.html][np.logspace]]
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 x = np.logspace(0, 10, 11, base=10)
 print(x)
 #+end_src
-** Using array-generating functions
-=np.random.rand= 
+
+#+RESULTS:
+: 
+: [  1.00000000e+00   1.00000000e+01   1.00000000e+02   1.00000000e+03
+:    1.00000000e+04   1.00000000e+05   1.00000000e+06   1.00000000e+07
+:    1.00000000e+08   1.00000000e+09   1.00000000e+10]
+** Random numbers
+[[http://docs.scipy.org/doc/numpy/reference/generated/numpy.random.rand.html][np.random.rand]]
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
-x = np.random.rand(5, 5) # each element is from the uniform random distribution [0,1]
+# each element is from the uniform random distribution [0,1]
+x = np.random.rand(5, 5) 
 print(x)
 #+end_src
-The standard normal distribution is available as =np.random.randn=
-** Using array-generating functions
-=np.diag=
+
+#+RESULTS:
+: 
+: >>> [[ 0.87137513  0.66103141  0.39309431  0.34715789  0.57783169]
+:  [ 0.62850869  0.35946685  0.05137553  0.64818071  0.83742998]
+:  [ 0.69333313  0.96583655  0.96484791  0.84440527  0.68506476]
+:  [ 0.92149787  0.77476457  0.46506466  0.53915769  0.43457203]
+:  [ 0.99661757  0.35788049  0.31448692  0.34667901  0.84585865]]
+
+The standard normal distribution is available as [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.randn.html][np.random.randn]]
+** Building matrices
+[[http://docs.scipy.org/doc/numpy/reference/generated/numpy.diag.html][np.diag]]
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
-x = np.diag([1, 2, 3]) # specifying the diagonal of an otherwise zero matrix
+x = np.diag([1, 2, 3]) # the diagonal of an otherwise zero matrix
 print(x)
 #+end_src
+
+#+RESULTS:
+: 
+: [[1 0 0]
+:  [0 2 0]
+:  [0 0 3]]
 
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 y = np.diag(x)
 print(y)
 #+end_src
 
+#+RESULTS:
+: 
+: [1 2 3]
+** 
+[[http://docs.scipy.org/doc/numpy/reference/generated/numpy.tri.html][np.tri]]
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
-x = np.diag([1, 2, 3], k=1) # diagonal with offset from the main diagonal
-print(x)
-#+end_src
-** Using array-generating functions
-=np.zeros= 
-#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
-x = np.zeros(3, dtype=np.int)
+# ones at and below the given diagonal and zeros elsewhere
+x = np.tri(3) 
 print(x)
 #+end_src
 
-=np.ones=
+#+RESULTS:
+: 
+: >>> [[ 1.  0.  0.]
+:  [ 1.  1.  0.]
+:  [ 1.  1.  1.]]
+
+[[http://docs.scipy.org/doc/numpy/reference/generated/numpy.triu.html][np.triu]]
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
-x = np.ones((3, 3), dtype=np.float)
+# Upper triangle of an array.
+x = np.triu(np.ones((3, 3))*2)
 print(x)
 #+end_src
-* More properties of the numpy arrays
+
+#+RESULTS:
+: 
+: >>> [[ 2.  2.  2.]
+:  [ 0.  2.  2.]
+:  [ 0.  0.  2.]]
+** More properties of the numpy arrays
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+M = np.ones((3, 3), dtype=np.uint8) * 21
 print(M.dtype)
 M.itemsize # bytes per element
 #+end_src
+
+#+RESULTS:
+: 
+: uint8
+: 1
 
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 M.nbytes # number of bytes
 #+end_src
 
+#+RESULTS:
+: 9
+
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 M.ndim # number of dimensions
 #+end_src
+
+#+RESULTS:
+: 2
 * Manipulating arrays
-- Indexing
-- 
-** Indexing
+- Basic indexing and slicing
+- Advanced indexing
+  - Index arrays
+  - Boolean index arrays
+** Basic indexing
+Array indexing refers to any use of the square brackets =[]= to index array
+values. There are many options to indexing, which give numpy indexing great
+power, but with power comes some complexity and the potential for confusion.
+
 We can index elements in an array using the square bracket and indices:
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 # v is a vector, and has only one dimension, taking one index
+v = np.arange(10)
+print(v[0], v[-2])
+#+end_src
+
+#+RESULTS:
+: 
+: >>> (0, 8)
+** Basic indexing
+Unlike lists and tuples, numpy arrays support multidimensional indexing for
+multidimensional arrays. That means that it is not necessary to separate each
+dimension’s index into its own set of square brackets.
+
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+v.shape = (2, 5)
+print(v)
+# v is now a 2 dimensional array, taking two indices 
+print(v[1, 1]) # same as v[1][1]
+#+end_src
+
+#+RESULTS:
+: 
+: ... 6
+** Basic indexing
+Note that if one indexes a multidimensional array with fewer indices than
+dimensions, one gets a subdimensional array. For example:
+
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 print(v[0])
 #+end_src
 
+#+RESULTS:
+: (array([[0, 1, 2, 3, 4],
+:        [5, 6, 7, 8, 9]]), array([0, 1, 2, 3, 4]))
+
+The same thing can be achieved with using =:= 
+
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
-# M is a matrix, or a 2 dimensional array, taking two indices 
-print(M[1, 1]) # same as M[1][1]
+print(v[0, :])
 #+end_src
-** Indexing
+
+#+RESULTS:
+: [0 1 2 3 4]
+** Basic indexing
+It must be noted that the returned array is not a copy of the original, but
+points *to the same values in memory* as does the original array. In the next
+example, the 1-D array at the first position (0) is returned.
+
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
-print(M)
+print(v[0])
+#+end_src
+
+So using a single index on the returned array, results in a single element being
+returned. That is:
+
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+print(v[0][2])
+#+end_src
+** Basic indexing
+Note that =v[0, 2] = v[0][2]= though the second case is more inefficient a new
+temporary array is created after the first index that is subsequently indexed
+by 2.
+** Slicing
+It is possible to slice and stride arrays to extract arrays of the same number
+of dimensions, but of different sizes than the original. The slicing and
+striding works exactly the same way it does for lists and tuples except that
+they can be applied to multiple dimensions as well. A few examples illustrates
+best:
+
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+x = np.arange(10)
+print(x[2:5])
+print(x[:-7])
+print(x[1:7:2])
+#+end_src
+** Views
+Note that slices of arrays do not copy the internal array data but also produce
+new *views* of the original data.
+
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+x = np.arange(5)
+y = x[::2]
+print(x)
+print(y)
+x[0] = 3
+print(x)
+print(y)
+#+end_src
+
+Making changes to the view changes the underlying array!
+** Views
+[[http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.view.html][np.ndarray.view]]
+
+New view of array with the same data and is used two different ways:
+1. =a.view(some_dtype)= or =a.view(dtype=some_dtype)= constructs a view of the
+   array's memory with a different data-type. This can cause a reinterpretation
+   of the bytes of memory.
+2. =a.view(ndarray_subclass)= or =a.view(type=ndarray_subclass)= just returns an
+   instance of ndarray_subclass that looks at the same array (same shape, dtype,
+   etc.) This does not cause a reinterpretation of the memory.
+** Advanced indexing
+It is possible to index arrays with other arrays for the purposes of selecting
+lists of values out of arrays into new arrays. There are two different ways of
+accomplishing this. 
+- One uses one or more arrays of index values. 
+- The other involves giving a boolean array of the proper shape to indicate
+  the values to be selected. 
+Index arrays are a very powerful tool that allow one to avoid looping
+over individual elements in arrays and thus greatly improve performance.
+** Index arrays
+The use of index arrays ranges from simple, straightforward cases to complex,
+hard-to-understand cases. For all cases of index arrays, what is returned is a
+*copy* of the original data, not a view as one gets for slices.
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+x = np.arange(10, 1, -1)
+y = x[np.arange(0, 8, 2)]
+print(x)
+print(y)
+y[0] = 55
+print(x)
+print(y)
+#+end_src
+** Boolean index arrays
+Boolean arrays used as indices are treated in a different manner entirely than
+index arrays. Boolean arrays must be of the same shape as the initial dimensions
+of the array being indexed.
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+y = np.arange(10)
+b = y > 5
+print(b, y[b])
+#+end_src
+** Combining index arrays with slices
+Index arrays may be combined with slices. For example:
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+y = np.arange(64).reshape(8, 8)
+print(y[np.array([0,2,4]),1:3])
+#+end_src
+Likewise, slicing can be combined with broadcasted boolean indices:
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+b = y < 10
+print(y[b[:, 1], 1:3])
+#+end_src
+** Structural indexing tools
+To facilitate easy matching of array shapes with expressions and in assignments,
+the =np.newaxis= object can be used within array indices to add new dimensions
+with a size of 1. For example:
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+y = np.ones((3, 3))
+print(y.shape)
+print(y[:,np.newaxis,:].shape)
+#+end_src
+* Broadcasting
+The term broadcasting describes how numpy treats arrays with different shapes
+during arithmetic operations. 
+
+Broadcasting provides a means of vectorizing array operations so that looping
+occurs in C instead of Python. It does this without making needless copies of
+data and usually leads to efficient algorithm implementations. There are,
+however, cases where broadcasting is a bad idea because it leads to inefficient
+use of memory that slows computation.
+** Broadcasting
+Numpy operations are usually done on pairs of arrays on an element-by-element
+basis. In the simplest case, the two arrays must have exactly the same shape, as
+in the following example:
+
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+a = np.array([1.0, 2.0, 3.0])
+b = np.array([2.0, 2.0, 2.0])
+print(a * b)
+print(a * 2.0)
+#+end_src
+** General Broadcasting Rules
+
+- When operating on two arrays, numpy compares their shapes element-wise. It
+  starts with the trailing dimensions, and works its way forward. Two dimensions
+  are compatible when
+  - they are equal, 
+  - or one of them is 1 
+- If these conditions are not met, a =ValueError: frames are not aligned
+  exception= is thrown, indicating that the arrays have incompatible shapes. The
+  size of the resulting array is the maximum size along each dimension of the
+  input arrays
+** Broadcasting example
+In the following example, both the A and B arrays have axes with length one that
+are expanded to a larger size during the broadcast operation:
+
+#+begin_src sh
+A      (4d array):  8 x 1 x 6 x 1
+B      (3d array):      7 x 1 x 5
+Result (4d array):  8 x 7 x 6 x 5
+#+end_src
+[[http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html][More examples]]
+* Linear algebra
+Vectorizing code is the key to writing efficient numerical calculation with
+Python/Numpy. That means that as much as possible of a program should be
+formulated in terms of matrix and vector operations, like matrix-matrix
+multiplication.
+** Scalar-array operations
+We can use the usual arithmetic operators to multiply, add, subtract, and divide
+arrays with scalar numbers.
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+v = np.arange(5)
+print(v * 2, v + 3, v / 2., v - 5)
+#+end_src
+** Element-wise array-array operations
+When we add, subtract, multiply and divide arrays with each other, the default
+behaviour is element-wise operations:
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+m = np.arange(9).reshape(3, 3)
+v = np.arange(3)
+print(m * m)
+print(m ** 2)
+print(m * v)
+#+end_src
+** Matrix algebra
+We can either use the [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.dot.html][np.dot]] function, which applies a matrix-matrix,
+matrix-vector, or inner vector multiplication to its two arguments:
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+print(np.dot(m, v))
+#+end_src
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+print(np.dot(v, m))
+#+end_src
+[[http://docs.scipy.org/doc/numpy/reference/generated/numpy.dot.html][np.dot]] - for 2-D arrays it is equivalent to matrix multiplication, and for 1-D
+arrays to inner product of vectors.
+** Matrix algebra
+Alternatively, we can cast the array objects to the type [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.matrix.html][np.matrix]]. This changes
+the behavior of the standard arithmetic operators +, -, * to use matrix algebra.
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+M = np.matrix(m)
+vec = np.matrix(v).T # make it a column vector
+print(M * vec)
+print(vec * M)
+#+end_src
+** Matrix algebra
+More examples
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+# inner product
+print(np.dot(v, v))
+print(vec.T * vec)
 #+end_src
 
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
-print(M[1])
+# with matrix objects, standard matrix algebra applies
+print(vec + M * vec)
 #+end_src
-
-The same thing can be achieved with using =:= instead of an index:
-
+** Matrix computations
+Inverse: [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.inv.html][np.linalg.inv]]
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
-M[1, :] # second row
+M = np.matrix([[4, 2, 9], [11, 2, 3], [9, 3, 1]])
+print(np.linalg.inv(M))
 #+end_src
 
+Determinant:[[http://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.det.html][ np.linalg.det]]
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
-M[:, 1] # second column
+print(np.linalg.det(M))
 #+end_src
+* Data processing
+Often it is useful to store datasets in numpy arrays. Numpy provides a number of
+functions to calculate statistics of datasets in arrays.
+- [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.mean.html][np.mean]], [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.std.html][np.std]], [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.var.html][np.var]]
+- [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.amin.html][np.amin]], [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.amax.html][np.amax]]
+- [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.sum.html][np.sum]], [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.prod.html][np.prod]], [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.cumsum.html][np.cumsum]], [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.cumprod.html][np.cumprod]]
+* Reshaping, resizing and stacking arrays
+The shape of an numpy array can be modified without copying the underlaying
+data, which makes it a fast operation even for large arrays.
+** Reshaping
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+v = np.reshape(np.arange(24), (4, 6))
+print(v)
+#+end_src
+** Resizing
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+v = np.reshape(np.arange(24), (4, 6))
+print(v)
+#+end_src
+** Repeating
+Using function np.repeat, np.tile, np.vstack, np.hstack, and np.concatenate we
+can create larger vectors and matrices from smaller ones:
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+v = np.array([[1, 2], [3, 4]])
+# repeat each element 3 times
+print(np.repeat(v, 3))
+#+end_src
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+# tile the matrix 3 times 
+print(np.tile(v, 3))
+#+end_src
+** Stacking
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+w = np.array([[5, 6]])
+print(np.concatenate((v, w), axis=0))
+#+end_src
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+print(np.concatenate((v, w.T), axis=1))
+#+end_src
+** Stacking
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+print(np.vstack((v, w))
+#+end_src
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+print(np.hstack((v, w.T))
+#+end_src
+* Copy and "deep copy"
+To achieve high performance, assignments in Python usually do not copy the
+underlaying objects. This is important for example when objects are passed
+between functions, to avoid an excessive amount of memory copying when it is not
+necessary (technical term: pass by reference).
+** 
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+A = np.array([[1, 2], [3, 4]])
+# now B is referring to the same array data as A 
+B = A 
+# changing B affects A
+B[0,0] = 10
+print(A, B)
+#+end_src
+** 
+If we want to avoid this behavior, so that when we get a new completely
+independent object B copied from A, then we need to do a so-called "deep copy"
+using the function copy:
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+A = np.array([[1, 2], [3, 4]])
+B = A.copy()
+# now, if we modify B, A is not affected
+B[0, 0] = -5
+print(A, B)
+#+end_src
+* More numpy stuff
+- [[http://docs.scipy.org/doc/numpy/reference/maskedarray.html][Masked arrays]]
+- [[http://docs.scipy.org/doc/numpy/user/basics.rec.html][Structured arrays]] (aka "Record arrays")
+* Scipy 
