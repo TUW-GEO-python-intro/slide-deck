@@ -1,0 +1,1790 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Numpy and Scipy Packages</title>
+<meta name="author" content="(Sebastian Hahn)"/>
+
+<link rel="stylesheet" href="../reveal.js/css/reveal.css"/>
+<link rel="stylesheet" href="../reveal.js/css/theme/black.css" id="theme"/>
+<link rel="stylesheet" href="../code_formatting.css"/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '../reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide" data-background="" data-background-size="" data-background-repeat="" data-background-transition="">
+<h1>Numpy and Scipy Packages</h1> <h2>Sebastian Hahn</h2> <h2><a href="mailto:"></a></h2> <h2></h2>
+</section>
+
+<section>
+<section id="slide-unnumbered-1">
+<h2 id="unnumbered-1">Numpy</h2>
+<ul >
+<li>The <a href="http://www.numpy.org/">numpy package</a> is used in almost all numerical computation using Python</li>
+<li>It is a package that provide high-performance vector, matrix and
+higher-dimensional data structures</li>
+<li>It is implemented in C and Fortran so when calculations are vectorized
+(formulated with vectors and matrices), performance is very good</li>
+
+</ul>
+
+<p>
+To use numpy you need to import the module
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">import</span> numpy <span style="color: #A52A2A; font-weight: bold;">as</span> np 
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"Numpy version {:}"</span>.<span style="color: #A020F0;">format</span><span style="color: #7388d6;">(</span>np.__version__<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+Numpy version 1.8.2
+</pre>
+</section>
+</section>
+<section>
+<section id="slide-unnumbered-2">
+<h2 id="unnumbered-2">Getting started</h2>
+<ul >
+<li><a href="http://www.scipy.org/scipylib/download.html">Getting Numpy</a></li>
+<li><a href="http://docs.scipy.org/doc/">Numpy and scipy documentation page</a></li>
+<li><a href="http://www.scipy.org/Tentative_NumPy_Tutorial">Numpy tutorial</a></li>
+<li><a href="http://www.scipy.org/NumPy_for_Matlab_Users">Numpy for MATLAB Users</a></li>
+<li><a href="http://www.scipy.org/Numpy_Functions_by_Category">Numpy functions by category</a></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-unnumbered-3">
+<h2 id="unnumbered-3">Creating Numpy arrays</h2>
+<p>
+There are a number of ways to initialize new numpy arrays, for example from
+</p>
+<ul >
+<li>a Python list or tuples</li>
+<li>using functions that are dedicated to generating Numpy arrays, such as
+<a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.arange.html">np.arange</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.linspace.html">np.linspace</a>, etc.</li>
+<li>reading data from files</li>
+
+</ul>
+</section>
+<section id="slide-unnumbered-4">
+<h3 id="unnumbered-4">From lists</h3>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #204A87;"># </span><span style="color: #204A87;">a vector: the argument to the function is a Python list</span>
+<span style="color: #0084C8; font-weight: bold;">v</span> = np.array<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span>1, 2, 3, 4<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>v<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; [1 2 3 4]
+</pre>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #204A87;"># </span><span style="color: #204A87;">a matrix: the argument to the function is a nested Python list</span>
+<span style="color: #0084C8; font-weight: bold;">M</span> = np.array<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span><span style="color: #909183;">[</span>1, 2<span style="color: #909183;">]</span>, <span style="color: #909183;">[</span>3, 4<span style="color: #909183;">]</span><span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>M<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; [[1 2]
+ [3 4]]
+</pre>
+
+</section>
+<section id="slide-unnumbered-5">
+<h4 id="unnumbered-5">Difference between v and M</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #A020F0;">type</span><span style="color: #7388d6;">(</span>v<span style="color: #7388d6;">)</span>, <span style="color: #A020F0;">type</span><span style="color: #7388d6;">(</span>M<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+(&lt;type 'numpy.ndarray'&gt;, &lt;type 'numpy.ndarray'&gt;)
+</pre>
+<p>
+The difference between the v and M arrays is only their shapes. The information
+about the shape of an array by using the <code>ndarray.shape</code> property.
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>v.shape, M.shape<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+((4,), (2, 2))
+</pre>
+</section>
+<section id="slide-unnumbered-6">
+<h4 id="unnumbered-6">Numpy array vs. lists</h4>
+<p>
+So far the <code>numpy.ndarray</code> looks awefully much like a Python list (or nested
+list). Why not simply use Python lists for computations instead of a new array
+type?
+</p>
+
+<p>
+There are several reasons:
+</p>
+<ul >
+<li>Python lists are very general. Each element can be any kind of object. They
+are dynamically typed. They do not support mathematical functions such as
+matrix and dot multiplications, etc. Implementating such functions for Python
+lists would not be very efficient because of the dynamic typing</li>
+
+</ul>
+</section>
+<section id="slide-unnumbered-7">
+<h4 id="unnumbered-7"></h4>
+<ul >
+<li>Numpy arrays are statically typed and homogeneous. The type of the elements is
+determined when the array is created.</li>
+<li>Numpy arrays are memory efficient and element access is fast.</li>
+<li>Because of the static typing, fast implementation of mathematical functions
+such as multiplication and addition of numpy arrays can be implemented in a
+compiled language (C and Fortran is used).</li>
+
+</ul>
+</section>
+<section id="slide-unnumbered-8">
+<h4 id="unnumbered-8">Type of an array</h4>
+<p>
+Using the <code>ndarray.dtype</code> (data type) property, we can see the type of an array:
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>v.dtype, M.dtype<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+(dtype('int64'), dtype('int64'))
+</pre>
+
+<p>
+We get an error if we try to assign a value of an uncastable type to an element
+in a Numpy array:
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">M</span><span style="color: #707183;">[</span>0, 0<span style="color: #707183;">]</span> = <span style="color: #4E9A06;">"hello"</span>
+</pre>
+</div>
+
+<pre class="example">
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+ValueError: invalid literal for long() with base 10: 'hello'
+</pre>
+</section>
+<section id="slide-unnumbered-9">
+<h4 id="unnumbered-9"></h4>
+<p>
+But be aware that the type is defined by the array at the initialization and
+won't be changed if a value from another type is assigned
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">M</span><span style="color: #707183;">[</span>0, 0<span style="color: #707183;">]</span> = 1.2345
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>M<span style="color: #7388d6;">[</span>0, 0<span style="color: #7388d6;">]</span>, M.dtype<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+(1, dtype('int64'))
+</pre>
+
+<p>
+However, the data type can be changed later if it is desired (e.g. using <code>numpy.ndarray.astype</code>). 
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">x</span> = M.astype<span style="color: #707183;">(</span>np.float32<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x, x.dtype<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+(array([[ 1.,  2.],
+       [ 3.,  4.]], dtype=float32), dtype('float32'))
+</pre>
+</section>
+<section id="slide-unnumbered-10">
+<h4 id="unnumbered-10"></h4>
+<p>
+If we want, we can explicitly define the data type of the array during creation,
+using the <code>dtype</code> keyword argument.
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">M</span> = np.array<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span><span style="color: #909183;">[</span>1, 2<span style="color: #909183;">]</span>, <span style="color: #909183;">[</span>3, 4<span style="color: #909183;">]</span><span style="color: #7388d6;">]</span>, dtype=np.<span style="color: #A020F0;">complex</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>M<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[[ 1.+0.j  2.+0.j]
+ [ 3.+0.j  4.+0.j]]
+</pre>
+
+<p>
+Common types that can be used with <code>dtype</code> are, e.g.: <code>np.int8</code>, <code>np.int16</code>,
+<code>np.int32</code>, <code>np.int64</code>, <code>np.uint8</code>, <code>np.uint16</code>, <code>np.uint32</code>, <code>np.uint64</code>,
+<code>np.float32</code>, <code>np.float64</code>, <code>np.complex</code>, <code>np.bool</code>, <code>np.object</code>, etc.
+</p>
+</section>
+<section id="slide-unnumbered-11">
+<h3 id="unnumbered-11">Using array-generating functions</h3>
+<p>
+For larger arrays it is unpractical to initialize the data manually, using
+explicit python lists. Instead we can use one of the many functions in Numpy
+that generate arrays of different forms. Some of the more common ones are:
+</p>
+
+<p>
+Ones and Zeros
+</p>
+
+<p>
+<a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.empty.html">np.empty</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.zeros.html">np.zeros</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ones.html">np.ones</a>
+</p>
+
+<p>
+Numerical ranges
+</p>
+
+<p>
+<a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.arange.html">np.arange</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.linspace.html">np.linspace</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.logspace.html">np.logspace</a>
+</p>
+</section>
+<section id="slide-unnumbered-12">
+<h3 id="unnumbered-12"></h3>
+<p>
+Random numbers
+</p>
+
+<p>
+<a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.random.rand.html">np.random.rand</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.random.randn.html">np.random.randn</a>
+</p>
+
+<p>
+Building matrices
+</p>
+
+<p>
+<a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.identity.html">np.identity</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.diag.html">np.diag</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.tri.html">np.tri</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.tril.html">np.tril</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.triu.htmln">p.triu</a>
+</p>
+
+<p>
+From existing data
+</p>
+
+<p>
+<a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.fromfile.html">np.fromfile</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.fromstring.html">np.fromstring</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.loadtxt.html">np.loadtxt</a>
+</p>
+</section>
+<section id="slide-unnumbered-13">
+<h3 id="unnumbered-13">Ones and Zeros</h3>
+<p>
+<a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.zeros.html">np.zeros</a>
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">x</span> = np.zeros<span style="color: #707183;">(</span>3, dtype=np.<span style="color: #A020F0;">int</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[0 0 0]
+</pre>
+
+<p>
+<a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ones.html">np.ones</a>
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">x</span> = np.ones<span style="color: #707183;">(</span><span style="color: #7388d6;">(</span>3, 3<span style="color: #7388d6;">)</span>, dtype=np.<span style="color: #A020F0;">float</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[[ 1.  1.  1.]
+ [ 1.  1.  1.]
+ [ 1.  1.  1.]]
+</pre>
+</section>
+<section id="slide-unnumbered-14">
+<h3 id="unnumbered-14">Numerical ranges</h3>
+<p>
+<a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.arange.html">np.arange</a>
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #204A87;"># </span><span style="color: #204A87;">creates a range, arguments: [start=0], stop, [step=1]</span>
+<span style="color: #0084C8; font-weight: bold;">x</span> = np.arange<span style="color: #707183;">(</span>10<span style="color: #707183;">)</span> 
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; [0 1 2 3 4 5 6 7 8 9]
+</pre>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">x</span> = np.arange<span style="color: #707183;">(</span>2, -1, -0.5<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[ 2.   1.5  1.   0.5  0.  -0.5]
+</pre>
+</section>
+<section id="slide-unnumbered-15">
+<h3 id="unnumbered-15"></h3>
+<p>
+<a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.linspace.html">np.linspace</a>
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #204A87;"># </span><span style="color: #204A87;">using linspace, both end points ARE included</span>
+<span style="color: #0084C8; font-weight: bold;">x</span> = np.linspace<span style="color: #707183;">(</span>0, 10, 11<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; [  0.   1.   2.   3.   4.   5.   6.   7.   8.   9.  10.]
+</pre>
+
+<p>
+<a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.logspace.html">np.logspace</a>
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">x</span> = np.logspace<span style="color: #707183;">(</span>0, 10, 11, base=10<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[  1.00000000e+00   1.00000000e+01   1.00000000e+02   1.00000000e+03
+   1.00000000e+04   1.00000000e+05   1.00000000e+06   1.00000000e+07
+   1.00000000e+08   1.00000000e+09   1.00000000e+10]
+</pre>
+</section>
+<section id="slide-unnumbered-16">
+<h3 id="unnumbered-16">Random numbers</h3>
+<p>
+<a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.random.rand.html">np.random.rand</a>
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #204A87;"># </span><span style="color: #204A87;">each element is from the uniform random distribution [0,1]</span>
+<span style="color: #0084C8; font-weight: bold;">x</span> = np.random.rand<span style="color: #707183;">(</span>5, 5<span style="color: #707183;">)</span> 
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; [[ 0.92819053  0.78096331  0.88454484  0.15025367  0.86327508]
+ [ 0.52152967  0.6903908   0.61029897  0.24716016  0.92762323]
+ [ 0.83878385  0.78146169  0.30581027  0.34674281  0.95222171]
+ [ 0.06496472  0.51497669  0.01277921  0.55690918  0.27095144]
+ [ 0.42779013  0.35234505  0.1225685   0.24785118  0.84325914]]
+</pre>
+
+<p>
+The standard normal distribution is available as <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.randn.html">np.random.randn</a>
+</p>
+</section>
+<section id="slide-unnumbered-17">
+<h3 id="unnumbered-17">Building matrices</h3>
+<p>
+<a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.diag.html">np.diag</a>
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">x</span> = np.diag<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span>1, 2, 3<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span> <span style="color: #204A87;"># </span><span style="color: #204A87;">the diagonal of an otherwise zero matrix</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[[1 0 0]
+ [0 2 0]
+ [0 0 3]]
+</pre>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">y</span> = np.diag<span style="color: #707183;">(</span>x<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>y<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[1 2 3]
+</pre>
+</section>
+<section id="slide-unnumbered-18">
+<h3 id="unnumbered-18"></h3>
+<p>
+<a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.tri.html">np.tri</a>
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #204A87;"># </span><span style="color: #204A87;">ones at and below the given diagonal and zeros elsewhere</span>
+<span style="color: #0084C8; font-weight: bold;">x</span> = np.tri<span style="color: #707183;">(</span>3<span style="color: #707183;">)</span> 
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; [[ 1.  0.  0.]
+ [ 1.  1.  0.]
+ [ 1.  1.  1.]]
+</pre>
+
+<p>
+<a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.triu.html">np.triu</a>
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #204A87;"># </span><span style="color: #204A87;">Upper triangle of an array.</span>
+<span style="color: #0084C8; font-weight: bold;">x</span> = np.triu<span style="color: #707183;">(</span>np.ones<span style="color: #7388d6;">(</span><span style="color: #909183;">(</span>3, 3<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span>*2<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; [[ 2.  2.  2.]
+ [ 0.  2.  2.]
+ [ 0.  0.  2.]]
+</pre>
+</section>
+<section id="slide-unnumbered-19">
+<h3 id="unnumbered-19">More properties of the numpy arrays</h3>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">M</span> = np.ones<span style="color: #707183;">(</span><span style="color: #7388d6;">(</span>3, 3<span style="color: #7388d6;">)</span>, dtype=np.uint8<span style="color: #707183;">)</span> * 21
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>M.dtype<span style="color: #707183;">)</span>
+M.itemsize <span style="color: #204A87;"># </span><span style="color: #204A87;">bytes per element</span>
+</pre>
+</div>
+
+<pre class="example">
+uint8
+1
+</pre>
+
+<div class="org-src-container">
+
+<pre  class="src src-python">M.nbytes <span style="color: #204A87;"># </span><span style="color: #204A87;">number of bytes</span>
+</pre>
+</div>
+
+<pre class="example">
+9
+</pre>
+
+<div class="org-src-container">
+
+<pre  class="src src-python">M.ndim <span style="color: #204A87;"># </span><span style="color: #204A87;">number of dimensions</span>
+</pre>
+</div>
+
+<pre class="example">
+2
+</pre>
+</section>
+</section>
+<section>
+<section id="slide-unnumbered-20">
+<h2 id="unnumbered-20">Manipulating arrays</h2>
+<ul >
+<li>Basic indexing and slicing</li>
+<li>Advanced indexing
+<ul >
+<li>Index arrays</li>
+<li>Boolean index arrays</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="slide-unnumbered-21">
+<h3 id="unnumbered-21">Basic indexing</h3>
+<p>
+Array indexing refers to any use of the square brackets <code>[]</code> to index array
+values. There are many options to indexing, which give Numpy indexing great
+power, but with power comes some complexity and the potential for confusion.
+</p>
+
+<p>
+We can index elements in an array using the square bracket and indices:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #204A87;"># </span><span style="color: #204A87;">v is a vector, and has only one dimension, taking one index</span>
+<span style="color: #0084C8; font-weight: bold;">v</span> = np.arange<span style="color: #707183;">(</span>10<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>v<span style="color: #7388d6;">[</span>0<span style="color: #7388d6;">]</span>, v<span style="color: #7388d6;">[</span>-2<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; (0, 8)
+</pre>
+</section>
+<section id="slide-unnumbered-22">
+<h3 id="unnumbered-22">Basic indexing</h3>
+<p>
+Unlike lists and tuples, Numpy arrays support multidimensional indexing for
+multidimensional arrays. That means that it is not necessary to separate each
+dimension’s index into its own set of square brackets.
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">v.shape</span> = <span style="color: #707183;">(</span>2, 5<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>v<span style="color: #707183;">)</span>
+<span style="color: #204A87;"># </span><span style="color: #204A87;">v is now a 2 dimensional array, taking two indices </span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>v<span style="color: #7388d6;">[</span>1, 1<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span> <span style="color: #204A87;"># </span><span style="color: #204A87;">same as v[1][1]</span>
+</pre>
+</div>
+
+<pre class="example">
+[[0 1 2 3 4]
+ [5 6 7 8 9]]
+... 6
+</pre>
+</section>
+<section id="slide-unnumbered-23">
+<h3 id="unnumbered-23">Basic indexing</h3>
+<p>
+Note that if one indexes a multidimensional array with fewer indices than
+dimensions, one gets a subdimensional array. For example:
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>v<span style="color: #7388d6;">[</span>0<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[0 1 2 3 4]
+</pre>
+
+<p>
+The same thing can be achieved with using <code>:</code> 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>v<span style="color: #7388d6;">[</span>0, :<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[0 1 2 3 4]
+</pre>
+</section>
+<section id="slide-unnumbered-24">
+<h3 id="unnumbered-24">Basic indexing</h3>
+<p>
+It must be noted that the returned array is not a copy of the original, but
+points <b>to the same values in memory</b> as does the original array. In the next
+example, the 1-D array at the first position (0) is returned.
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>v<span style="color: #7388d6;">[</span>0<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[0 1 2 3 4]
+</pre>
+
+<p>
+So using a single index on the returned array, results in a single element being
+returned. That is:
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>v<span style="color: #7388d6;">[</span>0<span style="color: #7388d6;">][</span>2<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+2
+</pre>
+
+</section>
+<section id="slide-unnumbered-25">
+<h3 id="unnumbered-25">Basic indexing</h3>
+<p>
+Note that <code>v[0, 2] = v[0][2]</code> though the second case is more inefficient a new
+temporary array is created after the first index that is subsequently indexed
+by 2.
+</p>
+</section>
+<section id="slide-unnumbered-26">
+<h3 id="unnumbered-26">Slicing</h3>
+<p>
+It is possible to slice and stride arrays to extract arrays of the same number
+of dimensions, but of different sizes than the original. The slicing and
+striding works exactly the same way it does for lists and tuples except that
+they can be applied to multiple dimensions as well. 
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">x</span> = np.arange<span style="color: #707183;">(</span>10<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x<span style="color: #7388d6;">[</span>2:5<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x<span style="color: #7388d6;">[</span>:-7<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x<span style="color: #7388d6;">[</span>1:7:2<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[2 3 4]
+[0 1 2]
+[1 3 5]
+</pre>
+
+</section>
+<section id="slide-unnumbered-27">
+<h3 id="unnumbered-27">Views</h3>
+<p>
+Note that slices of arrays do not copy the internal array data but also produce
+new <b>views</b> of the original data.
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">x</span> = np.arange<span style="color: #707183;">(</span>5<span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">y</span> = x<span style="color: #707183;">[</span>::2<span style="color: #707183;">]</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>y<span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">y</span><span style="color: #707183;">[</span>0<span style="color: #707183;">]</span> = 3
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>y<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; [0 1 2 3 4]
+[0 2 4]
+&gt;&gt;&gt; [3 1 2 3 4]
+[3 2 4]
+</pre>
+
+<p>
+Making changes to the view changes the underlying array!
+</p>
+</section>
+<section id="slide-unnumbered-28">
+<h3 id="unnumbered-28">Views</h3>
+<p>
+<a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.view.html">np.ndarray.view</a>
+</p>
+
+<p>
+New view of array with the same data and is used two different ways:
+</p>
+<ol >
+<li><code>a.view(some_dtype)</code> or <code>a.view(dtype=some_dtype)</code> constructs a view of the
+array's memory with a different data-type. This can cause a reinterpretation
+of the bytes of memory.</li>
+<li><code>a.view(ndarray_subclass)</code> or <code>a.view(type=ndarray_subclass)</code> just returns an
+instance of ndarray_subclass that looks at the same array (same shape, dtype,
+etc.) This does not cause a reinterpretation of the memory.</li>
+
+</ol>
+</section>
+<section id="slide-unnumbered-29">
+<h3 id="unnumbered-29">Advanced indexing</h3>
+<p>
+It is possible to index arrays with other arrays for the purposes of selecting
+lists of values out of arrays into new arrays. There are two different ways of
+accomplishing this. 
+</p>
+<ul >
+<li>One uses one or more arrays of index values.</li>
+<li>The other involves giving a boolean array of the proper shape to indicate
+the values to be selected.</li>
+
+</ul>
+<p>
+Index arrays are a very powerful tool that allow one to avoid looping
+over individual elements in arrays and thus greatly improve performance.
+</p>
+</section>
+<section id="slide-unnumbered-30">
+<h3 id="unnumbered-30">Index arrays</h3>
+<p>
+The use of index arrays ranges from simple, straightforward cases to complex,
+hard-to-understand cases. For all cases of index arrays, what is returned is a
+<b>copy</b> of the original data, not a view as one gets for slices.
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">x</span> = np.arange<span style="color: #707183;">(</span>10, 1, -1<span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">y</span> = x<span style="color: #707183;">[</span>np.arange<span style="color: #7388d6;">(</span>0, 8, 2<span style="color: #7388d6;">)</span><span style="color: #707183;">]</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>y<span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">y</span><span style="color: #707183;">[</span>0<span style="color: #707183;">]</span> = 55
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>y<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; [10  9  8  7  6  5  4  3  2]
+[10  8  6  4]
+&gt;&gt;&gt; [10  9  8  7  6  5  4  3  2]
+[55  8  6  4]
+</pre>
+
+</section>
+<section id="slide-unnumbered-31">
+<h3 id="unnumbered-31">Boolean index arrays</h3>
+<p>
+Boolean arrays used as indices are treated in a different manner entirely than
+index arrays. Boolean arrays must be of the same shape as the initial dimensions
+of the array being indexed.
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">y</span> = np.arange<span style="color: #707183;">(</span>10<span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">b</span> = y &gt; 5
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>b, y<span style="color: #7388d6;">[</span>b<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; (array([False, False, False, False, False, False,  True,  True,  True,  True], dtype=bool), array([6, 7, 8, 9]))
+</pre>
+
+</section>
+<section id="slide-unnumbered-32">
+<h3 id="unnumbered-32">Combining index arrays with slices</h3>
+<p>
+Index arrays may be combined with slices. For example:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">y</span> = np.arange<span style="color: #707183;">(</span>64<span style="color: #707183;">)</span>.reshape<span style="color: #707183;">(</span>8, 8<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>y<span style="color: #7388d6;">[</span>np.array<span style="color: #909183;">(</span><span style="color: #709870;">[</span>0,2,4<span style="color: #709870;">]</span><span style="color: #909183;">)</span>,1:3<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[[ 1  2]
+ [17 18]
+ [33 34]]
+</pre>
+
+<p>
+Likewise, slicing can be combined with broadcasted boolean indices:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">b</span> = y &lt; 10
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>y<span style="color: #7388d6;">[</span>b<span style="color: #909183;">[</span>:, 1<span style="color: #909183;">]</span>, 1:3<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[[ 1  2]
+ [ 9 10]]
+</pre>
+
+</section>
+<section id="slide-unnumbered-33">
+<h3 id="unnumbered-33">Structural indexing tools</h3>
+<p>
+To facilitate easy matching of array shapes with expressions and in assignments,
+the <code>np.newaxis</code> object can be used within array indices to add new dimensions
+with a size of 1. For example:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">y</span> = np.ones<span style="color: #707183;">(</span><span style="color: #7388d6;">(</span>3, 3<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>y.shape<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>y<span style="color: #7388d6;">[</span>:,np.newaxis,:<span style="color: #7388d6;">]</span>.shape<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+(3, 3)
+(3, 1, 3)
+</pre>
+
+</section>
+</section>
+<section>
+<section id="slide-unnumbered-34">
+<h2 id="unnumbered-34">Linear algebra</h2>
+<p>
+Vectorizing code is the key to writing efficient numerical calculation with
+Python/Numpy. That means that as much as possible of a program should be
+formulated in terms of matrix and vector operations, like matrix-matrix
+multiplication.
+</p>
+</section>
+<section id="slide-unnumbered-35">
+<h3 id="unnumbered-35">Scalar-array operations</h3>
+<p>
+We can use the usual arithmetic operators to multiply, add, subtract, and divide
+arrays with scalar numbers.
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">v</span> = np.arange<span style="color: #707183;">(</span>5<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>v * 2, v + 3, v / 2., v - 5<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+(array([0, 2, 4, 6, 8]), array([3, 4, 5, 6, 7]), array([ 0. ,  0.5,  1. ,  1.5,  2. ]), array([-5, -4, -3, -2, -1]))
+</pre>
+
+</section>
+<section id="slide-unnumbered-36">
+<h3 id="unnumbered-36">Element-wise array-array operations</h3>
+<p>
+When we add, subtract, multiply and divide arrays with each other, the default
+behaviour is element-wise operations:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">m</span> = np.arange<span style="color: #707183;">(</span>9<span style="color: #707183;">)</span>.reshape<span style="color: #707183;">(</span>3, 3<span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">v</span> = np.arange<span style="color: #707183;">(</span>3<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>m * m<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>m ** 2<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>m * v<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; [[ 0  1  4]
+ [ 9 16 25]
+ [36 49 64]]
+[[ 0  1  4]
+ [ 9 16 25]
+ [36 49 64]]
+[[ 0  1  4]
+ [ 0  4 10]
+ [ 0  7 16]]
+</pre>
+
+</section>
+<section id="slide-unnumbered-37">
+<h3 id="unnumbered-37">Matrix algebra</h3>
+<p>
+We can either use the <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.dot.html">np.dot</a> function, which applies a matrix-matrix,
+matrix-vector, or inner vector multiplication to its two arguments:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>np.dot<span style="color: #7388d6;">(</span>m, v<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[ 5 14 23]
+</pre>
+
+<p>
+For 2-D arrays it is equivalent to matrix multiplication, and for 1-D arrays to
+inner product of vectors.
+</p>
+</section>
+<section id="slide-unnumbered-38">
+<h3 id="unnumbered-38">Matrix algebra</h3>
+<p>
+Alternatively, we can cast the array objects to the type <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.matrix.html">np.matrix</a>. This changes
+the behavior of the standard arithmetic operators +, -, * to use matrix algebra.
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">M</span> = np.matrix<span style="color: #707183;">(</span>m<span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">vec</span> = np.matrix<span style="color: #707183;">(</span>v<span style="color: #707183;">)</span>.T <span style="color: #204A87;"># </span><span style="color: #204A87;">make it a column vector</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>M * vec<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; [[ 5]
+ [14]
+ [23]]
+</pre>
+
+</section>
+<section id="slide-unnumbered-39">
+<h3 id="unnumbered-39">Matrix algebra</h3>
+<p>
+More examples
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #204A87;"># </span><span style="color: #204A87;">inner product</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>np.dot<span style="color: #7388d6;">(</span>v, v<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>vec.T * vec<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+5
+[[5]]
+</pre>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #204A87;"># </span><span style="color: #204A87;">with matrix objects, standard matrix algebra applies</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>vec + M * vec<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[[ 5]
+ [15]
+ [25]]
+</pre>
+
+</section>
+<section id="slide-unnumbered-40">
+<h3 id="unnumbered-40">Matrix computations</h3>
+<p>
+Inverse: <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.inv.html">np.linalg.inv</a>
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">M</span> = np.matrix<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span><span style="color: #909183;">[</span>4, 2, 9<span style="color: #909183;">]</span>, <span style="color: #909183;">[</span>11, 2, 3<span style="color: #909183;">]</span>, <span style="color: #909183;">[</span>9, 3, 1<span style="color: #909183;">]</span><span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>np.linalg.inv<span style="color: #7388d6;">(</span>M<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[[-0.05035971  0.17985612 -0.08633094]
+ [ 0.11510791 -0.55395683  0.62589928]
+ [ 0.10791367  0.04316547 -0.10071942]]
+</pre>
+
+<p>
+Determinant:<a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.det.html"> np.linalg.det</a>
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>np.linalg.det<span style="color: #7388d6;">(</span>M<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+139.0
+</pre>
+
+</section>
+</section>
+<section>
+<section id="slide-unnumbered-41">
+<h2 id="unnumbered-41">Mathematical functions</h2>
+<p>
+Exponents and logarithms, trigonometric functions
+</p>
+<ul >
+<li><a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.exp.html">np.exp</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.log.html">np.log</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.cos.html">np.cos</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.sin.html">np.sin</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.tan.html">np.tan</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.arcsin.html">np.arcsin</a>, &#x2026;</li>
+
+</ul>
+
+<p>
+Linear algebra
+</p>
+<ul >
+<li><a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.svd.html">linalg.svd</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.eig.html">linalg.eig</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.linalg.qr.html">linalg.qr</a>, &#x2026;</li>
+
+</ul>
+
+<p>
+Handling complex numbers
+</p>
+<ul >
+<li><a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.real.html">np.real</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.imag.html">np.imag</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.conj.html">np.conj</a>, &#x2026;</li>
+
+</ul>
+
+<p>
+Floating functions, and miscellaneous
+</p>
+<ul >
+<li><a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.floor.html">np.floor</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ceil.html">np.ceil</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.isnan.html">np.isnan</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.sqrt.html">np.sqrt</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.convolve.html">np.convolve</a>, &#x2026;</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-unnumbered-42">
+<h2 id="unnumbered-42">Data processing</h2>
+<p>
+Often it is useful to store datasets in Numpy arrays. Numpy provides a number of
+functions to calculate statistics of datasets in arrays.
+</p>
+<ul >
+<li><a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.mean.html">np.mean</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.std.html">np.std</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.var.html">np.var</a></li>
+<li><a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.amin.html">np.amin</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.amax.html">np.amax</a></li>
+<li><a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.sum.html">np.sum</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.prod.html">np.prod</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.cumsum.html">np.cumsum</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.cumprod.html">np.cumprod</a></li>
+
+</ul>
+</section>
+<section id="slide-unnumbered-43">
+<h3 id="unnumbered-43">Some examples</h3>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">x</span> = np.arange<span style="color: #707183;">(</span>10<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>np.<span style="color: #A020F0;">sum</span><span style="color: #7388d6;">(</span>x<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+45
+</pre>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>np.mean<span style="color: #7388d6;">(</span>x<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+4.5
+</pre>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>np.var<span style="color: #7388d6;">(</span>x<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+8.25
+</pre>
+
+</section>
+</section>
+<section>
+<section id="slide-unnumbered-44">
+<h2 id="unnumbered-44">Reshaping, resizing and stacking arrays</h2>
+<p>
+The shape of an Numpy array can be modified without copying the underlaying
+data, which makes it a fast operation even for large arrays.
+</p>
+</section>
+<section id="slide-unnumbered-45">
+<h3 id="unnumbered-45">Reshaping</h3>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">x</span> = np.arange<span style="color: #707183;">(</span>24<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23]
+</pre>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">v</span> = np.reshape<span style="color: #707183;">(</span>x, <span style="color: #7388d6;">(</span>4, 6<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>v<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[[ 0  1  2  3  4  5]
+ [ 6  7  8  9 10 11]
+ [12 13 14 15 16 17]
+ [18 19 20 21 22 23]]
+</pre>
+
+</section>
+<section id="slide-unnumbered-46">
+<h3 id="unnumbered-46">Resizing</h3>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">v</span> = np.array<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span><span style="color: #909183;">[</span>0, 1<span style="color: #909183;">]</span>, <span style="color: #909183;">[</span>2, 3<span style="color: #909183;">]</span><span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">x</span> = np.resize<span style="color: #707183;">(</span>v, <span style="color: #7388d6;">(</span>1,4<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; [[0 1 2 3]]
+</pre>
+
+</section>
+<section id="slide-unnumbered-47">
+<h3 id="unnumbered-47">Repeating and Stacking</h3>
+<p>
+Using function <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.repeat.html">np.repeat</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.tile.html">np.tile</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.vstack.html">np.vstack</a>, <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.hstack.html">np.hstack</a>, and <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.concatenate.html">np.concatenate</a> we
+can create larger vectors and matrices from smaller ones:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">v</span> = np.array<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span><span style="color: #909183;">[</span>1, 2<span style="color: #909183;">]</span>, <span style="color: #909183;">[</span>3, 4<span style="color: #909183;">]</span><span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<span style="color: #204A87;"># </span><span style="color: #204A87;">repeat each element 3 times</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>np.repeat<span style="color: #7388d6;">(</span>v, 3<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+... [1 1 1 2 2 2 3 3 3 4 4 4]
+</pre>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #204A87;"># </span><span style="color: #204A87;">tile the matrix 3 times </span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>np.tile<span style="color: #7388d6;">(</span>v, 3<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[[1 2 1 2 1 2]
+ [3 4 3 4 3 4]]
+</pre>
+
+</section>
+<section id="slide-unnumbered-48">
+<h3 id="unnumbered-48">Stacking</h3>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">v</span> = np.array<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span><span style="color: #909183;">[</span>0, 1<span style="color: #909183;">]</span>, <span style="color: #909183;">[</span>2, 3<span style="color: #909183;">]</span><span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">w</span> = np.array<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span><span style="color: #909183;">[</span>5, 6<span style="color: #909183;">]</span><span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>np.concatenate<span style="color: #7388d6;">(</span><span style="color: #909183;">(</span>v, w<span style="color: #909183;">)</span>, axis=0<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; [[0 1]
+ [2 3]
+ [5 6]]
+</pre>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>np.concatenate<span style="color: #7388d6;">(</span><span style="color: #909183;">(</span>v, w.T<span style="color: #909183;">)</span>, axis=1<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[[0 1 5]
+ [2 3 6]]
+</pre>
+
+</section>
+<section id="slide-unnumbered-49">
+<h3 id="unnumbered-49">Stacking</h3>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">v</span> = np.array<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span><span style="color: #909183;">[</span>0, 1<span style="color: #909183;">]</span>, <span style="color: #909183;">[</span>2, 3<span style="color: #909183;">]</span><span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">w</span> = np.array<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span><span style="color: #909183;">[</span>5, 6<span style="color: #909183;">]</span><span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">x</span> = np.vstack<span style="color: #707183;">(</span><span style="color: #7388d6;">(</span>v, w<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; &gt;&gt;&gt; [[0 1]
+ [2 3]
+ [5 6]]
+</pre>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">x</span> = np.hstack<span style="color: #707183;">(</span><span style="color: #7388d6;">(</span>v, w.T<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[[0 1 5]
+ [2 3 6]]
+</pre>
+
+</section>
+</section>
+<section>
+<section id="slide-unnumbered-50">
+<h2 id="unnumbered-50">Copy and "deep copy"</h2>
+<p>
+To achieve high performance, assignments in Python usually do not copy the
+underlaying objects. This is important for example when objects are passed
+between functions, to avoid an excessive amount of memory copying when it is not
+necessary (technical term: pass by reference).
+</p>
+</section>
+<section id="slide-unnumbered-51">
+<h3 id="unnumbered-51">Without copy</h3>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">A</span> = np.array<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span><span style="color: #909183;">[</span>1, 2<span style="color: #909183;">]</span>, <span style="color: #909183;">[</span>3, 4<span style="color: #909183;">]</span><span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<span style="color: #204A87;"># </span><span style="color: #204A87;">now B is referring to the same array data as A </span>
+<span style="color: #0084C8; font-weight: bold;">B</span> = A 
+<span style="color: #204A87;"># </span><span style="color: #204A87;">changing B affects A</span>
+<span style="color: #0084C8; font-weight: bold;">B</span><span style="color: #707183;">[</span>0, 0<span style="color: #707183;">]</span> = 10
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>A<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+... &gt;&gt;&gt; ... &gt;&gt;&gt; [[10  2]
+ [ 3  4]]
+</pre>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>B<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[[10  2]
+ [ 3  4]]
+</pre>
+</section>
+<section id="slide-unnumbered-52">
+<h3 id="unnumbered-52">Copy</h3>
+<p>
+If we want to avoid this behavior, so that when we get a new completely
+independent object B copied from A, then we need to do a so-called "deep copy"
+using the function copy:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">A</span> = np.array<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span><span style="color: #909183;">[</span>1, 2<span style="color: #909183;">]</span>, <span style="color: #909183;">[</span>3, 4<span style="color: #909183;">]</span><span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">B</span> = A.copy<span style="color: #707183;">()</span>
+<span style="color: #204A87;"># </span><span style="color: #204A87;">now, if we modify B, A is not affected</span>
+<span style="color: #0084C8; font-weight: bold;">B</span><span style="color: #707183;">[</span>0, 0<span style="color: #707183;">]</span> = -5
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>A<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; ... &gt;&gt;&gt; [[1 2]
+ [3 4]]
+</pre>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>B<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[[-5  2]
+ [ 3  4]]
+</pre>
+</section>
+</section>
+<section>
+<section id="slide-unnumbered-53">
+<h2 id="unnumbered-53">Iterating over array elements</h2>
+<p>
+Generally, we want to avoid iterating over the elements of arrays whenever we
+can (at all costs). The reason is that in a interpreted language like Python (or
+MATLAB), iterations are really slow compared to vectorized operations.
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">v</span> = np.array<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span>1,2,3,4<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">for</span> element <span style="color: #A52A2A; font-weight: bold;">in</span> v:
+    <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>element<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+... ... 1
+2
+3
+4
+</pre>
+
+</section>
+</section>
+<section>
+<section id="slide-unnumbered-54">
+<h2 id="unnumbered-54">Some Numpy functions</h2>
+<div class="outline-text-2" id="text-unnumbered-54">
+</div></section>
+<section id="slide-unnumbered-55">
+<h3 id="unnumbered-55"><code>np.where</code></h3>
+<p>
+The position index can be found using the <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.where.html">np.where</a> function
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">x</span> = np.arange<span style="color: #707183;">(</span>10<span style="color: #707183;">)</span> + 20
+<span style="color: #0084C8; font-weight: bold;">indices</span> = np.where<span style="color: #707183;">(</span><span style="color: #7388d6;">(</span>x &gt;= 20<span style="color: #7388d6;">)</span> &amp; <span style="color: #7388d6;">(</span>x &lt; 25<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>indices<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; (array([0, 1, 2, 3, 4]),)
+</pre>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[20 21 22 23 24 25 26 27 28 29]
+</pre>
+
+</section>
+<section id="slide-unnumbered-56">
+<h3 id="unnumbered-56"><code>np.choose</code></h3>
+<p>
+Constructs an array by picking elements form several arrays using
+<a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.choose.html">np.choose</a>
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">which</span> = <span style="color: #707183;">[</span>1, 0, 1, 0<span style="color: #707183;">]</span>
+<span style="color: #0084C8; font-weight: bold;">choices</span> = <span style="color: #707183;">[</span><span style="color: #7388d6;">[</span>-2, -2, -2, -2<span style="color: #7388d6;">]</span>, <span style="color: #7388d6;">[</span>5, 5, 5, 5<span style="color: #7388d6;">]</span><span style="color: #707183;">]</span>
+<span style="color: #0084C8; font-weight: bold;">x</span> = np.choose<span style="color: #707183;">(</span>which, choices<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; &gt;&gt;&gt; [ 5 -2  5 -2]
+</pre>
+
+</section>
+<section id="slide-unnumbered-57">
+<h3 id="unnumbered-57"><code>np.take</code></h3>
+<p>
+Take elements from an array along an axis (for completeness, the function
+<a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.take.html">np.take</a> does the same thing as "fancy" indexing (i.e. indexing arrays using
+arrays); however it can be easier to use if you need elements along a given axis.
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">v</span> = np.array<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span>4, 3, 5, 7, 6, 8<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">indices</span> = np.array<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span>0, 1, 4<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">x</span> = np.take<span style="color: #707183;">(</span>v, indices<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>v<span style="color: #7388d6;">[</span>indices<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; &gt;&gt;&gt; [4 3 6]
+[4 3 6]
+</pre>
+
+</section>
+<section id="slide-unnumbered-58">
+<h3 id="unnumbered-58"><code>np.select</code></h3>
+<p>
+Return an array drawn from elements in choicelist, depending on conditions using
+<a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.select.html">np.select</a>.
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">x</span> = np.arange<span style="color: #707183;">(</span>10<span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">condlist</span> = <span style="color: #707183;">[</span>x&lt;3, x&gt;5<span style="color: #707183;">]</span>
+<span style="color: #0084C8; font-weight: bold;">choicelist</span> = <span style="color: #707183;">[</span>x, x**2<span style="color: #707183;">]</span>
+<span style="color: #0084C8; font-weight: bold;">v</span> = np.select<span style="color: #707183;">(</span>condlist, choicelist<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>v<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; [ 0  1  2  0  0  0 36 49 64 81]
+</pre>
+
+</section>
+<section id="slide-unnumbered-59">
+<h3 id="unnumbered-59"><code>np.place</code></h3>
+<p>
+Change elements of an array based on conditional and input values using <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.place.html">np.place</a>.
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">m</span> = np.arange<span style="color: #707183;">(</span>6<span style="color: #707183;">)</span>.reshape<span style="color: #707183;">(</span>2, 3<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>m<span style="color: #707183;">)</span>
+np.place<span style="color: #707183;">(</span>m, m&gt;2, <span style="color: #7388d6;">[</span>44, 55<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>m<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[[0 1 2]
+ [3 4 5]]
+&gt;&gt;&gt; [[ 0  1  2]
+ [44 55 44]]
+</pre>
+
+</section>
+<section id="slide-unnumbered-60">
+<h3 id="unnumbered-60">And many more &#x2026;</h3>
+<p>
+The <a href="http://docs.scipy.org/doc/numpy/reference/index.html">Numpy reference manual</a> gives details on functions, modules, and objects
+included in Numpy, describing what they are and what they do.
+</p>
+</section>
+</section>
+<section>
+<section id="slide-unnumbered-61">
+<h2 id="unnumbered-61">Further Numpy topics</h2>
+<ul >
+<li><a href="http://docs.scipy.org/doc/numpy/reference/maskedarray.html">Masked arrays</a></li>
+<li><a href="http://docs.scipy.org/doc/numpy/user/basics.io.html">Numpy IO</a> (will be covered in another session)</li>
+<li><a href="http://docs.scipy.org/doc/numpy/reference/arrays.datetime.html">Datetime and timedeltas</a></li>
+<li><a href="http://docs.scipy.org/doc/numpy/reference/routines.polynomials.html">Numpy polynomials functions</a></li>
+<li><a href="http://docs.scipy.org/doc/numpy/reference/routines.sort.html">Sorting, searching, counting</a></li>
+<li><a href="http://docs.scipy.org/doc/numpy/reference/routines.logic.html">Logic functions</a></li>
+<li><a href="http://docs.scipy.org/doc/numpy/reference/routines.statistics.html">More on statistics</a></li>
+<li><a href="http://docs.scipy.org/doc/numpy/user/basics.rec.html">Structured arrays</a> (aka "Record arrays")</li>
+<li><a href="http://docs.scipy.org/doc/numpy/user/basics.byteswapping.html">Byte-swapping</a></li>
+<li><a href="http://docs.scipy.org/doc/numpy/user/basics.subclassing.html">Subclassing ndarray</a></li>
+<li>and many <a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.var.html">more</a> &#x2026;</li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-unnumbered-62">
+<h2 id="unnumbered-62">Scipy</h2>
+<p>
+<a href="http://docs.scipy.org/doc/">Scipy</a> (Scientific Computing Tools for Python) is a Python-based ecosystem of
+open-source software for mathematics, science, and engineering. In particular,
+these are some of the core packages:
+</p>
+<ul >
+<li>Python (2.x &gt;= 2.6 or 3.x &gt;= 3.2)</li>
+<li>NumPy (&gt;= 1.6)</li>
+<li>Scipy library (&gt;= 0.10)</li>
+<li>Matplotlib (&gt;= 1.1)</li>
+<li>dateutil</li>
+<li>pytz</li>
+
+</ul>
+</section>
+<section id="slide-unnumbered-63">
+<h3 id="unnumbered-63">Scipy library</h3>
+<p>
+The <a href="http://docs.scipy.org/doc/">Scipy library</a> is one of the core packages that make up the Scipy stack. It
+provides many <a href="http://docs.scipy.org/doc/scipy/reference/">user-friendly and efficient numerical routines</a> such as routines
+for numerical integration and optimization.
+</p>
+</section>
+<section id="slide-unnumbered-64">
+<h3 id="unnumbered-64">Example I - Interpolation (scipy.interpolate)</h3>
+<p>
+There are several general <a href="http://docs.scipy.org/doc/scipy/reference/tutorial/interpolate.html">interpolation facilities</a> available in Scipy, for data
+in 1, 2, and higher dimension
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">from</span> scipy.interpolate <span style="color: #A52A2A; font-weight: bold;">import</span> interp1d
+<span style="color: #0084C8; font-weight: bold;">x</span> = np.linspace<span style="color: #707183;">(</span>0, 10, 10<span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">y</span> = np.cos<span style="color: #707183;">(</span>-x**2 / 8.0<span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">f</span> = interp1d<span style="color: #707183;">(</span>x, y, kind=<span style="color: #4E9A06;">'cubic'</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>y<span style="color: #7388d6;">[</span>:4<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; [ 1.          0.98811613  0.81545357  0.18090587]
+</pre>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>f<span style="color: #7388d6;">(</span>x<span style="color: #7388d6;">)[</span>:4<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[ 1.          0.98811613  0.81545357  0.18090587]
+</pre>
+</section>
+<section id="slide-unnumbered-65">
+<h3 id="unnumbered-65">Example II - Statistics (scipy.stats)</h3>
+<p>
+This <a href="http://docs.scipy.org/doc/scipy/reference/stats.html">module</a> contains a large number of probability distributions as well as a
+growing library of statistical functions.  There are several general
+</p>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">from</span> scipy.stats <span style="color: #A52A2A; font-weight: bold;">import</span> norm
+
+<span style="color: #204A87;"># </span><span style="color: #204A87;">The probability density function for norm is:</span>
+<span style="color: #204A87;"># </span><span style="color: #204A87;">norm.pdf(x) = exp(-x**2/2)/sqrt(2*pi)</span>
+
+<span style="color: #204A87;"># </span><span style="color: #204A87;">Calculate a few first moments </span>
+<span style="color: #0084C8; font-weight: bold;">mean</span>, <span style="color: #0084C8; font-weight: bold;">var</span>, <span style="color: #0084C8; font-weight: bold;">skew</span>, <span style="color: #0084C8; font-weight: bold;">kurt</span> = norm.stats<span style="color: #707183;">(</span>moments=<span style="color: #4E9A06;">'mvsk'</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>mean, var, skew, kurt<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; ... ... &gt;&gt;&gt; ... &gt;&gt;&gt; (array(0.0), array(1.0), array(0.0), array(0.0))
+</pre>
+
+</section>
+<section id="slide-unnumbered-66">
+<h3 id="unnumbered-66">Example II - Statistics (scipy.stats)</h3>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">import</span> numpy <span style="color: #A52A2A; font-weight: bold;">as</span> np
+<span style="color: #A52A2A; font-weight: bold;">import</span> matplotlib.pyplot <span style="color: #A52A2A; font-weight: bold;">as</span> plt
+
+<span style="color: #0084C8; font-weight: bold;">x</span> = np.linspace<span style="color: #707183;">(</span>norm.ppf<span style="color: #7388d6;">(</span>0.01<span style="color: #7388d6;">)</span>, norm.ppf<span style="color: #7388d6;">(</span>0.99<span style="color: #7388d6;">)</span>, 100<span style="color: #707183;">)</span>
+
+plt.plot<span style="color: #707183;">(</span>x, norm.pdf<span style="color: #7388d6;">(</span>x<span style="color: #7388d6;">)</span>, <span style="color: #4E9A06;">'r-'</span>, lw=2<span style="color: #707183;">)</span>
+plt.savefig<span style="color: #707183;">(</span><span style="color: #4E9A06;">'./graphics/norm_pdf.png'</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+
+<div id="fig:Norm-pdf" class="figure">
+<p><img src="./graphics/norm_pdf.png" alt="norm_pdf.png" width="50%" />
+</p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-unnumbered-67">
+<h2 id="unnumbered-67">Numpy exercise</h2>
+<ol >
+<li>Show that A * A^-1 = I</li>
+<li>Find indices of non-zero elements from [1, 2, 0, 0, 4, 0].</li>
+<li>Declare a 3x3 identity matrix.</li>
+<li>Create 1000 random values from a normal distribution.</li>
+<li>Calculate mean, std, var from a vector of your choice.</li>
+
+</ol>
+</section>
+<section id="slide-unnumbered-68">
+<h3 id="unnumbered-68">Solutions</h3>
+<div class="outline-text-3" id="text-unnumbered-68">
+</div></section>
+<section id="slide-unnumbered-69">
+<h4 id="unnumbered-69">1.</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">A</span> = np.array<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span><span style="color: #909183;">[</span>1, 8, 3<span style="color: #909183;">]</span>, <span style="color: #909183;">[</span>42, 2, 1<span style="color: #909183;">]</span>, <span style="color: #909183;">[</span>22, 21, 22<span style="color: #909183;">]</span><span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>np.dot<span style="color: #7388d6;">(</span>A, np.linalg.inv<span style="color: #909183;">(</span>A<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[[  1.00000000e+00   2.77555756e-17  -8.32667268e-17]
+ [  0.00000000e+00   1.00000000e+00   0.00000000e+00]
+ [ -4.44089210e-16   0.00000000e+00   1.00000000e+00]]
+</pre>
+</section>
+<section id="slide-unnumbered-70">
+<h4 id="unnumbered-70">2.</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">v</span> = np.array<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span>1, 2, 0, 0, 4, 0<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>np.nonzero<span style="color: #7388d6;">(</span>v<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+(array([0, 1, 4]),)
+</pre>
+</section>
+<section id="slide-unnumbered-71">
+<h4 id="unnumbered-71">3.</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>np.eye<span style="color: #7388d6;">(</span>3<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[[ 1.  0.  0.]
+ [ 0.  1.  0.]
+ [ 0.  0.  1.]]
+</pre>
+</section>
+<section id="slide-unnumbered-72">
+<h4 id="unnumbered-72">4.</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">x</span> = np.random.randn<span style="color: #707183;">(</span>1000<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x<span style="color: #7388d6;">[</span>:10<span style="color: #7388d6;">]</span>, x.size<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+(array([-2.21447447,  1.17986109, -0.5654896 , -0.09379635,  1.38616844,
+       -0.87599041,  1.1731627 , -0.74976718,  0.34496742,  1.10023523]), 1000)
+</pre>
+</section>
+<section id="slide-unnumbered-73">
+<h4 id="unnumbered-73">5.</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">x</span> = np.random.randn<span style="color: #707183;">(</span>1000<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x.mean<span style="color: #7388d6;">()</span>, x.std<span style="color: #7388d6;">()</span>, x.var<span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+(-0.022302750224616818, 1.0171936389307741, 1.03468289908123)
+</pre>
+</section>
+</section>
+<section>
+<section id="slide-unnumbered-74">
+<h2 id="unnumbered-74">Scipy exercise</h2>
+<ol >
+<li>Define a function of your choice (e.g. x^2 + 10 * sin(x)) and find the roots
+(HINT: <a href="http://docs.scipy.org/doc/scipy-0.15.1/reference/generated/scipy.optimize.root.html">optimize.root</a>)</li>
+<li>Calculate the Fourier Transform of the signal = sin(50 * 2 * pi * x) +
+sin(80 * 2 * pi * x), with x defined between 0 and N=1200, and a temporal
+sampling of T=1.0/1200.0</li>
+
+</ol>
+</section>
+<section id="slide-unnumbered-75">
+<h3 id="unnumbered-75">Solutions</h3>
+<div class="outline-text-3" id="text-unnumbered-75">
+</div></section>
+<section id="slide-unnumbered-76">
+<h4 id="unnumbered-76">1. Finding roots</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">from</span> scipy <span style="color: #A52A2A; font-weight: bold;">import</span> optimize
+
+<span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">func</span><span style="color: #707183;">(</span>x<span style="color: #707183;">)</span>:
+    <span style="color: #A52A2A; font-weight: bold;">return</span> x**2 + 10 * np.sin<span style="color: #707183;">(</span>x<span style="color: #707183;">)</span>
+
+<span style="color: #0084C8; font-weight: bold;">sol</span> = optimize.root<span style="color: #707183;">(</span>func, -3<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>sol.x<span style="color: #707183;">)</span>
+
+<span style="color: #0084C8; font-weight: bold;">sol</span> = optimize.root<span style="color: #707183;">(</span>func, 1<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>sol.x<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; ... ... &gt;&gt;&gt; &gt;&gt;&gt; [-2.47948183]
+&gt;&gt;&gt; &gt;&gt;&gt; [ 0.]
+</pre>
+</section>
+<section id="slide-unnumbered-77">
+<h4 id="unnumbered-77">2. FFT exercise</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">import</span> numpy <span style="color: #A52A2A; font-weight: bold;">as</span> np
+<span style="color: #A52A2A; font-weight: bold;">from</span> scipy.fftpack <span style="color: #A52A2A; font-weight: bold;">import</span> fft
+<span style="color: #A52A2A; font-weight: bold;">import</span> matplotlib.pyplot <span style="color: #A52A2A; font-weight: bold;">as</span> plt
+
+<span style="color: #204A87;"># </span><span style="color: #204A87;">Number of samplepoints</span>
+<span style="color: #0084C8; font-weight: bold;">N</span> = 600
+
+<span style="color: #204A87;"># </span><span style="color: #204A87;">sample spacing</span>
+<span style="color: #0084C8; font-weight: bold;">T</span> = 1.0 / 800.0
+<span style="color: #0084C8; font-weight: bold;">x</span> = np.linspace<span style="color: #707183;">(</span>0.0, N*T, N<span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">y</span> = np.sin<span style="color: #707183;">(</span>50.0 * 2.0*np.pi*x<span style="color: #707183;">)</span> + 0.5*np.sin<span style="color: #707183;">(</span>80.0 * 2.0*np.pi*x<span style="color: #707183;">)</span>
+
+<span style="color: #0084C8; font-weight: bold;">yf</span> = fft<span style="color: #707183;">(</span>y<span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">xf</span> = np.linspace<span style="color: #707183;">(</span>0.0, 1.0/<span style="color: #7388d6;">(</span>2.0*T<span style="color: #7388d6;">)</span>, N/2<span style="color: #707183;">)</span>
+
+plt.plot<span style="color: #707183;">(</span>xf, 2.0/N * np.<span style="color: #A020F0;">abs</span><span style="color: #7388d6;">(</span>yf<span style="color: #909183;">[</span>0:N/2<span style="color: #909183;">]</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+plt.grid<span style="color: #707183;">()</span>
+plt.savefig<span style="color: #707183;">(</span><span style="color: #4E9A06;">'./graphics/fft_example.png'</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+</section>
+<section id="slide-unnumbered-78">
+<h4 id="unnumbered-78">2. FFT exercise</h4>
+
+<div id="fig:fft-example" class="figure">
+<p><img src="./graphics/fft_example.png" alt="fft_example.png" width="50%" />
+</p>
+</div>
+</section>
+</section>
+</div>
+</div>
+
+<script src="../reveal.js/lib/js/head.min.js"></script>
+<script src="../reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: true,
+rollingLinks: false,
+keyboard: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+
+]
+});
+</script>
+</body>
+</html>
