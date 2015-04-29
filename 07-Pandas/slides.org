@@ -1,0 +1,692 @@
+#+OPTIONS: reveal_center:t reveal_control:t reveal_height:-1
+#+OPTIONS: reveal_history:nil reveal_keyboard:t reveal_mathjax:nil
+#+OPTIONS: reveal_overview:t reveal_progress:t
+#+OPTIONS: reveal_rolling_links:nil reveal_slide_number:t
+#+OPTIONS: reveal_title_slide:t reveal_width:-1
+#+options: toc:nil ^:nil
+#+REVEAL_MARGIN: -1
+#+REVEAL_MIN_SCALE: -1
+#+REVEAL_MAX_SCALE: -1
+#+REVEAL_ROOT: ../reveal.js
+#+REVEAL_TRANS: default
+#+REVEAL_SPEED: default
+#+REVEAL_THEME: black
+#+REVEAL_EXTRA_CSS: ../code_formatting.css
+#+REVEAL_EXTRA_JS: 
+#+REVEAL_HLEVEL: 1
+#+REVEAL_TITLE_SLIDE_TEMPLATE: <h1>%t</h1> <h2>%a</h2> <h2>%e</h2> <h2>%d</h2>
+#+REVEAL_TITLE_SLIDE_BACKGROUND:
+#+REVEAL_TITLE_SLIDE_BACKGROUND_SIZE:
+#+REVEAL_TITLE_SLIDE_BACKGROUND_REPEAT:
+#+REVEAL_TITLE_SLIDE_BACKGROUND_TRANSITION:
+#+REVEAL_MATHJAX_URL: http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+#+REVEAL_PREAMBLE:
+#+REVEAL_HEAD_PREAMBLE:
+#+REVEAL_POSTAMBLE:
+#+REVEAL_MULTIPLEX_ID:
+#+REVEAL_MULTIPLEX_SECRET:
+#+REVEAL_MULTIPLEX_URL:
+#+REVEAL_MULTIPLEX_SOCKETIO_URL:
+#+REVEAL_PLUGINS:
+#+LOCAL_VARIABLES:
+#+eval: (setq-local org-babel-default-header-args:python '((:tangle . "lecture7.py")))
+#+End:
+
+#+AUTHOR: Christoph Paulik
+#+email: 
+#+Title: Pandas
+
+* Header and imports :noexport:
+#+begin_src python :results output pp :exports both :session pd
+import numpy as np
+randn = np.random.randn
+import pandas as pd
+#+end_src
+
+#+RESULTS:
+
+* A Python Data Analysis Library
+- Built on top of numpy to make data analysis easier
+- Automatic data alignment based on labels or indices
+- Data aggregation, transformation and grouping
+- Intuitive merging and joining of datasets
+- Hierarchical labeling
+- Reading and Writing of CSV, Excel and others
+
+* Pandas.Series
+- For storing indexed 1D data
+creation from numpy array with list as index
+#+begin_src python :results output pp :exports both :session pd
+s = pd.Series(np.arange(5), index=['a', 'b', 'c', 'd', 'e'])
+print s
+#+end_src
+
+#+RESULTS:
+: 
+: a    0
+: b    1
+: c    2
+: d    3
+: e    4
+: dtype: int64
+** Index is created if not set
+#+begin_src python :results output pp :exports both :session pd
+pd.Series(randn(5))
+#+end_src
+
+#+RESULTS:
+: 0   -0.890247
+: 1   -2.496523
+: 2    2.567318
+: 3   -0.630406
+: 4   -0.235816
+: dtype: float64
+** Series is like an array
+#+begin_src python :results output verbatim pp :exports both :session pd
+s[0]
+print("\n")
+s[s > s.median()]
+print("\n")
+s[[3,2,1]]
+#+end_src
+
+#+RESULTS:
+#+begin_example
+0
+
+d    3
+e    6
+dtype: int64
+
+d    3
+c    2
+b    1
+dtype: int64
+#+end_example
+** Series is like a dictionary
+#+begin_src python :results output pp :exports both :session pd
+s['a']
+s['e'] = 6
+s
+'e' in s
+'f' in s
+#+end_src
+
+#+RESULTS:
+: 0
+: >>> a    0
+: b    1
+: c    2
+: d    3
+: e    6
+: dtype: int64
+: True
+: False
+** Operations on Series
+#+begin_src python :results verbatim output pp :exports both :session pd
+s+s
+s**2
+np.exp(s)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+a     0
+b     2
+c     4
+d     6
+e    12
+dtype: int64
+a     0
+b     1
+c     4
+d     9
+e    36
+dtype: int64
+a      1.000000
+b      2.718282
+c      7.389056
+d     20.085537
+e    403.428793
+dtype: float64
+#+end_example
+
+* Pandas.DataFrame
+A 2D labeled data structure with columns of potentially
+different types. 
+
+Like Series, DataFrame accepts many different kinds of input:
+
+- Dict of 1D ndarrays, lists, dicts, or Series
+- 2-D numpy.ndarray
+- Structured or record ndarray
+- A Series
+- Another DataFrame
+
+** From dictionary
+#+begin_src python :results output pp :exports both :session pd
+d = {'one' : pd.Series([1., 2., 3.], index=['a', 'b', 'c']),
+     'two' : pd.Series([1., 2., 3., 4.], index=['a', 'b', 'c', 'd'])}
+df = pd.DataFrame(d)
+#+end_src
+
+#+RESULTS:
+
+#+begin_src python :results verbatim pp :exports both :session pd
+df
+#+end_src
+
+#+RESULTS:
+:    one  two
+: a    1    1
+: b    2    2
+: c    3    3
+: d  NaN    4
+: 
+: [4 rows x 2 columns]
+
+** From other DataFrame
+#+begin_src python :results verbatim pp :exports both :session pd
+pd.DataFrame(df, index=['d', 'b', 'a'])
+#+end_src
+
+#+RESULTS:
+:    two three
+: d    4   NaN
+: b    2   NaN
+: a    1   NaN
+: 
+: [3 rows x 2 columns]
+
+#+begin_src python :results verbatim pp :exports both :session pd
+pd.DataFrame(d, index=['d', 'b', 'a'], columns=['two', 'three'])
+#+end_src
+
+#+RESULTS:
+:    two three
+: d    4   NaN
+: b    2   NaN
+: a    1   NaN
+: 
+: [3 rows x 2 columns]
+
+** Complex cases
+#+begin_src python :results output pp :exports both :session pd
+  df2 = pd.DataFrame({'A': 1.,
+                      'B': pd.Timestamp('20130102'),
+                      'C': pd.Series(1,index=list(range(4)),
+                                     dtype='float32'),
+                      'D': np.array([3] * 4,dtype='int32'),
+                      'E': 'foo' })
+#+end_src
+
+#+RESULTS:
+
+#+begin_src python :results verbatim pp :exports both :session pd
+df2
+#+end_src
+
+#+RESULTS:
+:    A          B  C  D    E
+: 0  1 2013-01-02  1  3  foo
+: 1  1 2013-01-02  1  3  foo
+: 2  1 2013-01-02  1  3  foo
+: 3  1 2013-01-02  1  3  foo
+: 
+: [4 rows x 5 columns]
+
+*** 
+
+#+begin_src python :results output pp :exports both :session pd
+  df2 = pd.DataFrame({'A': 1.,
+                      'B': pd.Timestamp('20130102'),
+                      'C': pd.Series(1,index=list(range(4)),
+                                     dtype='float32'),
+                      'D': np.array([3] * 4,dtype='int32'),
+                      'E': 'foo' })
+#+end_src
+
+#+RESULTS:
+
+#+begin_src python :results verbatim pp :exports both :session pd
+df2.dtypes
+#+end_src
+
+#+RESULTS:
+: A           float64
+: B    datetime64[ns]
+: C           float32
+: D             int32
+: E            object
+: dtype: object
+
+** Time series
+#+begin_src python :results output pp :exports both :session pd
+# Date range
+dates = pd.date_range('20130101', periods=6)
+# Dataframes
+df = pd.DataFrame(np.random.randn(6, 4), index=dates, columns=list('ABCD'))
+#+end_src
+#+RESULTS:
+
+#+begin_src python :results verbatim pp :exports both :session pd
+df
+#+end_src
+
+#+RESULTS:
+:                    A         B         C         D
+: 2013-01-01 -1.182310 -0.844801 -0.675186 -0.320021
+: 2013-01-02 -0.968694  0.339955 -0.302861 -0.055941
+: 2013-01-03  2.223549 -1.172021  0.650042  0.977628
+: 2013-01-04  1.161653 -0.972703  0.869651  0.330572
+: 2013-01-05 -2.225697 -0.729891  0.508796 -1.203365
+: 2013-01-06 -1.500646  0.420844  0.135103 -1.143475
+: 
+: [6 rows x 4 columns]
+
+** Inspection
+#+begin_src python :results verbatim pp :exports both :session pd
+df.head()
+#+end_src
+
+#+RESULTS:
+:                    A         B         C         D
+: 2013-01-01 -1.182310 -0.844801 -0.675186 -0.320021
+: 2013-01-02 -0.968694  0.339955 -0.302861 -0.055941
+: 2013-01-03  2.223549 -1.172021  0.650042  0.977628
+: 2013-01-04  1.161653 -0.972703  0.869651  0.330572
+: 2013-01-05 -2.225697 -0.729891  0.508796 -1.203365
+: 
+: [5 rows x 4 columns]
+#+begin_src python :results verbatim pp :exports both :session pd
+df.tail(3)
+#+end_src
+
+#+RESULTS:
+:                    A         B         C         D
+: 2013-01-04  1.161653 -0.972703  0.869651  0.330572
+: 2013-01-05 -2.225697 -0.729891  0.508796 -1.203365
+: 2013-01-06 -1.500646  0.420844  0.135103 -1.143475
+: 
+: [3 rows x 4 columns]
+** Columns and values
+#+begin_src python :results verbatim pp :exports both :session pd
+df.columns, df.values
+#+end_src
+
+#+RESULTS:
+: (Index([u'A', u'B', u'C', u'D'], dtype='object'),
+:  array([[-1.18231036, -0.84480108, -0.67518577, -0.32002116],
+:        [-0.96869441,  0.33995459, -0.30286131, -0.05594117],
+:        [ 2.22354863, -1.17202054,  0.65004197,  0.97762788],
+:        [ 1.16165337, -0.972703  ,  0.86965077,  0.33057204],
+:        [-2.22569695, -0.72989125,  0.50879566, -1.20336494],
+:        [-1.50064563,  0.42084441,  0.13510325, -1.14347503]]))
+** Describe a DataFrame
+#+begin_src python :results verbatim pp :exports both :session pd
+df.describe()
+#+end_src
+
+#+RESULTS:
+#+begin_example
+              A         B         C         D
+count  6.000000  6.000000  6.000000  6.000000
+mean  -0.415358 -0.493103  0.197591 -0.235767
+std    1.720486  0.692819  0.594865  0.847665
+min   -2.225697 -1.172021 -0.675186 -1.203365
+25%   -1.421062 -0.940728 -0.193370 -0.937612
+50%   -1.075502 -0.787346  0.321949 -0.187981
+75%    0.629066  0.072493  0.614730  0.233944
+max    2.223549  0.420844  0.869651  0.977628
+
+[8 rows x 4 columns]
+#+end_example
+** DataFrame Slicing Overview 
+| Operation                      | Syntax          | Result    |
+|--------------------------------+-----------------+-----------|
+| Select column                  | =df[col]=       | Series    |
+| Select row by label            | =df.loc[label]= | Series    |
+| Select row by integer location | =df.iloc[loc]=  | Series    |
+| Slice rows                     | =df[5:10]=      | DataFrame |
+| Select rows by boolean vector  | =df[bool_vec]=  | DataFrame |
+** By column or row slice
+#+begin_src python :results verbatim pp :exports both :session pd
+df['A']
+#+end_src
+
+#+RESULTS:
+: 2013-01-01    0.478618
+: 2013-01-02    0.576995
+: 2013-01-03    0.624507
+: 2013-01-04   -0.843534
+: 2013-01-05    0.268148
+: 2013-01-06    0.103352
+: Freq: D, Name: A, dtype: float64
+
+#+begin_src python :results verbatim pp :exports both :session pd
+df[0:3]
+#+end_src
+
+#+RESULTS:
+:                    A         B         C         D
+: 2013-01-01 -0.606278  0.202519 -1.292230  0.421114
+: 2013-01-02 -1.771912  0.464405 -1.068266 -1.618307
+: 2013-01-03 -0.043097  0.085831 -0.110170 -0.501689
+: 
+: [3 rows x 4 columns]
+** by index
+#+begin_src python :results verbatim pp :exports both :session pd
+df['20130102':'20130104']
+#+end_src
+
+#+RESULTS:
+:                    A         B         C         D
+: 2013-01-02  0.576995 -1.342716 -1.288564  1.274473
+: 2013-01-03  0.624507  1.247183  1.320360 -0.261196
+: 2013-01-04 -0.843534 -0.137865 -0.648286  1.111111
+: 
+: [3 rows x 4 columns]
+#+begin_src python :results verbatim pp :exports both :session pd
+from datetime import date
+df[date(2013,1,2):date(2013,1,4)]
+#+end_src
+
+#+RESULTS:
+:                    A         B         C         D
+: 2013-01-02  0.746115 -0.512829 -0.678517  1.073326
+: 2013-01-03  0.591932  0.540141  0.210288  0.307697
+: 2013-01-04 -1.473426 -0.268890  1.168489  0.084277
+: 
+: [3 rows x 4 columns]
+
+** by integer location
+#+begin_src python :results verbatim pp :exports both :session pd
+df.iloc[[4, 2]]
+#+end_src
+
+#+RESULTS:
+:                    A         B         C         D
+: 2013-01-05 -1.109290  0.091132  0.022315  1.345369
+: 2013-01-03  1.576076 -0.319620 -0.341007 -0.200670
+: 
+: [2 rows x 4 columns]
+
+** Grouping
+#+begin_src python :results verbatim pp :exports both :session pd
+gp = pd.DataFrame({'A' : ['foo', 'bar', 'foo', 'bar',
+                          'foo', 'bar', 'foo', 'foo'],
+                   'B' : ['one', 'one', 'two', 'three',
+                          'two', 'two', 'one', 'three'],
+                   'C' : np.random.randn(8),
+                   'D' : np.random.randn(8)})
+gp
+#+end_src
+
+#+RESULTS:
+#+begin_example
+     A      B         C         D
+0  foo    one -0.422321 -0.291769
+1  bar    one -0.484162 -0.180923
+2  foo    two -0.537488 -1.222982
+3  bar  three -0.960728  0.028788
+4  foo    two  0.949052  0.314487
+5  bar    two -0.558902 -0.591509
+6  foo    one -0.300908 -1.505607
+7  foo  three  1.393960 -1.576588
+
+[8 rows x 4 columns]
+#+end_example
+
+** 
+#+begin_src python :results verbatim pp :exports both :session pd
+gp.groupby('A').sum()
+#+end_src
+
+#+RESULTS:
+:             C         D
+: A                      
+: bar -2.003792 -0.743644
+: foo  1.082296 -4.282459
+: 
+: [2 rows x 2 columns]
+
+#+begin_src python :results verbatim pp :exports both :session pd
+gp.groupby(['A','B']).mean()
+#+end_src
+
+#+RESULTS:
+#+begin_example
+                  C         D
+A   B                        
+bar one   -0.484162 -0.180923
+    three -0.960728  0.028788
+    two   -0.558902 -0.591509
+foo one   -0.361614 -0.898688
+    three  1.393960 -1.576588
+    two    0.205782 -0.454248
+
+[6 rows x 2 columns]
+#+end_example
+
+** Merging
+#+begin_src python :results verbatim pp :exports both :session pd
+left = pd.DataFrame({'key': ['one', 'two'], 'lval': [1, 2]})
+right = pd.DataFrame({'key': ['two', 'one'], 'rval': [4, 5]})
+pd.merge(left, right, on='key')
+#+end_src
+
+#+RESULTS:
+:    key  lval  rval
+: 0  one     1     5
+: 1  two     2     4
+: 
+: [2 rows x 3 columns]
+
+** Plotting
+Pandas has built-in functions for common plot types
+#+begin_src python :results pp :exports code :session pd
+  import matplotlib.pyplot as plt
+  df = pd.DataFrame(randn(1000, 4), 
+                    index=pd.date_range('1/1/2000', periods=1000),
+                    columns=list('ABCD'))
+  df = df.cumsum()
+  ax = df.plot()
+#+end_src
+
+#+RESULTS:
+: 'org_babel_python_eoe'
+
+** 
+#+begin_src python :results file :exports results :session pd
+plt.savefig('ts.png')
+'ts.png'
+#+end_src
+
+#+RESULTS:
+[[file:ts.png]]
+
+** Working with a dataset
+Let's try working with the [[http://grouplens.org/datasets/movielens/][Movielens]] 100k dataset
+- 1000 Users
+- 100,000 Ratings
+- 1700 Movies
+
+Extract the ml-100k.zip to a folder =ml-100k= in the same directory as the =lecture7.py=
+
+***  Reading the data
+#+begin_src python :results output pp :exports both :session pd
+  # pass in column names for each CSV
+  u_cols = ['user_id', 'age', 'sex', 'occupation', 'zip_code']
+  users = pd.read_csv('ml-100k/u.user', sep='|', names=u_cols)
+
+  r_cols = ['user_id', 'movie_id', 'rating', 'unix_timestamp']
+  ratings = pd.read_csv('ml-100k/u.data', sep='\t', names=r_cols)
+
+  # the movies file contains columns indicating the movie's genres
+  # let's only load the first five columns of the file with usecols
+  m_cols = ['movie_id', 'title', 'release_date',
+            'video_release_date', 'imdb_url']
+  movies = pd.read_csv('ml-100k/u.item', sep='|', 
+                       names=m_cols, usecols=range(5))
+
+  # create one merged DataFrame
+  movie_ratings = pd.merge(movies, ratings)
+  lens = pd.merge(movie_ratings, users)
+#+end_src
+
+#+RESULTS:
+
+*** How does the data look like?
+
+#+begin_src python :results verbatim pp :exports both :session pd
+lens.head(3)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+   movie_id              title release_date  video_release_date  \
+0         1   Toy Story (1995)  01-Jan-1995                 NaN   
+1         4  Get Shorty (1995)  01-Jan-1995                 NaN   
+2         5     Copycat (1995)  01-Jan-1995                 NaN   
+
+                                            imdb_url  user_id  rating  \
+0  http://us.imdb.com/M/title-exact?Toy%20Story%2...      308       4   
+1  http://us.imdb.com/M/title-exact?Get%20Shorty%...      308       5   
+2  http://us.imdb.com/M/title-exact?Copycat%20(1995)      308       4   
+
+   unix_timestamp  age sex occupation zip_code  
+0       887736532   60   M    retired    95076  
+1       887737890   60   M    retired    95076  
+2       887739608   60   M    retired    95076  
+
+[3 rows x 12 columns]
+#+end_example
+
+*** What are the 10 most rated movies?
+#+begin_src python :results output pp :exports both :session pd
+most_rated = lens.groupby('title').size().order(ascending=False)[:10]
+print most_rated
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+title
+Star Wars (1977)                 583
+Contact (1997)                   509
+Fargo (1996)                     508
+Return of the Jedi (1983)        507
+Liar Liar (1997)                 485
+English Patient, The (1996)      481
+Scream (1996)                    478
+Toy Story (1995)                 452
+Air Force One (1997)             431
+Independence Day (ID4) (1996)    429
+dtype: int64
+#+end_example
+
+*** Which movies are most highly rated?
+The =agg= function can take multiple functions that are applied to a column 
+#+begin_src python :results verbatim pp :exports both :session pd
+movie_stats = lens.groupby('title').agg({'rating': [np.size, np.mean]})
+movie_stats.head()
+#+end_src
+
+#+RESULTS:
+#+begin_example
+                           rating          
+                             size      mean
+title                                      
+'Til There Was You (1997)       9  2.333333
+1-900 (1994)                    5  2.600000
+101 Dalmatians (1996)         109  2.908257
+12 Angry Men (1957)           125  4.344000
+187 (1997)                     41  3.024390
+
+[5 rows x 2 columns]
+#+end_example
+
+*** Which movies are most highly rated?
+Sort them by mean rating
+#+begin_src python :results verbatim pp :exports both :session pd
+movie_stats.sort([('rating', 'mean')], ascending=False).head()
+#+end_src
+
+#+RESULTS:
+#+begin_example
+                                            rating      
+                                              size  mean
+title                                                   
+Marlene Dietrich: Shadow and Light (1996)        1     5
+Prefontaine (1997)                               3     5
+Santa with Muscles (1996)                        2     5
+Star Kid (1997)                                  3     5
+Someone Else's America (1995)                    1     5
+
+[5 rows x 2 columns]
+#+end_example
+
+*** Which movies are most highly rated?
+Lets only look at movies rated at least 100 times
+#+begin_src python :results verbatim pp :exports both :session pd
+atleast_100 = movie_stats['rating'].size >= 100
+movie_stats[atleast_100].sort([('rating', 'mean')], ascending=False).head()
+#+end_src
+
+#+RESULTS:
+#+begin_example
+                                  rating          
+                                    size      mean
+title                                             
+Close Shave, A (1995)                112  4.491071
+Schindler's List (1993)              298  4.466443
+Wrong Trousers, The (1993)           118  4.466102
+Casablanca (1942)                    243  4.456790
+Shawshank Redemption, The (1994)     283  4.445230
+
+[5 rows x 2 columns]
+#+end_example
+
+*** Exercise
+#+begin_src python :results output pp :exports source
+### Exercise ###
+### Try to plot the ratings distribution of a movie of your choice.
+### you can use the hist() function to produce a histogram
+#+end_src
+
+*** Solution 
+#+begin_src python :results file :exports both :session pd
+toy_story = lens[lens.title=='Toy Story (1995)']
+plt.figure()
+ax = toy_story.rating.hist()
+plt.savefig('hist.png')
+'hist.png'
+#+end_src
+
+#+ATTR_HTML: :width 50%
+#+RESULTS:
+[[file:hist.png]]
+
+*** Exercise 2
+#+begin_src python :results output pp :exports source
+### Exercise ###
+### plot the mean rating by age of user
+#+end_src
+
+*** Solution 
+#+begin_src python :results file :exports both :session pd
+age_grouped = toy_story.groupby('age').mean()
+plt.figure()
+ax = age_grouped['rating'].plot()
+plt.savefig('age-ratings.png')
+'age-ratings.png'
+#+end_src
+
+#+ATTR_HTML: :width 50%
+#+RESULTS:
+[[file:age-ratings.png]]
+* Additional Resources
+- [[http://pandas.pydata.org/][Pandas website]] - The documentation is very thorough and full of examples
+- [[http://pandas.pydata.org/pandas-docs/stable/tutorials.html][List of pandas tutorials]]
+- [[http://www.gregreda.com/2013/10/26/using-pandas-on-the-movielens-dataset/][using pandas on the movielens dataset]] (blogpost from which I took some examples)
+
