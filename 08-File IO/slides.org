@@ -1,0 +1,58 @@
+#+OPTIONS: reveal_center:t reveal_control:t reveal_height:-1
+#+OPTIONS: reveal_history:nil reveal_keyboard:t reveal_mathjax:nil
+#+OPTIONS: reveal_overview:t reveal_progress:t
+#+OPTIONS: reveal_rolling_links:nil reveal_slide_number:t
+#+OPTIONS: reveal_title_slide:t reveal_width:-1
+#+options: toc:nil ^:nil num:nil
+#+REVEAL_MARGIN: -1
+#+REVEAL_MIN_SCALE: -1
+#+REVEAL_MAX_SCALE: -1
+#+REVEAL_ROOT: ../reveal.js
+#+REVEAL_TRANS: default
+#+REVEAL_SPEED: default
+#+REVEAL_THEME: black
+#+REVEAL_EXTRA_CSS: ../code_formatting.css
+#+REVEAL_EXTRA_JS: 
+#+REVEAL_HLEVEL: 1
+#+REVEAL_TITLE_SLIDE_TEMPLATE: <h1>%t</h1> <h2>%a</h2> <h2>%e</h2> <h2>%d</h2>
+#+REVEAL_TITLE_SLIDE_BACKGROUND:
+#+REVEAL_TITLE_SLIDE_BACKGROUND_SIZE:
+#+REVEAL_TITLE_SLIDE_BACKGROUND_REPEAT:
+#+REVEAL_TITLE_SLIDE_BACKGROUND_TRANSITION:
+#+REVEAL_MATHJAX_URL: http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+#+REVEAL_SLIDE_NUMBER: t
+#+REVEAL_PREAMBLE:
+#+REVEAL_HEAD_PREAMBLE:
+#+REVEAL_POSTAMBLE:
+#+REVEAL_MULTIPLEX_ID:
+#+REVEAL_MULTIPLEX_SECRET:
+#+REVEAL_MULTIPLEX_URL:
+#+REVEAL_MULTIPLEX_SOCKETIO_URL:
+#+REVEAL_PLUGINS:
+
+#+AUTHOR: Sebastian Hahn
+#+EMAIL: 
+#+TITLE: File IO
+
+* File IO
+- The [[http://www.numpy.org][numpy package]] is used in almost all numerical computation using Python
+- It is a package that provide high-performance vector, matrix and
+  higher-dimensional data structures
+- It is implemented in C and Fortran so when calculations are vectorized
+  (formulated with vectors and matrices), performance is very good
+
+To use numpy you need to import the module
+#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+import numpy as np 
+print("Numpy version {:}".format(np.__version__))
+#+end_src
+
+#+results:
+: 
+: Numpy version 1.8.2
+* Getting started
+- [[http://www.scipy.org/scipylib/download.html][Getting Numpy]]
+- [[http://docs.scipy.org/doc/][Numpy and scipy documentation page]]
+- [[http://www.scipy.org/Tentative_NumPy_Tutorial][Numpy tutorial]]
+- [[http://www.scipy.org/NumPy_for_Matlab_Users][Numpy for MATLAB Users]]
+- [[http://www.scipy.org/Numpy_Functions_by_Category][Numpy functions by category]]
