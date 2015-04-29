@@ -34,25 +34,63 @@
 #+EMAIL: 
 #+TITLE: File IO
 
-* File IO
-- The [[http://www.numpy.org][numpy package]] is used in almost all numerical computation using Python
-- It is a package that provide high-performance vector, matrix and
-  higher-dimensional data structures
-- It is implemented in C and Fortran so when calculations are vectorized
-  (formulated with vectors and matrices), performance is very good
-
+* File formats
+- ASCII
+- Raw binary
+- Numpy
+- Matlab
+- IDL
+- Negative
+- HDF5
+- Pickle - Python object serialization
+* ASCII or text file
+A text file in which each byte represents one character according to the ASCII
+code. Contrast with a binary file, in which there is no one-to-one mapping
+between bytes and characters. Files that have been formatted with a word
+processor must be stored and transmitted as binary files to preserve the
+formatting.
+** Python standard library
+[[https://docs.python.org/2/tutorial/inputoutput.html][Input output routines]]
+- =open()=, =close()=
+- =read()=, =readline()=, =readlines()=
+- =write()=, =writelines()=
+* CSV
+A comma-separated values (CSV) file stores *tabular data* (numbers and text) in
+plain-text form. Plain text means that the file is a sequence of characters,
+with no data that has to be interpreted as binary numbers. A CSV file consists
+of any number of records, separated by line breaks of some kind; each record
+consists of fields, separated by some other character or string, most commonly a
+literal comma or tab. Usually, all records have an identical sequence of fields.
+** Python standard library
+[[https://docs.python.org/2/tutorial/inputoutput.html][Input output routines]]
+- =open()=, =close()=
+- =read()=, =readline()=, =readlines()=
+- =write()=, =writelines()=
+** numpy
+- [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.fromfile.html][np.fromfile]]: Construct an array from data in a text or binary file
+* Raw binary
+** Python standard library
+[[https://docs.python.org/2/tutorial/inputoutput.html][Input output routines]]
+- =open()=, =close()=
+- =read()=, =readline()=, =readlines()=
+- =write()=, =writelines()=
+** numpy
+- [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.fromfile.html][np.fromfile]]: Construct an array from data in a text or binary file
+- [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.tofile.html#numpy.ndarray.tofile][ndarray.tofile]]: Write array to a file as text or binary (default)
+* Numpy
+** numpy
+* Matlab
+** scipy.io
+* IDL
+** scipy.io
+* NetCDF
+** netCDF4
+* HDF5
+** h5py
+* Pickle
+* Code                                                             :noexport:
 To use numpy you need to import the module
 #+begin_src python :results output :exports both :tangle lecture8.py :session *python*
 import numpy as np 
 print("Numpy version {:}".format(np.__version__))
 #+end_src
-
-#+results:
-: 
-: Numpy version 1.8.2
-* Getting started
-- [[http://www.scipy.org/scipylib/download.html][Getting Numpy]]
-- [[http://docs.scipy.org/doc/][Numpy and scipy documentation page]]
-- [[http://www.scipy.org/Tentative_NumPy_Tutorial][Numpy tutorial]]
-- [[http://www.scipy.org/NumPy_for_Matlab_Users][Numpy for MATLAB Users]]
-- [[http://www.scipy.org/Numpy_Functions_by_Category][Numpy functions by category]]
