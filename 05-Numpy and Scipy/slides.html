@@ -412,11 +412,11 @@ From existing data
 </div>
 
 <pre class="example">
-&gt;&gt;&gt; [[ 0.90984918  0.12546073  0.88846987  0.34910774  0.6464333 ]
- [ 0.14500223  0.75083761  0.33004131  0.68755833  0.24862768]
- [ 0.55080022  0.31571509  0.27164927  0.75086213  0.57095151]
- [ 0.14697981  0.01430727  0.51664101  0.13387468  0.61572481]
- [ 0.08381196  0.98350014  0.09873363  0.32011414  0.41068317]]
+&gt;&gt;&gt; [[ 0.92819053  0.78096331  0.88454484  0.15025367  0.86327508]
+ [ 0.52152967  0.6903908   0.61029897  0.24716016  0.92762323]
+ [ 0.83878385  0.78146169  0.30581027  0.34674281  0.95222171]
+ [ 0.06496472  0.51497669  0.01277921  0.55690918  0.27095144]
+ [ 0.42779013  0.35234505  0.1225685   0.24785118  0.84325914]]
 </pre>
 
 <p>
@@ -1458,7 +1458,7 @@ np.place<span style="color: #707183;">(</span>m, m&gt;2, <span style="color: #73
 <pre class="example">
 [[0 1 2]
  [3 4 5]]
-[[ 0  1  2]
+&gt;&gt;&gt; [[ 0  1  2]
  [44 55 44]]
 </pre>
 
@@ -1605,10 +1605,83 @@ plt.savefig<span style="color: #707183;">(</span><span style="color: #4E9A06;">'
 
 </ol>
 </section>
+<section id="slide-unnumbered-68">
+<h3 id="unnumbered-68">Solutions</h3>
+<div class="outline-text-3" id="text-unnumbered-68">
+</div></section>
+<section id="slide-unnumbered-69">
+<h4 id="unnumbered-69">1.</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">A</span> = np.array<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span><span style="color: #909183;">[</span>1, 8, 3<span style="color: #909183;">]</span>, <span style="color: #909183;">[</span>42, 2, 1<span style="color: #909183;">]</span>, <span style="color: #909183;">[</span>22, 21, 22<span style="color: #909183;">]</span><span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>np.dot<span style="color: #7388d6;">(</span>A, np.linalg.inv<span style="color: #909183;">(</span>A<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[[  1.00000000e+00   2.77555756e-17  -8.32667268e-17]
+ [  0.00000000e+00   1.00000000e+00   0.00000000e+00]
+ [ -4.44089210e-16   0.00000000e+00   1.00000000e+00]]
+</pre>
+</section>
+<section id="slide-unnumbered-70">
+<h4 id="unnumbered-70">2.</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">v</span> = np.array<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span>1, 2, 0, 0, 4, 0<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>np.nonzero<span style="color: #7388d6;">(</span>v<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+(array([0, 1, 4]),)
+</pre>
+</section>
+<section id="slide-unnumbered-71">
+<h4 id="unnumbered-71">3.</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>np.eye<span style="color: #7388d6;">(</span>3<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[[ 1.  0.  0.]
+ [ 0.  1.  0.]
+ [ 0.  0.  1.]]
+</pre>
+</section>
+<section id="slide-unnumbered-72">
+<h4 id="unnumbered-72">4.</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">x</span> = np.random.randn<span style="color: #707183;">(</span>1000<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x<span style="color: #7388d6;">[</span>:10<span style="color: #7388d6;">]</span>, x.size<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+(array([-2.21447447,  1.17986109, -0.5654896 , -0.09379635,  1.38616844,
+       -0.87599041,  1.1731627 , -0.74976718,  0.34496742,  1.10023523]), 1000)
+</pre>
+</section>
+<section id="slide-unnumbered-73">
+<h4 id="unnumbered-73">5.</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">x</span> = np.random.randn<span style="color: #707183;">(</span>1000<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>x.mean<span style="color: #7388d6;">()</span>, x.std<span style="color: #7388d6;">()</span>, x.var<span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+(-0.022302750224616818, 1.0171936389307741, 1.03468289908123)
+</pre>
+</section>
 </section>
 <section>
-<section id="slide-unnumbered-68">
-<h2 id="unnumbered-68">Scipy exercise</h2>
+<section id="slide-unnumbered-74">
+<h2 id="unnumbered-74">Scipy exercise</h2>
 <ol >
 <li>Define a function of your choice (e.g. x^2 + 10 * sin(x)) and find the roots
 (HINT: <a href="http://docs.scipy.org/doc/scipy-0.15.1/reference/generated/scipy.optimize.root.html">optimize.root</a>)</li>
@@ -1617,6 +1690,65 @@ sin(80 * 2 * pi * x), with x defined between 0 and N=1200, and a temporal
 sampling of T=1.0/1200.0</li>
 
 </ol>
+</section>
+<section id="slide-unnumbered-75">
+<h3 id="unnumbered-75">Solutions</h3>
+<div class="outline-text-3" id="text-unnumbered-75">
+</div></section>
+<section id="slide-unnumbered-76">
+<h4 id="unnumbered-76">1. Finding roots</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">from</span> scipy <span style="color: #A52A2A; font-weight: bold;">import</span> optimize
+
+<span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">func</span><span style="color: #707183;">(</span>x<span style="color: #707183;">)</span>:
+    <span style="color: #A52A2A; font-weight: bold;">return</span> x**2 + 10 * np.sin<span style="color: #707183;">(</span>x<span style="color: #707183;">)</span>
+
+<span style="color: #0084C8; font-weight: bold;">sol</span> = optimize.root<span style="color: #707183;">(</span>func, -3<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>sol.x<span style="color: #707183;">)</span>
+
+<span style="color: #0084C8; font-weight: bold;">sol</span> = optimize.root<span style="color: #707183;">(</span>func, 1<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>sol.x<span style="color: #707183;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&gt;&gt;&gt; ... ... &gt;&gt;&gt; &gt;&gt;&gt; [-2.47948183]
+&gt;&gt;&gt; &gt;&gt;&gt; [ 0.]
+</pre>
+</section>
+<section id="slide-unnumbered-77">
+<h4 id="unnumbered-77">2. FFT exercise</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">import</span> numpy <span style="color: #A52A2A; font-weight: bold;">as</span> np
+<span style="color: #A52A2A; font-weight: bold;">from</span> scipy.fftpack <span style="color: #A52A2A; font-weight: bold;">import</span> fft
+<span style="color: #A52A2A; font-weight: bold;">import</span> matplotlib.pyplot <span style="color: #A52A2A; font-weight: bold;">as</span> plt
+
+<span style="color: #204A87;"># </span><span style="color: #204A87;">Number of samplepoints</span>
+<span style="color: #0084C8; font-weight: bold;">N</span> = 600
+
+<span style="color: #204A87;"># </span><span style="color: #204A87;">sample spacing</span>
+<span style="color: #0084C8; font-weight: bold;">T</span> = 1.0 / 800.0
+<span style="color: #0084C8; font-weight: bold;">x</span> = np.linspace<span style="color: #707183;">(</span>0.0, N*T, N<span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">y</span> = np.sin<span style="color: #707183;">(</span>50.0 * 2.0*np.pi*x<span style="color: #707183;">)</span> + 0.5*np.sin<span style="color: #707183;">(</span>80.0 * 2.0*np.pi*x<span style="color: #707183;">)</span>
+
+<span style="color: #0084C8; font-weight: bold;">yf</span> = fft<span style="color: #707183;">(</span>y<span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">xf</span> = np.linspace<span style="color: #707183;">(</span>0.0, 1.0/<span style="color: #7388d6;">(</span>2.0*T<span style="color: #7388d6;">)</span>, N/2<span style="color: #707183;">)</span>
+
+plt.plot<span style="color: #707183;">(</span>xf, 2.0/N * np.<span style="color: #A020F0;">abs</span><span style="color: #7388d6;">(</span>yf<span style="color: #909183;">[</span>0:N/2<span style="color: #909183;">]</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+plt.grid<span style="color: #707183;">()</span>
+plt.savefig<span style="color: #707183;">(</span><span style="color: #4E9A06;">'./graphics/fft_example.png'</span><span style="color: #707183;">)</span>
+</pre>
+</div>
+</section>
+<section id="slide-unnumbered-78">
+<h4 id="unnumbered-78">2. FFT exercise</h4>
+
+<div id="fig:fft-example" class="figure">
+<p><img src="./graphics/fft_example.png" alt="fft_example.png" width="50%" />
+</p>
+</div>
 </section>
 </section>
 </div>
