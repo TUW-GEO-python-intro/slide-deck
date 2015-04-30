@@ -80,11 +80,11 @@ File-&gt;Open-&gt;lecture2.py
 <h3>What if we do not have a GUI</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">import</span> pdb <span style="color: #204A87;"># </span><span style="color: #204A87;">imports the python debugger</span>
-pdb.set_trace<span style="color: #707183;">()</span> <span style="color: #204A87;"># </span><span style="color: #204A87;">sets a breakpoint</span>
-<span style="color: #204A87;"># </span><span style="color: #204A87;">does also work with ipython</span>
-<span style="color: #204A87;"># </span><span style="color: #204A87;">import ipdb</span>
-<span style="color: #204A87;"># </span><span style="color: #204A87;">ipdb.set_trace()</span>
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">import</span> pdb <span style="color: #b0bec5;"># </span><span style="color: #204A87;">imports the python debugger</span>
+pdb.set_trace<span style="color: #ffffff;">()</span> <span style="color: #b0bec5;"># </span><span style="color: #204A87;">sets a breakpoint</span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">does also work with ipython</span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">import ipdb</span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">ipdb.set_trace()</span>
 </pre>
 </div>
 
@@ -94,13 +94,13 @@ pdb.set_trace<span style="color: #707183;">()</span> <span style="color: #204A87
 <h3></h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #204A87;"># </span><span style="color: #204A87;">Debugging</span>
+<pre  class="src src-python"><span style="color: #b0bec5;"># </span><span style="color: #204A87;">Debugging</span>
 <span style="color: #0084C8; font-weight: bold;">var1</span> = <span style="color: #4E9A06;">"test"</span>
-<span style="color: #0084C8; font-weight: bold;">var2</span> = <span style="color: #707183;">[</span>1, 2, 3, 4<span style="color: #707183;">]</span>
-<span style="color: #0084C8; font-weight: bold;">var3</span> = <span style="color: #707183;">{</span><span style="color: #4E9A06;">"key1"</span>: 1, <span style="color: #4E9A06;">"key2"</span>: 2<span style="color: #707183;">}</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>var1, var2, var3<span style="color: #707183;">)</span> <span style="color: #204A87;"># </span><span style="color: #204A87;">set a breakpoint here, click on blue dot left of this line</span>
+<span style="color: #0084C8; font-weight: bold;">var2</span> = <span style="color: #ffffff;">[</span>1, 2, 3, 4<span style="color: #ffffff;">]</span>
+<span style="color: #0084C8; font-weight: bold;">var3</span> = <span style="color: #ffffff;">{</span><span style="color: #4E9A06;">"key1"</span>: 1, <span style="color: #4E9A06;">"key2"</span>: 2<span style="color: #ffffff;">}</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span>var1, var2, var3<span style="color: #ffffff;">)</span> <span style="color: #b0bec5;"># </span><span style="color: #204A87;">set a breakpoint here, click on blue dot left of this line</span>
 <span style="color: #0084C8; font-weight: bold;">var1</span> = <span style="color: #4E9A06;">"modified"</span>
-<span style="color: #0084C8; font-weight: bold;">var3</span><span style="color: #707183;">[</span><span style="color: #4E9A06;">"key5"</span><span style="color: #707183;">]</span> = <span style="color: #4E9A06;">"a new value"</span>
+<span style="color: #0084C8; font-weight: bold;">var3</span><span style="color: #ffffff;">[</span><span style="color: #4E9A06;">"key5"</span><span style="color: #ffffff;">]</span> = <span style="color: #4E9A06;">"a new value"</span>
 </pre>
 </div>
 
@@ -116,12 +116,12 @@ pdb.set_trace<span style="color: #707183;">()</span> <span style="color: #204A87
 <h2>String Formatting</h2>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #204A87;"># </span><span style="color: #204A87;">String Formatting</span>
-<span style="color: #204A87;"># </span><span style="color: #204A87;">handy for any kind of logging, etc.</span>
-<span style="color: #204A87;"># </span><span style="color: #204A87;">mark replacement fields with curly braces</span>
+<pre  class="src src-python"><span style="color: #b0bec5;"># </span><span style="color: #204A87;">String Formatting</span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">handy for any kind of logging, etc.</span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">mark replacement fields with curly braces</span>
 <span style="color: #0084C8; font-weight: bold;">arg</span> = <span style="color: #4E9A06;">'world'</span>
-<span style="color: #0084C8; font-weight: bold;">res</span> = <span style="color: #4E9A06;">"hello {}"</span>.<span style="color: #A020F0;">format</span><span style="color: #707183;">(</span>arg<span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>res<span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">res</span> = <span style="color: #4E9A06;">"hello {}"</span>.<span style="color: #A020F0;">format</span><span style="color: #ffffff;">(</span>arg<span style="color: #ffffff;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span>res<span style="color: #ffffff;">)</span>
 </pre>
 </div>
 
@@ -131,8 +131,8 @@ hello world
 
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">res</span> = <span style="color: #4E9A06;">"{} and {}"</span>.<span style="color: #A020F0;">format</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"a pear"</span>, <span style="color: #4E9A06;">"a tree"</span><span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>res<span style="color: #707183;">)</span>
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">res</span> = <span style="color: #4E9A06;">"{} and {}"</span>.<span style="color: #A020F0;">format</span><span style="color: #ffffff;">(</span><span style="color: #4E9A06;">"a pear"</span>, <span style="color: #4E9A06;">"a tree"</span><span style="color: #ffffff;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span>res<span style="color: #ffffff;">)</span>
 </pre>
 </div>
 
@@ -146,13 +146,13 @@ a pear and a tree
 <h3></h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #204A87;"># </span><span style="color: #204A87;">refer to arguments by index; possibly re-use them</span>
-<span style="color: #0084C8; font-weight: bold;">res</span> = <span style="color: #4E9A06;">"{0} and {1}, {1} and {0}"</span>.<span style="color: #A020F0;">format</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"a pear"</span>, <span style="color: #4E9A06;">"a tree"</span><span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>res<span style="color: #707183;">)</span>
+<pre  class="src src-python"><span style="color: #b0bec5;"># </span><span style="color: #204A87;">refer to arguments by index; possibly re-use them</span>
+<span style="color: #0084C8; font-weight: bold;">res</span> = <span style="color: #4E9A06;">"{0} and {1}, {1} and {0}"</span>.<span style="color: #A020F0;">format</span><span style="color: #ffffff;">(</span><span style="color: #4E9A06;">"a pear"</span>, <span style="color: #4E9A06;">"a tree"</span><span style="color: #ffffff;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span>res<span style="color: #ffffff;">)</span>
 
-<span style="color: #204A87;"># </span><span style="color: #204A87;">refer to arguments by name; possibly re-use them</span>
-<span style="color: #0084C8; font-weight: bold;">res</span> = <span style="color: #4E9A06;">"{good} is better than {bad}"</span>.<span style="color: #A020F0;">format</span><span style="color: #707183;">(</span>good=<span style="color: #4E9A06;">"some"</span>, bad=<span style="color: #4E9A06;">"nothing"</span><span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>res<span style="color: #707183;">)</span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">refer to arguments by name; possibly re-use them</span>
+<span style="color: #0084C8; font-weight: bold;">res</span> = <span style="color: #4E9A06;">"{good} is better than {bad}"</span>.<span style="color: #A020F0;">format</span><span style="color: #ffffff;">(</span>good=<span style="color: #4E9A06;">"some"</span>, bad=<span style="color: #4E9A06;">"nothing"</span><span style="color: #ffffff;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span>res<span style="color: #ffffff;">)</span>
 </pre>
 </div>
 
@@ -167,16 +167,16 @@ some is better than nothing
 <h3></h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #204A87;"># </span><span style="color: #204A87;">practically anything can be an argument to format(.)</span>
+<pre  class="src src-python"><span style="color: #b0bec5;"># </span><span style="color: #204A87;">practically anything can be an argument to format(.)</span>
 <span style="color: #0084C8; font-weight: bold;">value</span> = 3.429188
-<span style="color: #0084C8; font-weight: bold;">res</span> = <span style="color: #4E9A06;">"value is: {}"</span>.<span style="color: #A020F0;">format</span><span style="color: #707183;">(</span>value<span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>res<span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">res</span> = <span style="color: #4E9A06;">"value is: {}"</span>.<span style="color: #A020F0;">format</span><span style="color: #ffffff;">(</span>value<span style="color: #ffffff;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span>res<span style="color: #ffffff;">)</span>
 
-<span style="color: #204A87;"># </span><span style="color: #204A87;">custom formatting using format specifiers:</span>
-<span style="color: #204A87;"># </span><span style="color: #204A87;">format specifiers follow a colon inside the curly braces</span>
-<span style="color: #204A87;"># </span><span style="color: #204A87;">format as fixed point, with 3 digits after comma</span>
-<span style="color: #0084C8; font-weight: bold;">res</span> = <span style="color: #4E9A06;">"value is: {:.3f}"</span>.<span style="color: #A020F0;">format</span><span style="color: #707183;">(</span>value<span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>res<span style="color: #707183;">)</span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">custom formatting using format specifiers:</span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">format specifiers follow a colon inside the curly braces</span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">format as fixed point, with 3 digits after comma</span>
+<span style="color: #0084C8; font-weight: bold;">res</span> = <span style="color: #4E9A06;">"value is: {:.3f}"</span>.<span style="color: #A020F0;">format</span><span style="color: #ffffff;">(</span>value<span style="color: #ffffff;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span>res<span style="color: #ffffff;">)</span>
 </pre>
 </div>
 
@@ -191,17 +191,17 @@ value is: 3.429
 <h3></h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #204A87;"># </span><span style="color: #204A87;">format left-aligned, centered, and right-aligned </span>
-<span style="color: #204A87;"># </span><span style="color: #204A87;">with the given minimum width,</span>
-<span style="color: #204A87;"># </span><span style="color: #204A87;">and a trailing line-break</span>
-<span style="color: #204A87;"># </span><span style="color: #204A87;">prepare the template-string</span>
+<pre  class="src src-python"><span style="color: #b0bec5;"># </span><span style="color: #204A87;">format left-aligned, centered, and right-aligned </span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">with the given minimum width,</span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">and a trailing line-break</span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">prepare the template-string</span>
 <span style="color: #0084C8; font-weight: bold;">tpl</span> = <span style="color: #4E9A06;">"{:&lt;15} {:^5} {:&gt;10}\n"</span>
-<span style="color: #204A87;"># </span><span style="color: #204A87;">provide empty string to match all replacement fields</span>
-<span style="color: #0084C8; font-weight: bold;">res</span> = tpl.<span style="color: #A020F0;">format</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"Carl Friedrich"</span>, <span style="color: #4E9A06;">""</span>, <span style="color: #4E9A06;">"Gauss"</span><span style="color: #707183;">)</span>
-<span style="color: #204A87;"># </span><span style="color: #204A87;">re-use the template-string</span>
-<span style="color: #0084C8; font-weight: bold;">res</span> += tpl.<span style="color: #A020F0;">format</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"Alexander"</span>, <span style="color: #4E9A06;">"von"</span>,  <span style="color: #4E9A06;">"Humboldt"</span><span style="color: #707183;">)</span>
-<span style="color: #0084C8; font-weight: bold;">res</span> += tpl.<span style="color: #A020F0;">format</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"Gerhard"</span>, <span style="color: #4E9A06;">""</span>, <span style="color: #4E9A06;">"Mercator"</span><span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>res<span style="color: #707183;">)</span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">provide empty string to match all replacement fields</span>
+<span style="color: #0084C8; font-weight: bold;">res</span> = tpl.<span style="color: #A020F0;">format</span><span style="color: #ffffff;">(</span><span style="color: #4E9A06;">"Carl Friedrich"</span>, <span style="color: #4E9A06;">""</span>, <span style="color: #4E9A06;">"Gauss"</span><span style="color: #ffffff;">)</span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">re-use the template-string</span>
+<span style="color: #0084C8; font-weight: bold;">res</span> += tpl.<span style="color: #A020F0;">format</span><span style="color: #ffffff;">(</span><span style="color: #4E9A06;">"Alexander"</span>, <span style="color: #4E9A06;">"von"</span>,  <span style="color: #4E9A06;">"Humboldt"</span><span style="color: #ffffff;">)</span>
+<span style="color: #0084C8; font-weight: bold;">res</span> += tpl.<span style="color: #A020F0;">format</span><span style="color: #ffffff;">(</span><span style="color: #4E9A06;">"Gerhard"</span>, <span style="color: #4E9A06;">""</span>, <span style="color: #4E9A06;">"Mercator"</span><span style="color: #ffffff;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span>res<span style="color: #ffffff;">)</span>
 </pre>
 </div>
 
@@ -217,11 +217,11 @@ Gerhard                 Mercator
 <h3></h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #204A87;"># </span><span style="color: #204A87;">multi-line strings can be formatted just as well.</span>
+<pre  class="src src-python"><span style="color: #b0bec5;"># </span><span style="color: #204A87;">multi-line strings can be formatted just as well.</span>
 <span style="color: #0084C8; font-weight: bold;">res</span> = <span style="color: #4E9A06;">"""# This might be a {}-file-header,</span>
 <span style="color: #4E9A06;"># created by {}</span>
-<span style="color: #4E9A06;"># on {}"""</span>.<span style="color: #A020F0;">format</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"text"</span>, <span style="color: #4E9A06;">"me"</span>, <span style="color: #4E9A06;">"2014-02-18"</span><span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>res<span style="color: #707183;">)</span>
+<span style="color: #4E9A06;"># on {}"""</span>.<span style="color: #A020F0;">format</span><span style="color: #ffffff;">(</span><span style="color: #4E9A06;">"text"</span>, <span style="color: #4E9A06;">"me"</span>, <span style="color: #4E9A06;">"2014-02-18"</span><span style="color: #ffffff;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span>res<span style="color: #ffffff;">)</span>
 </pre>
 </div>
 
@@ -245,9 +245,9 @@ Complete Format Specification Mini-Language:
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">i</span> = 0
-<span style="color: #0084C8; font-weight: bold;">data</span> = <span style="color: #707183;">[</span>2, 4.5<span style="color: #707183;">]</span>
-<span style="color: #A52A2A; font-weight: bold;">while</span> i &lt; <span style="color: #A020F0;">len</span><span style="color: #707183;">(</span>data<span style="color: #707183;">)</span>:
-    <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>data<span style="color: #7388d6;">[</span>i<span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">data</span> = <span style="color: #ffffff;">[</span>2, 4.5<span style="color: #ffffff;">]</span>
+<span style="color: #A52A2A; font-weight: bold;">while</span> i &lt; <span style="color: #A020F0;">len</span><span style="color: #ffffff;">(</span>data<span style="color: #ffffff;">)</span>:
+    <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span>data<span style="color: #81d4fa;">[</span>i<span style="color: #81d4fa;">]</span><span style="color: #ffffff;">)</span>
     <span style="color: #0084C8; font-weight: bold;">i</span> += 1
 </pre>
 </div>
@@ -267,11 +267,11 @@ Python does loops a little different.
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">data</span> = <span style="color: #707183;">[</span> 1.73, 2.4122, 80, -4 <span style="color: #707183;">]</span>
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">data</span> = <span style="color: #ffffff;">[</span> 1.73, 2.4122, 80, -4 <span style="color: #ffffff;">]</span>
 
-<span style="color: #204A87;"># </span><span style="color: #204A87;">iterate over elements, using keyword 'in'</span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">iterate over elements, using keyword 'in'</span>
 <span style="color: #A52A2A; font-weight: bold;">for</span> elem <span style="color: #A52A2A; font-weight: bold;">in</span> data:
-    <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>elem<span style="color: #707183;">)</span>
+    <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span>elem<span style="color: #ffffff;">)</span>
 </pre>
 </div>
 
@@ -288,10 +288,10 @@ Python does loops a little different.
 <h3>iterate over multiple lists</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">data</span> = <span style="color: #707183;">[</span> 1.73, 2.4122, 80, -4 <span style="color: #707183;">]</span>
-<span style="color: #0084C8; font-weight: bold;">datanames</span> = <span style="color: #707183;">[</span><span style="color: #4E9A06;">"number 1"</span>, <span style="color: #4E9A06;">"number 2"</span>, <span style="color: #4E9A06;">"number 3"</span>, <span style="color: #4E9A06;">"number 4"</span><span style="color: #707183;">]</span>
-<span style="color: #A52A2A; font-weight: bold;">for</span> number, name <span style="color: #A52A2A; font-weight: bold;">in</span> <span style="color: #A020F0;">zip</span><span style="color: #707183;">(</span>data, datanames<span style="color: #707183;">)</span>:
-    <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>name, number<span style="color: #707183;">)</span>
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">data</span> = <span style="color: #ffffff;">[</span> 1.73, 2.4122, 80, -4 <span style="color: #ffffff;">]</span>
+<span style="color: #0084C8; font-weight: bold;">datanames</span> = <span style="color: #ffffff;">[</span><span style="color: #4E9A06;">"number 1"</span>, <span style="color: #4E9A06;">"number 2"</span>, <span style="color: #4E9A06;">"number 3"</span>, <span style="color: #4E9A06;">"number 4"</span><span style="color: #ffffff;">]</span>
+<span style="color: #A52A2A; font-weight: bold;">for</span> number, name <span style="color: #A52A2A; font-weight: bold;">in</span> <span style="color: #A020F0;">zip</span><span style="color: #ffffff;">(</span>data, datanames<span style="color: #ffffff;">)</span>:
+    <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span>name, number<span style="color: #ffffff;">)</span>
 </pre>
 </div>
 
@@ -308,9 +308,9 @@ Python does loops a little different.
 <h3>iterate over dictionaries</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">d</span> = <span style="color: #707183;">{</span><span style="color: #4E9A06;">"key1"</span>: 1, <span style="color: #4E9A06;">"key2"</span>: 2, <span style="color: #4E9A06;">"key3"</span>: 3<span style="color: #707183;">}</span>
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">d</span> = <span style="color: #ffffff;">{</span><span style="color: #4E9A06;">"key1"</span>: 1, <span style="color: #4E9A06;">"key2"</span>: 2, <span style="color: #4E9A06;">"key3"</span>: 3<span style="color: #ffffff;">}</span>
 <span style="color: #A52A2A; font-weight: bold;">for</span> key <span style="color: #A52A2A; font-weight: bold;">in</span> d:
-    <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>key<span style="color: #707183;">)</span>
+    <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span>key<span style="color: #ffffff;">)</span>
 </pre>
 </div>
 
@@ -322,9 +322,9 @@ key1
 
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">d</span> = <span style="color: #707183;">{</span><span style="color: #4E9A06;">"key1"</span>: 1, <span style="color: #4E9A06;">"key2"</span>: 2, <span style="color: #4E9A06;">"key3"</span>: 3<span style="color: #707183;">}</span>
-<span style="color: #A52A2A; font-weight: bold;">for</span> key, item <span style="color: #A52A2A; font-weight: bold;">in</span> d.iteritems<span style="color: #707183;">()</span>:
-    <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>key, item<span style="color: #707183;">)</span>
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">d</span> = <span style="color: #ffffff;">{</span><span style="color: #4E9A06;">"key1"</span>: 1, <span style="color: #4E9A06;">"key2"</span>: 2, <span style="color: #4E9A06;">"key3"</span>: 3<span style="color: #ffffff;">}</span>
+<span style="color: #A52A2A; font-weight: bold;">for</span> key, item <span style="color: #A52A2A; font-weight: bold;">in</span> d.iteritems<span style="color: #ffffff;">()</span>:
+    <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span>key, item<span style="color: #ffffff;">)</span>
 </pre>
 </div>
 
@@ -343,12 +343,12 @@ range and xrange can be addressed with (start, stop, step)
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"range"</span><span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">for</span> i <span style="color: #A52A2A; font-weight: bold;">in</span> <span style="color: #A020F0;">range</span><span style="color: #707183;">(</span>1, 10, 2<span style="color: #707183;">)</span>:
-    <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>i<span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"xrange"</span><span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">for</span> i <span style="color: #A52A2A; font-weight: bold;">in</span> <span style="color: #A020F0;">xrange</span><span style="color: #707183;">(</span>5<span style="color: #707183;">)</span>: <span style="color: #204A87;"># </span><span style="color: #204A87;">only python 2</span>
-    <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>i<span style="color: #707183;">)</span>
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span><span style="color: #4E9A06;">"range"</span><span style="color: #ffffff;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">for</span> i <span style="color: #A52A2A; font-weight: bold;">in</span> <span style="color: #A020F0;">range</span><span style="color: #ffffff;">(</span>1, 10, 2<span style="color: #ffffff;">)</span>:
+    <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span>i<span style="color: #ffffff;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span><span style="color: #4E9A06;">"xrange"</span><span style="color: #ffffff;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">for</span> i <span style="color: #A52A2A; font-weight: bold;">in</span> <span style="color: #A020F0;">xrange</span><span style="color: #ffffff;">(</span>5<span style="color: #ffffff;">)</span>: <span style="color: #b0bec5;"># </span><span style="color: #204A87;">only python 2</span>
+    <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span>i<span style="color: #ffffff;">)</span>
 </pre>
 </div>
 
@@ -373,9 +373,9 @@ xrange
 <h3>sometimes enumerate is also handy</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">l</span> = <span style="color: #707183;">[</span><span style="color: #4E9A06;">"a"</span>, <span style="color: #4E9A06;">"b"</span>, <span style="color: #4E9A06;">"c"</span>, <span style="color: #4E9A06;">"d"</span><span style="color: #707183;">]</span>
-<span style="color: #A52A2A; font-weight: bold;">for</span> i, item <span style="color: #A52A2A; font-weight: bold;">in</span> <span style="color: #A020F0;">enumerate</span><span style="color: #707183;">(</span>l<span style="color: #707183;">)</span>:
-    <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>i, item<span style="color: #707183;">)</span>
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">l</span> = <span style="color: #ffffff;">[</span><span style="color: #4E9A06;">"a"</span>, <span style="color: #4E9A06;">"b"</span>, <span style="color: #4E9A06;">"c"</span>, <span style="color: #4E9A06;">"d"</span><span style="color: #ffffff;">]</span>
+<span style="color: #A52A2A; font-weight: bold;">for</span> i, item <span style="color: #A52A2A; font-weight: bold;">in</span> <span style="color: #A020F0;">enumerate</span><span style="color: #ffffff;">(</span>l<span style="color: #ffffff;">)</span>:
+    <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span>i, item<span style="color: #ffffff;">)</span>
 </pre>
 </div>
 
@@ -392,14 +392,14 @@ xrange
 <h3>if/else blocks</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">dataset1</span> = <span style="color: #707183;">[</span> 1.73, 2.4122, 80, -4 <span style="color: #707183;">]</span>
-<span style="color: #204A87;"># </span><span style="color: #204A87;">if/else blocks</span>
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">dataset1</span> = <span style="color: #ffffff;">[</span> 1.73, 2.4122, 80, -4 <span style="color: #ffffff;">]</span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">if/else blocks</span>
 <span style="color: #A52A2A; font-weight: bold;">for</span> d <span style="color: #A52A2A; font-weight: bold;">in</span> dataset1:
     <span style="color: #A52A2A; font-weight: bold;">if</span> d &gt; 3:
         <span style="color: #0084C8; font-weight: bold;">res</span> = <span style="color: #4E9A06;">"&gt;3"</span>
     <span style="color: #A52A2A; font-weight: bold;">else</span>:
         <span style="color: #0084C8; font-weight: bold;">res</span> = <span style="color: #4E9A06;">"&lt;=3"</span>
-    <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>res<span style="color: #707183;">)</span>
+    <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span>res<span style="color: #ffffff;">)</span>
 </pre>
 </div>
 
@@ -416,14 +416,14 @@ xrange
 <h3>Mini Exercise</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #204A87;">####################################################################</span>
-<span style="color: #204A87;"># </span><span style="color: #204A87;">Mini Exercise </span>
+<pre  class="src src-python"><span style="color: #b0bec5;">####################################################################</span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">Mini Exercise </span>
 
-<span style="color: #204A87;"># </span><span style="color: #204A87;">Try to format and print only the positive numbers in 'dataset1',</span>
-<span style="color: #204A87;"># </span><span style="color: #204A87;">with 1 number on each line,</span>
-<span style="color: #204A87;"># </span><span style="color: #204A87;">and with 2 digits after the comma</span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">Try to format and print only the positive numbers in 'dataset1',</span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">with 1 number on each line,</span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">and with 2 digits after the comma</span>
 
-<span style="color: #204A87;">####################################################################</span>
+<span style="color: #b0bec5;">####################################################################</span>
 </pre>
 </div>
 </section>
@@ -438,7 +438,7 @@ Function is a way to package code so that it is reusable.
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">classify</span><span style="color: #707183;">(</span>dataset, threshold<span style="color: #707183;">)</span>:
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">classify</span><span style="color: #ffffff;">(</span>dataset, threshold<span style="color: #ffffff;">)</span>:
     <span style="color: #4E9A06;">"""</span>
 <span style="color: #4E9A06;">    classifies dataset into small and large class using the threshold</span>
 
@@ -454,9 +454,9 @@ Function is a way to package code so that it is reusable.
 <span style="color: #4E9A06;">    results: list</span>
 <span style="color: #4E9A06;">        containing True or False</span>
 <span style="color: #4E9A06;">    """</span>
-    <span style="color: #0084C8; font-weight: bold;">results</span> = <span style="color: #707183;">[]</span>  <span style="color: #204A87;"># </span><span style="color: #204A87;">create an empty list</span>
+    <span style="color: #0084C8; font-weight: bold;">results</span> = <span style="color: #ffffff;">[]</span>  <span style="color: #b0bec5;"># </span><span style="color: #204A87;">create an empty list</span>
     <span style="color: #A52A2A; font-weight: bold;">for</span> data <span style="color: #A52A2A; font-weight: bold;">in</span> dataset:
-        results.append<span style="color: #707183;">(</span>data &gt; threshold<span style="color: #707183;">)</span>
+        results.append<span style="color: #ffffff;">(</span>data &gt; threshold<span style="color: #ffffff;">)</span>
     <span style="color: #A52A2A; font-weight: bold;">return</span> results
 </pre>
 </div>
@@ -467,10 +467,10 @@ Function is a way to package code so that it is reusable.
 <h3></h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">dataset1</span> = <span style="color: #707183;">[</span>1.73, 80, 2.4122, -4<span style="color: #707183;">]</span>
-<span style="color: #0084C8; font-weight: bold;">res</span> = classify<span style="color: #707183;">(</span>dataset1, 2<span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>res<span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>classify<span style="color: #7388d6;">(</span>dataset1, 1<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">dataset1</span> = <span style="color: #ffffff;">[</span>1.73, 80, 2.4122, -4<span style="color: #ffffff;">]</span>
+<span style="color: #0084C8; font-weight: bold;">res</span> = classify<span style="color: #ffffff;">(</span>dataset1, 2<span style="color: #ffffff;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span>res<span style="color: #ffffff;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span>classify<span style="color: #81d4fa;">(</span>dataset1, 1<span style="color: #81d4fa;">)</span><span style="color: #ffffff;">)</span>
 </pre>
 </div>
 
@@ -517,7 +517,7 @@ Generation of HTML or PDF Documentation using <a href="http://sphinx-doc.org/">S
 <h3>Functions with keyword arguments</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">classifydefault</span><span style="color: #707183;">(</span>dataset, threshold=2.5<span style="color: #707183;">)</span>:
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">classifydefault</span><span style="color: #ffffff;">(</span>dataset, threshold=2.5<span style="color: #ffffff;">)</span>:
     <span style="color: #4E9A06;">"""</span>
 <span style="color: #4E9A06;">    classifies dataset into small and large class using the threshold</span>
 
@@ -533,9 +533,9 @@ Generation of HTML or PDF Documentation using <a href="http://sphinx-doc.org/">S
 <span style="color: #4E9A06;">    results: list</span>
 <span style="color: #4E9A06;">        containing True or False</span>
 <span style="color: #4E9A06;">    """</span>
-    <span style="color: #0084C8; font-weight: bold;">results</span> = <span style="color: #707183;">[]</span>  <span style="color: #204A87;"># </span><span style="color: #204A87;">create an empty list</span>
+    <span style="color: #0084C8; font-weight: bold;">results</span> = <span style="color: #ffffff;">[]</span>  <span style="color: #b0bec5;"># </span><span style="color: #204A87;">create an empty list</span>
     <span style="color: #A52A2A; font-weight: bold;">for</span> data <span style="color: #A52A2A; font-weight: bold;">in</span> dataset:
-        results.append<span style="color: #707183;">(</span>data &gt; threshold<span style="color: #707183;">)</span>
+        results.append<span style="color: #ffffff;">(</span>data &gt; threshold<span style="color: #ffffff;">)</span>
     <span style="color: #A52A2A; font-weight: bold;">return</span> results
 </pre>
 </div>
@@ -546,8 +546,8 @@ Generation of HTML or PDF Documentation using <a href="http://sphinx-doc.org/">S
 <h3></h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">dataset2</span> = <span style="color: #707183;">[</span>1.73, 80, 2.4122, -4, 2.6<span style="color: #707183;">]</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>classifydefault<span style="color: #7388d6;">(</span>dataset2<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">dataset2</span> = <span style="color: #ffffff;">[</span>1.73, 80, 2.4122, -4, 2.6<span style="color: #ffffff;">]</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span>classifydefault<span style="color: #81d4fa;">(</span>dataset2<span style="color: #81d4fa;">)</span><span style="color: #ffffff;">)</span>
 </pre>
 </div>
 
@@ -565,12 +565,12 @@ Functions/Classes and Packages/Modules define their own local namespace.
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">variable</span> = <span style="color: #4E9A06;">"I am Global"</span>
-<span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">func</span><span style="color: #707183;">()</span>:
+<span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">func</span><span style="color: #ffffff;">()</span>:
     <span style="color: #0084C8; font-weight: bold;">variable</span> = <span style="color: #4E9A06;">"I am Local"</span>
-    <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>variable<span style="color: #707183;">)</span>
+    <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span>variable<span style="color: #ffffff;">)</span>
 
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>variable<span style="color: #707183;">)</span>
-func<span style="color: #707183;">()</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span>variable<span style="color: #ffffff;">)</span>
+func<span style="color: #ffffff;">()</span>
 </pre>
 </div>
 
@@ -588,13 +588,13 @@ Careful when changing a list in a function
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">l</span> = <span style="color: #707183;">[</span>1, 2, 3<span style="color: #707183;">]</span>
-<span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">func</span><span style="color: #707183;">(</span>ls<span style="color: #707183;">)</span>:
-    ls.append<span style="color: #707183;">(</span>4<span style="color: #707183;">)</span>
+<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">l</span> = <span style="color: #ffffff;">[</span>1, 2, 3<span style="color: #ffffff;">]</span>
+<span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">func</span><span style="color: #ffffff;">(</span>ls<span style="color: #ffffff;">)</span>:
+    ls.append<span style="color: #ffffff;">(</span>4<span style="color: #ffffff;">)</span>
 
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>l<span style="color: #707183;">)</span>
-func<span style="color: #707183;">(</span>l<span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>l<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span>l<span style="color: #ffffff;">)</span>
+func<span style="color: #ffffff;">(</span>l<span style="color: #ffffff;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span>l<span style="color: #ffffff;">)</span>
 </pre>
 </div>
 
@@ -609,19 +609,19 @@ func<span style="color: #707183;">(</span>l<span style="color: #707183;">)</span
 <h3>Mini Exercise</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #204A87;">####################################################################</span>
-<span style="color: #204A87;"># </span><span style="color: #204A87;">Mini Exercise </span>
+<pre  class="src src-python"><span style="color: #b0bec5;">####################################################################</span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">Mini Exercise </span>
 
-<span style="color: #204A87;"># </span><span style="color: #204A87;">Write a function that classifies strings by length</span>
-<span style="color: #204A87;"># </span><span style="color: #204A87;">inputs should be a list of strings, and a threshold </span>
-<span style="color: #204A87;"># </span><span style="color: #204A87;">specifying the number of characters</span>
-<span style="color: #204A87;"># </span><span style="color: #204A87;">The output should be a list containing the strings "shorter" or "longer"</span>
-<span style="color: #204A87;"># </span><span style="color: #204A87;">lets ignore strings of length = threshold for now</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #A020F0;">len</span><span style="color: #7388d6;">(</span><span style="color: #4E9A06;">"test"</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span> <span style="color: #204A87;"># </span><span style="color: #204A87;">hint</span>
-<span style="color: #204A87;"># </span><span style="color: #204A87;">list of random strings</span>
-<span style="color: #0084C8; font-weight: bold;">test_strings</span> = <span style="color: #707183;">[</span><span style="color: #4E9A06;">"faucal"</span> ,<span style="color: #4E9A06;">"fiddling"</span> ,<span style="color: #4E9A06;">"instil"</span> ,<span style="color: #4E9A06;">"blake"</span> ,<span style="color: #4E9A06;">"profanely"</span> ,
-                <span style="color: #4E9A06;">"bootblack"</span> ,<span style="color: #4E9A06;">"decongest"</span> ,<span style="color: #4E9A06;">"interest"</span> ,<span style="color: #4E9A06;">"arrowy"</span> ,<span style="color: #4E9A06;">"eponymic"</span><span style="color: #707183;">]</span>
-<span style="color: #204A87;">####################################################################</span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">Write a function that classifies strings by length</span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">inputs should be a list of strings, and a threshold </span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">specifying the number of characters</span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">The output should be a list containing the strings "shorter" or "longer"</span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">lets ignore strings of length = threshold for now</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #ffffff;">(</span><span style="color: #A020F0;">len</span><span style="color: #81d4fa;">(</span><span style="color: #4E9A06;">"test"</span><span style="color: #81d4fa;">)</span><span style="color: #ffffff;">)</span> <span style="color: #b0bec5;"># </span><span style="color: #204A87;">hint</span>
+<span style="color: #b0bec5;"># </span><span style="color: #204A87;">list of random strings</span>
+<span style="color: #0084C8; font-weight: bold;">test_strings</span> = <span style="color: #ffffff;">[</span><span style="color: #4E9A06;">"faucal"</span> ,<span style="color: #4E9A06;">"fiddling"</span> ,<span style="color: #4E9A06;">"instil"</span> ,<span style="color: #4E9A06;">"blake"</span> ,<span style="color: #4E9A06;">"profanely"</span> ,
+                <span style="color: #4E9A06;">"bootblack"</span> ,<span style="color: #4E9A06;">"decongest"</span> ,<span style="color: #4E9A06;">"interest"</span> ,<span style="color: #4E9A06;">"arrowy"</span> ,<span style="color: #4E9A06;">"eponymic"</span><span style="color: #ffffff;">]</span>
+<span style="color: #b0bec5;">####################################################################</span>
 </pre>
 </div>
 
