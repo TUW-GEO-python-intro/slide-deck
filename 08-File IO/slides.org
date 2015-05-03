@@ -36,61 +36,521 @@
 
 * File formats
 - ASCII
-- Raw binary
+- Binary
 - Numpy
 - Matlab
 - IDL
-- Negative
+- NetCDF
 - HDF5
+- Excel
 - Pickle - Python object serialization
-* ASCII or text file
-A text file in which each byte represents one character according to the ASCII
-code. Contrast with a binary file, in which there is no one-to-one mapping
-between bytes and characters. Files that have been formatted with a word
-processor must be stored and transmitted as binary files to preserve the
-formatting.
+* ASCII (text file)
+- A text file in which each byte represents one character according to the ASCII
+  code.
+- Contrast with a binary file, in which there is no one-to-one mapping between
+  bytes and characters.
+- Files that have been formatted with a word processor must be stored and
+  transmitted as binary files to preserve the formatting.
 ** Python standard library
 [[https://docs.python.org/2/tutorial/inputoutput.html][Input output routines]]
 - =open()=, =close()=
 - =read()=, =readline()=, =readlines()=
 - =write()=, =writelines()=
-* CSV
-A comma-separated values (CSV) file stores *tabular data* (numbers and text) in
-plain-text form. Plain text means that the file is a sequence of characters,
-with no data that has to be interpreted as binary numbers. A CSV file consists
-of any number of records, separated by line breaks of some kind; each record
-consists of fields, separated by some other character or string, most commonly a
-literal comma or tab. Usually, all records have an identical sequence of fields.
-** Python standard library
-[[https://docs.python.org/2/tutorial/inputoutput.html][Input output routines]]
-- =open()=, =close()=
-- =read()=, =readline()=, =readlines()=
-- =write()=, =writelines()=
+** Before we start
+#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+import os
+f_dir = os.path.join('.', 'files')
+if not os.path.exists(f_dir):
+    try:
+        os.mkdir(f_dir)
+    except OSError:
+        f_dir = ''
+
+print(f_dir)
+#+end_src
+
+#+RESULTS:
+: 
+: >>> >>> >>> >>> ... ... ... ... ... >>> ./files
+** ASCII example 1
+#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+filename = os.path.join(f_dir, 'example1.txt')
+
+f = open(filename, 'w')
+f.write("Hello World!")
+f.close()
+
+with open(filename) as f:
+    print(f.read())
+#+end_src
+
+#+RESULTS:
+: 
+: >>> >>> >>> >>> ... ... Hello World!
 ** numpy
-- [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.fromfile.html][np.fromfile]]: Construct an array from data in a text or binary file
-* Raw binary
+- [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.fromregex.html][np.fromregex]]: Construct an array from a text file, using regular expression
+  parsing.
+- [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.fromstring.html][np.fromstring]]: A new 1-D array initialized from raw binary or text data in a
+  string.
+- [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.tofile.html][np.ndarray.tofile]]: Write array to a file as text or binary (default).
+* CSV
+- A comma-separated values (CSV) file stores *tabular data* (numbers and text)
+  in plain-text form.
+- Plain text means that the file is a sequence of characters, with no data that
+  has to be interpreted as binary numbers. 
+- A CSV file consists of any number of records, separated by line breaks of some
+  kind; each record consists of fields, separated by some other character or
+  string, most commonly a literal comma or tab.
+- Usually, all records have an identical sequence of fields.
 ** Python standard library
 [[https://docs.python.org/2/tutorial/inputoutput.html][Input output routines]]
 - =open()=, =close()=
 - =read()=, =readline()=, =readlines()=
 - =write()=, =writelines()=
+** CSV example 1
+#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+filename = os.path.join(f_dir, 'example1.csv')
+
+with open(filename, 'w') as f:
+    f.write("lon,lat,temperature\n")
+    data = [[16, 48, 20], [17, 48, 21], [18, 48, 18]]
+    for record in data:
+        f.writelines(','.join(map(str, record)))
+        f.write("\n")
+
+with open(filename) as f:
+    for record in f.readlines():
+        print(record)
+#+end_src
+#+RESULTS:
+: 
+: >>> ... ... ... ... ... ... >>> ... ... ... lon,lat,temperature
+: 
+: 16,48,20
+: 
+: 17,48,21
+: 
+: 18,48,18
+** numpy
+- [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.savetxt.html][np.savetxt]]: Save an array to a text file.
+- [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.loadtxt.html][np.loadtxt]]: Load data from a text file.
+- [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.genfromtxt.html][np.genfromtxt]]: Load data from a text file, with missing values handled as
+  specified.
+** CSV example 2
+#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+import numpy as np
+filename = os.path.join(f_dir, 'example2.csv')
+data =  np.tile(np.arange(0, 5), (3, 1)).T
+
+# save data
+np.savetxt(filename, data, header='x,y,z', delimiter=',')
+
+# load data
+x, y, z = np.loadtxt(filename, skiprows=1, delimiter=',', unpack=True)
+print(x, y, z)
+#+end_src
+
+#+RESULTS:
+: 
+: >>> >>> >>> ... >>> >>> ... >>> (array([ 0.,  1.,  2.,  3.,  4.]), array([ 0.,  1.,  2.,  3.,  4.]), array([ 0.,  1.,  2.,  3.,  4.]))
+* Binary
+- A binary file is a computer file that is not a text file.
+- Binary files typically contain bytes that are intended to be interpreted as
+  something other than text characters.
+- Some binary files contain headers, blocks of metadata used by a computer
+  program to interpret the data in the file.
+- If a binary file is opened in a text editor, each group of eight bits will
+  typically be translated as a single character,
+- Binary itself is meaningless, until such time as an executed algorithm defines
+  what should be done with each bit, byte, word or block.
+** Python standard library
+[[https://docs.python.org/2/tutorial/inputoutput.html][Input output routines]]
+- =open()=, =close()=
+- =read()=, =readline()=, =readlines()=
+- =write()=, =writelines()=
+** Binary example 1
+#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+import struct
+filename = os.path.join(f_dir, 'example1.bin')
+points = [(1, 2), (3, 4), (9, 10), (23, 14), (50, 90)]
+
+msg = bytearray()
+msg.extend(struct.pack('I', len(points)))
+
+for x,y in points:
+    msg.extend(struct.pack('II', x, y))
+
+# write data
+with open(filename, 'wb') as f:
+    f.write(msg)
+
+# read data
+with open(filename, 'rb') as f:
+     n_points = struct.unpack('I', f.read(4))[0]
+     print(n_points)
+#+end_src
+
+#+RESULTS:
+: 
+: >>> >>> >>> >>> >>> >>> ... ... >>> ... ... ... >>> ... ... ... ... 5
 ** numpy
 - [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.fromfile.html][np.fromfile]]: Construct an array from data in a text or binary file
 - [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.tofile.html#numpy.ndarray.tofile][ndarray.tofile]]: Write array to a file as text or binary (default)
-* Numpy
-** numpy
-* Matlab
-** scipy.io
-* IDL
-** scipy.io
-* NetCDF
-** netCDF4
-* HDF5
-** h5py
-* Pickle
-* Code                                                             :noexport:
-To use numpy you need to import the module
+** Binary example 2
 #+begin_src python :results output :exports both :tangle lecture8.py :session *python*
-import numpy as np 
-print("Numpy version {:}".format(np.__version__))
+filename = os.path.join(f_dir, 'example2.bin')
+
+points = np.array([(1, 2), (3, 4), (9, 10), (23, 14), (50, 90)], 
+    dtype=np.int32)
+points.tofile(filename)
+
+data = np.fromfile(filename, dtype=[('x', np.int32), 
+    ('y', np.int32)])
+print(data['x'], data['y'])
 #+end_src
+
+#+RESULTS:
+: 
+: >>> >>> >>> >>> (array([ 1,  3,  9, 23, 50], dtype=int32), array([ 2,  4, 10, 14, 90], dtype=int32))
+* Numpy
+- There are a number of various [[http://docs.scipy.org/doc/numpy/reference/routines.io.html][Numpy IO routines]] (e.g. text, binary and NPZ)
+- *NPZ*: a standard binary file format for persisting a single arbitrary Numpy
+  array on disk. The format stores all of the shape and dtype information
+  necessary to reconstruct the array correctly even on another machine with a
+  different architecture.
+** numpy
+- [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.load.html#numpy.load][np.load]]: load arrays or pickled objects from .npy, .npz or pickled files.
+- [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.save.html#numpy.save][np.save]]: Save an array to a binary file in NumPy .npy format.
+- [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.savez.html#numpy.savez][np.savez]]: Save several arrays into a single file in uncompressed .npz format.
+- [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.savez_compressed.html#numpy.savez_compressed][np.savez_compressed]]: Save several arrays into a single file in compressed .npz
+  format.
+** Numpy example 1
+#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+filename = os.path.join(f_dir, 'example1.npy')
+
+x = np.arange(10)
+# save data
+np.save(filename, x)
+
+# load data
+data = np.load(filename)
+print(data)
+#+end_src
+
+#+RESULTS:
+: 
+: >>> >>> ... >>> >>> ... >>> >>> [0 1 2 3 4 5 6 7 8 9]
+** Numpy example 2
+#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+filename = os.path.join(f_dir, 'example2.npz')
+x = np.arange(4).reshape(2, 2)
+y = np.sin(x)
+
+# save data
+np.savez(filename, x, y=y)
+
+# load data
+data = np.load(filename)
+
+print(data)
+print('x:', data['arr_0'])
+print('y:', data['y'])
+#+end_src
+
+#+RESULTS:
+: 
+: >>> >>> >>> ... >>> >>> ... >>> <numpy.lib.npyio.NpzFile object at 0x7f802e8a1610>
+: ('x:', array([[0, 1],
+:        [2, 3]]))
+: ('y:', array([[ 0.        ,  0.84147098],
+:        [ 0.90929743,  0.14112001]]))
+* Matlab
+- Scipy.io has many [[http://docs.scipy.org/doc/scipy/reference/io.html][modules, classes, and functions]] available to read data from and
+  write data to a variety of file formats.
+- Saving and loading Matlab files (.mat) is supported (v4 (Level 1.0), v6 and v7
+  to 7.2 matfiles are supported.)
+** scipy.io
+- [[https://docs.scipy.org/doc/scipy/reference/generated/scipy.io.loadmat.html#scipy.io.loadmat][loadmat]]: Load MATLAB file
+- [[https://docs.scipy.org/doc/scipy/reference/generated/scipy.io.savemat.html][savemat]]: Save a dictionary of names and arrays into a MATLAB-style .mat file.
+- [[https://docs.scipy.org/doc/scipy/reference/generated/scipy.io.whosmat.html][whosmat]]: List variables inside a MATLAB file
+** Matlab example 1
+#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+from scipy.io import loadmat, savemat, whosmat
+filename = os.path.join(f_dir, 'example1.mat')
+x = np.arange(10)
+
+# save data
+savemat(filename, {'var1': x})
+
+# load data
+data = loadmat(filename)
+
+print(data['var1'])
+#+end_src
+
+#+RESULTS:
+: 
+: >>> >>> >>> ... >>> >>> ... >>> >>> [[0 1 2 3 4 5 6 7 8 9]]
+** Matlab example 2
+#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+from scipy.io import loadmat, savemat, whosmat
+filename = os.path.join(f_dir, 'example2.mat')
+x = np.arange(4).reshape(2, 2)
+y = np.sin(x)
+
+# save data
+savemat(filename, {'var1': x, 'y': y})
+
+# show variables
+print(whosmat(filename))
+
+# load data
+data = loadmat(filename)
+
+print(data['y'])
+#+end_src
+
+#+RESULTS:
+: 
+: >>> >>> >>> >>> ... >>> >>> ... [('y', (2, 2), 'double'), ('var1', (2, 2), 'int64')]
+: >>> ... >>> >>> [[ 0.          0.84147098]
+:  [ 0.90929743  0.14112001]]
+* IDL (Exelis VIS)
+Scipy.io also supports reading IDL (.sav) files
+- [[http://docs.scipy.org/doc/scipy/reference/generated/scipy.io.readsav.html#scipy.io.readsav][readsav]]: Read an IDL .sav file 
+
+[[http://www.exelisvis.com/docs/overview_of_save_files.html][Overview of SAVE files]] (from [[http://www.exelisvis.com][Exelisvis]]): You can create binary files containing
+data variables, system variables, functions, procedures, or objects using the
+SAVE procedure. These SAVE files can be shared with other users who will be able
+to execute the program, but who will not have access to the IDL code that
+created it. Variables that are used from session to session can be saved as and
+recovered from a SAVE file.
+* NetCDF
+- [[http://www.unidata.ucar.edu/software/netcdf/][NetCDF]] (Network Common Data Form) is a set of software libraries and self-
+  describing, machine-independent data formats that support the creation,
+  access, and sharing of array-oriented scientific data.
+- NetCDF data is:
+  - Self-Describing: Metadata information about the data are included.
+  - Portable: Accessable by computers with different ways of storing integers,
+    characters, and floating-point numbers.
+** NetCDF
+- NetCDF data is:
+  - Scalable: A small subset of a large dataset may be accessed efficiently.
+  - Appendable: Data may be appended to a properly structured netCDF file.
+  - Sharable: One writer and multiple readers may simultaneously access the same
+    netCDF file.
+  - Archivable: Access to all earlier forms of netCDF data will be supported by
+    current and future versions of the software.
+- Python package: [[https://code.google.com/p/netcdf4-python/][netCDF4]]
+** netCDF4 example 1 - part 1
+#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+import netCDF4
+filename = os.path.join(f_dir, 'example1.nc')
+
+# Creating a NetCDF file
+f = netCDF4.Dataset(filename, 'w', format='NETCDF4')
+
+# Groups - netCDF version 4 added support for organizing data
+# in hierarchical groups
+grp_temp = f.createGroup("temperature")
+subgrp_air = grp_temp.createGroup("air")
+subgrp_soil = grp_temp.createGroup("soil")
+print(f.groups)
+print(grp_temp.groups)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+>>> >>> ... >>> >>> ... ... >>> >>> >>> OrderedDict([('temperature', <type 'netCDF4.Group'>
+group /temperature:
+    dimensions(sizes): 
+    variables(dimensions): 
+    groups: air, soil
+)])
+OrderedDict([('air', <type 'netCDF4.Group'>
+group /temperature/air:
+    dimensions(sizes): 
+    variables(dimensions): 
+    groups: 
+), ('soil', <type 'netCDF4.Group'>
+group /temperature/soil:
+    dimensions(sizes): 
+    variables(dimensions): 
+    groups: 
+)])
+#+end_example
+** netCDF4 example 1 - part 2
+#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+# Create Dimension
+lat = f.createDimension('lat', 50)
+lon = f.createDimension('lon', 50)
+time = f.createDimension('time', None)
+print(f.dimensions)
+
+# Datasets and Attributes
+soil_temp = np.ones((50,50))
+soil_dset = subgrp_soil.createVariable("Soil Temperature",
+    soil_temp.dtype.name, ('lat', 'lon'))
+soil_dset[:] = soil_temp
+
+# http://docs.python.org/2/library/functions.html#setattr
+# setattr(x, 'foobar', 123) is equivalent to x.foobar = 123
+setattr(soil_dset, 'unit', 'degree celsius')
+soil_dset.scaling = 1
+f.close()
+#+end_src
+
+#+RESULTS:
+: 
+: >>> >>> >>> OrderedDict([('lat', <type 'netCDF4.Dimension'>: name = 'lat', size = 50
+: ), ('lon', <type 'netCDF4.Dimension'>: name = 'lon', size = 50
+: ), ('time', <type 'netCDF4.Dimension'> (unlimited): name = 'time', size = 0
+: )])
+** netCDF4 example 1 - part 3
+#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+# Open NetCDF4 files (using a context manager)
+with netCDF4.Dataset(filename) as f:
+    print(f.groups)
+    print(f.dimensions)
+    print(f.groups['temperature'].groups['soil'].variables['Soil Temperature'])
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+... ... ... ... OrderedDict([(u'temperature', <type 'netCDF4.Group'>
+group /temperature:
+    dimensions(sizes): 
+    variables(dimensions): 
+    groups: air, soil
+)])
+OrderedDict([(u'lat', <type 'netCDF4.Dimension'>: name = 'lat', size = 50
+), (u'lon', <type 'netCDF4.Dimension'>: name = 'lon', size = 50
+), (u'time', <type 'netCDF4.Dimension'> (unlimited): name = 'time', size = 0
+)])
+<type 'netCDF4.Variable'>
+float64 Soil Temperature(lat, lon)
+    unit: degree celsius
+    scaling: 1
+path = /temperature/soil
+unlimited dimensions: 
+current shape = (50, 50)
+filling on, default _FillValue of 9.96920996839e+36 used
+#+end_example
+** netCDF4 example 1 - part 4
+#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+# Open NetCDF4 files (using a context manager)
+with netCDF4.Dataset(filename) as f:
+    print(f.groups['temperature'].groups['soil'].variables['Soil Temperature'][:])
+    print(f.groups['temperature'].groups['soil'].variables['Soil Temperature'].unit)
+#+end_src
+
+#+RESULTS:
+: 
+: ... ... ... [[ 1.  1.  1. ...,  1.  1.  1.]
+:  [ 1.  1.  1. ...,  1.  1.  1.]
+:  [ 1.  1.  1. ...,  1.  1.  1.]
+:  ..., 
+:  [ 1.  1.  1. ...,  1.  1.  1.]
+:  [ 1.  1.  1. ...,  1.  1.  1.]
+:  [ 1.  1.  1. ...,  1.  1.  1.]]
+: degree celsius
+* HDF5
+- HDF5 is a data model, library, and file format for storing and managing data. 
+- It supports an unlimited variety of datatypes, and is designed for flexible
+  and efficient I/O and for high volume and complex data. 
+- HDF5 is portable and is extensible, allowing applications to evolve in their
+  use of HDF5.
+- Python package [[http://www.h5py.org/][h5py]]
+** hdf5 example 1 - part 1
+#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+import h5py
+filename = os.path.join(f_dir, 'example1.hdf5')
+# Creating a HDF5 file
+with h5py.File(filename, 'w') as f:
+    # Groups - container mechanism by which HDF5 files are organized.
+    grp_temp = f.create_group("temp")
+    subgrp_soil = grp_temp.create_group("soil")
+    soil_temp = np.arange(400)
+    soil_dset = subgrp_soil.create_dataset("Soil Temperature", data=soil_temp)
+    soil_dset.attrs['unit'] = 'degree celsius'
+    print(soil_dset)
+#+end_src
+#+RESULTS:
+: 
+: >>> ... ... ... ... ... ... ... ... ... <HDF5 dataset "Soil Temperature": shape (400,), type "<i8">
+** hdf5 example 1 - part 2
+#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+filename = os.path.join(f_dir, 'example1.hdf5')
+# Creating a HDF5 file
+with h5py.File(filename) as f:
+    print(f['temp/soil'].keys())
+    print(f['temp/soil/Soil Temperature'])
+    print(f['temp/soil/Soil Temperature'][20:40])
+#+end_src
+#+RESULTS:
+: 
+: ... ... ... ... ... [u'Soil Temperature']
+: <HDF5 dataset "Soil Temperature": shape (400,), type "<i8">
+: [20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39]
+* Excel
+- [[https://openpyxl.readthedocs.org][Openpyxl]] is a Python library for reading and writing Excel 2010
+  xlsx/xlsm/xltx/xltm files.
+- It was born from lack of existing library to read/write natively from Python
+  the Office Open XML format.
+- The package openpyxl is used by Pandas to store e.g. DataFrames in Excel
+  sheets
+** excel example 1 
+#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+import pandas as pd
+filename = os.path.join(f_dir, 'example1.xlsx')
+df = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})
+df.to_excel(filename)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+>>> >>> /home/shahn/.virtualenvs/default/local/lib/python2.7/site-packages/openpyxl/styles/__init__.py:52: UserWarning: Call to deprecated function or class copy (Copy formatting objects like font directly).
+  def copy(self):
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/shahn/.virtualenvs/default/local/lib/python2.7/site-packages/pandas/core/frame.py", line 1267, in to_excel
+    startrow=startrow, startcol=startcol)
+  File "/home/shahn/.virtualenvs/default/local/lib/python2.7/site-packages/pandas/io/excel.py", line 778, in write_cells
+    xcell.style = xcell.style.copy(**style_kwargs)
+  File "/home/shahn/.virtualenvs/default/local/lib/python2.7/site-packages/openpyxl/compat/__init__.py", line 67, in new_func
+    return obj(*args, **kwargs)
+TypeError: copy() got an unexpected keyword argument 'font'
+#+end_example
+* Pickle
+- The pickle module implements a fundamental, but powerful algorithm for
+  serializing and de-serializing a Python object structure.
+- Pickling is the process whereby a Python object hierarchy is converted into a
+  byte stream, and unpickling is the inverse operation, whereby a byte stream is
+  converted back into an object hierarchy.
+- Pickling (and unpickling) is alternatively known as “serialization”,
+  “marshalling,” or “flattening”, however, to avoid confusion, the terms used
+  here are “pickling” and “unpickling”.
+- [[https://docs.python.org/2/library/pickle.html][This documentation]]
+  describes both the pickle module and the cPickle module.
+** Pickle example 1 
+#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+import pickle
+filename = os.path.join(f_dir, 'example1.pk')
+
+data1 = {'a': [1, 2.0, 3, 4+6j],
+         'b': ('string', u'Unicode string'),
+         'c': None}
+
+with open(filename, 'wb') as f:
+    # Pickle dictionary using protocol 0.
+    pickle.dump(data1, f)
+
+with open(filename, 'rb') as f:
+    print(pickle.load(f))
+#+end_src
+
+#+RESULTS:
+: 
+: >>> >>> ... ... >>> >>> ... ... ... >>> ... ... {'a': [1, 2.0, 3, (4+6j)], 'c': None, 'b': ('string', u'Unicode string')}
