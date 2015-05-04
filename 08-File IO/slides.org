@@ -156,6 +156,14 @@ print(x, y, z)
 #+RESULTS:
 : 
 : >>> >>> >>> >>> ... >>> >>> ... ... >>> (array([ 0.,  1.,  2.,  3.,  4.]), array([ 0.,  1.,  2.,  3.,  4.]), array([ 0.,  1.,  2.,  3.,  4.]))
+** pandas
+The [[http://pandas.pydata.org/pandas-docs/dev/io.html][pandas I/O]] API is a set of top level reader functions, e.g. for CSV
+- The Series and DataFrame objects have an instance method [[http://pandas.pydata.org/pandas-docs/dev/io.html#io-store-in-csv][to_csv()]] which allows
+  storing the contents of the object as a comma-separated-values file.
+- The two workhorse functions for reading text files are [[http://pandas.pydata.org/pandas-docs/dev/io.html#io-read-csv-table][read_csv()]] and
+  [[http://pandas.pydata.org/pandas-docs/dev/generated/pandas.io.parsers.read_table.html#pandas.io.parsers.read_table][read_table()]]. They both use the same parsing code to intelligently convert
+  tabular data into a DataFrame object. See the [[http://pandas.pydata.org/pandas-docs/dev/cookbook.html#cookbook-csv][cookbook]] for some advanced
+  strategies
 * Binary
 - A binary file is a computer file that is not a text file.
 - Binary files typically contain bytes that are intended to be interpreted as
@@ -541,3 +549,63 @@ with open(filename, 'rb') as f:
 #+RESULTS:
 : 
 : >>> >>> >>> ... ... >>> >>> ... ... >>> ... ... {'a': [1, 2.0, 3, (4+6j)], 'c': None, 'b': ('string', u'Unicode string')}
+* Exercise
+** CSV
+Write a text file using =np.savetxt()= which contains 3 columns x, y, z:
+
+#+begin_example
+x = 2, 4, 6, ..., 18 
+y = 4, 8, 12, ..., 36 
+z = 98, 95, 92, ..., 82
+#+end_example
+
+And try to read the file you just wrote using =np.loadtxt()=
+HINT: =data = np.vstack((x, y, z)).T=
+*** Solution                                                     :noexport:
+#+begin_src python :results output :exports both :session *python*
+filename = os.path.join(f_dir, 'exercise.csv')
+
+x = np.arange(2, 20, 2)
+y = x * 2
+z = np.arange(98, 80, -2)
+
+data = np.vstack((x, y, z)).T
+np.savetxt(filename, data)
+
+print(np.loadtxt(filename))
+#+end_src
+** NPZ
+Use x, y, z again and save them using =np.savez()= and read them using
+=np.load()=
+*** Solution                                                     :noexport:
+#+begin_src python :results output :exports both :session *python*
+filename = os.path.join(f_dir, 'exercise.npz')
+
+np.savez(filename, x=x, y=y, z=z)
+data = np.load(filename)
+print(data['x'], data['y'], data['z'])
+#+end_src
+** Binary
+Write a binary file using =ndarray.tofile()= with 10 records, where a record looks
+like: 
+
+#+begin_example
+dtype = np.dtype([('id', np.float64),
+                  ('height', np.float32),
+                  ('weight', np.float32)])
+#+end_example
+
+And read it using =np.fromfile()=
+*** Solution                                                     :noexport:
+#+begin_src python :results output :exports both :session *python*
+filename = os.path.join(f_dir, 'exercise.bin')
+
+dtype = np.dtype([('id', np.float64),
+                  ('height', np.float32),
+                  ('weight', np.float32)])
+
+records = np.zeros(10, dtype=dtype)
+records.tofile(filename)
+
+print(np.fromfile(filename, dtype=dtype))
+#+end_src
