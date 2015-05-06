@@ -1,0 +1,81 @@
+#+OPTIONS: reveal_center:t reveal_control:t reveal_height:-1
+#+OPTIONS: reveal_history:nil reveal_keyboard:t reveal_mathjax:nil
+#+OPTIONS: reveal_overview:t reveal_progress:t
+#+OPTIONS: reveal_rolling_links:nil reveal_slide_number:t
+#+OPTIONS: reveal_title_slide:t reveal_width:-1
+#+options: toc:nil ^:nil num:nil
+#+REVEAL_MARGIN: -1
+#+REVEAL_MIN_SCALE: -1
+#+REVEAL_MAX_SCALE: -1
+#+REVEAL_ROOT: ../reveal.js
+#+REVEAL_TRANS: default
+#+REVEAL_SPEED: default
+#+REVEAL_THEME: black
+#+REVEAL_EXTRA_CSS: ../code_formatting.css
+#+REVEAL_EXTRA_JS: 
+#+REVEAL_HLEVEL: 1
+#+REVEAL_TITLE_SLIDE_TEMPLATE: <h1>%t</h1> <h2>%a</h2> <h2>%e</h2> <h2>%d</h2>
+#+REVEAL_TITLE_SLIDE_BACKGROUND:
+#+REVEAL_TITLE_SLIDE_BACKGROUND_SIZE:
+#+REVEAL_TITLE_SLIDE_BACKGROUND_REPEAT:
+#+REVEAL_TITLE_SLIDE_BACKGROUND_TRANSITION:
+#+REVEAL_MATHJAX_URL: http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+#+REVEAL_SLIDE_NUMBER: t
+#+REVEAL_PREAMBLE:
+#+REVEAL_HEAD_PREAMBLE:
+#+REVEAL_POSTAMBLE:
+#+REVEAL_MULTIPLEX_ID:
+#+REVEAL_MULTIPLEX_SECRET:
+#+REVEAL_MULTIPLEX_URL:
+#+REVEAL_MULTIPLEX_SOCKETIO_URL:
+#+REVEAL_PLUGINS:
+
+#+AUTHOR: Sebastian Hahn
+#+EMAIL: 
+#+TITLE: Object oriented programming
+
+* Introduction
+** Terminology
+- A =class= is a user-defined prototype for an object that defines a set of
+  attributes that characterize any object of the class. 
+  - The attributes are data members (class variables and instance variables) and
+    methods, accessed via dot notation (e.g. myarray.size).
+- A =method= special kind of function that is defined in a class
+  definition. (e.g. myarray.mean())
+** Data members
+- A =data member= represents a variable or instance variable that holds data
+  associated with a class and its objects.
+  - A =class variable= is shared by all instances of a class. Class variables
+    are defined within a class but outside any of the class's methods. Class
+    variables aren't used as frequently as instance variables are. 
+  - An =instance variable= is defined inside a method and belongs only to the
+    current instance of a class.
+** Example: Human
+
+#+begin_src python :results output :exports both :tangle lecture10.py :session *python*
+class Human(object):
+    
+    # definition of a class variable
+    population = 0 
+     
+    def __init__(self, name, age):
+        """
+        Constructor, creating an object.
+        """
+        self.name = name
+        self.__age = age
+        Human.population += 1
+    
+    def say_hi(self):
+        """
+        Person says Hi.
+        """
+        print("Hi, my name is {:}".format(self.name))
+
+jason = Human("Jason", 33)
+jason.say_hi()
+#+end_src
+
+#+RESULTS:
+: 
+: ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... ... >>> >>> Hi, my name is Jason
