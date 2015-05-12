@@ -1,0 +1,180 @@
+#+OPTIONS: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline author:t c:nil
+#+OPTIONS: creator:comment d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t
+#+OPTIONS: num:t p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t timestamp:t
+#+OPTIONS: toc:nil todo:t |:t
+#+TITLE: Exercise 2 - Treasure Hunt
+#+DATE: 2015-05-18
+#+AUTHOR: Sebastian Hahn
+#+EMAIL: sebastian.hahn@geo.tuwien.ac.at
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE: en
+#+SELECT_TAGS: export
+#+EXCLUDE_TAGS: noexport
+#+CREATOR: Emacs 24.4.1 (Org mode 8.3beta)
+#+LATEX_CLASS: koma-article
+#+LATEX_CLASS_OPTIONS:
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{a4paper, textwidth=6.5in, textheight=10in, marginparsep=7pt, marginparwidth=.6in}
+#+LATEX_HEADER_EXTRA:
+
+* Treasure Hunt
+The second exercise is a treasure hunt based on common sense and your ability to
+work with files, arrays and plotting functions. In general, a treasure hunt is
+one of many different types of games which can have one or more players who try
+to find hidden articles, locations or places by using a series of
+clues. Treasure hunt games may be an indoor or outdoor activity. Outdoors they
+can be played in a garden or the treasure could be located anywhere around the
+world. Probably you have heard about Geocaching, which is an outdoor
+treasure-hunting game in which the participants use a global positioning system
+(GPS) receiver or other navigational techniques to hide and seek containers
+(called "geocaches" or "caches") anywhere in the world. However, this time the
+game takes place in the virtual world, where bytes, bits and mainly your Python
+skills are important.
+
+** Game instructions
+In the following treasure hunt you have to answer short riddles concealing file
+names, column names or positions. The files are written in random formats
+(e.g. .csv, .npy, .nc) and their content might contain information useful for
+the next clue. All files can be downloaded from http://rs.geo.tuwien.ac.at/cpa/,
+however, you will only be able to download a file once knowing its correct file
+name. 
+
+** Clues
+1. Please download ~filename1.csv~ and read ~column1~ at row number ~row1~, which
+   will give you ~filename2part1~.
+
+   - ~filename1.csv~: /It has 4 legs but cannot walk./
+
+   - ~column1~: /Young I'm tall, old I'm short, I love to glow, breath is my foe./
+   
+   - ~row1~: /What digit is the most frequent between the numbers 1 and 1000?/
+
+#+begin_src python :results output pp :exports none :session pyex2
+import pandas as pd
+import numpy as np
+filename = 'table.csv'
+size = 1000
+s = pd.DataFrame({'apple': np.arange(size)*33, 'fish': np.arange(size) + 32,
+    'candle': np.arange(size) * 22 + 9, 'water': np.arange(size)*21+4, 
+    'dragon': np.arange(size) * 12 + 2})
+s.to_csv(filename, index=False)
+print("Wrote file {:}".format(filename))
+#+end_src
+
+#+RESULTS:
+: 
+: >>> >>> >>> ... ... >>> >>> Wrote file table.csv
+
+2. Please download ~filename2part1_filename2part2.nc~, which is a treasure
+   map. Read and plot ~variable2~. Which capital city has been marked? The
+   answer to this question will give you ~filename3part1~.
+
+   - ~filename2part2~: /Stay hungry, stay ......, Steve Jobs/
+
+   - ~variable2~: /May the ..... be with you, Han Solo/
+
+#+begin_src python :results output pp :exports none :session pyex2
+
+import netCDF4
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.basemap import Basemap
+
+filename = '9_foolish.nc'
+
+lats = np.arange(90, -90, -1)
+lons = np.arange(-180, 180)
+temp = np.zeros((lats.size, lons.size))
+
+# ottawa, madrid, canberra, beijing, stockholm
+locations = [(45, -75), (40, -3), (-35, 149), (40, 116), (59, 18)]
+names = ['light', 'power', 'force', 'darkness', 'devi']
+datasets = []
+
+for location in locations:
+    var = temp.copy()
+    var[90 - location[0], 180 + location[1]] = 1
+    datasets.append(var)
+
+with netCDF4.Dataset(filename, 'w', format='NETCDF4') as nc:
+    lat = nc.createDimension('lat', lats.size)
+    lon = nc.createDimension('lon', lons.size)
+    
+    lat_var = nc.createVariable('lat', lats.dtype.name, ('lat',))
+    lat_var[:] = lats
+    
+    lon_var = nc.createVariable('lon', lons.dtype.name, ('lon'))
+    lon_var[:] = lons
+    
+    for dataset, name in zip(datasets, names):
+        var = nc.createVariable(name, dataset.dtype.name, ('lat', 'lon'))
+        var[:] = dataset
+
+print("Wrote file {:}".format(filename))
+
+m = Basemap()
+_ = m.drawcoastlines()
+
+with netCDF4.Dataset(filename, 'r', format='NETCDF4') as nc:
+    data = nc.variables['force'][:].flatten()
+    lat = nc.variables['lat'][:]
+    lon = nc.variables['lon'][:]
+
+valid = data != 0
+lons, lats = np.meshgrid(lon, lat)
+x, y = m(lons.flatten(), lats.flatten())
+_ = m.scatter(x[valid], y[valid], c=data[valid], s=135,
+              edgecolor='none', cmap=plt.get_cmap('gist_rainbow'))
+_ = plt.colorbar()
+plt.show()
+#+end_src
+
+#+RESULTS:
+: 
+: >>> >>> >>> >>> >>> >>> >>> >>> >>> >>> >>> ... >>> >>> >>> >>> ... ... ... ... >>> ... ... ... ... ... ... ... ... ... ... ... ... ... >>> Wrote file 9_foolish.nc
+
+1. Please download ~filename3part_filename3part2.npy~ and read ~variable3~. In
+   ~row3~ you will find ~filename4~.
+
+   - ~filename3_part2~: /test/
+
+   - ~variable3~: /test/
+
+   - ~row3~: /test/
+
+2. Please download ~filename4~. It is a binary file, which
+
+   - 
+
+* Program Interface
+1. The program should start by asking the player for the following information:
+   - Name
+   - Amount of money they brought to the Roulette table.
+2. After that the program should ask for the type of bet the player wants to
+   play (see list above). Show the options to the player. Also include an option
+   to quit the program.
+3. When a bet type is selected ask for the bet. Depending on the bet this input 
+   will have different meanings so list the possibilities to the player. Make
+   sure the player does not bet more money than he has.
+4. "Rotate" the Roulette wheel and show the result to the player. Also show the
+   amount won or lost and the updated amount of money the player has left. Start
+   again at step 2.
+
+* Reporting
+The following is required when handing in the exercise:
+- A short (1-3) pages report explaining what the program is doing, its structure and how the
+  functions and/or modules work together. Somebody reading this document should
+  find it easy to start reading the source code. *No source code* in this
+  document. This can also be a simple README text file.
+- *Documented* python source code.
+
+After I had a chance to look at the source code I will make appointments with
+each group to have a short (10-15 min) talk about the exercise.
+Hand in of the exercise will be handled in TUWEL.
+
+** Due Date
+Please hand in the exercise by 2015-06-08.
+
+
+
