@@ -35,52 +35,76 @@ skills are important.
 ** Game instructions
 In the following treasure hunt you have to answer short riddles concealing file
 names, column names or positions. The files are written in random formats
-(e.g. .csv, .npy, .nc) and their content might contain information useful for
+(e.g. .csv, .npz, .nc) and their content might contain information useful for
 the next clue. All files can be downloaded from http://rs.geo.tuwien.ac.at/cpa/,
 however, you will only be able to download a file once knowing its correct file
-name. 
+name. All names are lowercase.
 
 ** Clues
-1. Please download ~filename1.csv~ and read ~column1~ at row number ~row1~, which
-   will give you ~filename2part1~.
-
+1. Please download ~filename1.csv~ and read ~column1~ at row number ~row1~,
+   which will give you ~filename2part1~. Prove the solution of riddle ~row1~
+   with a histogram.
    - ~filename1.csv~: /It has 4 legs but cannot walk./
-
-   - ~column1~: /Young I'm tall, old I'm short, I love to glow, breath is my foe./
-   
+   - ~column1~: /Young I'm tall, old I'm short, I love to glow, breath is my
+     foe./
    - ~row1~: /What digit is the most frequent between the numbers 1 and 1000?/
-
-#+begin_src python :results output pp :exports none :session pyex2
-import pandas as pd
-import numpy as np
-filename = 'table.csv'
-size = 1000
-s = pd.DataFrame({'apple': np.arange(size)*33, 'fish': np.arange(size) + 32,
-    'candle': np.arange(size) * 22 + 9, 'water': np.arange(size)*21+4, 
-    'dragon': np.arange(size) * 12 + 2})
-s.to_csv(filename, index=False)
-print("Wrote file {:}".format(filename))
-#+end_src
-
-#+RESULTS:
-: 
-: >>> >>> >>> ... ... >>> >>> Wrote file table.csv
 
 2. Please download ~filename2part1_filename2part2.nc~, which is a treasure
    map. Read and plot ~variable2~. Which capital city has been marked? The
    answer to this question will give you ~filename3part1~.
-
    - ~filename2part2~: /Stay hungry, stay ......, Steve Jobs/
-
    - ~variable2~: /May the ..... be with you, Han Solo/
 
-#+begin_src python :results output pp :exports none :session pyex2
+3. Please download ~filename3part1_filename3part2.npy~ and read ~variable3~. In
+   ~row3~ you will find ~filename4.bin~.
 
-import netCDF4
+   - ~filename3_part2~: /What planet has the shortest year?/
+   - ~variable3~: /I'll be ...., Arnold Schwarzenegger/
+   - ~row3~: Mean of ~column3~ in the file ~filename1.csv~.
+   - ~column3~: /An ..... a day keeps the doctor away!/
+
+4. Please download ~filename4.bin~. The first 100 bytes will tell you how to
+   read the rest of the file. 
+  
+5. Finally you have to generate a HDF5 file on your own representing the final
+   treasure map. The file needs to have 3 variables: ~longitude~, ~latitude~ and
+   ~dataset~. You should be able to generate a plot from your file and find the
+   name of the island where the treasure can be found.
+
+   - ~longitude~: data can be found in ~filename1.csv~ in ~column5~
+   - ~latitude~: data can be found in ~filename3.npy~ in ~variable5a~
+   - ~dataset~: data can be found in ~filename4.bin~ in ~variable5b~
+   - ~column5~: /Alive without breath, as cold as death; never thirsty, ever
+     drinking, all in mail, never clinking./
+   - ~variable5a~:
+   - ~variable5b~:
+
+** Files for exercise                                              :noexport:
+
+#+begin_src python :results output pp :exports none
+import pandas as pd
 import numpy as np
+import netCDF4
 import matplotlib.pyplot as plt
 from mpl_toolkits.basemap import Basemap
 
+# clue 1
+# filename1: table
+# column1: candle
+# row1: 1
+filename = 'table.csv'
+size = 360*180
+s = pd.DataFrame({'apple': np.linspace(0, 200, size), 
+                  'fish': np.arange(size) + 32,
+                  'candle': np.arange(size) * 22 + 9,
+                  'water': np.arange(size)*21+4, 
+                  'dragon': np.arange(size) * 12 + 2})
+s.to_csv(filename, index=False)
+print("Wrote file {:}".format(filename))
+
+# clue 2
+# filename2: 9_foolish
+# variable2: force
 filename = '9_foolish.nc'
 
 lats = np.arange(90, -90, -1)
@@ -127,54 +151,66 @@ x, y = m(lons.flatten(), lats.flatten())
 _ = m.scatter(x[valid], y[valid], c=data[valid], s=135,
               edgecolor='none', cmap=plt.get_cmap('gist_rainbow'))
 _ = plt.colorbar()
-plt.show()
+
+# clue 3
+# filename3: canberra_mercury.npz
+# variable3: back
+# row3: 100 
+# column3: apple
+filename = 'canberra_mercury.npz'
+
+size = 2200
+big = np.random.randint(0, 1000, size=size)
+rich = np.random.randint(0, 1000, size=size)
+here = np.random.randint(0, 1000, size=size)
+coming = np.random.randint(0, 1000, size=size)
+back = np.linspace(0, 1000, size) * 3 + 20
+back[100] = 101010
+
+np.savez(filename, big=big, rich=rich, back=back, here=here, coming=coming)
+print("Wrote file {:}".format(filename))
+
+filename = 'table.csv'
+f = pd.read_csv(filename)
+print("Mean of apple {:}".format(f['apple'].mean()))
+print("In row3: {:}".format(back[100]))
+
+# clue 4
+# filename4: 101010.bin
+filename = '101010.bin'
+data = np.zeros(360*180, dtype=[('f1', np.int16), ('f2', np.int16)])
+print(data.dtype)
+
+with open(filename, 'w') as f:
+    f.write('dtype({:})'.format(data.dtype))
+    data.tofile(f)
+
+print("Wrote file {:}".format(filename))
 #+end_src
 
 #+RESULTS:
-: 
-: >>> >>> >>> >>> >>> >>> >>> >>> >>> >>> >>> ... >>> >>> >>> >>> ... ... ... ... >>> ... ... ... ... ... ... ... ... ... ... ... ... ... >>> Wrote file 9_foolish.nc
-
-1. Please download ~filename3part_filename3part2.npy~ and read ~variable3~. In
-   ~row3~ you will find ~filename4~.
-
-   - ~filename3_part2~: /test/
-
-   - ~variable3~: /test/
-
-   - ~row3~: /test/
-
-2. Please download ~filename4~. It is a binary file, which
-
-   - 
+: Wrote file table.csv
+: Wrote file 9_foolish.nc
+: Wrote file canberra_mercury.npz
+: Mean of apple 100.0
+: In row3: 101010.0
+: [('f1', '<i2'), ('f2', '<i2')]
+: Wrote file 101010.bin
 
 * Program Interface
-1. The program should start by asking the player for the following information:
-   - Name
-   - Amount of money they brought to the Roulette table.
-2. After that the program should ask for the type of bet the player wants to
-   play (see list above). Show the options to the player. Also include an option
-   to quit the program.
-3. When a bet type is selected ask for the bet. Depending on the bet this input 
-   will have different meanings so list the possibilities to the player. Make
-   sure the player does not bet more money than he has.
-4. "Rotate" the Roulette wheel and show the result to the player. Also show the
-   amount won or lost and the updated amount of money the player has left. Start
-   again at step 2.
-
+No special interface is required. The program can be a simple script with
+functions reading the various files.
 * Reporting
 The following is required when handing in the exercise:
-- A short (1-3) pages report explaining what the program is doing, its structure and how the
-  functions and/or modules work together. Somebody reading this document should
-  find it easy to start reading the source code. *No source code* in this
-  document. This can also be a simple README text file.
-- *Documented* python source code.
+- *Documented* python source code, 
+- *plots* of the treasure maps and
+- a *text file* with all answers.
 
 After I had a chance to look at the source code I will make appointments with
 each group to have a short (10-15 min) talk about the exercise.
 Hand in of the exercise will be handled in TUWEL.
-
 ** Due Date
-Please hand in the exercise by 2015-06-08.
+Please hand in the exercise by 2015-06-15.
 
 
 
