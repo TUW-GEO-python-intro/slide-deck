@@ -168,7 +168,6 @@ class) specifying implementation to maintain the same behavior (realizing an
 interface; inheriting behavior). A mechanism to transfer the characteristics
 of a class to other classes that are derived from it.
 ** Example - Human
-
 #+begin_src python :results output :exports both :tangle lecture10.py
 class Human(object):
     def __init__(self, name, age):
@@ -197,12 +196,6 @@ betty.say_bye()
 : Hi, my name is Betty
 : Bye
 
-* Function overloading 
-Function overloading (or method overloading) is the ability to create multiple
-methods of the same name with different implementations. Calls to an overloaded
-function will run a specific implementation of that function appropriate to the
-context of the call, allowing one function call to perform different tasks
-depending on context.  
 ** Example - Pizza
 
 #+begin_src python :results output :exports both :tangle lecture10.py
@@ -231,12 +224,34 @@ print(p2)
 : CF=62.83
 : CF=51.42
 
-** Special function to overload
+** Special function to override
 - [[https://docs.python.org/2/reference/datamodel.html#basic-customization][String representation]]
   - =__str__()=, =__repr__()=, =__unicode__()=
 - [[https://docs.python.org/2/reference/datamodel.html#customizing-attribute-access][Customize attribute access]] 
   - =__setattr__()=, =__getattr__()=, =__delattr__()=
 
+* Function overloading 
+Function overloading (or method overloading) is the ability to create multiple
+methods of the same name with different implementations. Calls to an overloaded
+function will run a specific implementation of that function appropriate to the
+context of the call, allowing one function call to perform different tasks
+depending on context.  
+#+begin_src python :results output :exports code
+def add_bullet(sprite, start, direction, speed):
+def add_bullet(sprite, start, headto, spead, acceleration):
+def add_bullet(sprite, curve, speed):
+#+end_src
+
+** Method overloading is not supported in Python, but
+#+begin_src python :results output :exports code
+class A:
+
+    def method_a(self, i=None):    
+        if i == None:
+            print 'first method'
+        else:
+            print 'second method', i
+#+end_src
 * Operator overloading
 In programming, operator overloading (less commonly known as operator ad hoc
 polymorphism) is a specific case of polymorphism, where different operators have
@@ -271,6 +286,7 @@ print v2[1], v2.coords[1]
 : -2 -2
 
 ** Operators to overload
+More information can be found in the [[https://docs.python.org/2/reference/datamodel.html#special-method-names][Python documentation]], some examples:
   - =__pos__()=, =__neg__()=, =__inv__()=, =__abs__()=, =__len__()=
   - =__add__()=, =__sub__()=, =__and__()=, =__or__()=, =__xor__()=, ...
 * Static methods
@@ -311,12 +327,19 @@ Human.how_many()
 
 * Duck typing
 - In computer programming with object-oriented programming languages, [[http://en.wikipedia.org/wiki/Duck_typing][duck
-  typing]] is a layer of programming language and design rules on top of typing.
-- The name of the concept refers to the duck test, attributed to James Whitcomb
-  Riley, which may be phrased as follows:
+  typing]] is a layer of programming language and design rules on top of typing
+- Duck typing is concerned with establishing the suitability of an object for
+  some purpose
+- With normal typing, suitability is assumed to be determined by an object's
+  type only. In duck typing, an object's suitability is determined by the
+  presence of certain methods and properties, rather than the actual type of the
+  object
+** Duck typing
+The name of the concept refers to the duck test, attributed to James Whitcomb
+Riley, which may be phrased as follows:
 #+begin_quote
-When I see a bird that walks like a duck and swims like a duck and quacks like a
-duck, I call that bird a duck.
+"When I see a bird that walks like a duck and swims like a duck and quacks like a
+duck, I call that bird a duck."
 #+end_quote
 ** Duck typing in Python
 #+begin_src python :results output :exports both :tangle lecture10.py
@@ -398,58 +421,52 @@ Create a python module implementing
 - =class Circle(Shape)=
   - Instance variable: radius
   - Methods: calculate_area()
-** Solution                                                       :noexport:
+** Solution
 #+begin_src python :results output :exports both :tangle lecture10.py :session *pylect10solution*
 import numpy as np
 
 class Shape(object):
-    numberOfShapes = 0
+    num = 0
      
     def __init__(self, color):
         self.color = color
-        Shape.numberOfShapes += 1
+        Shape.num += 1
     
     @staticmethod
-    def howMany():
-        return Shape.numberOfShapes
+    def how_many():
+        return Shape.num
 #+end_src
 
-** Solution                                                       :noexport:
+** Solution
 #+begin_src python :results output :exports both :tangle lecture10.py :session *pylect10solution*
 class Rectangle(Shape):
     
-    def __init__(self, color, width, height):
+    def __init__(self, width, height, color):
         super(Rectangle, self).__init__(color)
         self.width = width
         self.height = height
     
-    def calculateArea(self):
+    def calculate_area(self):
         return self.width * self.height
-    
-    def calculateCircumference(self):
-        return 2 * (self.width + self.height)
 #+end_src
-** Solution                                                       :noexport:
+** Solution
 #+begin_src python :results output :exports both :tangle lecture10.py :session *pylect10solution*
 class Circle(Shape):
     
-    def __init__(self, color, radius):
+    def __init__(self, radius, color):
         super(Circle, self).__init__(color)
         self.radius = radius
     
-    def calculateArea(self):
+    def calculate_area(self):
         return np.pi * self.radius ** 2
-    
-    def calculateCircumference(self):
-        return 2* np.pi * self.radius
 #+end_src
-** Solution                                                       :noexport:
+** Solution
 
 #+begin_src python :results output :exports both :tangle lecture10.py :session *pylect10solution*
-rect1 = Rectangle('red', 10, 10)
-circ1 = Circle('blue', 2)
+rect1 = Rectangle(10, 10, 'white')
+circ1 = Circle(2, 'blue')
 
-print rect1.calculateCircumference()
-print circ1.calculateArea()
-print circ1.howMany()
+print rect1.calculate_area()
+print circ1.calculate_area()
+print Shape.how_many()
 #+end_src
