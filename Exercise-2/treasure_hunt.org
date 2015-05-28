@@ -49,7 +49,7 @@ name. All names are lowercase.
    - ~filename2part2~: /Stay hungry, stay ......, Steve Jobs/
    - ~variable2~: /May the ..... be with you, Han Solo/
 
-3. Please download ~filename3part1_filename3part2.npy~ and read ~variable3~. In
+3. Please download ~filename3part1_filename3part2.npz~ and read ~variable3~. In
    ~row3~ you will find ~filename4.bin~.
 
    - ~filename3_part2~: /What planet has the shortest year?/
@@ -66,7 +66,7 @@ name. All names are lowercase.
    name of the island where the treasure can be found.
 
    - ~longitude~: data can be found in ~filename1.csv~ in ~column5~
-   - ~latitude~: data can be found in ~filename3.npy~ in ~variable5a~
+   - ~latitude~: data can be found in ~filename3.npz~ in ~variable5a~
    - ~dataset~: data can be found in ~filename4.bin~ in ~variable5b~
    - ~column5~: /Alive without breath, as cold as death; never thirsty, ever
      drinking, all in mail, never clinking./
