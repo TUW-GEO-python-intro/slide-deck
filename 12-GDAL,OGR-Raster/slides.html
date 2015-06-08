@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>GDAL, OGR - Raster Data</title>
+<meta name="author" content="(Christoph Paulik)"/>
+
+<link rel="stylesheet" href="../reveal.js/css/reveal.css"/>
+<link rel="stylesheet" href="../reveal.js/css/theme/black.css" id="theme"/>
+<link rel="stylesheet" href="../code_formatting.css"/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '../reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide" data-background="" data-background-size="" data-background-repeat="" data-background-transition="">
+<h1>GDAL, OGR - Raster Data</h1> <h2>Christoph Paulik</h2> <h2><a href="mailto:"></a></h2> <h2></h2>
+</section>
+
+
+<section>
+<section id="slide-orgheadline4">
+<h2 id="orgheadline4">GDAL</h2>
+<ul>
+<li>Geo Data Abstraction Library - <a href="http://www.gdal.org/">GDAL</a></li>
+<li>Originally written by Frank Warmadam, now OSGeo project</li>
+<li>used in QGIS, GrassGIS, MapServer, ArcGIS, Google Earth Engine, &#x2026;</li>
+<li>Written in C++, Python bindings available - notice the function names</li>
+
+</ul>
+
+</section>
+<section id="slide-orgheadline1">
+<h3 id="orgheadline1">GDAL - details</h3>
+<ul>
+<li>Used for manipulation of Raster data.</li>
+<li>support for over 100 data formats - <a href="http://www.gdal.org/formats_list.html">http://www.gdal.org/formats_list.html</a></li>
+<li>e.g. GeoTiff, JPEG, PNG, netCDF, ESRI, HDF5, &#x2026;</li>
+
+</ul>
+
+</section>
+<section id="slide-orgheadline2">
+<h3 id="orgheadline2">Command line programs</h3>
+<dl>
+<dt>gdalinfo</dt><dd>List information about dataset</dd>
+<dt>gdal_translate</dt><dd>Data format conversion</dd>
+<dt>gdal_merge.py</dt><dd>Mosaicing tool</dd>
+<dt>gdalwarp</dt><dd>Reprojection of data</dd>
+<dt>&#x2026;</dt><dd></dd>
+
+</dl>
+
+</section>
+<section id="slide-orgheadline3">
+<h3 id="orgheadline3">GDAL data model</h3>
+<dl>
+<dt>Driver</dt><dd>Driver for a specific data format</dd>
+<dt>Dataset</dt><dd>Represents a raster object</dd>
+
+</dl>
+
+
+<ul>
+<li>Spatial reference</li>
+<li>Affine transformation</li>
+<li>Metadata</li>
+<li>Rasterband</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline6">
+<h2 id="orgheadline6">OGR</h2>
+<ul>
+<li>part of GDAL</li>
+<li>OpenGIS simple feature Reference</li>
+<li>Manipulation of vector data</li>
+<li><a href="http://www.gdal.org/ogr_formats.html">List of supported vector formats</a></li>
+<li>e.g. Shapefile, PostGIS, KML, CartoDB, &#x2026;</li>
+<li>covered in next lecture</li>
+
+</ul>
+</section>
+<section id="slide-orgheadline5">
+<h3 id="orgheadline5">Command line programs</h3>
+<dl>
+<dt>ogrinfo</dt><dd>List information about dataset</dd>
+<dt>ogr2ogr</dt><dd>Converter for vector data</dd>
+<dt>orgtindex</dt><dd>Creates a tileindex</dd>
+<dt>&#x2026;</dt><dd></dd>
+
+</dl>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline7">
+<h2 id="orgheadline7">Rasterio</h2>
+<ul>
+<li>python package mainly developed by mapbox</li>
+<li>aims to make working with GDAL less cumbersome and more pythonic</li>
+<li><a href="https://github.com/mapbox/rasterio">https://github.com/mapbox/rasterio</a></li>
+<li><a href="https://github.com/mapbox/rasterio/tree/master/examples">More Examples</a></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline8">
+<h2 id="orgheadline8">Practical part</h2>
+<p>
+See GDAL-rasterio-comparion IPython Notebook
+</p>
+</section>
+</section>
+</div>
+</div>
+
+<script src="../reveal.js/lib/js/head.min.js"></script>
+<script src="../reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: true,
+rollingLinks: false,
+keyboard: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+
+]
+});
+</script>
+</body>
+</html>
