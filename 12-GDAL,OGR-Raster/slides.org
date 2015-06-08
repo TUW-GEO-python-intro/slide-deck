@@ -1,0 +1,115 @@
+#+OPTIONS: reveal_center:t reveal_control:t reveal_height:-1
+#+OPTIONS: reveal_history:nil reveal_keyboard:t reveal_mathjax:nil
+#+OPTIONS: reveal_overview:t reveal_progress:t
+#+OPTIONS: reveal_rolling_links:nil reveal_slide_number:t
+#+OPTIONS: reveal_title_slide:t reveal_width:-1
+#+options: toc:nil ^:nil num:nil
+#+REVEAL_MARGIN: -1
+#+REVEAL_MIN_SCALE: -1
+#+REVEAL_MAX_SCALE: -1
+#+REVEAL_ROOT: ../reveal.js
+#+REVEAL_TRANS: default
+#+REVEAL_SPEED: default
+#+REVEAL_THEME: black
+#+REVEAL_EXTRA_CSS: ../code_formatting.css
+#+REVEAL_EXTRA_JS: 
+#+REVEAL_HLEVEL: 1
+#+REVEAL_TITLE_SLIDE_TEMPLATE: <h1>%t</h1> <h2>%a</h2> <h2>%e</h2> <h2>%d</h2>
+#+REVEAL_TITLE_SLIDE_BACKGROUND:
+#+REVEAL_TITLE_SLIDE_BACKGROUND_SIZE:
+#+REVEAL_TITLE_SLIDE_BACKGROUND_REPEAT:
+#+REVEAL_TITLE_SLIDE_BACKGROUND_TRANSITION:
+#+REVEAL_MATHJAX_URL: http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+#+REVEAL_PREAMBLE:
+#+REVEAL_HEAD_PREAMBLE:
+#+REVEAL_POSTAMBLE:
+#+REVEAL_MULTIPLEX_ID:
+#+REVEAL_MULTIPLEX_SECRET:
+#+REVEAL_MULTIPLEX_URL:
+#+REVEAL_MULTIPLEX_SOCKETIO_URL:
+#+REVEAL_PLUGINS:
+#+LOCAL_VARIABLES:
+#+eval: (setq-local org-babel-default-header-args:python '((:tangle . "lecture7.py")))
+#+End:
+
+#+AUTHOR: Christoph Paulik
+#+email: 
+#+Title: GDAL, OGR - Raster Data
+
+
+* GDAL
+- Geo Data Abstraction Library - [[http://www.gdal.org][GDAL]]
+- Originally written by Frank Warmadam, now OSGeo project
+- used in QGIS, GrassGIS, MapServer, ArcGIS, Google Earth Engine, ...
+- Written in C++, Python bindings available - notice the function names
+
+** GDAL - details
+- Used for manipulation of Raster data.
+- support for over 100 data formats - http://www.gdal.org/formats_list.html
+- e.g. GeoTiff, JPEG, PNG, netCDF, ESRI, HDF5, ...
+
+** Command line programs
+- gdalinfo :: List information about dataset
+- gdal_translate :: Data format conversion
+- gdal_merge.py :: Mosaicing tool
+- gdalwarp :: Reprojection of data
+- ... ::
+
+** GDAL data model
+- Driver :: Driver for a specific data format
+- Dataset :: Represents a raster object
+
+ 
+  - Spatial reference
+  - Affine transformation
+  - Metadata
+  - Rasterband
+
+* OGR
+- part of GDAL
+- OpenGIS simple feature Reference
+- Manipulation of vector data
+- [[http://www.gdal.org/ogr_formats.html][List of supported vector formats]]
+- e.g. Shapefile, PostGIS, KML, CartoDB, ...
+** Command line programs
+- ogrinfo :: List information about dataset
+- ogr2ogr :: Converter for vector data
+- orgtindex :: Creates a tileindex
+- ... ::
+
+* Rasterio
+- python package mainly developed by mapbox 
+- aims to make working with GDAL less cumbersome and more pythonic
+- https://github.com/mapbox/rasterio
+- [[https://github.com/mapbox/rasterio/tree/master/examples][More Examples]]
+** .
+#+begin_src python :results output pp :exports code :session rasterio
+  plt.imshow(np.squeeze(data), cmap='binary')
+  plt.savefig('one-band.png')
+  plt.close()
+#+end_src
+
+#+RESULTS:
+: <matplotlib.image.AxesImage object at 0x7fb321572290>
+
+#+begin_src python :results file :exports results :session rasterio 
+'one-band.png'
+#+end_src
+
+#+ATTR_HTML: :width 70%
+#+RESULTS:
+[[file:one-band.png]]
+
+** Landsat example
+- see landsat-example.ipynb
+
+** additional links for me :noexport:
+- http://www.gis.usu.edu/~chrisg/python/2009/
+- http://geoinformaticstutorial.blogspot.co.at/
+- http://opengeoportal.org/software/resources/gdal-and-open-source-geoprocessing-tutorials/
+- http://jgomezdans.github.io/gdal_notes/reprojection.html
+- http://gis.stackexchange.com/questions/138914/calculating-ndvi-with-rasterio
+- http://snorf.net/blog/2014/06/26/using-cartopy-with-rasterio/ 
+ 
+* GDAL example
+
