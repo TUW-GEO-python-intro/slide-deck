@@ -36,7 +36,60 @@
 #+email: 
 #+Title: GDAL, OGR - Vector Data
 
-** Metro network of Vienna
+* OGR
+- part of GDAL
+- OpenGIS simple feature Reference
+- Manipulation of vector data
+- [[http://www.gdal.org/ogr_formats.html][List of supported vector formats]]
+- e.g. Shapefile, PostGIS, KML, CartoDB, ...
+** Command line programs
+- ogrinfo :: List information about dataset
+- ogr2ogr :: Converter for vector data
+- orgtindex :: Creates a tileindex
+** Geometries Well Known Text (WKT)
+WKT can represent 18 distinct geometric objects:
+- Geometry
+- Point, MultiPoint
+- LineString, MultiLineString
+- Polygon, MultiPolygon, Triangle
+- CircularString
+- Curve, MultiCurve, CompoundCurve
+- CurvePolygon
+- Surface, MultiSurface, PolyhedralSurface
+- TIN
+- GeometryCollection
+*** Examples
+- Point :: =POINT(30 10)=
+- LineString :: =LINESTRING(30 10, 10 30, 29 34)=
+- Polygon :: =POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))=
+** Fiona
+#+CAPTION: an ogr's dream girl
+#+ATTR_html: :width 25%
+[[./Fiona-ogr.jpg]]
+*** Library for using OGR bindings in a nice but simple way
+- Fiona trades memory and speed for simplicity and readability.
+- For special cases or optimized applications - user ogr
+- use =ogr2ogr= if you can.
+- [[http://toblerity.org/fiona/manual.html][Manual]]
+** Shapely
+- Computational geometry in the Cartesian plane.
+- Projection handled elsewhere
+- Data I/O handled elsewhere(OGR, Fiona, DB interface)
+- [[http://toblerity.org/shapely/manual.html][Manual]]
+** Pyproj
+- python bindings to the proj.4 C library
+- handles map projections
+- [[https://github.com/jswhit/pyproj][Project Site]]
+** Descartes
+- Allows you to use Shapely Polygons as Matplotlib patches.
+- Means that you can plot filled polygons instead of just lines.
+- Not really necessary but nice for plotting.
+- [[https://pypi.python.org/pypi/descartes][PyPi Site]]
+* Example
+- We will work with some open data from the city of Vienna.
+- Ipython notebook Wien-Ubahn.ipynb contains the code
+** Used data
+*** Metro network of Vienna
 https://open.wien.gv.at/site/datensatz/?id=2d0e9a21-fa5f-441d-948a-fe97a453a827
-** Districts of Vienna
+*** Districts of Vienna
 https://open.wien.at/site/datensatz/?id=2ee6b8bf-6292-413c-bb8b-bd22dbb2ad4b

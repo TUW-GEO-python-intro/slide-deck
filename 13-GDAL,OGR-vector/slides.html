@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>GDAL, OGR - Vector Data</title>
+<meta name="author" content="(Christoph Paulik)"/>
+
+<link rel="stylesheet" href="../reveal.js/css/reveal.css"/>
+<link rel="stylesheet" href="../reveal.js/css/theme/black.css" id="theme"/>
+<link rel="stylesheet" href="../code_formatting.css"/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '../reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide" data-background="" data-background-size="" data-background-repeat="" data-background-transition="">
+<h1>GDAL, OGR - Vector Data</h1> <h2>Christoph Paulik</h2> <h2><a href="mailto:"></a></h2> <h2></h2>
+</section>
+
+<section>
+<section id="slide-orgheadline9">
+<h2 id="orgheadline9">OGR</h2>
+<ul>
+<li>part of GDAL</li>
+<li>OpenGIS simple feature Reference</li>
+<li>Manipulation of vector data</li>
+<li><a href="http://www.gdal.org/ogr_formats.html">List of supported vector formats</a></li>
+<li>e.g. Shapefile, PostGIS, KML, CartoDB, &#x2026;</li>
+
+</ul>
+</section>
+<section id="slide-orgheadline1">
+<h3 id="orgheadline1">Command line programs</h3>
+<dl>
+<dt>ogrinfo</dt><dd>List information about dataset</dd>
+<dt>ogr2ogr</dt><dd>Converter for vector data</dd>
+<dt>orgtindex</dt><dd>Creates a tileindex</dd>
+
+</dl>
+</section>
+<section id="slide-orgheadline3">
+<h3 id="orgheadline3">Geometries Well Known Text (WKT)</h3>
+<p>
+WKT can represent 18 distinct geometric objects:
+</p>
+<ul>
+<li>Geometry</li>
+<li>Point, MultiPoint</li>
+<li>LineString, MultiLineString</li>
+<li>Polygon, MultiPolygon, Triangle</li>
+<li>CircularString</li>
+<li>Curve, MultiCurve, CompoundCurve</li>
+<li>CurvePolygon</li>
+<li>Surface, MultiSurface, PolyhedralSurface</li>
+<li>TIN</li>
+<li>GeometryCollection</li>
+
+</ul>
+</section>
+<section id="slide-orgheadline2">
+<h4 id="orgheadline2">Examples</h4>
+<dl>
+<dt>Point</dt><dd><code>POINT(30 10)</code></dd>
+<dt>LineString</dt><dd><code>LINESTRING(30 10, 10 30, 29 34)</code></dd>
+<dt>Polygon</dt><dd><code>POLYGON ((30 10, 40 40, 20 40, 10 20, 30 10))</code></dd>
+
+</dl>
+</section>
+<section id="slide-orgheadline5">
+<h3 id="orgheadline5">Fiona</h3>
+
+<div class="figure">
+<p><img src="./Fiona-ogr.jpg" alt="Fiona-ogr.jpg" width="25%" />
+</p>
+<p><span class="figure-number">Figure 1:</span> an ogr's dream girl</p>
+</div>
+</section>
+<section id="slide-orgheadline4">
+<h4 id="orgheadline4">Library for using OGR bindings in a nice but simple way</h4>
+<ul>
+<li>Fiona trades memory and speed for simplicity and readability.</li>
+<li>For special cases or optimized applications - user ogr</li>
+<li>use <code>ogr2ogr</code> if you can.</li>
+<li><a href="http://toblerity.org/fiona/manual.html">Manual</a></li>
+
+</ul>
+</section>
+<section id="slide-orgheadline6">
+<h3 id="orgheadline6">Shapely</h3>
+<ul>
+<li>Computational geometry in the Cartesian plane.</li>
+<li>Projection handled elsewhere</li>
+<li>Data I/O handled elsewhere(OGR, Fiona, DB interface)</li>
+<li><a href="http://toblerity.org/shapely/manual.html">Manual</a></li>
+
+</ul>
+</section>
+<section id="slide-orgheadline7">
+<h3 id="orgheadline7">Pyproj</h3>
+<ul>
+<li>python bindings to the proj.4 C library</li>
+<li>handles map projections</li>
+<li><a href="https://github.com/jswhit/pyproj">Project Site</a></li>
+
+</ul>
+</section>
+<section id="slide-orgheadline8">
+<h3 id="orgheadline8">Descartes</h3>
+<ul>
+<li>Allows you to use Shapely Polygons as Matplotlib patches.</li>
+<li>Means that you can plot filled polygons instead of just lines.</li>
+<li>Not really necessary but nice for plotting.</li>
+<li><a href="https://pypi.python.org/pypi/descartes">PyPi Site</a></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-orgheadline13">
+<h2 id="orgheadline13">Example</h2>
+<ul>
+<li>We will work with some open data from the city of Vienna.</li>
+<li>Ipython notebook Wien-Ubahn.ipynb contains the code</li>
+
+</ul>
+</section>
+<section id="slide-orgheadline12">
+<h3 id="orgheadline12">Used data</h3>
+<div class="outline-text-3" id="text-orgheadline12">
+</div></section>
+<section id="slide-orgheadline10">
+<h4 id="orgheadline10">Metro network of Vienna</h4>
+<p>
+<a href="https://open.wien.gv.at/site/datensatz/?id=2d0e9a21-fa5f-441d-948a-fe97a453a827">https://open.wien.gv.at/site/datensatz/?id=2d0e9a21-fa5f-441d-948a-fe97a453a827</a>
+</p>
+</section>
+<section id="slide-orgheadline11">
+<h4 id="orgheadline11">Districts of Vienna</h4>
+<p>
+<a href="https://open.wien.at/site/datensatz/?id=2ee6b8bf-6292-413c-bb8b-bd22dbb2ad4b">https://open.wien.at/site/datensatz/?id=2ee6b8bf-6292-413c-bb8b-bd22dbb2ad4b</a>
+</p>
+</section>
+</section>
+</div>
+</div>
+
+<script src="../reveal.js/lib/js/head.min.js"></script>
+<script src="../reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: true,
+rollingLinks: false,
+keyboard: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+
+]
+});
+</script>
+</body>
+</html>
