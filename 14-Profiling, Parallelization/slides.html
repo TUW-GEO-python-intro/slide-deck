@@ -172,7 +172,7 @@ If those are you answers:
 </p>
 <ul>
 <li><a href="http://cython.org/">Cython</a> is a good way to go if you do not know C or C++.</li>
-<li><a href="http://numba.pydata.org/">Numba</a> should be able to do it automatically.</li>
+<li><a href="http://numba.pydata.org/">Numba</a> should be able to do it automatically. (use Anaconda)</li>
 
 </ul>
 </section>
@@ -185,6 +185,7 @@ If those are you answers:
 natively at any point.</li>
 <li>easily tune readable Python code into plain C performance by adding static
 type declarations. – different ways, we’ll focus on one.</li>
+<li><a href="https://github.com/cython/cython/wiki/InstallingOnWindows">Windows install instructions</a></li>
 
 </ul></li>
 
@@ -194,15 +195,15 @@ type declarations. – different ways, we’ll focus on one.</li>
 <h4 id="orgheadline9">Example</h4>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #fff59d;">def</span> <span style="color: #84ffff;">f</span><span style="color: #e91e63;">(</span>x<span style="color: #e91e63;">)</span>:
-    <span style="color: #fff59d;">return</span> x ** <span style="color: #9ccc65;">2</span> - x
+<pre  class="src src-python"><span style="color: #00796b;">def</span> <span style="color: #0097A7;">f</span><span style="color: #e91e63;">(</span>x<span style="color: #e91e63;">)</span>:
+    <span style="color: #00796b;">return</span> x ** <span style="color: #689f38;">2</span> - x
 
-<span style="color: #fff59d;">def</span> <span style="color: #84ffff;">integrate_f</span><span style="color: #e91e63;">(</span>a, b, N<span style="color: #e91e63;">)</span>:
-    <span style="color: #ffcc80;">s</span> = <span style="color: #9ccc65;">0</span>
-    <span style="color: #ffcc80;">dx</span> = <span style="color: #e91e63;">(</span>b - a / N<span style="color: #e91e63;">)</span>
-    <span style="color: #fff59d;">for</span> i <span style="color: #fff59d;">in</span> <span style="color: #ff8A65;">range</span><span style="color: #e91e63;">(</span>N<span style="color: #e91e63;">)</span>:
-        <span style="color: #ffcc80;">s</span> += f<span style="color: #e91e63;">(</span>a + i * dx<span style="color: #e91e63;">)</span>
-    <span style="color: #fff59d;">return</span> s * dx
+<span style="color: #00796b;">def</span> <span style="color: #0097A7;">integrate_f</span><span style="color: #e91e63;">(</span>a, b, N<span style="color: #e91e63;">)</span>:
+    <span style="color: #EF6C00;">s</span> = <span style="color: #689f38;">0</span>
+    <span style="color: #EF6C00;">dx</span> = <span style="color: #e91e63;">(</span>b - a / N<span style="color: #e91e63;">)</span>
+    <span style="color: #00796b;">for</span> i <span style="color: #00796b;">in</span> <span style="color: #FF5722;">range</span><span style="color: #e91e63;">(</span>N<span style="color: #e91e63;">)</span>:
+        <span style="color: #EF6C00;">s</span> += f<span style="color: #e91e63;">(</span>a + i * dx<span style="color: #e91e63;">)</span>
+    <span style="color: #00796b;">return</span> s * dx
 </pre>
 </div>
 
@@ -211,17 +212,17 @@ type declarations. – different ways, we’ll focus on one.</li>
 <h4 id="orgheadline10">Cython</h4>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #fff59d;">def</span> <span style="color: #84ffff;">f</span><span style="color: #e91e63;">(</span>double x<span style="color: #e91e63;">)</span>:
-    <span style="color: #fff59d;">return</span> x ** <span style="color: #9ccc65;">2</span> - x
+<pre  class="src src-python"><span style="color: #00796b;">def</span> <span style="color: #0097A7;">f</span><span style="color: #e91e63;">(</span>double x<span style="color: #e91e63;">)</span>:
+    <span style="color: #00796b;">return</span> x ** <span style="color: #689f38;">2</span> - x
 
-<span style="color: #fff59d;">def</span> <span style="color: #84ffff;">integrate_f</span><span style="color: #e91e63;">(</span>double a, double b, <span style="color: #ff8A65;">int</span> N<span style="color: #e91e63;">)</span>:
-    cdef <span style="color: #ff8A65;">int</span> i
+<span style="color: #00796b;">def</span> <span style="color: #0097A7;">integrate_f</span><span style="color: #e91e63;">(</span>double a, double b, <span style="color: #FF5722;">int</span> N<span style="color: #e91e63;">)</span>:
+    cdef <span style="color: #FF5722;">int</span> i
     cdef double s, dx
-    <span style="color: #ffcc80;">s</span> = <span style="color: #9ccc65;">0</span>
-    <span style="color: #ffcc80;">dx</span> = <span style="color: #e91e63;">(</span>b - a / N<span style="color: #e91e63;">)</span>
-    <span style="color: #fff59d;">for</span> i <span style="color: #fff59d;">in</span> <span style="color: #ff8A65;">range</span><span style="color: #e91e63;">(</span>N<span style="color: #e91e63;">)</span>:
-        <span style="color: #ffcc80;">s</span> += f<span style="color: #e91e63;">(</span>a + i * dx<span style="color: #e91e63;">)</span>
-    <span style="color: #fff59d;">return</span> s * dx
+    <span style="color: #EF6C00;">s</span> = <span style="color: #689f38;">0</span>
+    <span style="color: #EF6C00;">dx</span> = <span style="color: #e91e63;">(</span>b - a / N<span style="color: #e91e63;">)</span>
+    <span style="color: #00796b;">for</span> i <span style="color: #00796b;">in</span> <span style="color: #FF5722;">range</span><span style="color: #e91e63;">(</span>N<span style="color: #e91e63;">)</span>:
+        <span style="color: #EF6C00;">s</span> += f<span style="color: #e91e63;">(</span>a + i * dx<span style="color: #e91e63;">)</span>
+    <span style="color: #00796b;">return</span> s * dx
 </pre>
 </div>
 
