@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<title>Profiling, Parallelization</title>
+<title>Profiling, Optimization, Parallelization</title>
 <meta name="author" content="(Christoph Paulik)"/>
 
 <link rel="stylesheet" href="../reveal.js/css/reveal.css"/>
@@ -24,7 +24,7 @@
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide" data-background="" data-background-size="" data-background-repeat="" data-background-transition="">
-<h1>Profiling, Parallelization</h1> <h2>Christoph Paulik</h2> <h2><a href="mailto:"></a></h2> <h2></h2>
+<h1>Profiling, Optimization, Parallelization</h1> <h2>Christoph Paulik</h2> <h2><a href="mailto:"></a></h2> <h2></h2>
 </section>
 
 <section>
@@ -48,22 +48,7 @@ the bottlenecks will be.
 
 </section>
 <section id="slide-orgheadline1">
-<h3 id="orgheadline1">Amdahl's law</h3>
-<p>
-A parallelized program can only be as fast as the slowest single threaded piece
-of code.
-</p>
-
-
-<div class="figure">
-<p><img src="./amdahl_law.gif" alt="amdahl_law.gif" width="60%" style="background: white" />
-</p>
-<p><span class="figure-number">Figure 1:</span> Illustration of Amdahl's law from <a href="http://www.ibm.com/developerworks/library/l-cluster1/">IBM</a></p>
-</div>
-
-</section>
-<section id="slide-orgheadline2">
-<h3 id="orgheadline2">When to optimize</h3>
+<h3 id="orgheadline1">When to optimize</h3>
 <ul>
 <li>Make it work.</li>
 <li>Make it right</li>
@@ -80,8 +65,8 @@ mercilessly in order to improve the performance.</li>
 </p>
 
 </section>
-<section id="slide-orgheadline3">
-<h3 id="orgheadline3">What is generally slow in Python</h3>
+<section id="slide-orgheadline2">
+<h3 id="orgheadline2">What is generally slow in Python</h3>
 <ul>
 <li>CPU bound tasks</li>
 <li>e.g. Nested for loops over large arrays</li>
@@ -91,13 +76,29 @@ mercilessly in order to improve the performance.</li>
 </ul>
 
 </section>
+<section id="slide-orgheadline3">
+<h3 id="orgheadline3">Amdahl's law</h3>
+<p>
+A parallelized program can only be as fast as the slowest single threaded piece
+of code.
+</p>
+
+
+<div class="figure">
+<p><img src="./amdahl_law.gif" alt="amdahl_law.gif" width="60%" style="background: white" />
+</p>
+<p><span class="figure-number">Figure 1:</span> Illustration of Amdahl's law from <a href="http://www.ibm.com/developerworks/library/l-cluster1/">IBM</a></p>
+</div>
+
+</section>
 </section>
 <section>
 <section id="slide-orgheadline8">
 <h2 id="orgheadline8">Profiling</h2>
 <ul>
 <li><p>
-Built in Python profiler can be called from command line or from Python itself.
+Built in Python profiler can be called from command line or from Python itself
+or inside a IPython Notebook.
 </p>
 <div class="org-src-container">
 
@@ -153,8 +154,8 @@ python &#8211;m line_profiler &lt;outputfilename&gt;
 </section>
 </section>
 <section>
-<section id="slide-orgheadline12">
-<h2 id="orgheadline12">Improving performance</h2>
+<section id="slide-orgheadline13">
+<h2 id="orgheadline13">Improving performance</h2>
 <p>
 Now that you have found the slow part, what to do?
 </p>
@@ -175,8 +176,8 @@ If those are you answers:
 
 </ul>
 </section>
-<section id="slide-orgheadline11">
-<h3 id="orgheadline11">Cython</h3>
+<section id="slide-orgheadline12">
+<h3 id="orgheadline12">Cython</h3>
 <ul>
 <li>Cython gives you the combined power of Python and C to let you
 <ul>
@@ -193,15 +194,15 @@ type declarations. – different ways, we’ll focus on one.</li>
 <h4 id="orgheadline9">Example</h4>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #00796b;">def</span> <span style="color: #0097A7;">f</span><span style="color: #e91e63;">(</span>x<span style="color: #e91e63;">)</span>:
-    <span style="color: #00796b;">return</span> x ** <span style="color: #689f38;">2</span> - x
+<pre  class="src src-python"><span style="color: #fff59d;">def</span> <span style="color: #84ffff;">f</span><span style="color: #e91e63;">(</span>x<span style="color: #e91e63;">)</span>:
+    <span style="color: #fff59d;">return</span> x ** <span style="color: #9ccc65;">2</span> - x
 
-<span style="color: #00796b;">def</span> <span style="color: #0097A7;">integrate_f</span><span style="color: #e91e63;">(</span>a, b, N<span style="color: #e91e63;">)</span>:
-    <span style="color: #EF6C00;">s</span> = <span style="color: #689f38;">0</span>
-    <span style="color: #EF6C00;">dx</span> = <span style="color: #e91e63;">(</span>b - a / N<span style="color: #e91e63;">)</span>
-    <span style="color: #00796b;">for</span> i <span style="color: #00796b;">in</span> <span style="color: #FF5722;">range</span><span style="color: #e91e63;">(</span>N<span style="color: #e91e63;">)</span>:
-        <span style="color: #EF6C00;">s</span> += f<span style="color: #e91e63;">(</span>a + i * dx<span style="color: #e91e63;">)</span>
-    <span style="color: #00796b;">return</span> s * dx
+<span style="color: #fff59d;">def</span> <span style="color: #84ffff;">integrate_f</span><span style="color: #e91e63;">(</span>a, b, N<span style="color: #e91e63;">)</span>:
+    <span style="color: #ffcc80;">s</span> = <span style="color: #9ccc65;">0</span>
+    <span style="color: #ffcc80;">dx</span> = <span style="color: #e91e63;">(</span>b - a / N<span style="color: #e91e63;">)</span>
+    <span style="color: #fff59d;">for</span> i <span style="color: #fff59d;">in</span> <span style="color: #ff8A65;">range</span><span style="color: #e91e63;">(</span>N<span style="color: #e91e63;">)</span>:
+        <span style="color: #ffcc80;">s</span> += f<span style="color: #e91e63;">(</span>a + i * dx<span style="color: #e91e63;">)</span>
+    <span style="color: #fff59d;">return</span> s * dx
 </pre>
 </div>
 
@@ -210,19 +211,47 @@ type declarations. – different ways, we’ll focus on one.</li>
 <h4 id="orgheadline10">Cython</h4>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #00796b;">def</span> <span style="color: #0097A7;">f</span><span style="color: #e91e63;">(</span>double x<span style="color: #e91e63;">)</span>:
-    <span style="color: #00796b;">return</span> x ** <span style="color: #689f38;">2</span> - x
+<pre  class="src src-python"><span style="color: #fff59d;">def</span> <span style="color: #84ffff;">f</span><span style="color: #e91e63;">(</span>double x<span style="color: #e91e63;">)</span>:
+    <span style="color: #fff59d;">return</span> x ** <span style="color: #9ccc65;">2</span> - x
 
-<span style="color: #00796b;">def</span> <span style="color: #0097A7;">integrate_f</span><span style="color: #e91e63;">(</span>double a, double b, <span style="color: #FF5722;">int</span> N<span style="color: #e91e63;">)</span>:
-    cdef <span style="color: #FF5722;">int</span> i
+<span style="color: #fff59d;">def</span> <span style="color: #84ffff;">integrate_f</span><span style="color: #e91e63;">(</span>double a, double b, <span style="color: #ff8A65;">int</span> N<span style="color: #e91e63;">)</span>:
+    cdef <span style="color: #ff8A65;">int</span> i
     cdef double s, dx
-    <span style="color: #EF6C00;">s</span> = <span style="color: #689f38;">0</span>
-    <span style="color: #EF6C00;">dx</span> = <span style="color: #e91e63;">(</span>b - a / N<span style="color: #e91e63;">)</span>
-    <span style="color: #00796b;">for</span> i <span style="color: #00796b;">in</span> <span style="color: #FF5722;">range</span><span style="color: #e91e63;">(</span>N<span style="color: #e91e63;">)</span>:
-        <span style="color: #EF6C00;">s</span> += f<span style="color: #e91e63;">(</span>a + i * dx<span style="color: #e91e63;">)</span>
-    <span style="color: #00796b;">return</span> s * dx
+    <span style="color: #ffcc80;">s</span> = <span style="color: #9ccc65;">0</span>
+    <span style="color: #ffcc80;">dx</span> = <span style="color: #e91e63;">(</span>b - a / N<span style="color: #e91e63;">)</span>
+    <span style="color: #fff59d;">for</span> i <span style="color: #fff59d;">in</span> <span style="color: #ff8A65;">range</span><span style="color: #e91e63;">(</span>N<span style="color: #e91e63;">)</span>:
+        <span style="color: #ffcc80;">s</span> += f<span style="color: #e91e63;">(</span>a + i * dx<span style="color: #e91e63;">)</span>
+    <span style="color: #fff59d;">return</span> s * dx
 </pre>
 </div>
+
+</section>
+<section id="slide-orgheadline11">
+<h4 id="orgheadline11">Building Cython code</h4>
+<ul>
+<li>save it in a <code>.pyx</code> file</li>
+<li>use <code>pyximport</code> instead of regular import</li>
+<li>run the <code>cython</code> command line program and then compile the <code>.c</code> file manually</li>
+<li>use IPython Notebook</li>
+
+</ul>
+
+<p>
+<a href="http://docs.cython.org/src/quickstart/build.html#building-cython-code">More details in the documentation</a>
+</p>
+</section>
+</section>
+<section>
+<section id="slide-orgheadline14">
+<h2 id="orgheadline14">Example</h2>
+<ul>
+<li>open <code>profiling.ipynb</code></li>
+<li>profiling</li>
+<li>find slow part</li>
+<li>make it faster using cython</li>
+<li>IPython parallelization</li>
+
+</ul>
 </section>
 </section>
 </div>
