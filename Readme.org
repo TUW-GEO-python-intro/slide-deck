@@ -1,9 +1,9 @@
 ** Slides and code examples for the Course: 120.050 Introduction to Python programming for geoscience
-The slides are done in [[http://lab.hakim.se/reveal-js/#/][reveal.js]] and were produced from the `slides.org` files in
+The slides are done in [[http://lab.hakim.se/reveal-js/#/][reveal.js]] and were produced from the ~slides.org~ files in
 each directory using emacs org-mode and [[https://github.com/yjwen/org-reveal][org-reveal]]. You can view them directly
-on Github by clicking on the `slides.org` or the `slides.pdf` file in each class
+on Github by clicking on the ~slides.org~ or the ~slides.pdf~ file in each class
 folder, or download them for offline use.
 
 Some lectures do not have explicit slides but are given out of a IPython
-Notebook file. You can also view rendered versions of these `*.ipynb` files on
+Notebook file. You can also view rendered versions of these ~*.ipynb~ files on
 Github.
