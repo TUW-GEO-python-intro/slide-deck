@@ -135,7 +135,7 @@ We use Python 3.4 in this course.
   if you do not have other Python installations on your system.
 - Today: Open Python command prompt and start typing
 - Next lecture: For longer scripts you will need a text editor or a Python IDE
-  - (non complete) list on [[https://github.com/TUW-GEO-python-intro/General-Information][Website of the Course]]
+  - (non complete) list on [[https://github.com/TUW-GEO-python-intro/General-Information#editing-python-code][Website of the Course]]
 - Python files have ~.py~  extension
 
 
@@ -504,6 +504,7 @@ print("is 7 less than 5?" , answer_dict[7<5])
 * Homework
 
 - Try out a few text editors / IDE's and choose one you like.
+  - (non complete) list on [[https://github.com/TUW-GEO-python-intro/General-Information#editing-python-code][Website of the Course]]
 
 
 
