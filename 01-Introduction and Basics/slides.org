@@ -42,21 +42,21 @@
 - Mandelburger Gottfried
 - Paulik Christoph
 
-** How to get to a grade
+** How to get a grade
 
-There will be three small projects. 
+There will be two/three small projects. 
 - Short report
 - Source code
 - Short talk about the project with the lecturer.
 
 ** Technical stuff
-- Customized [[https://winpython.github.io/][Winpython]] installation will be provided
-  - We had some Windows 8 problems in the past
-- If you work on Linux I can help you with the setup if needed.
-- Any OS X users?
+- We will use the [[https://www.continuum.io/downloads#all][Anaconda Python Distribution]] (Win, Linux, OSX)
+- You can start the download now.
 
 ** Course Materials
-- Slides will be in TUWEL and probably Github (my parts at least)
+- Materials (slides ,code examples, ...) will be on [[https://github.com/TUW-GEO-python-intro/slide-deck][Github]]. See the Readme there for
+  more details.
+- Exercise 1 will be on Github and might consist of several parts. (like Homework)
  
 * Version Control 
 Who of you has worked with version control 
@@ -74,6 +74,8 @@ Who of you has worked with version control
 
 Do yourselves a favor and learn Git. 
 It will make your lives easier.
+
+There will be a lecture after the course in week 3 about the basics.
  
 [[https://help.github.com/articles/good-resources-for-learning-git-and-github/][List
 of Tutorials]]
@@ -108,12 +110,14 @@ Developed by Guide van Rossum , early 1990^s
 
 ** Language overview
 - Dynamically typed ::  Variable types are checked during execution.
+- Strongly typed :: a variable has a specific type
+- Modular :: Python modules must be imported to be used
 - Multi Platform :: Works on Linux, Mac OS, Windows, ...
 - Batteries included :: Powerful standard library (e.g. file reading,
      URL parsing ...)
 
 ** Different versions
-Currently Python 2.7 and 3.4 are the latest versions. 
+Currently Python 2.7 and 3.5 are the latest versions. 
 
 Python 3 introduced some incompatible changes. Nowadays most 3rd party
 packages should work on both versions.
@@ -123,7 +127,17 @@ packages should work on both versions.
 [[http://python3wos.appspot.com/][List of most popular packages and
 Python 3 status]]
 
-We use Python 2.7 in this course.
+We use Python 3.4 in this course.
+
+* Getting started
+
+- Install Anaconda in a directory of your choice. You can set it as the default
+  if you do not have other Python installations on your system.
+- Today: Open Python command prompt and start typing
+- Next lecture: For longer scripts you will need a text editor or a Python IDE
+  - (non complete) list on [[https://github.com/TUW-GEO-python-intro/General-Information][Website of the Course]]
+- Python files have ~.py~  extension
+
 
 * Python Syntax
 
