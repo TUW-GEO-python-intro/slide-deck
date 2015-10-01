@@ -146,12 +146,16 @@ We use Python 3.4 in this course.
 # set variable x to 1
 x = 1
 if x == 1:
-"""
-This condition checks if x is one and 
-prints it to stdout
-"""
-    print "x is one"
+    """
+    This condition checks if x is one and 
+    prints it to stdout
+    """
+    print("x is one")
 #+end_src
+
+#+RESULTS:
+: None
+
  
 Use spaces if possible, be consistent in your code.
 
@@ -164,11 +168,11 @@ Variables can be assigned without type declaration.
 a = 1
 b = 2.8
 c = "text"
-print "a is", a
-print "b is", a
-print "c is", c
+print("a is", a)
+print("b is", a)
+print("c is", c)
 c = a
-print "c is", c
+print("c is", c)
 #+end_src
 
 #+RESULTS:
@@ -187,14 +191,14 @@ You can not use one of the predefined keywords. Should also not use [[https://do
 #+begin_src python :results output :exports both :tangle lecture1.py
 var1 = 5
 Var1 = 6
-print var1, Var1
+print(var1, Var1)
 import keyword
-print keyword.kwlist
+print(keyword.kwlist)
 #+end_src
 
 #+RESULTS:
 : 5 6
-: ['and', 'as', 'assert', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'exec', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'not', 'or', 'pass', 'print', 'raise', 'return', 'try', 'while', 'with', 'yield']
+: ['False', 'None', 'True', 'and', 'as', 'assert', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']
 
 ** Python as a calculator
 
@@ -203,11 +207,11 @@ print keyword.kwlist
   height = 5 * 9
   # calculate rectangular area
   rect_area = width * height
-  print "Rectangular Area is", rect_area
+  print("Rectangular Area is", rect_area)
 
   # calcualte area of square
   square_area = width ** 2
-  print "Square area is", square_area
+  print("Square area is", square_area)
 #+end_src
 
 #+RESULTS:
@@ -238,39 +242,65 @@ none_type = None
 *** Integers and Floats
 
 #+begin_src python :results output :exports both :tangle lecture1.py
-print 1+4
-print type(1+4)
-print type(1+4.) # automatic conversion of resulting data type
+print(1+4)
+print(type(1+4))
+print(type(1+4.)) # automatic conversion of resulting data type
 #+end_src
 
+#+RESULTS:
+: 5
+: <class 'int'>
+: <class 'float'>
+
 #+begin_src python :results output :exports both :tangle lecture1.py
-# careful with division
-print "12 / 7 is", 12/7
-print type(12/7)
-print "12 / 7 really is", 12/7.
-print type(12/7.)
+# float and integer division
+# this is different in Python 2
+print("12 / 7 really is", 12/7.)
+print(type(12/7.))
+print("12 / 7 is", 12//7)
+print(type(12//7))
 #+end_src
+
+#+RESULTS:
+: 12 / 7 is 1
+: <class 'int'>
+: 12 / 7 really is 1.7142857142857142
+: <class 'float'>
 
 *** Comparisons
 #+begin_src python :results output :exports both :tangle lecture1.py
 #comparison
-print "is 7 less than 5?" , 7<5
-print "is 5 less than 7?" , 7>5
-print "is 5 less or equal 5?" , 5<=5
+print("is 7 less than 5?" , 7<5)
+print("is 5 less than 7?" , 7>5)
+print("is 5 less or equal 5?" , 5<=5)
 #+end_src
+
+#+RESULTS:
+: is 7 less than 5? False
+: is 5 less than 7? True
+: is 5 less or equal 5? True
 
 *** Strings
 #+begin_src python :results output :exports both :tangle lecture1.py
 s1 = "Monthy"
 s2 = 'Python' #single quotes are also fine
 # joining string can be done in different ways
-print s1+s2, s1*3, ";".join([s1, s2])
+print(s1+s2, s1*3, ";".join([s1, s2]))
 #+end_src
+
+#+RESULTS:
+: MonthyPython MonthyMonthyMonthy Monthy;Python
 
 #+begin_src python :results output :exports both :tangle lecture1.py
 # sometimes double quotes are necessary
-print 'This string doesn't work'
+print("This string doesn't work")
+# or the ' has to be escaped using \
+print('This string doesn\'t work')
 #+end_src
+
+#+RESULTS:
+: This string doesn't work
+: This string doesn't work
 
 *** String slicing
 
@@ -278,18 +308,26 @@ print 'This string doesn't work'
 - start is inclusive, stop is exclusive
 #+begin_src python :results output :exports both :tangle lecture1.py
 s = "0123456789"
-print s[1:4]
-print s[3:8]
-print s[-1]
-print s[-6:-3]
-print s[0:5:2] 
-print "negative step reverts", s[::-1] 
+print(s[1:4])
+print(s[3:8])
+print(s[-1])
+print(s[-6:-3])
+print(s[0:5:2])
+print("negative step reverts", s[::-1])
 #+end_src
+
+#+RESULTS:
+: 123
+: 34567
+: 9
+: 456
+: 024
+: negative step reverts 9876543210
 
 
 # *** Test interpreter
 # #+REVEAL_HTML: <textarea cols="40" rows="4" style="font-size:0.8em">
-# #+REVEAL_HTML: print 2*3
+# #+REVEAL_HTML: print(2*3)
 # #+REVEAL_HTML: </textarea>
 # #+REVEAL_HTML:     <br/>
 # #+REVEAL_HTML:     <button onclick="run(this);" class="btn btn-primary large">Run</button>
@@ -307,10 +345,10 @@ summer = ['jul', 'aug', 'sep']
 autumn = ['oct', 'nov', 'dec']
 # create one list containing all the elements
 months = winter + spring + summer + autumn
-print "List of months", months
+print("List of months", months)
 # create a nested list, list of seasons
 seasons = [winter, spring, summer, autumn]
-print "List of seasons", seasons
+print("List of seasons", seasons)
 #+end_src
 
 # add literal example here since outputed code in session mode can be
@@ -326,10 +364,16 @@ What happens if we add the missing month of March?
 
 #+begin_src python :results output pp :exports both :tangle lecture1.py :session lists
 winter.append('mar')
-print "Winter is now:", winter
-print "List of months", months
-print "List of seasons", seasons
+print("Winter is now:", winter)
+print("List of months", months)
+print("List of seasons", seasons)
 #+end_src
+
+#+RESULTS:
+: 
+: Winter is now: ['jan', 'feb', 'mar']
+: List of months ['jan', 'feb', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec']
+: List of seasons [['jan', 'feb', 'mar'], ['apr', 'may', 'jun'], ['jul', 'aug', 'sep'], ['oct', 'nov', 'dec']]
 
 Lists are generally stored as references -> the values are not copied.
 
@@ -337,9 +381,9 @@ Lists are generally stored as references -> the values are not copied.
 
 #+begin_src python :results output pp :exports both :tangle lecture1.py :session lists
 months.insert(2, 'mar') # insert a element before index 2
-print months
-print months[::2] # slicing works the same as with strings
-print months[8:11]
+print(months)
+print(months[::2]) # slicing works the same as with strings
+print(months[8:11])
 #+end_src
 
 #+RESULTS:
@@ -352,23 +396,23 @@ print months[8:11]
 *** List manipulation 
 #+begin_src python :results output pp :exports both :tangle lecture1.py
   li = [1, 4, 8.33, 3.6, 19, 12]
-  print li.index(3.6)  # get the index of a element
-  print li[li.index(3.6)]  # this index can be used to address the list
+  print(li.index(3.6))  # get the index of a element
+  print(li[li.index(3.6)])  # this index can be used to address the list
   li.sort()  # sort the list
-  print li
+  print(li)
   #remove elements from list
   del li[2]
-  print "removed index 2:", li
+  print("removed index 2:", li)
   li.pop(2)
-  print "removed index 2 again:", li
+  print("removed index 2 again:", li)
 #+end_src
 
 #+RESULTS:
 : 3
 : 3.6
 : [1, 3.6, 4, 8.33, 12, 19]
-: [1, 3.6, 8.33, 12, 19]
-: [1, 3.6, 12, 19]
+: removed index 2: [1, 3.6, 8.33, 12, 19]
+: removed index 2 again: [1, 3.6, 12, 19]
 
 for even more list related functions see
 [[https://docs.python.org/2/tutorial/datastructures.html][the documentation]]
@@ -376,13 +420,22 @@ for even more list related functions see
 *** Sets - unique elements and set operations
 #+begin_src python :results output pp :exports both :tangle lecture1.py
   m, p = set('mama'), set('papa')
-  print m
-  print p
-  print "Union, m or p", m | p
-  print "Intersection, m and p", m & p
-  print "Difference, m minus p", m - p
-  print "Symetric Difference", m ^ p # elements in either one but not both sets
+  print(m)
+  print(p)
+  print("Union, m or p", m | p)
+  print("Intersection, m and p", m & p)
+  print("Difference, m minus p", m - p)
+  print("Symetric Difference", m ^ p) # elements in either one but not both sets
 #+end_src
+
+#+RESULTS:
+: {'a', 'm'}
+: {'a', 'p'}
+: Union, m or p {'a', 'm', 'p'}
+: Intersection, m and p {'a'}
+: Difference, m minus p {'m'}
+: Symetric Difference {'m', 'p'}
+
 More information in the [[https://docs.python.org/2/library/stdtypes.html#set][documentation]]
 
 *** Dictionaries
@@ -391,18 +444,18 @@ Key value pairs of any data type. Not ordered.
 
 #+begin_src python :results output pp :exports both :tangle lecture1.py
 d = {'integer': 7, 'string': "test", 1: [1, 2, 3]}
-print d
-print d[1]
-print d['integer'] # get a value by the key
-print d.keys() # list of the keys
-print 'integer' in d # test for presence of key 
+print(d)
+print(d[1])
+print(d['integer']) # get a value by the key
+print(d.keys()) # list of the keys
+print('integer' in d) # test for presence of key 
 #+end_src
 
 #+RESULTS:
-: {'integer': 7, 'string': 'test', 1: [1, 2, 3]}
+: {'string': 'test', 1: [1, 2, 3], 'integer': 7}
 : [1, 2, 3]
 : 7
-: ['integer', 'string', 1]
+: dict_keys(['string', 1, 'integer'])
 : True
 
 *** 
@@ -411,32 +464,42 @@ print 'integer' in d # test for presence of key
 # keys can be any hashable(unique) object
 d1 = {(1, 2): "tuple with 1 and 2",
       (1, 3): "tuple with 1 and 3"}
-print d1[(1, 2)]
+print(d1[(1, 2)])
 
 # add element to dictionary
 d1['additional element'] = "I am new"
-print d1
+print(d1)
 # delete it again
 del d1['additional element']
-print d1
+print(d1)
 #+end_src
+
+#+RESULTS:
+: tuple with 1 and 2
+: {(1, 2): 'tuple with 1 and 2', 'additional element': 'I am new', (1, 3): 'tuple with 1 and 3'}
+: {(1, 2): 'tuple with 1 and 2', (1, 3): 'tuple with 1 and 3'}
+
 *** 
 Dictionary update
 #+begin_src python :results output pp :exports both :tangle lecture1.py
 d1 = {"one": 1, "two": 2}
 d2 = {"two": "II", "three": "III"}
 d1.update(d2)
-print d1
-#+end_src
-
-#+begin_src python :results output pp :exports both :tangle lecture1.py
-answer_dict = {True: 'yes', False: 'no'}
-print "is 7 less than 5?" , answer_dict[False]
-print "is 7 less than 5?" , answer_dict[7<5]
+print(d1)
 #+end_src
 
 #+RESULTS:
-: None
+: {'one': 1, 'three': 'III', 'two': 'II'}
+
+#+begin_src python :results output pp :exports both :tangle lecture1.py
+answer_dict = {True: 'yes', False: 'no'}
+print("is 7 less than 5?" , answer_dict[False])
+print("is 7 less than 5?" , answer_dict[7<5])
+#+end_src
+
+#+RESULTS:
+: is 7 less than 5? no
+: is 7 less than 5? no
 
 
 
