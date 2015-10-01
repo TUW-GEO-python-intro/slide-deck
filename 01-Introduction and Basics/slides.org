@@ -501,6 +501,9 @@ print("is 7 less than 5?" , answer_dict[7<5])
 : is 7 less than 5? no
 : is 7 less than 5? no
 
+* Homework
+
+- Try out a few text editors / IDE's and choose one you like.
 
 
 
