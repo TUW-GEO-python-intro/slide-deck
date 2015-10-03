@@ -3,14 +3,14 @@
 #+OPTIONS: reveal_overview:t reveal_progress:t
 #+OPTIONS: reveal_rolling_links:nil reveal_slide_number:t
 #+OPTIONS: reveal_title_slide:t reveal_width:-1
-#+options: toc:nil
+#+options: toc:nil num:nil
 #+REVEAL_MARGIN: -1
 #+REVEAL_MIN_SCALE: -1
 #+REVEAL_MAX_SCALE: -1
 #+REVEAL_ROOT: ../reveal.js
 #+REVEAL_TRANS: default
 #+REVEAL_SPEED: default
-#+REVEAL_THEME: moon
+#+REVEAL_THEME: black
 #+REVEAL_EXTRA_CSS: ../code_formatting.css
 #+REVEAL_EXTRA_JS: 
 #+REVEAL_HLEVEL: 1
