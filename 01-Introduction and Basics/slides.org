@@ -51,7 +51,7 @@ There will be two/three small projects.
 
 ** Technical stuff
 - We will use the [[https://www.continuum.io/downloads#all][Anaconda Python Distribution]] (Win, Linux, OSX)
-- You can start the download now.
+- You can start the download/installation now.
 
 ** Course Materials
 - Materials (slides ,code examples, ...) will be on [[https://github.com/TUW-GEO-python-intro/slide-deck][Github]]. See the Readme there for
@@ -79,6 +79,29 @@ There will be a lecture after the course in week 3 about the basics.
  
 [[https://help.github.com/articles/good-resources-for-learning-git-and-github/][List
 of Tutorials]]
+
+* What is Programming
+
+- Programming is breaking problems into simple steps.
+- Simple steps a computer can understand.
+- Think about giving directions to somebody.
+
+** Statement
+- An instruction is called a statement
+- e.g. Add two numbers together
+- set variable to a value
+Python
+#+begin_src python
+x = 1
+#+end_src
+Javascript
+#+begin_src javascript
+var x = 1;
+#+end_src
+C
+#+begin_src C
+int x = 1;
+#+end_src
 
 * What is Python 
 
