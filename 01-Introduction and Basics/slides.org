@@ -285,10 +285,10 @@ print(type(12//7))
 #+end_src
 
 #+RESULTS:
-: 12 / 7 is 1
-: <class 'int'>
 : 12 / 7 really is 1.7142857142857142
 : <class 'float'>
+: 12 / 7 is 1
+: <class 'int'>
 
 *** Comparisons
 #+begin_src python :results output :exports both :tangle lecture1.py
