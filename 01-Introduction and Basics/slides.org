@@ -31,7 +31,7 @@
 
 #+AUTHOR: Christoph Paulik
 #+email: christoph.paulik@geo.tuwien.ac.at
-#+Title: Introduction to Python Programming for Geoscience
+#+Title: Programming for Geoscience
 
 * Course Organization
 
@@ -66,19 +66,23 @@ Who of you has worked with version control
 #+LABEL: fig:git-flow
 [[./git-branch.png]]
 
-** We can not go into detail in this course.
+** Git Basics
 
-#+ATTR_html: :width 30%
+#+ATTR_html: :width 25%
 #+LABEL: fig:git-manliest-man
 [[./don't-always-use-vc-but-when-git.jpg]]
 
 Do yourselves a favor and learn Git. 
 It will make your lives easier.
 
-There will be a lecture after the course in week 3 about the basics.
+There will be a lecture after the course in week 3.
  
 [[https://help.github.com/articles/good-resources-for-learning-git-and-github/][List
 of Tutorials]]
+
+** Github
+[[http://www.github.com][Github]] is a code hosting site which is the the most popular solution for hosting
+open source projects at the moment.
 
 * What is Programming
 
@@ -156,10 +160,21 @@ We use Python 3.4 in this course.
 
 - Install Anaconda in a directory of your choice. You can set it as the default
   if you do not have other Python installations on your system.
-- Today: Open Python command prompt and start typing
+- Today: Open Anaconda Python command prompt and start typing
 - Next lecture: For longer scripts you will need a text editor or a Python IDE
   - (non complete) list on [[https://github.com/TUW-GEO-python-intro/General-Information#editing-python-code][Website of the Course]]
 - Python files have ~.py~  extension
+
+** Command prompt
+- Type ~python~ to enter the Python interpreter
+- ~exit()~ or ~Ctrl-D~ to quit the interpreter
+- every press of the return key executes a statement
+#+begin_src python :results output pp :exports both
+print("Hello World!")
+#+end_src
+
+#+RESULTS:
+: Hello World!
 
 
 * Python Syntax
@@ -316,14 +331,14 @@ print(s1+s2, s1*3, ";".join([s1, s2]))
 
 #+begin_src python :results output :exports both :tangle lecture1.py
 # sometimes double quotes are necessary
-print("This string doesn't work")
+print("This wouldn't work with single quotes")
 # or the ' has to be escaped using \
-print('This string doesn\'t work')
+print('Escaping "wouldn\'t" also works')
 #+end_src
 
 #+RESULTS:
-: This string doesn't work
-: This string doesn't work
+: This wouldn't work with single quotes
+: Escaping "wouldn't" also works
 
 *** String slicing
 
