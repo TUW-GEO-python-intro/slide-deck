@@ -34,6 +34,47 @@
 #+email: 
 #+Title: Intermediate topics, CLI and Exceptions
 
+* Debugging
+We will use Pyscripter here but should be very similar in most IDE's.
+
+#+begin_src bash
+cd WinPython-32bit-2.7.6.2_incl_OPALS\PyScripter-v2.5.3\PyScripter
+open portable Pyscripter by starting "Start PyScripter.bat"
+File->Open->lecture2.py
+#+end_src
+
+** Debugging Actions
+- Breakpoint :: clicking left of line in most IDE's
+
+#+CAPTION: Main Debugging Buttons in PyScripter
+#+ATTR_LaTeX: scale=0.75
+#+LABEL: fig:debugging-buttons
+[[./debugging_buttons.png]]
+
+** Interacting with the Debugger
+- Python Interpreter :: write code you want to test
+- Hover over variable :: shows its value 
+- Variables :: list of all defined variables
+- Watches :: Watch variables
+
+** What if we do not have a GUI
+#+begin_src python :results output pp :exports both
+import pdb # imports the python debugger
+pdb.set_trace() # sets a breakpoint
+# does also work with ipython
+# import ipdb
+# ipdb.set_trace()
+#+end_src
+** 
+#+begin_src python :results output pp :exports both :tangle lecture2.py
+# Debugging
+var1 = "test"
+var2 = [1, 2, 3, 4]
+var3 = {"key1": 1, "key2": 2}
+print(var1, var2, var3) # set a breakpoint here, click on blue dot left of this line
+var1 = "modified"
+var3["key5"] = "a new value"
+#+end_src
 * List and Dict comprehension
 
 - for creation of lists or dictionaries based on some loop
@@ -199,64 +240,6 @@ print(do(sub, 3, 2))
 : 5
 : subtraction
 : 1
-
-* Control Structures
-break, continue
-for--else
-finally
-
-** pass and assert
-- pass does nothing
-- assert checks something
-#+begin_src python :tangle lecture4.py
-  name = 2
-  assert type(name) == str, "name should be a string"
-  def function():
-      pass # can be useful when planning program structure
-#+end_src
-
-#+begin_example
-Traceback (most recent call last):
-  File "<stdin>", line 2, in <module>
-AssertionError: name should be a string
-#+end_example
-
-** for loops with break and else
-#+begin_src python :results output pp :exports both :tangle lecture4.py
-  for n in range(2, 8): # lets debug through this
-      for x in range(2, n):
-          if n % x == 0:
-              print n, 'equals', x, '*', n / x
-              break # breaks out of (ends) current loop
-      else:
-          # loop fell through without finding a factor
-          print n, 'is a prime number'
-#+end_src
-
-#+RESULTS:
-: 2 is a prime number
-: 3 is a prime number
-: 4 equals 2 * 2
-: 5 is a prime number
-: 6 equals 2 * 3
-: 7 is a prime number
-
-** for loops and continue
-#+begin_src python :results output pp :exports both :tangle lecture4.py
-  for num in range(2, 8):
-      if num % 2 == 0: # percent sign is modulo
-          print "Found an even number", num
-          continue # continue with the next iteration of the loop
-      print "Found a number", num
-#+end_src
-
-#+RESULTS:
-: Found an even number 2
-: Found a number 3
-: Found an even number 4
-: Found a number 5
-: Found an even number 6
-: Found a number 7
 
 
 * Command Line Interface (CLI)

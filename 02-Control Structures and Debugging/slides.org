@@ -3,7 +3,7 @@
 #+OPTIONS: reveal_overview:t reveal_progress:t
 #+OPTIONS: reveal_rolling_links:nil reveal_slide_number:t
 #+OPTIONS: reveal_title_slide:t reveal_width:-1
-#+options: toc:nil
+#+options: toc:nil num:nil
 #+REVEAL_MARGIN: -1
 #+REVEAL_MIN_SCALE: -1
 #+REVEAL_MAX_SCALE: -1
@@ -29,51 +29,469 @@
 #+REVEAL_MULTIPLEX_SOCKETIO_URL:
 #+REVEAL_PLUGINS:
 
-#+AUTHOR: Christoph Paulik
+#+AUTHOR: 
 #+email: 
-#+Title: Control Structures and Debugging
+#+Title: Control Structures and Functions
 
-* Debugging
-We will use Pyscripter here but should be very similar in most IDE's.
+* General Business
+# A few general questions to gauge the process of the students and if we need to help/adapt
+# Ask Students if they have found a text editor and which ones.
+- Has everybody found a text editor that they like?
+# Ask them if they were able to install the Anaconda Python Distribution.
+- Has everybody installed [[https://www.continuum.io/downloads][Anaconda]]?
+# They can install it on the EDV Lab PC's into their user folder
+- Can everybody open the Anaconda Command prompt?
+- Who knows the basics of command prompt usage (changing director, listing
+  directory contents)?
 
-#+begin_src bash
-cd WinPython-32bit-2.7.6.2_incl_OPALS\PyScripter-v2.5.3\PyScripter
-open portable Pyscripter by starting "Start PyScripter.bat"
-File->Open->lecture2.py
+* Comparison and Control Structures
+** Boolean Expressions
+- Compare two objects and return ~True~ or ~False~
+#+begin_src python :results output pp :exports both :tangle basic_example.py
+print(3 < 5) # less than
+print(3 > 3) # greater than
+print(type("text") == str) # equal
+print("text" != 2) # not equal
 #+end_src
 
-** Debugging Actions
-- Breakpoint :: clicking left of line in most IDE's
+#+RESULTS:
+: True
+: False
+: True
+: True
 
-#+CAPTION: Main Debugging Buttons in PyScripter
-#+ATTR_LaTeX: scale=0.75
-#+LABEL: fig:debugging-buttons
-[[./debugging_buttons.png]]
-
-** Interacting with the Debugger
-- Python Interpreter :: write code you want to test
-- Hover over variable :: shows its value 
-- Variables :: list of all defined variables
-- Watches :: Watch variables
-
-** What if we do not have a GUI
-#+begin_src python :results output pp :exports both
-import pdb # imports the python debugger
-pdb.set_trace() # sets a breakpoint
-# does also work with ipython
-# import ipdb
-# ipdb.set_trace()
-#+end_src
-** 
+** if condition
+- Checks if a boolean expression is True or False
+- Executes code conditionally (only if the condition is satisfied)
 #+begin_src python :results output pp :exports both :tangle lecture2.py
-# Debugging
-var1 = "test"
-var2 = [1, 2, 3, 4]
-var3 = {"key1": 1, "key2": 2}
-print(var1, var2, var3) # set a breakpoint here, click on blue dot left of this line
-var1 = "modified"
-var3["key5"] = "a new value"
+if 3 < 5:
+    print("Three is less than 5")
+
+if 5 <= 3:
+    print("Five is less or equal to three")
 #+end_src
+
+#+RESULTS:
+: Three is less than 5
+
+** if elif else
+- ~if~ alone is often not enough
+- ~elif~ is short for ~else if~ and is checked if original if statement is not satisfied
+- code under ~else~ is executed when if statement is not satisfied
+#+begin_src python :results output pp :exports both
+x = 1
+if x > 1:
+    print("Greater than one")
+elif x < 1:
+    print("Less than one")
+else:
+    print("Exactly one")
+#+end_src
+
+#+RESULTS:
+: Exactly one
+
+** The ~in~ operator
+Checks if an element is inside a list or dictionary
+#+begin_src python :results output pp :exports both :tangle lecture2.py
+name = "Rick"
+if name in ["Rick", "Morty"]:
+    print("Name is in list")
+#+end_src
+
+#+RESULTS:
+: Name is in list
+
+#+begin_src python :results output pp :exports both :tangle lecture2.py
+key = 1
+if key in {1: "one", 2: "two"}:
+    print("key is in dict")
+
+if key in {"one": 1, "two": 2}:
+    print("Comparison of dicts is against keys by default")
+
+if key in {"one": 1, "two": 2}.values():
+    print("value is in dict")
+#+end_src
+
+#+RESULTS:
+: key is in dict
+: value is in dict
+** The ~is~ operator
+- The ~is~ operator checks the instance and not the values
+#+begin_src python :results output pp :exports both
+var = None
+one = 1
+ls = [1, 2, 3]
+print(var is None, var == None)
+print(one is 1, one == 1)
+print(ls is [1, 2, 3], ls == [1, 2, 3])
+#+end_src
+
+#+RESULTS:
+: True True
+: True True
+: False True
+
+** The ~not~ operator
+- the ~not~ operator inverts a boolean expression
+#+begin_src python :results output pp :exports both
+print(not False)
+print(not 3 < 5)
+#+end_src
+
+#+RESULTS:
+: True
+: False
+
+** Boolean operators
+The ~and~ and ~or~ operators can be used to combine multiple expressions
+#+begin_src python :results output pp :exports both :tangle lecture2.py
+var = "test"
+if 5 > 3 and var == "test":
+    print("both statements are true")
+#+end_src
+
+#+RESULTS:
+: both statements are true
+
+#+begin_src python :results output pp :exports both :tangle lecture2.py
+if 5 > 3 or 8 > 2:
+    print("at least one statement is true")
+#+end_src
+
+#+RESULTS:
+: at least one statement is true
+
+** ~pass~ and ~assert~
+- pass does nothing
+- assert checks something and throws an Exception if not ~True~
+#+begin_src python :tangle lecture4.py :tangle lecture2.py
+  name = 2
+  assert type(name) == str, "name should be a string"
+  if type(name) != str:
+      pass # can be useful when planning program structure
+#+end_src
+
+#+begin_example
+Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+AssertionError: name should be a string
+#+end_example
+
+* Loops
+- A loop executes the same code a certain number of times.
+- A loop can also execute the same code for each element in e.g. a list.
+** Basic loop
+
+#+begin_src python :results output pp :exports both :tangle lecture2.py
+i = 0
+data = [8, 4.5]
+
+# the len function gets the length of a list
+print("Length of the list is:", len(data)) 
+
+while i < len(data):
+    print(data[i])
+    i += 1
+#+end_src
+
+#+RESULTS:
+: Length of the list is: 2
+: 8
+: 4.5
+
+
+** 
+Python can loop/iterate directly over the list elements
+#+begin_src python :results output pp :exports both :tangle lecture2.py
+data = [ 1.73, 2.4122, 80, -4 ]
+
+# iterate over elements, using keyword 'in'
+for elem in data:
+    print(elem)
+#+end_src
+
+#+RESULTS:
+: 1.73
+: 2.4122
+: 80
+: -4
+
+** iterate over multiple lists
+#+begin_src python :results output pp :exports both :tangle lecture2.py
+data = [ 1.73, 2.4122, 80, -4 ]
+datanames = ["number 1", "number 2", "number 3", "number 4"]
+for number, name in zip(data, datanames):
+    print(name, number)
+#+end_src
+
+** iterate over dictionaries
+#+begin_src python :results output pp :exports both :tangle lecture2.py
+d = {"key1": 1, "key2": 2, "key3": 3}
+for key in d:
+    print(key)
+#+end_src
+
+#+RESULTS:
+: ('key3', 3)
+: ('key2', 2)
+: ('key1', 1)
+
+#+begin_src python :results output pp :exports both :tangle lecture2.py
+d = {"key1": 1, "key2": 2, "key3": 3}
+for key, item in d.iteritems():
+    print(key, item)
+#+end_src
+
+#+RESULTS:
+: ('key3', 3)
+: ('key2', 2)
+: ('key1', 1)
+
+** sometimes you need an indices
+range can be addressed with (start, stop, step)
+#+begin_src python :results output pp :exports both :tangle lecture2.py
+  print("range")
+  for i in range(1, 10, 2):
+      print(i)
+#+end_src
+
+#+RESULTS:
+: range
+: 1
+: 3
+: 5
+: 7
+: 9
+
+** sometimes enumerate is also handy
+#+begin_src python :results output pp :exports both :tangle lecture2.py
+l = ["a", "b", "c", "d"]
+for i, item in enumerate(l):
+    print(i, item)
+#+end_src
+
+#+RESULTS:
+: 0 a
+: 1 b
+: 2 c
+: 3 d
+
+** if/else block
+#+begin_src python :results output pp :exports both :tangle lecture2.py
+dataset1 = [ 1.73, 2.4122, 80, -4 ]
+# if/else blocks
+for d in dataset1:
+    if d > 3:
+        res = ">3"
+    else:
+        res = "<=3"
+    print(res)
+#+end_src
+
+#+RESULTS:
+: <=3
+: <=3
+: >3
+: <=3
+
+** for loops with break and else
+#+begin_src python :results output pp :exports both :tangle lecture4.py
+  for n in range(2, 8): # lets debug through this
+      for x in range(2, n):
+          if n % x == 0:
+              print n, 'equals', x, '*', n / x
+              break # breaks out of (ends) current loop
+      else:
+          # loop fell through without finding a factor
+          print n, 'is a prime number'
+#+end_src
+
+#+RESULTS:
+: 2 is a prime number
+: 3 is a prime number
+: 4 equals 2 * 2
+: 5 is a prime number
+: 6 equals 2 * 3
+: 7 is a prime number
+
+** for loops and continue
+#+begin_src python :results output pp :exports both :tangle lecture4.py
+  for num in range(2, 8):
+      if num % 2 == 0: # percent sign is modulo
+          print "Found an even number", num
+          continue # continue with the next iteration of the loop
+      print "Found a number", num
+#+end_src
+
+#+RESULTS:
+: Found an even number 2
+: Found a number 3
+: Found an even number 4
+: Found a number 5
+: Found an even number 6
+: Found a number 7
+
+
+** Mini Exercise
+#+begin_src python :results output pp :exports both :tangle lecture2.py
+####################################################################
+# Mini Exercise 
+
+# Try to format and print only the positive numbers in 'dataset1',
+# with 1 number on each line,
+# and with 2 digits after the comma
+
+####################################################################
+#+end_src
+
+* Functions
+- A function is a block of code that can be reused
+- A function can take arguments and keywords
+- A function can return a value
+- It must be defined before we can use it
+#+begin_src python :results output pp :exports both
+def function():
+    print("print in a function")
+
+function()
+#+end_src
+
+#+RESULTS:
+: print in a function
+
+** 
+#+begin_src python :results output pp :session func1 :exports both :tangle lecture2.py
+  def classify(dataset, threshold):
+      """
+      classifies dataset into small and large class using the threshold
+
+      Parameters
+      ----------
+      dataset: list
+          list to classify
+      threshold: float
+          threshold to use for classification
+
+      Returns
+      -------
+      results: list
+          containing True or False
+      """
+      results = []  # create an empty list
+      for data in dataset:
+          results.append(data > threshold)
+      return results
+#+end_src
+
+
+** 
+#+begin_src python :results output  pp :session func1 :exports both :tangle lecture2.py
+dataset1 = [1.73, 80, 2.4122, -4]
+res = classify(dataset1, 2)
+print(res)
+print(classify(dataset1, 1))
+#+end_src
+
+** Documentation
+There are several ways to document code in Python. 
+
+Scientists often use the [[https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt][numpy Documentation style.]]
+
+There is also [[https://www.python.org/dev/peps/pep-0257/][PEP 257 Python Docstring Standard]]
+
+#+ATTR_REVEAL: :frag grow highlight-red
+Be Consistent
+
+** 
+Documentation is useful for autocompletion in IDE
+
+Generation of HTML or PDF Documentation using [[http://sphinx-doc.org/][Sphinx]].
+
+** Functions with keyword arguments
+
+#+begin_src python :results output pp :session func1 :exports both :tangle lecture2.py
+  def classifydefault(dataset, threshold=2.5):
+      """
+      classifies dataset into small and large class using the threshold
+
+      Parameters
+      ----------
+      dataset: list
+          list to classify
+      threshold: float, optional
+          threshold to use for classification
+
+      Returns
+      -------
+      results: list
+          containing True or False
+      """
+      results = []  # create an empty list
+      for data in dataset:
+          results.append(data > threshold)
+      return results
+#+end_src
+
+** 
+#+begin_src python :results output  pp :session func1 :exports both :tangle lecture2.py
+dataset2 = [1.73, 80, 2.4122, -4, 2.6]
+print(classifydefault(dataset2))
+#+end_src
+
+** Namespaces
+Functions/Classes and Packages/Modules define their own local namespace.
+#+begin_src python :results output pp :exports both :tangle lecture2.py
+variable = "I am Global"
+var = "I'm also Global"
+def func():
+    variable = "I am Local"
+    print(variable)
+    print(var)
+
+print(variable)
+func()
+#+end_src
+
+#+RESULTS:
+: I am Global
+: I am Local
+: I'm also Global
+
+** Functions and mutable types
+Careful when changing a list in a function
+#+begin_src python :results output pp :exports both :tangle lecture2.py
+l = [1, 2, 3]
+def func(ls):
+    ls.append(4)
+
+print(l)
+func(l)
+print(l)
+#+end_src
+
+#+RESULTS:
+: [1, 2, 3]
+: [1, 2, 3, 4]
+
+** Mini Exercise
+#+begin_src python :results output pp :exports both :tangle lecture2.py
+####################################################################
+# Mini Exercise 
+
+# Write a function that classifies strings by length
+# inputs should be a list of strings, and a threshold 
+# specifying the number of characters
+# The output should be a list containing the strings "shorter" or "longer"
+# lets ignore strings of length = threshold for now
+print(len("test")) # hint
+# list of random strings
+test_strings = ["faucal" ,"fiddling" ,"instil" ,"blake" ,"profanely" ,
+                "bootblack" ,"decongest" ,"interest" ,"arrowy" ,"eponymic"]
+####################################################################
+#+end_src
+
 * String Formatting
 
 #+begin_src python :results output pp :exports both :tangle lecture2.py
@@ -141,230 +559,5 @@ print(res)
 
 Complete Format Specification Mini-Language:
 http://docs.python.org/2/library/string.html#formatspec
-
-* Loops and Conditions
-#+begin_src python :results output pp :exports both :tangle lecture2.py
-i = 0
-data = [2, 4.5]
-while i < len(data):
-    print(data[i])
-    i += 1
-#+end_src
-
-#+RESULTS:
-: 2
-: 4.5
-
-
-** 
-Python does loops a little different.
-#+begin_src python :results output pp :exports both :tangle lecture2.py
-data = [ 1.73, 2.4122, 80, -4 ]
-
-# iterate over elements, using keyword 'in'
-for elem in data:
-    print(elem)
-#+end_src
-
-** iterate over multiple lists
-#+begin_src python :results output pp :exports both :tangle lecture2.py
-data = [ 1.73, 2.4122, 80, -4 ]
-datanames = ["number 1", "number 2", "number 3", "number 4"]
-for number, name in zip(data, datanames):
-    print(name, number)
-#+end_src
-
-** iterate over dictionaries
-#+begin_src python :results output pp :exports both :tangle lecture2.py
-d = {"key1": 1, "key2": 2, "key3": 3}
-for key in d:
-    print(key)
-#+end_src
-
-#+RESULTS:
-: ('key3', 3)
-: ('key2', 2)
-: ('key1', 1)
-
-#+begin_src python :results output pp :exports both :tangle lecture2.py
-d = {"key1": 1, "key2": 2, "key3": 3}
-for key, item in d.iteritems():
-    print(key, item)
-#+end_src
-
-#+RESULTS:
-: ('key3', 3)
-: ('key2', 2)
-: ('key1', 1)
-
-** sometimes you need an indices
-range and xrange can be addressed with (start, stop, step)
-#+begin_src python :results output pp :exports both
-  print("range")
-  for i in range(1, 10, 2):
-      print(i)
-  print("xrange")
-  for i in xrange(5): # only python 2
-      print(i)
-#+end_src
-
-** sometimes enumerate is also handy
-#+begin_src python :results output pp :exports both
-l = ["a", "b", "c", "d"]
-for i, item in enumerate(l):
-    print(i, item)
-#+end_src
-
-** if/else blocks
-#+begin_src python :results output pp :exports both :tangle lecture2.py
-dataset1 = [ 1.73, 2.4122, 80, -4 ]
-# if/else blocks
-for d in dataset1:
-    if d > 3:
-        res = ">3"
-    else:
-        res = "<=3"
-    print(res)
-#+end_src
-
-** Mini Exercise
-#+begin_src python :results output pp :exports both :tangle lecture2.py
-####################################################################
-# Mini Exercise 
-
-# Try to format and print only the positive numbers in 'dataset1',
-# with 1 number on each line,
-# and with 2 digits after the comma
-
-####################################################################
-#+end_src
-
-* Functions
-Function is a way to package code so that it is reusable.
-#+begin_src python :results output pp :session func1 :exports both :tangle lecture2.py
-  def classify(dataset, threshold):
-      """
-      classifies dataset into small and large class using the threshold
-
-      Parameters
-      ----------
-      dataset: list
-          list to classify
-      threshold: float
-          threshold to use for classification
-
-      Returns
-      -------
-      results: list
-          containing True or False
-      """
-      results = []  # create an empty list
-      for data in dataset:
-          results.append(data > threshold)
-      return results
-#+end_src
-
-** 
-#+begin_src python :results output  pp :session func1 :exports both :tangle lecture2.py
-dataset1 = [1.73, 80, 2.4122, -4]
-res = classify(dataset1, 2)
-print(res)
-print(classify(dataset1, 1))
-#+end_src
-
-** Documentation
-There are several ways to document code in Python. 
-
-Scientists often use the [[https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt][numpy Documentation style.]]
-
-There is also [[https://www.python.org/dev/peps/pep-0257/][PEP 257 Python Docstring Standard]]
-
-#+ATTR_REVEAL: :frag grow highlight-red
-Be Consistent
-
-** 
-Documentation is useful for autocompletion in IDE
-
-Generation of HTML or PDF Documentation using [[http://sphinx-doc.org/][Sphinx]].
-
-** Functions with keyword arguments
-
-#+begin_src python :results output pp :session func1 :exports both :tangle lecture2.py
-  def classifydefault(dataset, threshold=2.5):
-      """
-      classifies dataset into small and large class using the threshold
-
-      Parameters
-      ----------
-      dataset: list
-          list to classify
-      threshold: float, optional
-          threshold to use for classification
-
-      Returns
-      -------
-      results: list
-          containing True or False
-      """
-      results = []  # create an empty list
-      for data in dataset:
-          results.append(data > threshold)
-      return results
-#+end_src
-
-** 
-#+begin_src python :results output  pp :session func1 :exports both :tangle lecture2.py
-dataset2 = [1.73, 80, 2.4122, -4, 2.6]
-print(classifydefault(dataset2))
-#+end_src
-
-** Namespaces
-Functions/Classes and Packages/Modules define their own local namespace.
-#+begin_src python :results output pp :exports both :tangle lecture2.py
-variable = "I am Global"
-def func():
-    variable = "I am Local"
-    print(variable)
-
-print(variable)
-func()
-#+end_src
-
-#+RESULTS:
-: I am Global
-: I am Local
-
-** Functions and mutable types
-Careful when changing a list in a function
-#+begin_src python :results output pp :exports both :tangle lecture2.py
-l = [1, 2, 3]
-def func(ls):
-    ls.append(4)
-
-print(l)
-func(l)
-print(l)
-#+end_src
-
-#+RESULTS:
-: [1, 2, 3]
-: [1, 2, 3, 4]
-
-** Mini Exercise
-#+begin_src python :results output pp :exports both :tangle lecture2.py
-####################################################################
-# Mini Exercise 
-
-# Write a function that classifies strings by length
-# inputs should be a list of strings, and a threshold 
-# specifying the number of characters
-# The output should be a list containing the strings "shorter" or "longer"
-# lets ignore strings of length = threshold for now
-print(len("test")) # hint
-# list of random strings
-test_strings = ["faucal" ,"fiddling" ,"instil" ,"blake" ,"profanely" ,
-                "bootblack" ,"decongest" ,"interest" ,"arrowy" ,"eponymic"]
-####################################################################
-#+end_src
 
 
