@@ -29,9 +29,9 @@
 #+REVEAL_MULTIPLEX_SOCKETIO_URL:
 #+REVEAL_PLUGINS:
 
-#+AUTHOR: Christoph Paulik
-#+email: christoph.paulik@geo.tuwien.ac.at
-#+Title: Programming for Geoscience
+#+AUTHOR: 
+#+email: 
+#+Title: Python Programming for Geoscience
 
 * Course Organization
 

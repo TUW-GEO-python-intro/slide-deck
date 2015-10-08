@@ -3,8 +3,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<title>Programming for Geoscience</title>
-<meta name="author" content="(Christoph Paulik)"/>
+<title>Python Programming for Geoscience</title>
 
 <link rel="stylesheet" href="../reveal.js/css/reveal.css"/>
 <link rel="stylesheet" href="../reveal.js/css/theme/black.css" id="theme"/>
@@ -25,7 +24,7 @@
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide" data-background="" data-background-size="" data-background-repeat="" data-background-transition="">
-<h1>Programming for Geoscience</h1> <h2>Christoph Paulik</h2> <h2><a href="mailto:christoph.paulik@geo.tuwien.ac.at">christoph.paulik@geo.tuwien.ac.at</a></h2> <h2></h2>
+<h1>Python Programming for Geoscience</h1> <h2></h2> <h2><a href="mailto:"></a></h2> <h2></h2>
 </section>
 
 <section>
@@ -150,7 +149,7 @@ Python
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #EF6C00;">x</span> = <span style="color: #689f38;">1</span>
+<pre  class="src src-python"><span style="color: #ffcc80;">x</span> = <span style="color: #9ccc65;">1</span>
 </pre>
 </div>
 <p>
@@ -158,7 +157,7 @@ Javascript
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-javascript"><span style="color: #00796b;">var</span> <span style="color: #EF6C00;">x</span> = <span style="color: #689f38;">1</span>;
+<pre  class="src src-javascript"><span style="color: #fff59d;">var</span> <span style="color: #ffcc80;">x</span> = <span style="color: #9ccc65;">1</span>;
 </pre>
 </div>
 <p>
@@ -166,7 +165,7 @@ C
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-C"><span style="color: #0097A7;">int</span> <span style="color: #EF6C00;">x</span> = <span style="color: #689f38;">1</span>;
+<pre  class="src src-C"><span style="color: #84ffff;">int</span> <span style="color: #ffcc80;">x</span> = <span style="color: #9ccc65;">1</span>;
 </pre>
 </div>
 
@@ -286,7 +285,7 @@ if you do not have other Python installations on your system.</li>
 </ul>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"Hello World!"</span><span style="color: #e91e63;">)</span>
+<pre  class="src src-python"><span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"Hello World!"</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -302,14 +301,14 @@ Hello World!
 <h2 id="orgheadline34">Python Syntax</h2>
 <div class="org-src-container">
 <label class="org-src-name">Whitespace is important</label>
-<pre  class="src src-python"><span style="color: #607d8b;"># </span><span style="color: #607d8b;">set variable x to 1</span>
-<span style="color: #EF6C00;">x</span> = <span style="color: #689f38;">1</span>
-<span style="color: #00796b;">if</span> x == <span style="color: #689f38;">1</span>:
-    <span style="color: #689f38;">"""</span>
-<span style="color: #689f38;">    This condition checks if x is one and </span>
-<span style="color: #689f38;">    prints it to stdout</span>
-<span style="color: #689f38;">    """</span>
-    <span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"x is one"</span><span style="color: #e91e63;">)</span>
+<pre  class="src src-python"><span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">set variable x to 1</span>
+<span style="color: #ffcc80;">x</span> = <span style="color: #9ccc65;">1</span>
+<span style="color: #fff59d;">if</span> x == <span style="color: #9ccc65;">1</span>:
+    <span style="color: #9ccc65;">"""</span>
+<span style="color: #9ccc65;">    This condition checks if x is one and </span>
+<span style="color: #9ccc65;">    prints it to stdout</span>
+<span style="color: #9ccc65;">    """</span>
+    <span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"x is one"</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -331,22 +330,22 @@ Variables can be assigned without type declaration.
 
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #EF6C00;">a</span> = <span style="color: #689f38;">1</span>
-<span style="color: #EF6C00;">b</span> = <span style="color: #689f38;">2</span>.<span style="color: #689f38;">8</span>
-<span style="color: #EF6C00;">c</span> = <span style="color: #689f38;">"text"</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"a is"</span>, a<span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"b is"</span>, a<span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"c is"</span>, c<span style="color: #e91e63;">)</span>
-<span style="color: #EF6C00;">c</span> = a
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"c is"</span>, c<span style="color: #e91e63;">)</span>
+<pre  class="src src-python"><span style="color: #ffcc80;">a</span> = <span style="color: #9ccc65;">1</span>
+<span style="color: #ffcc80;">b</span> = <span style="color: #9ccc65;">2</span>.<span style="color: #9ccc65;">8</span>
+<span style="color: #ffcc80;">c</span> = <span style="color: #9ccc65;">"text"</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"a is"</span>, a<span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"b is"</span>, a<span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"c is"</span>, c<span style="color: #e91e63;">)</span>
+<span style="color: #ffcc80;">c</span> = a
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"c is"</span>, c<span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
 <pre class="example">
-a is 1
-b is 1
-c is text
-c is 1
+('a is', 1)
+('b is', 1)
+('c is', 'text')
+('c is', 1)
 </pre>
 
 <p class="fragment grow highlight-red">
@@ -365,17 +364,17 @@ You can not use one of the predefined keywords. Should also not use <a href="htt
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #EF6C00;">var1</span> = <span style="color: #689f38;">5</span>
-<span style="color: #EF6C00;">Var1</span> = <span style="color: #689f38;">6</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>var1, Var1<span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">import</span> keyword
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>keyword.kwlist<span style="color: #e91e63;">)</span>
+<pre  class="src src-python"><span style="color: #ffcc80;">var1</span> = <span style="color: #9ccc65;">5</span>
+<span style="color: #ffcc80;">Var1</span> = <span style="color: #9ccc65;">6</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>var1, Var1<span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">import</span> keyword
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>keyword.kwlist<span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
 <pre class="example">
-5 6
-['False', 'None', 'True', 'and', 'as', 'assert', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']
+(5, 6)
+['and', 'as', 'assert', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'exec', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'not', 'or', 'pass', 'print', 'raise', 'return', 'try', 'while', 'with', 'yield']
 </pre>
 
 </section>
@@ -383,21 +382,21 @@ You can not use one of the predefined keywords. Should also not use <a href="htt
 <h3 id="orgheadline20">Python as a calculator</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #EF6C00;">width</span> = <span style="color: #689f38;">20</span>
-<span style="color: #EF6C00;">height</span> = <span style="color: #689f38;">5</span> * <span style="color: #689f38;">9</span>
-<span style="color: #607d8b;"># </span><span style="color: #607d8b;">calculate rectangular area</span>
-<span style="color: #EF6C00;">rect_area</span> = width * height
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"Rectangular Area is"</span>, rect_area<span style="color: #e91e63;">)</span>
+<pre  class="src src-python"><span style="color: #ffcc80;">width</span> = <span style="color: #9ccc65;">20</span>
+<span style="color: #ffcc80;">height</span> = <span style="color: #9ccc65;">5</span> * <span style="color: #9ccc65;">9</span>
+<span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">calculate rectangular area</span>
+<span style="color: #ffcc80;">rect_area</span> = width * height
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"Rectangular Area is"</span>, rect_area<span style="color: #e91e63;">)</span>
 
-<span style="color: #607d8b;"># </span><span style="color: #607d8b;">calcualte area of square</span>
-<span style="color: #EF6C00;">square_area</span> = width ** <span style="color: #689f38;">2</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"Square area is"</span>, square_area<span style="color: #e91e63;">)</span>
+<span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">calcualte area of square</span>
+<span style="color: #ffcc80;">square_area</span> = width ** <span style="color: #9ccc65;">2</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"Square area is"</span>, square_area<span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
 <pre class="example">
-Rectangular Area is 900
-Square area is 400
+('Rectangular Area is', 900)
+('Square area is', 400)
 </pre>
 
 </section>
@@ -408,16 +407,16 @@ These are some basic data types:
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #EF6C00;">integer</span> = <span style="color: #689f38;">1</span>
-<span style="color: #EF6C00;">float_number</span> = <span style="color: #689f38;">1</span>.<span style="color: #689f38;">345</span>
-<span style="color: #EF6C00;">complex_number</span> = <span style="color: #689f38;">3</span> + <span style="color: #689f38;">4j</span>
-<span style="color: #EF6C00;">string</span> = <span style="color: #689f38;">"a text string"</span>
-<span style="color: #EF6C00;">a_list</span> = <span style="color: #e91e63;">[</span><span style="color: #689f38;">1</span>, <span style="color: #689f38;">1</span>.<span style="color: #689f38;">34</span>, string<span style="color: #e91e63;">]</span>
-<span style="color: #EF6C00;">a_tuple</span> = <span style="color: #e91e63;">(</span><span style="color: #689f38;">1</span>, <span style="color: #689f38;">1</span>.<span style="color: #689f38;">34</span>, string<span style="color: #e91e63;">)</span> <span style="color: #607d8b;"># </span><span style="color: #607d8b;">immutable list</span>
-<span style="color: #EF6C00;">a_set</span> = <span style="color: #FF5722;">set</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"mama"</span><span style="color: #e91e63;">)</span> <span style="color: #607d8b;"># </span><span style="color: #607d8b;">list of unique items</span>
-<span style="color: #EF6C00;">a_dict</span> = <span style="color: #e91e63;">{</span><span style="color: #689f38;">'jan'</span>: <span style="color: #689f38;">1</span>, <span style="color: #689f38;">'feb'</span>: <span style="color: #689f38;">2</span><span style="color: #e91e63;">}</span>
-<span style="color: #EF6C00;">a_boolean</span> = <span style="color: #558b2f;">True</span>
-<span style="color: #EF6C00;">none_type</span> = <span style="color: #558b2f;">None</span>
+<pre  class="src src-python"><span style="color: #ffcc80;">integer</span> = <span style="color: #9ccc65;">1</span>
+<span style="color: #ffcc80;">float_number</span> = <span style="color: #9ccc65;">1</span>.<span style="color: #9ccc65;">345</span>
+<span style="color: #ffcc80;">complex_number</span> = <span style="color: #9ccc65;">3</span> + <span style="color: #9ccc65;">4j</span>
+<span style="color: #ffcc80;">string</span> = <span style="color: #9ccc65;">"a text string"</span>
+<span style="color: #ffcc80;">a_list</span> = <span style="color: #e91e63;">[</span><span style="color: #9ccc65;">1</span>, <span style="color: #9ccc65;">1</span>.<span style="color: #9ccc65;">34</span>, string<span style="color: #e91e63;">]</span>
+<span style="color: #ffcc80;">a_tuple</span> = <span style="color: #e91e63;">(</span><span style="color: #9ccc65;">1</span>, <span style="color: #9ccc65;">1</span>.<span style="color: #9ccc65;">34</span>, string<span style="color: #e91e63;">)</span> <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">immutable list</span>
+<span style="color: #ffcc80;">a_set</span> = <span style="color: #ff8A65;">set</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"mama"</span><span style="color: #e91e63;">)</span> <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">list of unique items</span>
+<span style="color: #ffcc80;">a_dict</span> = <span style="color: #e91e63;">{</span><span style="color: #9ccc65;">'jan'</span>: <span style="color: #9ccc65;">1</span>, <span style="color: #9ccc65;">'feb'</span>: <span style="color: #9ccc65;">2</span><span style="color: #e91e63;">}</span>
+<span style="color: #ffcc80;">a_boolean</span> = <span style="color: #8bc34a;">True</span>
+<span style="color: #ffcc80;">none_type</span> = <span style="color: #8bc34a;">None</span>
 </pre>
 </div>
 
@@ -430,34 +429,34 @@ These are some basic data types:
 <h4 id="orgheadline21">Integers and Floats</h4>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">1</span>+<span style="color: #689f38;">4</span><span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #FF5722;">type</span><span style="color: #1565C0;">(</span><span style="color: #689f38;">1</span>+<span style="color: #689f38;">4</span><span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #FF5722;">type</span><span style="color: #1565C0;">(</span><span style="color: #689f38;">1</span>+<span style="color: #689f38;">4</span>.<span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span> <span style="color: #607d8b;"># </span><span style="color: #607d8b;">automatic conversion of resulting data type</span>
+<pre  class="src src-python"><span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">1</span>+<span style="color: #9ccc65;">4</span><span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #ff8A65;">type</span><span style="color: #2196F3;">(</span><span style="color: #9ccc65;">1</span>+<span style="color: #9ccc65;">4</span><span style="color: #2196F3;">)</span><span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #ff8A65;">type</span><span style="color: #2196F3;">(</span><span style="color: #9ccc65;">1</span>+<span style="color: #9ccc65;">4</span>.<span style="color: #2196F3;">)</span><span style="color: #e91e63;">)</span> <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">automatic conversion of resulting data type</span>
 </pre>
 </div>
 
 <pre class="example">
 5
-&lt;class 'int'&gt;
-&lt;class 'float'&gt;
+&lt;type 'int'&gt;
+&lt;type 'float'&gt;
 </pre>
 
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #607d8b;"># </span><span style="color: #607d8b;">float and integer division</span>
-<span style="color: #607d8b;"># </span><span style="color: #607d8b;">this is different in Python 2</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"12 / 7 really is"</span>, <span style="color: #689f38;">12</span>/<span style="color: #689f38;">7</span>.<span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #FF5722;">type</span><span style="color: #1565C0;">(</span><span style="color: #689f38;">12</span>/<span style="color: #689f38;">7</span>.<span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"12 / 7 is"</span>, <span style="color: #689f38;">12</span>//<span style="color: #689f38;">7</span><span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #FF5722;">type</span><span style="color: #1565C0;">(</span><span style="color: #689f38;">12</span>//<span style="color: #689f38;">7</span><span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
+<pre  class="src src-python"><span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">float and integer division</span>
+<span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">this is different in Python 2</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"12 / 7 really is"</span>, <span style="color: #9ccc65;">12</span>/<span style="color: #9ccc65;">7</span>.<span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #ff8A65;">type</span><span style="color: #2196F3;">(</span><span style="color: #9ccc65;">12</span>/<span style="color: #9ccc65;">7</span>.<span style="color: #2196F3;">)</span><span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"12 / 7 is"</span>, <span style="color: #9ccc65;">12</span>//<span style="color: #9ccc65;">7</span><span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #ff8A65;">type</span><span style="color: #2196F3;">(</span><span style="color: #9ccc65;">12</span>//<span style="color: #9ccc65;">7</span><span style="color: #2196F3;">)</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
 <pre class="example">
-12 / 7 really is 1.7142857142857142
-&lt;class 'float'&gt;
-12 / 7 is 1
-&lt;class 'int'&gt;
+('12 / 7 really is', 1.7142857142857142)
+&lt;type 'float'&gt;
+('12 / 7 is', 1)
+&lt;type 'int'&gt;
 </pre>
 
 </section>
@@ -465,17 +464,17 @@ These are some basic data types:
 <h4 id="orgheadline22">Comparisons</h4>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #607d8b;">#</span><span style="color: #607d8b;">comparison</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"is 7 less than 5?"</span> , <span style="color: #689f38;">7</span>&lt;<span style="color: #689f38;">5</span><span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"is 5 less than 7?"</span> , <span style="color: #689f38;">7</span>&gt;<span style="color: #689f38;">5</span><span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"is 5 less or equal 5?"</span> , <span style="color: #689f38;">5</span>&lt;=<span style="color: #689f38;">5</span><span style="color: #e91e63;">)</span>
+<pre  class="src src-python"><span style="color: #b0bec5;">#</span><span style="color: #b0bec5;">comparison</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"is 7 less than 5?"</span> , <span style="color: #9ccc65;">7</span>&lt;<span style="color: #9ccc65;">5</span><span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"is 5 less than 7?"</span> , <span style="color: #9ccc65;">7</span>&gt;<span style="color: #9ccc65;">5</span><span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"is 5 less or equal 5?"</span> , <span style="color: #9ccc65;">5</span>&lt;=<span style="color: #9ccc65;">5</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
 <pre class="example">
-is 7 less than 5? False
-is 5 less than 7? True
-is 5 less or equal 5? True
+('is 7 less than 5?', False)
+('is 5 less than 7?', True)
+('is 5 less or equal 5?', True)
 </pre>
 
 </section>
@@ -483,23 +482,23 @@ is 5 less or equal 5? True
 <h4 id="orgheadline23">Strings</h4>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #EF6C00;">s1</span> = <span style="color: #689f38;">"Monthy"</span>
-<span style="color: #EF6C00;">s2</span> = <span style="color: #689f38;">'Python'</span> <span style="color: #607d8b;">#</span><span style="color: #607d8b;">single quotes are also fine</span>
-<span style="color: #607d8b;"># </span><span style="color: #607d8b;">joining string can be done in different ways</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>s1+s2, s1*<span style="color: #689f38;">3</span>, <span style="color: #689f38;">";"</span>.join<span style="color: #1565C0;">(</span><span style="color: #EF6C00;">[</span>s1, s2<span style="color: #EF6C00;">]</span><span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
+<pre  class="src src-python"><span style="color: #ffcc80;">s1</span> = <span style="color: #9ccc65;">"Monthy"</span>
+<span style="color: #ffcc80;">s2</span> = <span style="color: #9ccc65;">'Python'</span> <span style="color: #b0bec5;">#</span><span style="color: #b0bec5;">single quotes are also fine</span>
+<span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">joining string can be done in different ways</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>s1+s2, s1*<span style="color: #9ccc65;">3</span>, <span style="color: #9ccc65;">";"</span>.join<span style="color: #2196F3;">(</span><span style="color: #EF6C00;">[</span>s1, s2<span style="color: #EF6C00;">]</span><span style="color: #2196F3;">)</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
 <pre class="example">
-MonthyPython MonthyMonthyMonthy Monthy;Python
+('MonthyPython', 'MonthyMonthyMonthy', 'Monthy;Python')
 </pre>
 
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #607d8b;"># </span><span style="color: #607d8b;">sometimes double quotes are necessary</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"This wouldn't work with single quotes"</span><span style="color: #e91e63;">)</span>
-<span style="color: #607d8b;"># </span><span style="color: #607d8b;">or the ' has to be escaped using \</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">'Escaping "wouldn\'t" also works'</span><span style="color: #e91e63;">)</span>
+<pre  class="src src-python"><span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">sometimes double quotes are necessary</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"This wouldn't work with single quotes"</span><span style="color: #e91e63;">)</span>
+<span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">or the ' has to be escaped using \</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">'Escaping "wouldn\'t" also works'</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -518,13 +517,13 @@ Escaping "wouldn't" also works
 </ul>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #EF6C00;">s</span> = <span style="color: #689f38;">"0123456789"</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>s<span style="color: #1565C0;">[</span><span style="color: #689f38;">1</span>:<span style="color: #689f38;">4</span><span style="color: #1565C0;">]</span><span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>s<span style="color: #1565C0;">[</span><span style="color: #689f38;">3</span>:<span style="color: #689f38;">8</span><span style="color: #1565C0;">]</span><span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>s<span style="color: #1565C0;">[</span>-<span style="color: #689f38;">1</span><span style="color: #1565C0;">]</span><span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>s<span style="color: #1565C0;">[</span>-<span style="color: #689f38;">6</span>:-<span style="color: #689f38;">3</span><span style="color: #1565C0;">]</span><span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>s<span style="color: #1565C0;">[</span><span style="color: #689f38;">0</span>:<span style="color: #689f38;">5</span>:<span style="color: #689f38;">2</span><span style="color: #1565C0;">]</span><span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"negative step reverts"</span>, s<span style="color: #1565C0;">[</span>::-<span style="color: #689f38;">1</span><span style="color: #1565C0;">]</span><span style="color: #e91e63;">)</span>
+<pre  class="src src-python"><span style="color: #ffcc80;">s</span> = <span style="color: #9ccc65;">"0123456789"</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>s<span style="color: #2196F3;">[</span><span style="color: #9ccc65;">1</span>:<span style="color: #9ccc65;">4</span><span style="color: #2196F3;">]</span><span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>s<span style="color: #2196F3;">[</span><span style="color: #9ccc65;">3</span>:<span style="color: #9ccc65;">8</span><span style="color: #2196F3;">]</span><span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>s<span style="color: #2196F3;">[</span>-<span style="color: #9ccc65;">1</span><span style="color: #2196F3;">]</span><span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>s<span style="color: #2196F3;">[</span>-<span style="color: #9ccc65;">6</span>:-<span style="color: #9ccc65;">3</span><span style="color: #2196F3;">]</span><span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>s<span style="color: #2196F3;">[</span><span style="color: #9ccc65;">0</span>:<span style="color: #9ccc65;">5</span>:<span style="color: #9ccc65;">2</span><span style="color: #2196F3;">]</span><span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"negative step reverts"</span>, s<span style="color: #2196F3;">[</span>::-<span style="color: #9ccc65;">1</span><span style="color: #2196F3;">]</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -534,7 +533,7 @@ Escaping "wouldn't" also works
 9
 456
 024
-negative step reverts 9876543210
+('negative step reverts', '9876543210')
 </pre>
 
 
@@ -544,16 +543,16 @@ negative step reverts 9876543210
 <h4 id="orgheadline25">Lists</h4>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #EF6C00;">winter</span> = <span style="color: #e91e63;">[</span><span style="color: #689f38;">'jan'</span>, <span style="color: #689f38;">'feb'</span><span style="color: #e91e63;">]</span>
-<span style="color: #EF6C00;">spring</span> = <span style="color: #e91e63;">[</span><span style="color: #689f38;">'apr'</span>, <span style="color: #689f38;">'may'</span>, <span style="color: #689f38;">'jun'</span><span style="color: #e91e63;">]</span>
-<span style="color: #EF6C00;">summer</span> = <span style="color: #e91e63;">[</span><span style="color: #689f38;">'jul'</span>, <span style="color: #689f38;">'aug'</span>, <span style="color: #689f38;">'sep'</span><span style="color: #e91e63;">]</span>
-<span style="color: #EF6C00;">autumn</span> = <span style="color: #e91e63;">[</span><span style="color: #689f38;">'oct'</span>, <span style="color: #689f38;">'nov'</span>, <span style="color: #689f38;">'dec'</span><span style="color: #e91e63;">]</span>
-<span style="color: #607d8b;"># </span><span style="color: #607d8b;">create one list containing all the elements</span>
-<span style="color: #EF6C00;">months</span> = winter + spring + summer + autumn
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"List of months"</span>, months<span style="color: #e91e63;">)</span>
-<span style="color: #607d8b;"># </span><span style="color: #607d8b;">create a nested list, list of seasons</span>
-<span style="color: #EF6C00;">seasons</span> = <span style="color: #e91e63;">[</span>winter, spring, summer, autumn<span style="color: #e91e63;">]</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"List of seasons"</span>, seasons<span style="color: #e91e63;">)</span>
+<pre  class="src src-python"><span style="color: #ffcc80;">winter</span> = <span style="color: #e91e63;">[</span><span style="color: #9ccc65;">'jan'</span>, <span style="color: #9ccc65;">'feb'</span><span style="color: #e91e63;">]</span>
+<span style="color: #ffcc80;">spring</span> = <span style="color: #e91e63;">[</span><span style="color: #9ccc65;">'apr'</span>, <span style="color: #9ccc65;">'may'</span>, <span style="color: #9ccc65;">'jun'</span><span style="color: #e91e63;">]</span>
+<span style="color: #ffcc80;">summer</span> = <span style="color: #e91e63;">[</span><span style="color: #9ccc65;">'jul'</span>, <span style="color: #9ccc65;">'aug'</span>, <span style="color: #9ccc65;">'sep'</span><span style="color: #e91e63;">]</span>
+<span style="color: #ffcc80;">autumn</span> = <span style="color: #e91e63;">[</span><span style="color: #9ccc65;">'oct'</span>, <span style="color: #9ccc65;">'nov'</span>, <span style="color: #9ccc65;">'dec'</span><span style="color: #e91e63;">]</span>
+<span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">create one list containing all the elements</span>
+<span style="color: #ffcc80;">months</span> = winter + spring + summer + autumn
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"List of months"</span>, months<span style="color: #e91e63;">)</span>
+<span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">create a nested list, list of seasons</span>
+<span style="color: #ffcc80;">seasons</span> = <span style="color: #e91e63;">[</span>winter, spring, summer, autumn<span style="color: #e91e63;">]</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"List of seasons"</span>, seasons<span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -570,10 +569,10 @@ What happens if we add the missing month of March?
 <h4 id="orgheadline26"></h4>
 <div class="org-src-container">
 
-<pre  class="src src-python">winter.append<span style="color: #e91e63;">(</span><span style="color: #689f38;">'mar'</span><span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"Winter is now:"</span>, winter<span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"List of months"</span>, months<span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"List of seasons"</span>, seasons<span style="color: #e91e63;">)</span>
+<pre  class="src src-python">winter.append<span style="color: #e91e63;">(</span><span style="color: #9ccc65;">'mar'</span><span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"Winter is now:"</span>, winter<span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"List of months"</span>, months<span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"List of seasons"</span>, seasons<span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -592,10 +591,10 @@ Lists are generally stored as references -&gt; the values are not copied.
 <h4 id="orgheadline27">List manipulation and slicing</h4>
 <div class="org-src-container">
 
-<pre  class="src src-python">months.insert<span style="color: #e91e63;">(</span><span style="color: #689f38;">2</span>, <span style="color: #689f38;">'mar'</span><span style="color: #e91e63;">)</span> <span style="color: #607d8b;"># </span><span style="color: #607d8b;">insert a element before index 2</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>months<span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>months<span style="color: #1565C0;">[</span>::<span style="color: #689f38;">2</span><span style="color: #1565C0;">]</span><span style="color: #e91e63;">)</span> <span style="color: #607d8b;"># </span><span style="color: #607d8b;">slicing works the same as with strings</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>months<span style="color: #1565C0;">[</span><span style="color: #689f38;">8</span>:<span style="color: #689f38;">11</span><span style="color: #1565C0;">]</span><span style="color: #e91e63;">)</span>
+<pre  class="src src-python">months.insert<span style="color: #e91e63;">(</span><span style="color: #9ccc65;">2</span>, <span style="color: #9ccc65;">'mar'</span><span style="color: #e91e63;">)</span> <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">insert a element before index 2</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>months<span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>months<span style="color: #2196F3;">[</span>::<span style="color: #9ccc65;">2</span><span style="color: #2196F3;">]</span><span style="color: #e91e63;">)</span> <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">slicing works the same as with strings</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>months<span style="color: #2196F3;">[</span><span style="color: #9ccc65;">8</span>:<span style="color: #9ccc65;">11</span><span style="color: #2196F3;">]</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -611,16 +610,16 @@ Lists are generally stored as references -&gt; the values are not copied.
 <h4 id="orgheadline28">List manipulation</h4>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #EF6C00;">li</span> = <span style="color: #e91e63;">[</span><span style="color: #689f38;">1</span>, <span style="color: #689f38;">4</span>, <span style="color: #689f38;">8</span>.<span style="color: #689f38;">33</span>, <span style="color: #689f38;">3</span>.<span style="color: #689f38;">6</span>, <span style="color: #689f38;">19</span>, <span style="color: #689f38;">12</span><span style="color: #e91e63;">]</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>li.index<span style="color: #1565C0;">(</span><span style="color: #689f38;">3</span>.<span style="color: #689f38;">6</span><span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>  <span style="color: #607d8b;"># </span><span style="color: #607d8b;">get the index of a element</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>li<span style="color: #1565C0;">[</span>li.index<span style="color: #EF6C00;">(</span><span style="color: #689f38;">3</span>.<span style="color: #689f38;">6</span><span style="color: #EF6C00;">)</span><span style="color: #1565C0;">]</span><span style="color: #e91e63;">)</span>  <span style="color: #607d8b;"># </span><span style="color: #607d8b;">this index can be used to address the list</span>
-li.sort<span style="color: #e91e63;">()</span>  <span style="color: #607d8b;"># </span><span style="color: #607d8b;">sort the list</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>li<span style="color: #e91e63;">)</span>
-<span style="color: #607d8b;">#</span><span style="color: #607d8b;">remove elements from list</span>
-<span style="color: #00796b;">del</span> li<span style="color: #e91e63;">[</span><span style="color: #689f38;">2</span><span style="color: #e91e63;">]</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"removed index 2:"</span>, li<span style="color: #e91e63;">)</span>
-li.pop<span style="color: #e91e63;">(</span><span style="color: #689f38;">2</span><span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"removed index 2 again:"</span>, li<span style="color: #e91e63;">)</span>
+<pre  class="src src-python"><span style="color: #ffcc80;">li</span> = <span style="color: #e91e63;">[</span><span style="color: #9ccc65;">1</span>, <span style="color: #9ccc65;">4</span>, <span style="color: #9ccc65;">8</span>.<span style="color: #9ccc65;">33</span>, <span style="color: #9ccc65;">3</span>.<span style="color: #9ccc65;">6</span>, <span style="color: #9ccc65;">19</span>, <span style="color: #9ccc65;">12</span><span style="color: #e91e63;">]</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>li.index<span style="color: #2196F3;">(</span><span style="color: #9ccc65;">3</span>.<span style="color: #9ccc65;">6</span><span style="color: #2196F3;">)</span><span style="color: #e91e63;">)</span>  <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">get the index of a element</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>li<span style="color: #2196F3;">[</span>li.index<span style="color: #EF6C00;">(</span><span style="color: #9ccc65;">3</span>.<span style="color: #9ccc65;">6</span><span style="color: #EF6C00;">)</span><span style="color: #2196F3;">]</span><span style="color: #e91e63;">)</span>  <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">this index can be used to address the list</span>
+li.sort<span style="color: #e91e63;">()</span>  <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">sort the list</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>li<span style="color: #e91e63;">)</span>
+<span style="color: #b0bec5;">#</span><span style="color: #b0bec5;">remove elements from list</span>
+<span style="color: #fff59d;">del</span> li<span style="color: #e91e63;">[</span><span style="color: #9ccc65;">2</span><span style="color: #e91e63;">]</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"removed index 2:"</span>, li<span style="color: #e91e63;">)</span>
+li.pop<span style="color: #e91e63;">(</span><span style="color: #9ccc65;">2</span><span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"removed index 2 again:"</span>, li<span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -628,8 +627,8 @@ li.pop<span style="color: #e91e63;">(</span><span style="color: #689f38;">2</spa
 3
 3.6
 [1, 3.6, 4, 8.33, 12, 19]
-removed index 2: [1, 3.6, 8.33, 12, 19]
-removed index 2 again: [1, 3.6, 12, 19]
+('removed index 2:', [1, 3.6, 8.33, 12, 19])
+('removed index 2 again:', [1, 3.6, 12, 19])
 </pre>
 
 <p>
@@ -642,23 +641,23 @@ for even more list related functions see
 <h4 id="orgheadline29">Sets - unique elements and set operations</h4>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #EF6C00;">m</span>, <span style="color: #EF6C00;">p</span> = <span style="color: #FF5722;">set</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">'mama'</span><span style="color: #e91e63;">)</span>, <span style="color: #FF5722;">set</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">'papa'</span><span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>m<span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>p<span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"Union, m or p"</span>, m | p<span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"Intersection, m and p"</span>, m &amp; p<span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"Difference, m minus p"</span>, m - p<span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"Symetric Difference"</span>, m ^ p<span style="color: #e91e63;">)</span> <span style="color: #607d8b;"># </span><span style="color: #607d8b;">elements in either one but not both sets</span>
+<pre  class="src src-python"><span style="color: #ffcc80;">m</span>, <span style="color: #ffcc80;">p</span> = <span style="color: #ff8A65;">set</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">'mama'</span><span style="color: #e91e63;">)</span>, <span style="color: #ff8A65;">set</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">'papa'</span><span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>m<span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>p<span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"Union, m or p"</span>, m | p<span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"Intersection, m and p"</span>, m &amp; p<span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"Difference, m minus p"</span>, m - p<span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"Symetric Difference"</span>, m ^ p<span style="color: #e91e63;">)</span> <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">elements in either one but not both sets</span>
 </pre>
 </div>
 
 <pre class="example">
-{'a', 'm'}
-{'a', 'p'}
-Union, m or p {'a', 'm', 'p'}
-Intersection, m and p {'a'}
-Difference, m minus p {'m'}
-Symetric Difference {'m', 'p'}
+set(['a', 'm'])
+set(['a', 'p'])
+('Union, m or p', set(['a', 'p', 'm']))
+('Intersection, m and p', set(['a']))
+('Difference, m minus p', set(['m']))
+('Symetric Difference', set(['p', 'm']))
 </pre>
 
 <p>
@@ -674,12 +673,12 @@ Key value pairs of any data type. Not ordered.
 
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #EF6C00;">d</span> = <span style="color: #e91e63;">{</span><span style="color: #689f38;">'integer'</span>: <span style="color: #689f38;">7</span>, <span style="color: #689f38;">'string'</span>: <span style="color: #689f38;">"test"</span>, <span style="color: #689f38;">1</span>: <span style="color: #1565C0;">[</span><span style="color: #689f38;">1</span>, <span style="color: #689f38;">2</span>, <span style="color: #689f38;">3</span><span style="color: #1565C0;">]</span><span style="color: #e91e63;">}</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>d<span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>d<span style="color: #1565C0;">[</span><span style="color: #689f38;">1</span><span style="color: #1565C0;">]</span><span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>d<span style="color: #1565C0;">[</span><span style="color: #689f38;">'integer'</span><span style="color: #1565C0;">]</span><span style="color: #e91e63;">)</span> <span style="color: #607d8b;"># </span><span style="color: #607d8b;">get a value by the key</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>d.keys<span style="color: #1565C0;">()</span><span style="color: #e91e63;">)</span> <span style="color: #607d8b;"># </span><span style="color: #607d8b;">list of the keys</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">'integer'</span> <span style="color: #00796b;">in</span> d<span style="color: #e91e63;">)</span> <span style="color: #607d8b;"># </span><span style="color: #607d8b;">test for presence of key</span>
+<pre  class="src src-python"><span style="color: #ffcc80;">d</span> = <span style="color: #e91e63;">{</span><span style="color: #9ccc65;">'integer'</span>: <span style="color: #9ccc65;">7</span>, <span style="color: #9ccc65;">'string'</span>: <span style="color: #9ccc65;">"test"</span>, <span style="color: #9ccc65;">1</span>: <span style="color: #2196F3;">[</span><span style="color: #9ccc65;">1</span>, <span style="color: #9ccc65;">2</span>, <span style="color: #9ccc65;">3</span><span style="color: #2196F3;">]</span><span style="color: #e91e63;">}</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>d<span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>d<span style="color: #2196F3;">[</span><span style="color: #9ccc65;">1</span><span style="color: #2196F3;">]</span><span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>d<span style="color: #2196F3;">[</span><span style="color: #9ccc65;">'integer'</span><span style="color: #2196F3;">]</span><span style="color: #e91e63;">)</span> <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">get a value by the key</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>d.keys<span style="color: #2196F3;">()</span><span style="color: #e91e63;">)</span> <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">list of the keys</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">'integer'</span> <span style="color: #fff59d;">in</span> d<span style="color: #e91e63;">)</span> <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">test for presence of key</span>
 </pre>
 </div>
 
@@ -687,7 +686,7 @@ Key value pairs of any data type. Not ordered.
 {'integer': 7, 'string': 'test', 1: [1, 2, 3]}
 [1, 2, 3]
 7
-dict_keys(['integer', 'string', 1])
+['integer', 'string', 1]
 True
 </pre>
 
@@ -696,23 +695,23 @@ True
 <h4 id="orgheadline31"></h4>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #607d8b;"># </span><span style="color: #607d8b;">keys can be any hashable(unique) object</span>
-<span style="color: #EF6C00;">d1</span> = <span style="color: #e91e63;">{</span><span style="color: #1565C0;">(</span><span style="color: #689f38;">1</span>, <span style="color: #689f38;">2</span><span style="color: #1565C0;">)</span>: <span style="color: #689f38;">"tuple with 1 and 2"</span>,
-      <span style="color: #1565C0;">(</span><span style="color: #689f38;">1</span>, <span style="color: #689f38;">3</span><span style="color: #1565C0;">)</span>: <span style="color: #689f38;">"tuple with 1 and 3"</span><span style="color: #e91e63;">}</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>d1<span style="color: #1565C0;">[</span><span style="color: #EF6C00;">(</span><span style="color: #689f38;">1</span>, <span style="color: #689f38;">2</span><span style="color: #EF6C00;">)</span><span style="color: #1565C0;">]</span><span style="color: #e91e63;">)</span>
+<pre  class="src src-python"><span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">keys can be any hashable(unique) object</span>
+<span style="color: #ffcc80;">d1</span> = <span style="color: #e91e63;">{</span><span style="color: #2196F3;">(</span><span style="color: #9ccc65;">1</span>, <span style="color: #9ccc65;">2</span><span style="color: #2196F3;">)</span>: <span style="color: #9ccc65;">"tuple with 1 and 2"</span>,
+      <span style="color: #2196F3;">(</span><span style="color: #9ccc65;">1</span>, <span style="color: #9ccc65;">3</span><span style="color: #2196F3;">)</span>: <span style="color: #9ccc65;">"tuple with 1 and 3"</span><span style="color: #e91e63;">}</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>d1<span style="color: #2196F3;">[</span><span style="color: #EF6C00;">(</span><span style="color: #9ccc65;">1</span>, <span style="color: #9ccc65;">2</span><span style="color: #EF6C00;">)</span><span style="color: #2196F3;">]</span><span style="color: #e91e63;">)</span>
 
-<span style="color: #607d8b;"># </span><span style="color: #607d8b;">add element to dictionary</span>
-<span style="color: #EF6C00;">d1</span><span style="color: #e91e63;">[</span><span style="color: #689f38;">'additional element'</span><span style="color: #e91e63;">]</span> = <span style="color: #689f38;">"I am new"</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>d1<span style="color: #e91e63;">)</span>
-<span style="color: #607d8b;"># </span><span style="color: #607d8b;">delete it again</span>
-<span style="color: #00796b;">del</span> d1<span style="color: #e91e63;">[</span><span style="color: #689f38;">'additional element'</span><span style="color: #e91e63;">]</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>d1<span style="color: #e91e63;">)</span>
+<span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">add element to dictionary</span>
+<span style="color: #ffcc80;">d1</span><span style="color: #e91e63;">[</span><span style="color: #9ccc65;">'additional element'</span><span style="color: #e91e63;">]</span> = <span style="color: #9ccc65;">"I am new"</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>d1<span style="color: #e91e63;">)</span>
+<span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">delete it again</span>
+<span style="color: #fff59d;">del</span> d1<span style="color: #e91e63;">[</span><span style="color: #9ccc65;">'additional element'</span><span style="color: #e91e63;">]</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>d1<span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
 <pre class="example">
 tuple with 1 and 2
-{(1, 2): 'tuple with 1 and 2', (1, 3): 'tuple with 1 and 3', 'additional element': 'I am new'}
+{(1, 2): 'tuple with 1 and 2', 'additional element': 'I am new', (1, 3): 'tuple with 1 and 3'}
 {(1, 2): 'tuple with 1 and 2', (1, 3): 'tuple with 1 and 3'}
 </pre>
 
@@ -724,28 +723,28 @@ Dictionary update
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #EF6C00;">d1</span> = <span style="color: #e91e63;">{</span><span style="color: #689f38;">"one"</span>: <span style="color: #689f38;">1</span>, <span style="color: #689f38;">"two"</span>: <span style="color: #689f38;">2</span><span style="color: #e91e63;">}</span>
-<span style="color: #EF6C00;">d2</span> = <span style="color: #e91e63;">{</span><span style="color: #689f38;">"two"</span>: <span style="color: #689f38;">"II"</span>, <span style="color: #689f38;">"three"</span>: <span style="color: #689f38;">"III"</span><span style="color: #e91e63;">}</span>
+<pre  class="src src-python"><span style="color: #ffcc80;">d1</span> = <span style="color: #e91e63;">{</span><span style="color: #9ccc65;">"one"</span>: <span style="color: #9ccc65;">1</span>, <span style="color: #9ccc65;">"two"</span>: <span style="color: #9ccc65;">2</span><span style="color: #e91e63;">}</span>
+<span style="color: #ffcc80;">d2</span> = <span style="color: #e91e63;">{</span><span style="color: #9ccc65;">"two"</span>: <span style="color: #9ccc65;">"II"</span>, <span style="color: #9ccc65;">"three"</span>: <span style="color: #9ccc65;">"III"</span><span style="color: #e91e63;">}</span>
 d1.update<span style="color: #e91e63;">(</span>d2<span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>d1<span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>d1<span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
 <pre class="example">
-{'one': 1, 'two': 'II', 'three': 'III'}
+{'three': 'III', 'two': 'II', 'one': 1}
 </pre>
 
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #EF6C00;">answer_dict</span> = <span style="color: #e91e63;">{</span><span style="color: #558b2f;">True</span>: <span style="color: #689f38;">'yes'</span>, <span style="color: #558b2f;">False</span>: <span style="color: #689f38;">'no'</span><span style="color: #e91e63;">}</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"is 7 less than 5?"</span> , answer_dict<span style="color: #1565C0;">[</span><span style="color: #558b2f;">False</span><span style="color: #1565C0;">]</span><span style="color: #e91e63;">)</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"is 7 less than 5?"</span> , answer_dict<span style="color: #1565C0;">[</span><span style="color: #689f38;">7</span>&lt;<span style="color: #689f38;">5</span><span style="color: #1565C0;">]</span><span style="color: #e91e63;">)</span>
+<pre  class="src src-python"><span style="color: #ffcc80;">answer_dict</span> = <span style="color: #e91e63;">{</span><span style="color: #8bc34a;">True</span>: <span style="color: #9ccc65;">'yes'</span>, <span style="color: #8bc34a;">False</span>: <span style="color: #9ccc65;">'no'</span><span style="color: #e91e63;">}</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"is 7 less than 5?"</span> , answer_dict<span style="color: #2196F3;">[</span><span style="color: #8bc34a;">False</span><span style="color: #2196F3;">]</span><span style="color: #e91e63;">)</span>
+<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"is 7 less than 5?"</span> , answer_dict<span style="color: #2196F3;">[</span><span style="color: #9ccc65;">7</span>&lt;<span style="color: #9ccc65;">5</span><span style="color: #2196F3;">]</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
 <pre class="example">
-is 7 less than 5? no
-is 7 less than 5? no
+('is 7 less than 5?', 'no')
+('is 7 less than 5?', 'no')
 </pre>
 
 </section>
