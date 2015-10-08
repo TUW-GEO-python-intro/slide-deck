@@ -333,9 +333,9 @@ number 4 -4
 </div>
 
 <pre class="example">
-key3
-key1
 key2
+key1
+key3
 </pre>
 
 <div class="org-src-container">
@@ -418,13 +418,22 @@ range
 <pre  class="src src-python"><span style="color: #00796b;">for</span> n <span style="color: #00796b;">in</span> <span style="color: #B71C1C;">range</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">2</span>, <span style="color: #689f38;">8</span><span style="color: #e91e63;">)</span>: <span style="color: #607d8b;"># </span><span style="color: #607d8b;">lets debug through this</span>
     <span style="color: #00796b;">for</span> x <span style="color: #00796b;">in</span> <span style="color: #B71C1C;">range</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">2</span>, n<span style="color: #e91e63;">)</span>:
         <span style="color: #00796b;">if</span> n % x == <span style="color: #689f38;">0</span>:
-            <span style="color: #00796b;">print</span> n, <span style="color: #689f38;">'equals'</span>, x, <span style="color: #689f38;">'*'</span>, n / x
+            <span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>n, <span style="color: #689f38;">'equals'</span>, x, <span style="color: #689f38;">'*'</span>, n / x<span style="color: #e91e63;">)</span>
             <span style="color: #00796b;">break</span> <span style="color: #607d8b;"># </span><span style="color: #607d8b;">breaks out of (ends) current loop</span>
     <span style="color: #00796b;">else</span>:
         <span style="color: #607d8b;"># </span><span style="color: #607d8b;">loop fell through without finding a factor</span>
-        <span style="color: #00796b;">print</span> n, <span style="color: #689f38;">'is a prime number'</span>
+        <span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>n, <span style="color: #689f38;">'is a prime number'</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
+
+<pre class="example">
+2 is a prime number
+3 is a prime number
+4 equals 2 * 2.0
+5 is a prime number
+6 equals 2 * 3.0
+7 is a prime number
+</pre>
 
 </section>
 <section id="slide-orgheadline19">
@@ -433,11 +442,20 @@ range
 
 <pre  class="src src-python"><span style="color: #00796b;">for</span> num <span style="color: #00796b;">in</span> <span style="color: #B71C1C;">range</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">2</span>, <span style="color: #689f38;">8</span><span style="color: #e91e63;">)</span>:
     <span style="color: #00796b;">if</span> num % <span style="color: #689f38;">2</span> == <span style="color: #689f38;">0</span>: <span style="color: #607d8b;"># </span><span style="color: #607d8b;">percent sign is modulo</span>
-        <span style="color: #00796b;">print</span> <span style="color: #689f38;">"Found an even number"</span>, num
+        <span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"Found an even number"</span>, num<span style="color: #e91e63;">)</span>
         <span style="color: #00796b;">continue</span> <span style="color: #607d8b;"># </span><span style="color: #607d8b;">continue with the next iteration of the loop</span>
-    <span style="color: #00796b;">print</span> <span style="color: #689f38;">"Found a number"</span>, num
+    <span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"Found a number"</span>, num<span style="color: #e91e63;">)</span>
 </pre>
 </div>
+
+<pre class="example">
+Found an even number 2
+Found a number 3
+Found an even number 4
+Found a number 5
+Found an even number 6
+Found a number 7
+</pre>
 
 
 </section>
@@ -446,21 +464,20 @@ range
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #607d8b;">####################################################################</span>
-<span style="color: #607d8b;"># </span><span style="color: #607d8b;">Mini Exercise </span>
+<span style="color: #607d8b;"># </span><span style="color: #607d8b;">Mini Exercise 1</span>
 
-<span style="color: #607d8b;"># </span><span style="color: #607d8b;">Try to format and print only the positive numbers in 'dataset1',</span>
-<span style="color: #607d8b;"># </span><span style="color: #607d8b;">with 1 number on each line,</span>
-<span style="color: #607d8b;"># </span><span style="color: #607d8b;">and with 2 digits after the comma</span>
+<span style="color: #607d8b;"># </span><span style="color: #607d8b;">Try to print only the positive numbers in 'dataset1',</span>
 
 <span style="color: #607d8b;">####################################################################</span>
+<span style="color: #EF6C00;">dataset1</span> = <span style="color: #e91e63;">[</span> <span style="color: #689f38;">1</span>.<span style="color: #689f38;">73</span>, <span style="color: #689f38;">2</span>.<span style="color: #689f38;">4122</span>, <span style="color: #689f38;">80</span>, -<span style="color: #689f38;">4</span> <span style="color: #e91e63;">]</span>
 </pre>
 </div>
 
 </section>
 </section>
 <section>
-<section id="slide-orgheadline31">
-<h2 id="orgheadline31">Functions</h2>
+<section id="slide-orgheadline30">
+<h2 id="orgheadline30">Functions</h2>
 <ul>
 <li>A function is a block of code that can be reused</li>
 <li>A function can take arguments and keywords</li>
@@ -488,7 +505,8 @@ print in a function
 
 <pre  class="src src-python"><span style="color: #00796b;">def</span> <span style="color: #0097A7;">classify</span><span style="color: #e91e63;">(</span>dataset, threshold<span style="color: #e91e63;">)</span>:
     <span style="color: #689f38;">"""</span>
-<span style="color: #689f38;">    classifies dataset into small and large class using the threshold</span>
+<span style="color: #689f38;">    classifies dataset into small and large class using the </span>
+<span style="color: #689f38;">    threshold</span>
 
 <span style="color: #689f38;">    Parameters</span>
 <span style="color: #689f38;">    ----------</span>
@@ -564,7 +582,8 @@ Generation of HTML or PDF Documentation using <a href="http://sphinx-doc.org/">S
 
 <pre  class="src src-python"><span style="color: #00796b;">def</span> <span style="color: #0097A7;">classifydefault</span><span style="color: #e91e63;">(</span>dataset, threshold=<span style="color: #689f38;">2</span>.<span style="color: #689f38;">5</span><span style="color: #e91e63;">)</span>:
     <span style="color: #689f38;">"""</span>
-<span style="color: #689f38;">    classifies dataset into small and large class using the threshold</span>
+<span style="color: #689f38;">    classifies dataset into small and large class using the </span>
+<span style="color: #689f38;">    threshold</span>
 
 <span style="color: #689f38;">    Parameters</span>
 <span style="color: #689f38;">    ----------</span>
@@ -648,36 +667,12 @@ func<span style="color: #e91e63;">(</span>l<span style="color: #e91e63;">)</span
 [1, 2, 3, 4]
 </pre>
 
-</section>
-<section id="slide-orgheadline30">
-<h3 id="orgheadline30">Mini Exercise</h3>
-<div class="org-src-container">
-
-<pre  class="src src-python"><span style="color: #607d8b;">####################################################################</span>
-<span style="color: #607d8b;"># </span><span style="color: #607d8b;">Mini Exercise </span>
-
-<span style="color: #607d8b;"># </span><span style="color: #607d8b;">Write a function that classifies strings by length</span>
-<span style="color: #607d8b;"># </span><span style="color: #607d8b;">inputs should be a list of strings, and a threshold </span>
-<span style="color: #607d8b;"># </span><span style="color: #607d8b;">specifying the number of characters</span>
-<span style="color: #607d8b;"># </span><span style="color: #607d8b;">The output should be a list containing the strings "shorter" or "longer"</span>
-<span style="color: #607d8b;"># </span><span style="color: #607d8b;">lets ignore strings of length = threshold for now</span>
-<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #B71C1C;">len</span><span style="color: #1565C0;">(</span><span style="color: #689f38;">"test"</span><span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span> <span style="color: #607d8b;"># </span><span style="color: #607d8b;">hint</span>
-<span style="color: #607d8b;"># </span><span style="color: #607d8b;">list of random strings</span>
-<span style="color: #EF6C00;">test_strings</span> = <span style="color: #e91e63;">[</span><span style="color: #689f38;">"faucal"</span> ,<span style="color: #689f38;">"fiddling"</span> ,<span style="color: #689f38;">"instil"</span> ,<span style="color: #689f38;">"blake"</span> ,<span style="color: #689f38;">"profanely"</span> ,
-                <span style="color: #689f38;">"bootblack"</span> ,<span style="color: #689f38;">"decongest"</span> ,<span style="color: #689f38;">"interest"</span> ,<span style="color: #689f38;">"arrowy"</span> ,<span style="color: #689f38;">"eponymic"</span><span style="color: #e91e63;">]</span>
-<span style="color: #607d8b;">####################################################################</span>
-</pre>
-</div>
-
-<pre class="example">
-4
-</pre>
 
 </section>
 </section>
 <section>
-<section id="slide-orgheadline36">
-<h2 id="orgheadline36">String Formatting</h2>
+<section id="slide-orgheadline35">
+<h2 id="orgheadline35">String Formatting</h2>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #607d8b;"># </span><span style="color: #607d8b;">String Formatting</span>
@@ -705,8 +700,8 @@ a pear and a tree
 </pre>
 
 </section>
-<section id="slide-orgheadline32">
-<h3 id="orgheadline32"></h3>
+<section id="slide-orgheadline31">
+<h3 id="orgheadline31"></h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #607d8b;"># </span><span style="color: #607d8b;">refer to arguments by index; possibly re-use them</span>
@@ -725,8 +720,8 @@ some is better than nothing
 </pre>
 
 </section>
-<section id="slide-orgheadline33">
-<h3 id="orgheadline33"></h3>
+<section id="slide-orgheadline32">
+<h3 id="orgheadline32"></h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #607d8b;"># </span><span style="color: #607d8b;">practically anything can be an argument to format(.)</span>
@@ -748,8 +743,8 @@ value is: 3.429
 </pre>
 
 </section>
-<section id="slide-orgheadline34">
-<h3 id="orgheadline34"></h3>
+<section id="slide-orgheadline33">
+<h3 id="orgheadline33"></h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #607d8b;"># </span><span style="color: #607d8b;">format left-aligned, centered, and right-aligned </span>
@@ -773,8 +768,8 @@ Gerhard                 Mercator
 </pre>
 
 </section>
-<section id="slide-orgheadline35">
-<h3 id="orgheadline35"></h3>
+<section id="slide-orgheadline34">
+<h3 id="orgheadline34"></h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #607d8b;"># </span><span style="color: #607d8b;">multi-line strings can be formatted just as well.</span>

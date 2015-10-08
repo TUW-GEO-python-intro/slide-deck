@@ -1,10 +1,165 @@
-# Debugging
-var1 = "test"
-var2 = [1, 2, 3, 4]
-var3 = {"key1": 1, "key2": 2}
-print(var1, var2, var3) # set a breakpoint here, click on blue dot left of this line
-var1 = "modified"
-var3["key5"] = "a new value"
+if 3 < 5:
+    print("Three is less than 5")
+
+if 5 <= 3:
+    print("Five is less or equal to three")
+
+name = "Rick"
+if name in ["Rick", "Morty"]:
+    print("Name is in list")
+
+key = 1
+if key in {1: "one", 2: "two"}:
+    print("key is in dict")
+
+if key in {"one": 1, "two": 2}:
+    print("Comparison of dicts is against keys by default")
+
+if key in {"one": 1, "two": 2}.values():
+    print("value is in dict")
+
+var = "test"
+if 5 > 3 and var == "test":
+    print("both statements are true")
+
+if 5 > 3 or 8 > 2:
+    print("at least one statement is true")
+
+name = 2
+assert type(name) == str, "name should be a string"
+if type(name) != str:
+    pass # can be useful when planning program structure
+
+i = 0
+data = [8, 4.5]
+
+# the len function gets the length of a list
+print("Length of the list is:", len(data)) 
+
+while i < len(data):
+    print(data[i])
+    i += 1
+
+data = [ 1.73, 2.4122, 80, -4 ]
+
+# iterate over elements, using keyword 'in'
+for elem in data:
+    print(elem)
+
+data = [ 1.73, 2.4122, 80, -4 ]
+datanames = ["number 1", "number 2", "number 3", "number 4"]
+for number, name in zip(data, datanames):
+    print(name, number)
+
+d = {"key1": 1, "key2": 2, "key3": 3}
+for key in d:
+    print(key)
+
+d = {"key1": 1, "key2": 2, "key3": 3}
+for key, item in d.iteritems():
+    print(key, item)
+
+print("range")
+for i in range(1, 10, 2):
+    print(i)
+
+l = ["a", "b", "c", "d"]
+for i, item in enumerate(l):
+    print(i, item)
+
+dataset1 = [ 1.73, 2.4122, 80, -4 ]
+# if/else blocks
+for d in dataset1:
+    if d > 3:
+        res = ">3"
+    else:
+        res = "<=3"
+    print(res)
+
+for n in range(2, 8): # lets debug through this
+    for x in range(2, n):
+        if n % x == 0:
+            print(n, 'equals', x, '*', n / x)
+            break # breaks out of (ends) current loop
+    else:
+        # loop fell through without finding a factor
+        print(n, 'is a prime number')
+
+for num in range(2, 8):
+    if num % 2 == 0: # percent sign is modulo
+        print("Found an even number", num)
+        continue # continue with the next iteration of the loop
+    print("Found a number", num)
+
+def classify(dataset, threshold):
+    """
+    classifies dataset into small and large class using the 
+    threshold
+
+    Parameters
+    ----------
+    dataset: list
+        list to classify
+    threshold: float
+        threshold to use for classification
+
+    Returns
+    -------
+    results: list
+        containing True or False
+    """
+    results = []  # create an empty list
+    for data in dataset:
+        results.append(data > threshold)
+    return results
+
+dataset1 = [1.73, 80, 2.4122, -4]
+res = classify(dataset1, 2)
+print(res)
+print(classify(dataset1, 1))
+
+def classifydefault(dataset, threshold=2.5):
+    """
+    classifies dataset into small and large class using the 
+    threshold
+
+    Parameters
+    ----------
+    dataset: list
+        list to classify
+    threshold: float, optional
+        threshold to use for classification
+
+    Returns
+    -------
+    results: list
+        containing True or False
+    """
+    results = []  # create an empty list
+    for data in dataset:
+        results.append(data > threshold)
+    return results
+
+dataset2 = [1.73, 80, 2.4122, -4, 2.6]
+print(classifydefault(dataset2))
+
+variable = "I am Global"
+var = "I'm also Global"
+def func():
+    variable = "I am Local"
+    print(variable)
+    print(var)
+
+print(variable)
+func()
+
+l = [1, 2, 3]
+def func(ls):
+    ls.append(4)
+
+print(l)
+func(l)
+print(l)
 
 # String Formatting
 # handy for any kind of logging, etc.
@@ -52,126 +207,3 @@ res = """# This might be a {}-file-header,
 # created by {}
 # on {}""".format("text", "me", "2014-02-18")
 print(res)
-
-i = 0
-data = [2, 4.5]
-while i < len(data):
-    print(data[i])
-    i += 1
-
-data = [ 1.73, 2.4122, 80, -4 ]
-
-# iterate over elements, using keyword 'in'
-for elem in data:
-    print(elem)
-
-data = [ 1.73, 2.4122, 80, -4 ]
-datanames = ["number 1", "number 2", "number 3", "number 4"]
-for number, name in zip(data, datanames):
-    print(name, number)
-
-d = {"key1": 1, "key2": 2, "key3": 3}
-for key in d:
-    print(key)
-
-d = {"key1": 1, "key2": 2, "key3": 3}
-for key, item in d.iteritems():
-    print(key, item)
-
-dataset1 = [ 1.73, 2.4122, 80, -4 ]
-# if/else blocks
-for d in dataset1:
-    if d > 3:
-        res = ">3"
-    else:
-        res = "<=3"
-    print(res)
-
-####################################################################
-# Mini Exercise 
-
-# Try to format and print only the positive numbers in 'dataset1',
-# with 1 number on each line,
-# and with 2 digits after the comma
-
-####################################################################
-
-def classify(dataset, threshold):
-    """
-    classifies dataset into small and large class using the threshold
-
-    Parameters
-    ----------
-    dataset: list
-        list to classify
-    threshold: float
-        threshold to use for classification
-
-    Returns
-    -------
-    results: list
-        containing True or False
-    """
-    results = []  # create an empty list
-    for data in dataset:
-        results.append(data > threshold)
-    return results
-
-dataset1 = [1.73, 80, 2.4122, -4]
-res = classify(dataset1, 2)
-print(res)
-print(classify(dataset1, 1))
-
-def classifydefault(dataset, threshold=2.5):
-    """
-    classifies dataset into small and large class using the threshold
-
-    Parameters
-    ----------
-    dataset: list
-        list to classify
-    threshold: float, optional
-        threshold to use for classification
-
-    Returns
-    -------
-    results: list
-        containing True or False
-    """
-    results = []  # create an empty list
-    for data in dataset:
-        results.append(data > threshold)
-    return results
-
-dataset2 = [1.73, 80, 2.4122, -4, 2.6]
-print(classifydefault(dataset2))
-
-variable = "I am Global"
-def func():
-    variable = "I am Local"
-    print(variable)
-
-print(variable)
-func()
-
-l = [1, 2, 3]
-def func(ls):
-    ls.append(4)
-
-print(l)
-func(l)
-print(l)
-
-####################################################################
-# Mini Exercise 
-
-# Write a function that classifies strings by length
-# inputs should be a list of strings, and a threshold 
-# specifying the number of characters
-# The output should be a list containing the strings "shorter" or "longer"
-# lets ignore strings of length = threshold for now
-print(len("test")) # hint
-# list of random strings
-test_strings = ["faucal" ,"fiddling" ,"instil" ,"blake" ,"profanely" ,
-                "bootblack" ,"decongest" ,"interest" ,"arrowy" ,"eponymic"]
-####################################################################
