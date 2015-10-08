@@ -297,32 +297,32 @@ for d in dataset1:
 : <=3
 
 ** for loops with break and else
-#+begin_src python :results output pp :exports both :tangle lecture4.py
+#+begin_src python :results output pp :exports both :tangle lecture2.py
   for n in range(2, 8): # lets debug through this
       for x in range(2, n):
           if n % x == 0:
-              print n, 'equals', x, '*', n / x
+              print(n, 'equals', x, '*', n / x)
               break # breaks out of (ends) current loop
       else:
           # loop fell through without finding a factor
-          print n, 'is a prime number'
+          print(n, 'is a prime number')
 #+end_src
 
 #+RESULTS:
 : 2 is a prime number
 : 3 is a prime number
-: 4 equals 2 * 2
+: 4 equals 2 * 2.0
 : 5 is a prime number
-: 6 equals 2 * 3
+: 6 equals 2 * 3.0
 : 7 is a prime number
 
 ** for loops and continue
-#+begin_src python :results output pp :exports both :tangle lecture4.py
+#+begin_src python :results output pp :exports both :tangle lecture2.py
   for num in range(2, 8):
       if num % 2 == 0: # percent sign is modulo
-          print "Found an even number", num
+          print("Found an even number", num)
           continue # continue with the next iteration of the loop
-      print "Found a number", num
+      print("Found a number", num)
 #+end_src
 
 #+RESULTS:
@@ -335,15 +335,14 @@ for d in dataset1:
 
 
 ** Mini Exercise
-#+begin_src python :results output pp :exports both :tangle lecture2.py
+#+begin_src python :results output pp :exports both :tangle mini_exercise_1.py
 ####################################################################
-# Mini Exercise 
+# Mini Exercise 1
 
-# Try to format and print only the positive numbers in 'dataset1',
-# with 1 number on each line,
-# and with 2 digits after the comma
+# Try to print only the positive numbers in 'dataset1',
 
 ####################################################################
+dataset1 = [ 1.73, 2.4122, 80, -4 ]
 #+end_src
 
 * Functions
@@ -365,7 +364,8 @@ function()
 #+begin_src python :results output pp :session func1 :exports both :tangle lecture2.py
   def classify(dataset, threshold):
       """
-      classifies dataset into small and large class using the threshold
+      classifies dataset into small and large class using the 
+      threshold
 
       Parameters
       ----------
@@ -414,7 +414,8 @@ Generation of HTML or PDF Documentation using [[http://sphinx-doc.org/][Sphinx]]
 #+begin_src python :results output pp :session func1 :exports both :tangle lecture2.py
   def classifydefault(dataset, threshold=2.5):
       """
-      classifies dataset into small and large class using the threshold
+      classifies dataset into small and large class using the 
+      threshold
 
       Parameters
       ----------
@@ -475,22 +476,6 @@ print(l)
 : [1, 2, 3]
 : [1, 2, 3, 4]
 
-** Mini Exercise
-#+begin_src python :results output pp :exports both :tangle lecture2.py
-####################################################################
-# Mini Exercise 
-
-# Write a function that classifies strings by length
-# inputs should be a list of strings, and a threshold 
-# specifying the number of characters
-# The output should be a list containing the strings "shorter" or "longer"
-# lets ignore strings of length = threshold for now
-print(len("test")) # hint
-# list of random strings
-test_strings = ["faucal" ,"fiddling" ,"instil" ,"blake" ,"profanely" ,
-                "bootblack" ,"decongest" ,"interest" ,"arrowy" ,"eponymic"]
-####################################################################
-#+end_src
 
 * String Formatting
 
