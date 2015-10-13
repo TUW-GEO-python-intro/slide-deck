@@ -59,7 +59,7 @@ from datetime import date # import only certain variables/classes/functions
 #+end_src
 - Avoid SRC_python[:exports code]{from package import *} -> dirty namespace
 
-Example - Open =WinPython Command Prompt.exe= or =Shell=
+Example - Open =Anaconda Command Prompt= or =Shell=
 
 * Where do I look for packages?
 
@@ -167,7 +167,7 @@ from scipy import optimize
   - IDE(e.g. PyScripter)
   - or python script (=sys.path= variable)
    
-Example - Open =WinPython Command Prompt.exe= or your =Shell=
+Example - Open =Anaconda Command Prompt.exe= or your =Shell=
 
 ** Demo
 use the provided my_code folder as a basis for this demo.
