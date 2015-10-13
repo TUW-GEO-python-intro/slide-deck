@@ -4,7 +4,6 @@
 <head>
 <meta charset="utf-8"/>
 <title>Python Packages</title>
-<meta name="author" content="(Christoph Paulik)"/>
 
 <link rel="stylesheet" href="../reveal.js/css/reveal.css"/>
 <link rel="stylesheet" href="../reveal.js/css/theme/black.css" id="theme"/>
@@ -23,151 +22,139 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide" data-background="" data-background-size="" data-background-repeat="">
-<h1>Python Packages</h1> <h2>Christoph Paulik</h2> <h2><a href="mailto:"></a></h2> <h2></h2>
+<section id="sec-title-slide" data-background="" data-background-size="" data-background-repeat="" data-background-transition="">
+<h1>Python Packages</h1> <h2></h2> <h2><a href="mailto:"></a></h2> <h2></h2>
 </section>
 
 <section>
-<section id="sec-1">
+<section id="slide-orgheadline3">
+<h2 id="orgheadline3">What are packages</h2>
+<div class="outline-text-2" id="text-orgheadline3">
+</div></section>
+<section id="slide-orgheadline1">
+<h3 id="orgheadline1">Packages and Modules</h3>
+<dl>
+<dt>Module</dt><dd>.py file that contains functions/classes or variables</dd>
+<dt>Package</dt><dd>Collection of python modules. Can be nested in folders</dd>
 
-<h2>What are packages</h2>
-</section>
-<section id="sec-1-1">
-
-<h3>Packages and Modules</h3>
-<dl class="org-dl">
-<dt><b>Module</b></dt><dd>.py file that contains functions/classes or variables
-</dd>
-<dt><b>Package</b></dt><dd>Collection of python modules. Can be nested in folders
-</dd>
 </dl>
 
 </section>
-<section id="sec-1-2">
-
-<h3>Folders on Filesystem</h3>
-<ul class="org-ul">
+<section id="slide-orgheadline2">
+<h3 id="orgheadline2">Folders on Filesystem</h3>
+<ul>
 <li>my_package
-<ul class="org-ul">
-<li>__init__.py
-</li>
-<li>my_module.py
-</li>
-</ul>
-</li>
+<ul>
+<li>__init__.py</li>
+<li>my_module.py</li>
+
+</ul></li>
+
 </ul>
 
 <p>
-__init__.py tells python that the folder contains modules
+<code>__init__.py</code> tells python that the folder contains modules
 </p>
 
 <p>
-code in <span class="underline"><span class="underline">init</span></span>.py is executed during import!
+code in <code>__init__.py</code> is executed during import!
 </p>
 
 <p>
 <a href="http://docs.python.org/2/tutorial/modules.html">http://docs.python.org/2/tutorial/modules.html</a>
 </p>
-</section>
 
+</section>
 </section>
 <section>
-<section id="sec-2">
+<section id="slide-orgheadline4">
+<h2 id="orgheadline4">Using Packages</h2>
+<ul>
+<li>Packages have to be imported for the program to be able to use them</li>
 
-<h2>Using Packages</h2>
-<ul class="org-ul">
-<li>Packages have to be imported for the program to be able to use them
-</li>
 </ul>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">import</span> math <span style="color: #204A87;"># </span><span style="color: #204A87;">import complete module</span>
-<span style="color: #A52A2A; font-weight: bold;">import</span> very_long_package_name <span style="color: #A52A2A; font-weight: bold;">as</span> vlp <span style="color: #204A87;"># </span><span style="color: #204A87;">shorten the name </span>
-<span style="color: #A52A2A; font-weight: bold;">from</span> datetime <span style="color: #A52A2A; font-weight: bold;">import</span> date <span style="color: #204A87;"># </span><span style="color: #204A87;">import only certain variables/classes/functions</span>
+<pre  class="src src-python"><span style="color: #00796b;">import</span> math <span style="color: #607d8b;"># </span><span style="color: #607d8b;">import complete module</span>
+<span style="color: #00796b;">import</span> very_long_package_name <span style="color: #00796b;">as</span> vlp <span style="color: #607d8b;"># </span><span style="color: #607d8b;">shorten the name </span>
+<span style="color: #00796b;">from</span> datetime <span style="color: #00796b;">import</span> date <span style="color: #607d8b;"># </span><span style="color: #607d8b;">import only certain variables/classes/functions</span>
 </pre>
 </div>
-<ul class="org-ul">
-<li>Avoid <code class="src src-python"><span style="color: #A52A2A; font-weight: bold;">from</span> package <span style="color: #A52A2A; font-weight: bold;">import</span> *
-</code> -&gt; dirty namespace
-</li>
+<ul>
+<li>Avoid <code class="src src-python"><span style="color: #00796b;">from</span> package <span style="color: #00796b;">import</span> *
+</code> -&gt; dirty namespace</li>
+
 </ul>
 
 <p>
-Example - Open <code>WinPython Command Prompt.exe</code> or <code>Shell</code>
+Example - Open <code>Anaconda Command Prompt</code> or <code>Shell</code>
 </p>
-</section>
 
+</section>
 </section>
 <section>
-<section id="sec-3">
-
-<h2>Where do I look for packages?</h2>
-<ul class="org-ul">
-<li><a href="http://docs.python.org/2/library/">Standard library</a>
-</li>
-<li><a href="https://pypi.python.org/pypi">Python Package Index (PyPI)</a> (56338 packages last week)
-</li>
+<section id="slide-orgheadline5">
+<h2 id="orgheadline5">Where do I look for packages?</h2>
+<ul>
+<li><a href="http://docs.python.org/2/library/">Standard library</a></li>
+<li><a href="https://pypi.python.org/pypi">Python Package Index (PyPI)</a> (67508 packages last week)</li>
 <li>Search Engine „python &lt;your problem here&gt;“
-<ul class="org-ul">
-<li>Project websites
-</li>
-<li>Stackoverflow
-</li>
-<li>Blogs
-</li>
-</ul>
-</li>
-</ul>
-</section>
+<ul>
+<li>Project websites</li>
+<li>Stackoverflow</li>
+<li>Blogs</li>
 
+</ul></li>
+
+</ul>
+
+</section>
 </section>
 <section>
-<section id="sec-4">
-
-<h2>Important Standard Library packages</h2>
-</section>
-<section id="sec-4-1">
-
-<h3>datetime module</h3>
+<section id="slide-orgheadline10">
+<h2 id="orgheadline10">Important Standard Library packages</h2>
+<div class="outline-text-2" id="text-orgheadline10">
+</div></section>
+<section id="slide-orgheadline7">
+<h3 id="orgheadline7">datetime module</h3>
 <p>
 Representation of dates and times. <a href="https://docs.python.org/2.7/library/datetime.html">Documentation.</a>
 </p>
 
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">from</span> datetime <span style="color: #A52A2A; font-weight: bold;">import</span> date
-<span style="color: #0084C8; font-weight: bold;">a</span> = date<span style="color: #707183;">(</span>2015, 3, 1<span style="color: #707183;">)</span>
-<span style="color: #0084C8; font-weight: bold;">b</span> = date.today<span style="color: #707183;">()</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>a, b<span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>a.year, a.month, a.day<span style="color: #707183;">)</span> <span style="color: #204A87;"># </span><span style="color: #204A87;">attribute access</span>
-<span style="color: #0084C8; font-weight: bold;">delta</span> = b - a <span style="color: #204A87;"># </span><span style="color: #204A87;">difference are a datetime.timedelta object</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>delta<span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #A020F0;">type</span><span style="color: #7388d6;">(</span>delta<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+<pre  class="src src-python"><span style="color: #00796b;">from</span> datetime <span style="color: #00796b;">import</span> date
+<span style="color: #EF6C00;">a</span> = date<span style="color: #e91e63;">(</span><span style="color: #689f38;">2015</span>, <span style="color: #689f38;">3</span>, <span style="color: #689f38;">1</span><span style="color: #e91e63;">)</span>
+<span style="color: #EF6C00;">b</span> = date.today<span style="color: #e91e63;">()</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>a, b<span style="color: #e91e63;">)</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>a.year, a.month, a.day<span style="color: #e91e63;">)</span> <span style="color: #607d8b;"># </span><span style="color: #607d8b;">attribute access</span>
+<span style="color: #EF6C00;">delta</span> = b - a <span style="color: #607d8b;"># </span><span style="color: #607d8b;">difference are a datetime.timedelta object</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>delta<span style="color: #e91e63;">)</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #B71C1C;">type</span><span style="color: #1565C0;">(</span>delta<span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
 <pre class="example">
-(datetime.date(2015, 3, 1), datetime.date(2015, 3, 16))
-(2015, 3, 1)
-15 days, 0:00:00
-&lt;type 'datetime.timedelta'&gt;
+2015-03-01 2015-10-13
+2015 3 1
+226 days, 0:00:00
+&lt;class 'datetime.timedelta'&gt;
 </pre>
 
 </section>
-<section id="sec-4-1-1">
-
-<h4>datetime</h4>
+<section id="slide-orgheadline6">
+<h4 id="orgheadline6">datetime</h4>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">from</span> datetime <span style="color: #A52A2A; font-weight: bold;">import</span> date, datetime, timedelta, time
-<span style="color: #0084C8; font-weight: bold;">a</span> = date<span style="color: #707183;">(</span>2008, 5, 1<span style="color: #707183;">)</span>
-<span style="color: #0084C8; font-weight: bold;">b</span> = time<span style="color: #707183;">(</span>12, 30, 15<span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>datetime.combine<span style="color: #7388d6;">(</span>a, b<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>datetime<span style="color: #7388d6;">(</span>2008, 5, 1, 12, 30, 16<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
-<span style="color: #204A87;"># </span><span style="color: #204A87;">parsing and formatting</span>
-<span style="color: #0084C8; font-weight: bold;">dt</span> = datetime.strptime<span style="color: #707183;">(</span><span style="color: #4E9A06;">"21/11/06 16:30"</span>, <span style="color: #4E9A06;">"%d/%m/%y %H:%M"</span><span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>dt<span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>dt.strftime<span style="color: #7388d6;">(</span><span style="color: #4E9A06;">"%A, %d. %B %Y %I:%M%p"</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+<pre  class="src src-python"><span style="color: #00796b;">from</span> datetime <span style="color: #00796b;">import</span> date, datetime, timedelta, time
+<span style="color: #EF6C00;">a</span> = date<span style="color: #e91e63;">(</span><span style="color: #689f38;">2008</span>, <span style="color: #689f38;">5</span>, <span style="color: #689f38;">1</span><span style="color: #e91e63;">)</span>
+<span style="color: #EF6C00;">b</span> = time<span style="color: #e91e63;">(</span><span style="color: #689f38;">12</span>, <span style="color: #689f38;">30</span>, <span style="color: #689f38;">15</span><span style="color: #e91e63;">)</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>datetime.combine<span style="color: #1565C0;">(</span>a, b<span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>datetime<span style="color: #1565C0;">(</span><span style="color: #689f38;">2008</span>, <span style="color: #689f38;">5</span>, <span style="color: #689f38;">1</span>, <span style="color: #689f38;">12</span>, <span style="color: #689f38;">30</span>, <span style="color: #689f38;">16</span><span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
+<span style="color: #607d8b;"># </span><span style="color: #607d8b;">parsing and formatting</span>
+<span style="color: #EF6C00;">dt</span> = datetime.strptime<span style="color: #e91e63;">(</span><span style="color: #689f38;">"21/11/06 16:30"</span>, <span style="color: #689f38;">"%d/%m/%y %H:%M"</span><span style="color: #e91e63;">)</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>dt<span style="color: #e91e63;">)</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>dt.strftime<span style="color: #1565C0;">(</span><span style="color: #689f38;">"%A, %d. %B %Y %I:%M%p"</span><span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -187,25 +174,24 @@ There is also a <a href="https://docs.python.org/2.7/library/calendar.html">cale
 </p>
 
 </section>
-<section id="sec-4-2">
-
-<h3>math module</h3>
+<section id="slide-orgheadline8">
+<h3 id="orgheadline8">math module</h3>
 <p>
 Mathematical functions and constants.
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">import</span> math
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>math.pi, math.e<span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>math.radians<span style="color: #7388d6;">(</span>180<span style="color: #7388d6;">)</span>, math.degrees<span style="color: #7388d6;">(</span>2 * math.pi<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>math.sin<span style="color: #7388d6;">(</span>math.pi / 4<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+<pre  class="src src-python"><span style="color: #00796b;">import</span> math
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>math.pi, math.e<span style="color: #e91e63;">)</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>math.radians<span style="color: #1565C0;">(</span><span style="color: #689f38;">180</span><span style="color: #1565C0;">)</span>, math.degrees<span style="color: #1565C0;">(</span><span style="color: #689f38;">2</span> * math.pi<span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>math.sin<span style="color: #1565C0;">(</span>math.pi / <span style="color: #689f38;">4</span><span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
 <pre class="example">
-(3.141592653589793, 2.718281828459045)
-(3.141592653589793, 360.0)
-0.707106781187
+3.141592653589793 2.718281828459045
+3.141592653589793 360.0
+0.7071067811865475
 </pre>
 
 <p>
@@ -217,145 +203,132 @@ These is also cmath for complex numbers.
 </p>
 
 </section>
-<section id="sec-4-3">
+<section id="slide-orgheadline9">
+<h3 id="orgheadline9">os.path module</h3>
+<ul>
+<li>path manipulation</li>
+<li>Takes care of correct slashes Unix / vs. Windows \</li>
 
-<h3>os.path module</h3>
-<ul class="org-ul">
-<li>path manipulation
-</li>
-<li>Takes care of correct slashes Unix / vs. Windows \
-</li>
 </ul>
 
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">import</span> os
-<span style="color: #0084C8; font-weight: bold;">p</span> = os.path.join<span style="color: #707183;">(</span><span style="color: #4E9A06;">"test"</span>, <span style="color: #4E9A06;">"path"</span>, <span style="color: #4E9A06;">"to"</span>, <span style="color: #4E9A06;">"file.txt"</span><span style="color: #707183;">)</span> <span style="color: #204A87;"># </span><span style="color: #204A87;">relative path</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>p<span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>os.path.abspath<span style="color: #7388d6;">(</span>p<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span> <span style="color: #204A87;"># </span><span style="color: #204A87;">absolute path</span>
-<span style="color: #204A87;"># </span><span style="color: #204A87;">split into path and filename with extension</span>
-<span style="color: #0084C8; font-weight: bold;">path</span>, <span style="color: #0084C8; font-weight: bold;">fname_ext</span> = os.path.split<span style="color: #707183;">(</span>p<span style="color: #707183;">)</span> 
-<span style="color: #204A87;"># </span><span style="color: #204A87;">split filename and extension</span>
-<span style="color: #0084C8; font-weight: bold;">fname</span>, <span style="color: #0084C8; font-weight: bold;">extension</span> = os.path.splitext<span style="color: #707183;">(</span>fname_ext<span style="color: #707183;">)</span> 
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>path, fname_ext, fname, extension<span style="color: #707183;">)</span>
+<pre  class="src src-python"><span style="color: #00796b;">import</span> os
+<span style="color: #EF6C00;">p</span> = os.path.join<span style="color: #e91e63;">(</span><span style="color: #689f38;">"test"</span>, <span style="color: #689f38;">"path"</span>, <span style="color: #689f38;">"to"</span>, <span style="color: #689f38;">"file.txt"</span><span style="color: #e91e63;">)</span> <span style="color: #607d8b;"># </span><span style="color: #607d8b;">relative path</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>p<span style="color: #e91e63;">)</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>os.path.abspath<span style="color: #1565C0;">(</span>p<span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span> <span style="color: #607d8b;"># </span><span style="color: #607d8b;">absolute path</span>
+<span style="color: #607d8b;"># </span><span style="color: #607d8b;">split into path and filename with extension</span>
+<span style="color: #EF6C00;">path</span>, <span style="color: #EF6C00;">fname_ext</span> = os.path.split<span style="color: #e91e63;">(</span>p<span style="color: #e91e63;">)</span> 
+<span style="color: #607d8b;"># </span><span style="color: #607d8b;">split filename and extension</span>
+<span style="color: #EF6C00;">fname</span>, <span style="color: #EF6C00;">extension</span> = os.path.splitext<span style="color: #e91e63;">(</span>fname_ext<span style="color: #e91e63;">)</span> 
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>path, fname_ext, fname, extension<span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
 <pre class="example">
 test/path/to/file.txt
-/media/sf_C/Users/cpaulik/My Dropbox/Arbeit/Teaching/Python Course/for_students/03-Python Packages/test/path/to/file.txt
-('test/path/to', 'file.txt', 'file', '.txt')
+/home/cp/workspace/Teaching/120.050 Introduction to Python for Geoscience/slide-deck/03-Python Packages/test/path/to/file.txt
+test/path/to file.txt file .txt
 </pre>
+
+
 </section>
-
-
 </section>
 <section>
-<section id="sec-5">
-
-<h2>Naming imported packages</h2>
+<section id="slide-orgheadline11">
+<h2 id="orgheadline11">Naming imported packages</h2>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">import</span> numpy <span style="color: #A52A2A; font-weight: bold;">as</span> np
-<span style="color: #A52A2A; font-weight: bold;">import</span> matplotlib.pyplot <span style="color: #A52A2A; font-weight: bold;">as</span> plt
-<span style="color: #A52A2A; font-weight: bold;">import</span> pandas <span style="color: #A52A2A; font-weight: bold;">as</span> pd
-<span style="color: #A52A2A; font-weight: bold;">from</span> scipy <span style="color: #A52A2A; font-weight: bold;">import</span> optimize
+<pre  class="src src-python"><span style="color: #00796b;">import</span> numpy <span style="color: #00796b;">as</span> np
+<span style="color: #00796b;">import</span> matplotlib.pyplot <span style="color: #00796b;">as</span> plt
+<span style="color: #00796b;">import</span> pandas <span style="color: #00796b;">as</span> pd
+<span style="color: #00796b;">from</span> scipy <span style="color: #00796b;">import</span> optimize
 </pre>
 </div>
 
-<ul class="org-ul">
+<ul>
 <li>Check package documentation for recommendations
-<ul class="org-ul">
-<li><a href="http://docs.scipy.org/doc/scipy/reference/api.html">e.g. Scipy guidelines</a>
-</li>
-</ul>
-</li>
-<li>mainly up to you 
-</li>
-<li>be consistent
-</li>
-</ul>
-</section>
+<ul>
+<li><a href="http://docs.scipy.org/doc/scipy/reference/api.html">e.g. Scipy guidelines</a></li>
 
+</ul></li>
+<li>mainly up to you</li>
+<li>be consistent</li>
+
+</ul>
+
+</section>
 </section>
 <section>
-<section id="sec-6">
-
-<h2>Where does Python look for packages?</h2>
+<section id="slide-orgheadline18">
+<h2 id="orgheadline18">Where does Python look for packages?</h2>
 <p>
 <a href="http://docs.python.org/2/using/cmdline.html#envvar-PYTHONPATH">Environment variable</a> PYTHONPATH 
 </p>
-<ul class="org-ul">
+<ul>
 <li>Can be set by
-<ul class="org-ul">
-<li>Manually in command prompt
-</li>
-<li>IDE(e.g. PyScripter)
-</li>
-<li>or python script (<code>sys.path</code> variable)
-</li>
-</ul>
-</li>
+<ul>
+<li>Manually in command prompt</li>
+<li>IDE(e.g. PyScripter)</li>
+<li>or python script (<code>sys.path</code> variable)</li>
+
+</ul></li>
+
 </ul>
 
 <p>
-Example - Open <code>WinPython Command Prompt.exe</code> or your <code>Shell</code>
+Example - Open <code>Anaconda Command Prompt.exe</code> or your <code>Shell</code>
 </p>
 
 </section>
-<section id="sec-6-1">
-
-<h3>Demo</h3>
+<section id="slide-orgheadline12">
+<h3 id="orgheadline12">Demo</h3>
 <p>
-use the provided my_code folder as a basis for this demo.
+use the provided <code>my_code</code> folder as a basis for this demo.
 </p>
-<ul class="org-ul">
-<li>navigate to the my_code/my_package folder in you shell
-</li>
-<li>start a python interpreter
-</li>
+<ul>
+<li>navigate to the <code>my_code/my_package</code> folder in you shell</li>
+<li>start a python interpreter</li>
+
 </ul>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">import</span> hello <span style="color: #204A87;"># </span><span style="color: #204A87;">this works because current path is searched</span>
-hello.function<span style="color: #707183;">()</span>
+<pre  class="src src-python"><span style="color: #00796b;">import</span> hello <span style="color: #607d8b;"># </span><span style="color: #607d8b;">this works because current path is searched</span>
+hello.function<span style="color: #e91e63;">()</span>
 hello.variable
-<span style="color: #F5666D;">exit</span><span style="color: #707183;">()</span>
+<span style="color: #558b2f;">exit</span><span style="color: #e91e63;">()</span>
 </pre>
 </div>
 
 </section>
-<section id="sec-6-2">
+<section id="slide-orgheadline13">
+<h3 id="orgheadline13">the <span class="underline"><span class="underline">init</span></span>.py file</h3>
+<ul>
+<li>navigate to the <code>my_code</code> folder</li>
+<li>start a python interpreter</li>
 
-<h3>the <span class="underline"><span class="underline">init</span></span>.py file</h3>
-<ul class="org-ul">
-<li>navigate to the my_code folder
-</li>
-<li>start a python interpreter
-</li>
 </ul>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">import</span> my_package.hello <span style="color: #A52A2A; font-weight: bold;">as</span> hello <span style="color: #204A87;"># </span><span style="color: #204A87;">will give error</span>
-<span style="color: #F5666D;">exit</span><span style="color: #707183;">()</span>
+<pre  class="src src-python"><span style="color: #00796b;">import</span> my_package.hello <span style="color: #00796b;">as</span> hello <span style="color: #607d8b;"># </span><span style="color: #607d8b;">will give error</span>
+<span style="color: #558b2f;">exit</span><span style="color: #e91e63;">()</span>
 </pre>
 </div>
-<ul class="org-ul">
-<li>make a <span class="underline"><span class="underline">init</span></span>.py file in the my_package folder and try again.
-</li>
+<ul>
+<li>make a <code>__init__.py</code> file in the my_package folder and try again.</li>
+
 </ul>
 
 </section>
-<section id="sec-6-3">
+<section id="slide-orgheadline14">
+<h3 id="orgheadline14">code in <span class="underline"><span class="underline">init</span></span>.py is executed</h3>
+<ul>
+<li>fill the <code>__init__.py</code> with the following</li>
 
-<h3>code in <span class="underline"><span class="underline">init</span></span>.py is executed</h3>
-<ul class="org-ul">
-<li>fill the <code>__init__.py</code> with the following
-</li>
 </ul>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"code in __init__.py is executed on import"</span><span style="color: #707183;">)</span>
+<pre  class="src src-python"><span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"code in __init__.py is executed on import"</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 <p>
@@ -363,176 +336,163 @@ Then try importing again.
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #204A87;"># </span><span style="color: #204A87;">this should print the text in __init__.py</span>
-<span style="color: #A52A2A; font-weight: bold;">import</span> my_package.hello <span style="color: #A52A2A; font-weight: bold;">as</span> hello
+<pre  class="src src-python"><span style="color: #607d8b;"># </span><span style="color: #607d8b;">this should print the text in __init__.py</span>
+<span style="color: #00796b;">import</span> my_package.hello <span style="color: #00796b;">as</span> hello
 </pre>
 </div>
 
 </section>
-<section id="sec-6-4">
-
-<h3>working with the PYTHONPATH</h3>
+<section id="slide-orgheadline15">
+<h3 id="orgheadline15">working with the PYTHONPATH</h3>
 <p>
-in the my_code directory run
+in the <code>my_code</code> directory run
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-bash">python call.py <span style="color: #204A87;"># </span><span style="color: #204A87;">will throw and ImportError</span>
-<span style="color: #A020F0;">cd</span> my_package
-<span style="color: #A020F0;">set</span> <span style="color: #0084C8; font-weight: bold;">PYTHONPATH</span>=%__CD__% <span style="color: #204A87;"># </span><span style="color: #204A87;">Windows</span>
-<span style="color: #A020F0;">export</span> <span style="color: #0084C8; font-weight: bold;">PYTHONPATH</span>=$<span style="color: #0084C8; font-weight: bold;">PWD</span> <span style="color: #204A87;"># </span><span style="color: #204A87;">Unix</span>
-<span style="color: #A020F0;">cd</span> ..
-python call.py <span style="color: #204A87;"># </span><span style="color: #204A87;">works</span>
+<pre  class="src src-bash">python call.py <span style="color: #607d8b;"># </span><span style="color: #607d8b;">will throw and ImportError</span>
+<span style="color: #B71C1C;">cd</span> my_package
+<span style="color: #B71C1C;">set</span> <span style="color: #EF6C00;">PYTHONPATH</span>=%__CD__% <span style="color: #607d8b;"># </span><span style="color: #607d8b;">Windows</span>
+<span style="color: #B71C1C;">export</span> <span style="color: #EF6C00;">PYTHONPATH</span>=$<span style="color: #EF6C00;">PWD</span> <span style="color: #607d8b;"># </span><span style="color: #607d8b;">Unix</span>
+<span style="color: #B71C1C;">cd</span> ..
+python call.py <span style="color: #607d8b;"># </span><span style="color: #607d8b;">works</span>
 </pre>
 </div>
 
 </section>
-<section id="sec-6-5">
-
-<h3>inspecting sys.path</h3>
+<section id="slide-orgheadline16">
+<h3 id="orgheadline16">inspecting sys.path</h3>
 <p>
 Dynamic changes of <code>sys.path</code> are frowned upon
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">import</span> sys
-<span style="color: #A52A2A; font-weight: bold;">import</span> os
+<pre  class="src src-python"><span style="color: #00796b;">import</span> sys
+<span style="color: #00796b;">import</span> os
 sys.path
-sys.path.append<span style="color: #707183;">(</span>os.path.abspath<span style="color: #7388d6;">(</span><span style="color: #4E9A06;">"."</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span> <span style="color: #204A87;"># </span><span style="color: #204A87;">append current path to searchpath</span>
+<span style="color: #607d8b;"># </span><span style="color: #607d8b;">append current path to searchpath</span>
+sys.path.append<span style="color: #e91e63;">(</span>os.path.abspath<span style="color: #1565C0;">(</span><span style="color: #689f38;">"."</span><span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
 </section>
-<section id="sec-6-6">
+<section id="slide-orgheadline17">
+<h3 id="orgheadline17">the <span class="underline"><span class="underline">name</span></span> attribute</h3>
+<ul>
+<li>gives the name of the module</li>
+<li>if a .py file is called directly the <code>__name__</code> is <code>__main__</code></li>
+<li>see what happens when hello.py is called directly</li>
 
-<h3>the <span class="underline"><span class="underline">name</span></span> attribute</h3>
-<ul class="org-ul">
-<li>gives the name of the module
-</li>
-<li>if a .py file is called directly the <code>__name__</code> is <code>__main__</code>
-</li>
-<li>see what happens when hello.py is called directly
-</li>
 </ul>
-</section>
 
+</section>
 </section>
 <section>
-<section id="sec-7">
-
-<h2>How to install a python package</h2>
-<dl class="org-dl">
-<dt><b>Pure Python Packages</b></dt><dd>Source code is only python. Easy to install on every platform.
-</dd>
-<dt><b>Packages with compiled extensions</b></dt><dd>These packages often include C or
+<section id="slide-orgheadline26">
+<h2 id="orgheadline26">How to install a python package</h2>
+<dl>
+<dt>Pure Python Packages</dt><dd>Source code is only python. Easy to install on every platform.</dd>
+<dt>Packages with compiled extensions</dt><dd>These packages often include C or
 Fortran code that must be compiled for your platform.
-<ul class="org-ul">
-<li>Compiler is needed (not easy on Windows)
-</li>
-<li>Try to get a precompiled (.whl or .exe) package for your platform. 
-<a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/">This website</a> hosts precompiled Windows packages.
-</li>
-</ul>
-</dd>
+<ul>
+<li>Compiler is needed (not easy on Windows)</li>
+<li>Check Anaconda (<code>conda</code>) first</li>
+
+</ul></dd>
+
 </dl>
 
-
-
 </section>
-<section id="sec-7-1">
-
-<h3>Package formats</h3>
-<ul class="org-ul">
-<li>zipped (.zip, .tar.gz)
-</li>
-<li>compiled (.exe, .whl)
-</li>
+<section id="slide-orgheadline19">
+<h3 id="orgheadline19">Package formats</h3>
+<ul>
+<li>zipped (.zip, .tar.gz)</li>
+<li>compiled (.exe, .whl)</li>
 <li>Wheel (.whl) is the new standard packaging format
-<ul class="org-ul">
-<li>zip file containing all the files needed by a package
-</li>
-<li>Also for compiled extensions
-</li>
+<ul>
+<li>zip file containing all the files needed by a package</li>
+<li>Also for compiled extensions</li>
 <li>Example of <a href="https://www.python.org/dev/peps/pep-0427/#file-format">wheel file format</a>
-<ul class="org-ul">
-<li><code>numpy‑1.9.2+mkl‑cp34‑none‑win32.whl</code>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<ul>
+<li><code>numpy‑1.9.2+mkl‑cp34‑none‑win32.whl</code></li>
+
+</ul></li>
+
+</ul></li>
+
 </ul>
 </section>
-<section id="sec-7-2">
+<section id="slide-orgheadline20">
+<h3 id="orgheadline20">pip</h3>
+<ul>
+<li>the standard tool for installing packages.</li>
+<li>automatically searches PyPI</li>
+<li>downloads and installs dependencies.</li>
 
-<h3>pip</h3>
-<ul class="org-ul">
-<li>the standard tool for installing packages.
-</li>
-<li>automatically searches PyPI
-</li>
-<li>downloads and installs dependencies.
-</li>
 </ul>
 
 <div class="org-src-container">
 
-<pre  class="src src-bash">pip list <span style="color: #204A87;"># </span><span style="color: #204A87;">list installed packages</span>
-pip install packagename <span style="color: #204A87;"># </span><span style="color: #204A87;">install</span>
-pip install <span style="color: #0084C8; font-weight: bold;">packagename</span>==1.4 <span style="color: #204A87;"># </span><span style="color: #204A87;">specific version</span>
-pip install package1 package2 <span style="color: #204A87;"># </span><span style="color: #204A87;">multiply packages</span>
-pip install packagename -U <span style="color: #204A87;"># </span><span style="color: #204A87;">upgrade the package to newest version</span>
-pip uninstall packagename <span style="color: #204A87;"># </span><span style="color: #204A87;">uninstall</span>
+<pre  class="src src-bash">pip list <span style="color: #607d8b;"># </span><span style="color: #607d8b;">list installed packages</span>
+pip install packagename <span style="color: #607d8b;"># </span><span style="color: #607d8b;">install</span>
+pip install <span style="color: #EF6C00;">packagename</span>==<span style="color: #689f38;">1.4</span> <span style="color: #607d8b;"># </span><span style="color: #607d8b;">specific version</span>
+pip install package1 package2 <span style="color: #607d8b;"># </span><span style="color: #607d8b;">multiply packages</span>
+pip install packagename -U <span style="color: #607d8b;"># </span><span style="color: #607d8b;">upgrade the package to newest version</span>
+pip uninstall packagename <span style="color: #607d8b;"># </span><span style="color: #607d8b;">uninstall</span>
 </pre>
 </div>
 
 </section>
-<section id="sec-7-3">
+<section id="slide-orgheadline21">
+<h3 id="orgheadline21">conda</h3>
+<ul>
+<li>Comes with the Anaconda Python Distribution</li>
+<li>Installs packages supported by Anaconda</li>
+<li>Also available on pip but precompiled</li>
 
-<h3>Virtual Environments</h3>
-<ul class="org-ul">
-<li>Isolates packages into standalone environment. 
-</li>
-<li>If applications need different, incompatible versions of libraries.
-</li>
-<li>If you do not have rights to install packages on system (e.g. VSC)
-</li>
-<li>Python 2.7 -&gt; <code>virtualenv</code>
-</li>
-<li>Python 3.3, 3.4 -&gt; <code>pyvenv</code> included in python
-</li>
 </ul>
 
 </section>
-<section id="sec-7-4">
+<section id="slide-orgheadline22">
+<h3 id="orgheadline22">Virtual Environments</h3>
+<ul>
+<li>Isolates packages into standalone environment.</li>
+<li>If applications need different, incompatible versions of libraries.</li>
+<li>If you do not have rights to install packages on system (e.g. VSC)</li>
+<li>Python 2.7 -&gt; <code>virtualenv</code></li>
+<li>Python 3.3, 3.4 -&gt; <code>pyvenv</code> included in python</li>
+<li><code>conda create</code></li>
 
-<h3>Let's try it</h3>
+</ul>
+
 </section>
-<section id="sec-7-4-1">
-
-<h4></h4>
+<section id="slide-orgheadline25">
+<h3 id="orgheadline25">Let's try it</h3>
+<div class="outline-text-3" id="text-orgheadline25">
+</div></section>
+<section id="slide-orgheadline23">
+<h4 id="orgheadline23"></h4>
 <div class="org-src-container">
 
-<pre  class="src src-bash">pip install virtualenv <span style="color: #204A87;"># </span><span style="color: #204A87;">install virtualenv package</span>
-virtualenv test_ve
-<span style="color: #A020F0;">source</span> test_ve/bin/activate
-pip install antigravity
+<pre  class="src src-bash">conda create -n test_ve pip numpy
+<span style="color: #B71C1C;">source</span> activate test_ve
+pip install pygeobase
 pip list
+conda list
 pip uninstall antigravity
 pip list
+<span style="color: #B71C1C;">source</span> deactivate
 </pre>
 </div>
 
 </section>
-<section id="sec-7-4-2">
-
-<h4></h4>
+<section id="slide-orgheadline24">
+<h4 id="orgheadline24"></h4>
 <div class="org-src-container">
 
-<pre  class="src src-bash"><span style="color: #204A87;"># </span><span style="color: #204A87;">Dowload package from PyPI as tar.gz</span>
+<pre  class="src src-bash"><span style="color: #607d8b;"># </span><span style="color: #607d8b;">Dowload package from PyPI as tar.gz</span>
 pip install **.tar.gz
 tar -xf 
-<span style="color: #A020F0;">cd</span>
+<span style="color: #B71C1C;">cd</span>
 python setup.py install
 pip list
 </pre>
@@ -540,42 +500,34 @@ pip list
 </section>
 </section>
 <section>
-<section id="sec-8">
-
-<h2>Creating your own package</h2>
+<section id="slide-orgheadline27">
+<h2 id="orgheadline27">Creating your own package</h2>
 <p>
 If you want to distribute your own package it is not too difficult.
 </p>
-<ul class="org-ul">
-<li>Watch <a href="https://www.youtube.com/watch?v=GeYis4ZuluY&amp;list=PLybPZmQbie2C_QdUiXOESx7bD67JHmTdf">this video</a>
-</li>
-<li>Use <a href="http://pyscaffold.readthedocs.org/en/v2.0.2/">Pyscaffold</a> for project setup
-</li>
-<li>Use Github for code hosting
-</li>
-</ul>
-</section>
+<ul>
+<li>Watch <a href="https://www.youtube.com/watch?v=GeYis4ZuluY&amp;list=PLybPZmQbie2C_QdUiXOESx7bD67JHmTdf">this video</a></li>
+<li>Use <a href="http://pyscaffold.readthedocs.org/en/v2.0.2/">Pyscaffold</a> for project setup</li>
+<li>Use Github for code hosting</li>
 
+</ul>
+
+</section>
 </section>
 <section>
-<section id="sec-9">
-
-<h2>Additional Information</h2>
-<ul class="org-ul">
-<li><a href="https://packaging.python.org/">Python Packaging User Guide</a>
-</li>
-<li><a href="https://www.youtube.com/watch?v=jOiAp3wtx18">This Talk from PyCon 2014</a>
-</li>
-<li><a href="https://packaging.python.org/en/latest/projects.html#conda">Conda package manager</a> good for scientific packages
-</li>
+<section id="slide-orgheadline28">
+<h2 id="orgheadline28">Additional Information</h2>
+<ul>
+<li><a href="https://packaging.python.org/">Python Packaging User Guide</a></li>
+<li><a href="https://www.youtube.com/watch?v=jOiAp3wtx18">This Talk from PyCon 2014</a></li>
+<li><a href="https://packaging.python.org/en/latest/projects.html#conda">Conda package manager</a> good for scientific packages</li>
 <li>Python Distributions come with a lot of packages pre-installed
-<ul class="org-ul">
-<li><a href="https://winpython.github.io/">WinPython</a>
-</li>
-<li><a href="https://store.continuum.io/cshop/anaconda/">Anaconda</a> includes conda package manager
-</li>
-</ul>
-</li>
+<ul>
+<li><a href="https://store.continuum.io/cshop/anaconda/">Anaconda</a> includes conda package manager</li>
+<li><a href="https://winpython.github.io/">WinPython</a></li>
+
+</ul></li>
+
 </ul>
 </section>
 </section>

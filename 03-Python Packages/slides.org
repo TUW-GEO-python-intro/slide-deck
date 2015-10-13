@@ -231,10 +231,7 @@ sys.path.append(os.path.abspath("."))
 - Packages with compiled extensions :: These packages often include C or
      Fortran code that must be compiled for your platform.
   - Compiler is needed (not easy on Windows)
-  - Try to get a precompiled (.whl or .exe) package for your platform. 
-    [[http://www.lfd.uci.edu/%7Egohlke/pythonlibs/][This website]] hosts precompiled Windows packages.
-
-
+  - Check Anaconda (=conda=) first
 
 ** Package formats
 - zipped (.zip, .tar.gz)
@@ -258,24 +255,31 @@ pip install packagename -U # upgrade the package to newest version
 pip uninstall packagename # uninstall
 #+end_src
 
+** conda
+- Comes with the Anaconda Python Distribution
+- Installs packages supported by Anaconda
+- Also available on pip but precompiled
+
 ** Virtual Environments
 - Isolates packages into standalone environment. 
 - If applications need different, incompatible versions of libraries.
 - If you do not have rights to install packages on system (e.g. VSC)
 - Python 2.7 -> =virtualenv=
 - Python 3.3, 3.4 -> =pyvenv= included in python
+- =conda create=
 
 ** Let's try it
 
 *** 
 #+begin_src bash
-pip install virtualenv # install virtualenv package
-virtualenv test_ve
-source test_ve/bin/activate
-pip install antigravity
+conda create -n test_ve pip numpy
+source activate test_ve
+pip install pygeobase
 pip list
+conda list
 pip uninstall antigravity
 pip list
+source deactivate
 #+end_src
 
 *** 
