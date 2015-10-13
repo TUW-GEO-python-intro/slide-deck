@@ -44,9 +44,9 @@
   - __init__.py
   - my_module.py
    
-__init__.py tells python that the folder contains modules
+=__init__.py= tells python that the folder contains modules
 
-code in __init__.py is executed during import!
+code in =__init__.py= is executed during import!
 
 http://docs.python.org/2/tutorial/modules.html
 
@@ -170,8 +170,8 @@ from scipy import optimize
 Example - Open =Anaconda Command Prompt.exe= or your =Shell=
 
 ** Demo
-use the provided my_code folder as a basis for this demo.
-- navigate to the my_code/my_package folder in you shell
+use the provided =my_code= folder as a basis for this demo.
+- navigate to the =my_code/my_package= folder in you shell
 - start a python interpreter
 #+begin_src python 
 import hello # this works because current path is searched
@@ -181,13 +181,13 @@ exit()
 #+end_src
 
 ** the __init__.py file
-- navigate to the my_code folder
+- navigate to the =my_code= folder
 - start a python interpreter
 #+begin_src python
 import my_package.hello as hello # will give error
 exit()
 #+end_src
-- make a __init__.py file in the my_package folder and try again.
+- make a =__init__.py= file in the my_package folder and try again.
 
 ** code in __init__.py is executed
 - fill the =__init__.py= with the following
@@ -201,7 +201,7 @@ import my_package.hello as hello
 #+end_src
 
 ** working with the PYTHONPATH
-in the my_code directory run
+in the =my_code= directory run
 #+begin_src bash
 python call.py # will throw and ImportError
 cd my_package
@@ -217,7 +217,8 @@ Dynamic changes of =sys.path= are frowned upon
 import sys
 import os
 sys.path
-sys.path.append(os.path.abspath(".")) # append current path to searchpath
+# append current path to searchpath
+sys.path.append(os.path.abspath(".")) 
 #+end_src
 
 ** the __name__ attribute
@@ -297,5 +298,5 @@ If you want to distribute your own package it is not too difficult.
 - [[https://www.youtube.com/watch?v=jOiAp3wtx18][This Talk from PyCon 2014]]
 - [[https://packaging.python.org/en/latest/projects.html#conda][Conda package manager]] good for scientific packages
 - Python Distributions come with a lot of packages pre-installed
-  - [[https://winpython.github.io/][WinPython]]
   - [[https://store.continuum.io/cshop/anaconda/][Anaconda]] includes conda package manager
+  - [[https://winpython.github.io/][WinPython]]
