@@ -1,0 +1,208 @@
+#+OPTIONS: reveal_center:t reveal_control:t reveal_height:-1
+#+OPTIONS: reveal_history:nil reveal_keyboard:t reveal_mathjax:nil
+#+OPTIONS: reveal_overview:t reveal_progress:t
+#+OPTIONS: reveal_rolling_links:nil reveal_slide_number:t
+#+OPTIONS: reveal_title_slide:t reveal_width:-1
+#+options: toc:nil num:nil
+#+REVEAL_MARGIN: -1
+#+REVEAL_MIN_SCALE: -1
+#+REVEAL_MAX_SCALE: -1
+#+REVEAL_ROOT: ../reveal.js
+#+REVEAL_TRANS: default
+#+REVEAL_SPEED: default
+#+REVEAL_THEME: black
+#+REVEAL_EXTRA_CSS: ../code_formatting.css
+#+REVEAL_EXTRA_JS: 
+#+REVEAL_HLEVEL: 1
+#+REVEAL_TITLE_SLIDE_TEMPLATE: <h1>%t</h1> <h2>%a</h2> <h2>%e</h2> <h2>%d</h2>
+#+REVEAL_TITLE_SLIDE_BACKGROUND:
+#+REVEAL_TITLE_SLIDE_BACKGROUND_SIZE:
+#+REVEAL_TITLE_SLIDE_BACKGROUND_REPEAT:
+#+REVEAL_TITLE_SLIDE_BACKGROUND_TRANSITION:
+#+REVEAL_MATHJAX_URL: http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+#+REVEAL_PREAMBLE:
+#+REVEAL_HEAD_PREAMBLE:<script src="../skulpt_python/skulpt.min.js" type="text/javascript"></script> <script src="../run_interpreter.js" type="text/javascript"></script> <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+#+REVEAL_POSTAMBLE:
+#+REVEAL_MULTIPLEX_ID:
+#+REVEAL_MULTIPLEX_SECRET:
+#+REVEAL_MULTIPLEX_URL:
+#+REVEAL_MULTIPLEX_SOCKETIO_URL:
+#+REVEAL_PLUGINS:
+
+#+AUTHOR:
+#+email: 
+#+Title: Introduction to Version Control and Git
+
+* Preparation
+- Download and install [[http://git-scm.com/downloads][Git]]
+- PC's in EDV Laboratory have a portable Git installation on the Z drive.
+- Download and unzip [[http://rs.geo.tuwien.ac.at/downloads/cpa/GitPortable/GitPortable.zip][portable Git]]
+ 
+* What is Version Control?
+#+BEGIN_QUOTE
+Revision control, also known as version control, 
+source control or software configuration management (SCM), 
+is the management of changes to documents, programs, 
+and other information stored as computer files.
+
+-- Wikipedia
+#+END_QUOTE
+
+* Why do we need Version Control?
+- Reproducibility
+  - Track every step of your work
+- Peace of mind (backup)
+- Freedom (try new stuff without loosing the old)
+- Collaboration
+
+* Different VC approaches
+** centralized (CVS, SVN, ...)
+
+#+ATTR_html: :width 50%
+#+LABEL: fig:label
+[[./centralized.png]]
+
+** distributed (Git, Mercurial, ...)
+#+ATTR_html: :width 50%
+#+LABEL: fig:label
+[[./distributed.png]]
+
+* Why Git?
+- Fast
+- Fully Distributed
+- De facto standard for a lot of open source projects ([[http://www.github.com][Github]])
+ 
+* Short History of Git
+- Developed in 2005
+  - for Linux Kernel Development by Linus Torvalds
+- Used by Google, Facebook, Microsoft, Twitter, Netflix ....
+- Distributed Version Control System
+
+* How does it work
+- Git keeps a snapshot of every commited change
+#+ATTR_html:
+#+LABEL: fig:snapshots
+[[./snapshots.png]]
+* File Lifecycle
+#+ATTR_html:
+#+LABEL: fig:lifecycle
+[[./lifecycle.png]]
+
+* Let's try it  
+
+** First setup. Tell Git who you are
+#+begin_src bash
+git config --global user.name "Your Name"
+git config --global user.email "Your email address"
+# can also be set only for current repository 
+# use these commands on shared computers
+git config --local user.name "Your Name"
+git config --local user.email "Your email address"
+#+end_src
+
+** Important Git commands used
+#+begin_src bash
+git init # initialize a empty repository in current directory
+git status # check the status of the repository 
+git diff # see what has changed in detail
+git add file.txt # add file to staging area
+git commit # commit the file 
+git commit -m "commit message" # specify message in command line
+git commit -am "commit message" # add and commit modified files
+git commit --amend # fix last commit, e.g. forgot file or typo in commit message
+git log # see commit history
+git log -p # see differences of each commit
+git log -2 # see only last 2 commits
+git checkout # checkout branch tag or commit
+git tag # list tags
+git tag -a v1.1 -m "version 1.1" # create tag v1.1 with message "version 1.1"
+git branch # create branch
+git merge # merge branches
+#+end_src
+
+** Git commands for working with remote repositories
+#+begin_src bash
+git clone url # clone the git repo from the url
+git remote add name url # add remote repo at url and give it name "name"
+git pull # pull changes from the remote repo
+git push # push your changes to the remote repo
+#+end_src
+
+* Git Tags
+Give a name to a commit to easily get back to it later
+
+* Git Branches
+- Useful if developing in parallel or fixing bugs
+- master is the default branch.
+- Git uses pointers to keep track of branches and tags
+
+** 
+#+caption: 
+#+ATTR_html: :width 80%
+#+LABEL: fig:branch
+[[./branch-and-history.png]]
+
+** Creating a branch creates a new pointer
+#+begin_src bash
+git branch testing
+#+end_src
+
+#+CAPTION: New branch testing
+#+ATTR_html: :width 80%
+#+LABEL: fig:new_branch
+[[./two-branches.png]]
+
+** Switching Branches
+HEAD pointer is at current position.
+
+#+ATTR_html: :width 80%
+#+LABEL: fig:head-master
+[[./head-to-master.png]]
+
+** Switching Branches
+#+begin_src bash
+git checkout testing
+#+end_src
+
+#+LABEL: fig:head-testing
+#+ATTR_html: :width 80%
+[[./head-to-testing.png]]
+
+** Making changes to a branch
+#+begin_src bash
+#edit file
+git commit -a -m "made a change"
+#+end_src
+
+#+CAPTION: The testing branch moves forward
+#+ATTR_html: :width 80%
+#+LABEL: fig:advance-testing
+[[./advance-testing.png]]
+
+** Merging Branches
+To get changes in one branch also in another branch
+#+begin_src bash
+git checkout master
+git merge testing
+git branch -d testing # delete testing branch
+#+end_src
+
+* Git Hosting Services
+- http://www.github.com :: hosts a lot of open source projects
+- http://www.gitlab.com :: free private repositories
+
+** Short Github Demo
+* Caveat
+- only really works for text files
+- git hosting services also show differences between image files and
+  other file types
+- Not good for big binary files
+
+* More information
+- [[https://try.github.io/levels/1/challenges/1][learn Git in 15 Minutes]]
+- [[http://git-scm.com/doc][Official Documentation]]
+- [[https://help.github.com/articles/good-resources-for-learning-git-and-github/][List of additional Resources]]
+- [[http://git-scm.com/downloads/guis][List of GUI Clients]] - SourceTree is supposed to be good.
+
+* 
+- Images in this presentation are from the [[http://git-scm.com/book/][ProGit Book]]

@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Introduction to Version Control and Git</title>
+
+<link rel="stylesheet" href="../reveal.js/css/reveal.css"/>
+<link rel="stylesheet" href="../reveal.js/css/theme/black.css" id="theme"/>
+<link rel="stylesheet" href="../code_formatting.css"/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '../reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<script src="../skulpt_python/skulpt.min.js" type="text/javascript"></script> <script src="../run_interpreter.js" type="text/javascript"></script> <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide" data-background="" data-background-size="" data-background-repeat="" data-background-transition="">
+<h1>Introduction to Version Control and Git</h1> <h2></h2> <h2><a href="mailto:"></a></h2> <h2></h2>
+</section>
+
+<section>
+<section id="slide-orgheadline1">
+<h2 id="orgheadline1">Preparation</h2>
+<ul>
+<li>Download and install <a href="http://git-scm.com/downloads">Git</a></li>
+<li>PC's in EDV Laboratory have a portable Git installation on the Z drive.</li>
+<li>Download and unzip <a href="http://rs.geo.tuwien.ac.at/downloads/cpa/GitPortable/GitPortable.zip">portable Git</a></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline2">
+<h2 id="orgheadline2">What is Version Control?</h2>
+<blockquote nil>
+<p>
+Revision control, also known as version control, 
+source control or software configuration management (SCM), 
+is the management of changes to documents, programs, 
+and other information stored as computer files.
+</p>
+
+<p>
+&#x2013; Wikipedia
+</p>
+</blockquote>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline3">
+<h2 id="orgheadline3">Why do we need Version Control?</h2>
+<ul>
+<li>Reproducibility
+<ul>
+<li>Track every step of your work</li>
+
+</ul></li>
+<li>Peace of mind (backup)</li>
+<li>Freedom (try new stuff without loosing the old)</li>
+<li>Collaboration</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline6">
+<h2 id="orgheadline6">Different VC approaches</h2>
+<div class="outline-text-2" id="text-orgheadline6">
+</div></section>
+<section id="slide-orgheadline4">
+<h3 id="orgheadline4">centralized (CVS, SVN, &#x2026;)</h3>
+
+<div id="orgparagraph1" class="figure">
+<p><img src="./centralized.png" alt="centralized.png" width="50%" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgheadline5">
+<h3 id="orgheadline5">distributed (Git, Mercurial, &#x2026;)</h3>
+
+<div id="orgparagraph2" class="figure">
+<p><img src="./distributed.png" alt="distributed.png" width="50%" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline7">
+<h2 id="orgheadline7">Why Git?</h2>
+<ul>
+<li>Fast</li>
+<li>Fully Distributed</li>
+<li>De facto standard for a lot of open source projects (<a href="http://www.github.com/">Github</a>)</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline8">
+<h2 id="orgheadline8">Short History of Git</h2>
+<ul>
+<li>Developed in 2005
+<ul>
+<li>for Linux Kernel Development by Linus Torvalds</li>
+
+</ul></li>
+<li>Used by Google, Facebook, Microsoft, Twitter, Netflix &#x2026;.</li>
+<li>Distributed Version Control System</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline9">
+<h2 id="orgheadline9">How does it work</h2>
+<ul>
+<li>Git keeps a snapshot of every commited change</li>
+
+</ul>
+
+<div id="orgparagraph3" class="figure">
+<p><img src="./snapshots.png" alt="snapshots.png" />
+</p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgheadline10">
+<h2 id="orgheadline10">File Lifecycle</h2>
+
+<div id="orgparagraph4" class="figure">
+<p><img src="./lifecycle.png" alt="lifecycle.png" />
+</p>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline14">
+<h2 id="orgheadline14">Let's try it</h2>
+<div class="outline-text-2" id="text-orgheadline14">
+</div></section>
+<section id="slide-orgheadline11">
+<h3 id="orgheadline11">First setup. Tell Git who you are</h3>
+<div class="org-src-container">
+
+<pre  class="src src-bash">git config --global user.name <span style="color: #689f38;">"Your Name"</span>
+git config --global user.email <span style="color: #689f38;">"Your email address"</span>
+<span style="color: #607d8b;"># </span><span style="color: #607d8b;">can also be set only for current repository </span>
+<span style="color: #607d8b;"># </span><span style="color: #607d8b;">use these commands on shared computers</span>
+git config --local user.name <span style="color: #689f38;">"Your Name"</span>
+git config --local user.email <span style="color: #689f38;">"Your email address"</span>
+</pre>
+</div>
+
+</section>
+<section id="slide-orgheadline12">
+<h3 id="orgheadline12">Important Git commands used</h3>
+<div class="org-src-container">
+
+<pre  class="src src-bash">git init <span style="color: #607d8b;"># </span><span style="color: #607d8b;">initialize a empty repository in current directory</span>
+git status <span style="color: #607d8b;"># </span><span style="color: #607d8b;">check the status of the repository </span>
+git diff <span style="color: #607d8b;"># </span><span style="color: #607d8b;">see what has changed in detail</span>
+git add file.txt <span style="color: #607d8b;"># </span><span style="color: #607d8b;">add file to staging area</span>
+git commit <span style="color: #607d8b;"># </span><span style="color: #607d8b;">commit the file </span>
+git commit -m <span style="color: #689f38;">"commit message"</span> <span style="color: #607d8b;"># </span><span style="color: #607d8b;">specify message in command line</span>
+git commit -am <span style="color: #689f38;">"commit message"</span> <span style="color: #607d8b;"># </span><span style="color: #607d8b;">add and commit modified files</span>
+git commit --amend <span style="color: #607d8b;"># </span><span style="color: #607d8b;">fix last commit, e.g. forgot file or typo in commit message</span>
+git log <span style="color: #607d8b;"># </span><span style="color: #607d8b;">see commit history</span>
+git log -p <span style="color: #607d8b;"># </span><span style="color: #607d8b;">see differences of each commit</span>
+git log -2 <span style="color: #607d8b;"># </span><span style="color: #607d8b;">see only last 2 commits</span>
+git checkout <span style="color: #607d8b;"># </span><span style="color: #607d8b;">checkout branch tag or commit</span>
+git tag <span style="color: #607d8b;"># </span><span style="color: #607d8b;">list tags</span>
+git tag -a v1.1 -m <span style="color: #689f38;">"version 1.1"</span> <span style="color: #607d8b;"># </span><span style="color: #607d8b;">create tag v1.1 with message "version 1.1"</span>
+git branch <span style="color: #607d8b;"># </span><span style="color: #607d8b;">create branch</span>
+git merge <span style="color: #607d8b;"># </span><span style="color: #607d8b;">merge branches</span>
+</pre>
+</div>
+
+</section>
+<section id="slide-orgheadline13">
+<h3 id="orgheadline13">Git commands for working with remote repositories</h3>
+<div class="org-src-container">
+
+<pre  class="src src-bash">git clone url <span style="color: #607d8b;"># </span><span style="color: #607d8b;">clone the git repo from the url</span>
+git remote add name url <span style="color: #607d8b;"># </span><span style="color: #607d8b;">add remote repo at url and give it name "name"</span>
+git pull <span style="color: #607d8b;"># </span><span style="color: #607d8b;">pull changes from the remote repo</span>
+git push <span style="color: #607d8b;"># </span><span style="color: #607d8b;">push your changes to the remote repo</span>
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline15">
+<h2 id="orgheadline15">Git Tags</h2>
+<p>
+Give a name to a commit to easily get back to it later
+</p>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline22">
+<h2 id="orgheadline22">Git Branches</h2>
+<ul>
+<li>Useful if developing in parallel or fixing bugs</li>
+<li>master is the default branch.</li>
+<li>Git uses pointers to keep track of branches and tags</li>
+
+</ul>
+
+</section>
+<section id="slide-orgheadline16">
+<h3 id="orgheadline16"></h3>
+
+<div id="orgparagraph5" class="figure">
+<p><img src="./branch-and-history.png" alt="branch-and-history.png" width="80%" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgheadline17">
+<h3 id="orgheadline17">Creating a branch creates a new pointer</h3>
+<div class="org-src-container">
+
+<pre  class="src src-bash">git branch testing
+</pre>
+</div>
+
+
+<div id="orgparagraph6" class="figure">
+<p><img src="./two-branches.png" alt="two-branches.png" width="80%" />
+</p>
+<p><span class="figure-number">Figure 6:</span> New branch testing</p>
+</div>
+
+</section>
+<section id="slide-orgheadline18">
+<h3 id="orgheadline18">Switching Branches</h3>
+<p>
+HEAD pointer is at current position.
+</p>
+
+
+<div id="orgparagraph7" class="figure">
+<p><img src="./head-to-master.png" alt="head-to-master.png" width="80%" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgheadline19">
+<h3 id="orgheadline19">Switching Branches</h3>
+<div class="org-src-container">
+
+<pre  class="src src-bash">git checkout testing
+</pre>
+</div>
+
+
+<div id="orgparagraph8" class="figure">
+<p><img src="./head-to-testing.png" alt="head-to-testing.png" width="80%" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgheadline20">
+<h3 id="orgheadline20">Making changes to a branch</h3>
+<div class="org-src-container">
+
+<pre  class="src src-bash"><span style="color: #607d8b;">#</span><span style="color: #607d8b;">edit file</span>
+git commit -a -m <span style="color: #689f38;">"made a change"</span>
+</pre>
+</div>
+
+
+<div id="orgparagraph9" class="figure">
+<p><img src="./advance-testing.png" alt="advance-testing.png" width="80%" />
+</p>
+<p><span class="figure-number">Figure 9:</span> The testing branch moves forward</p>
+</div>
+
+</section>
+<section id="slide-orgheadline21">
+<h3 id="orgheadline21">Merging Branches</h3>
+<p>
+To get changes in one branch also in another branch
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-bash">git checkout master
+git merge testing
+git branch -d testing <span style="color: #607d8b;"># </span><span style="color: #607d8b;">delete testing branch</span>
+</pre>
+</div>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline24">
+<h2 id="orgheadline24">Git Hosting Services</h2>
+<dl>
+<dt><a href="http://www.github.com/">http://www.github.com/</a></dt><dd>hosts a lot of open source projects</dd>
+<dt><a href="http://www.gitlab.com/">http://www.gitlab.com/</a></dt><dd>free private repositories</dd>
+
+</dl>
+
+</section>
+<section id="slide-orgheadline23">
+<h3 id="orgheadline23">Short Github Demo</h3>
+</section>
+</section>
+<section>
+<section id="slide-orgheadline25">
+<h2 id="orgheadline25">Caveat</h2>
+<ul>
+<li>only really works for text files</li>
+<li>git hosting services also show differences between image files and
+other file types</li>
+<li>Not good for big binary files</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline26">
+<h2 id="orgheadline26">More information</h2>
+<ul>
+<li><a href="https://try.github.io/levels/1/challenges/1">learn Git in 15 Minutes</a></li>
+<li><a href="http://git-scm.com/doc">Official Documentation</a></li>
+<li><a href="https://help.github.com/articles/good-resources-for-learning-git-and-github/">List of additional Resources</a></li>
+<li><a href="http://git-scm.com/downloads/guis">List of GUI Clients</a> - SourceTree is supposed to be good.</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orgheadline27">
+<h2 id="orgheadline27"></h2>
+<ul>
+<li>Images in this presentation are from the <a href="http://git-scm.com/book/">ProGit Book</a></li>
+
+</ul>
+</section>
+</section>
+</div>
+</div>
+
+<script src="../reveal.js/lib/js/head.min.js"></script>
+<script src="../reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: true,
+rollingLinks: false,
+keyboard: true,
+overview: true,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+transitionSpeed: 'default',
+multiplex: {
+    secret: '', // null if client
+    id: '', // id, obtained from socket.io server
+    url: '' // Location of socket.io server
+},
+
+// Optional libraries used to extend on reveal.js
+dependencies: [
+
+]
+});
+</script>
+</body>
+</html>
