@@ -75,13 +75,13 @@ code in <code>__init__.py</code> is executed during import!
 </ul>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #fff59d;">import</span> math <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">import complete module</span>
-<span style="color: #fff59d;">import</span> very_long_package_name <span style="color: #fff59d;">as</span> vlp <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">shorten the name </span>
-<span style="color: #fff59d;">from</span> datetime <span style="color: #fff59d;">import</span> date <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">import only certain variables/classes/functions</span>
+<pre  class="src src-python"><span style="color: #00796b;">import</span> math <span style="color: #607d8b;"># </span><span style="color: #607d8b;">import complete module</span>
+<span style="color: #00796b;">import</span> very_long_package_name <span style="color: #00796b;">as</span> vlp <span style="color: #607d8b;"># </span><span style="color: #607d8b;">shorten the name </span>
+<span style="color: #00796b;">from</span> datetime <span style="color: #00796b;">import</span> date <span style="color: #607d8b;"># </span><span style="color: #607d8b;">import only certain variables/classes/functions</span>
 </pre>
 </div>
 <ul>
-<li>Avoid <code class="src src-python"><span style="color: #fff59d;">from</span> package <span style="color: #fff59d;">import</span> *
+<li>Avoid <code class="src src-python"><span style="color: #00796b;">from</span> package <span style="color: #00796b;">import</span> *
 </code> -&gt; dirty namespace</li>
 
 </ul>
@@ -123,14 +123,14 @@ Representation of dates and times. <a href="https://docs.python.org/2.7/library/
 
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #fff59d;">from</span> datetime <span style="color: #fff59d;">import</span> date
-<span style="color: #ffcc80;">a</span> = date<span style="color: #e91e63;">(</span><span style="color: #9ccc65;">2015</span>, <span style="color: #9ccc65;">3</span>, <span style="color: #9ccc65;">1</span><span style="color: #e91e63;">)</span>
-<span style="color: #ffcc80;">b</span> = date.today<span style="color: #e91e63;">()</span>
-<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>a, b<span style="color: #e91e63;">)</span>
-<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>a.year, a.month, a.day<span style="color: #e91e63;">)</span> <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">attribute access</span>
-<span style="color: #ffcc80;">delta</span> = b - a <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">difference are a datetime.timedelta object</span>
-<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>delta<span style="color: #e91e63;">)</span>
-<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #ff8A65;">type</span><span style="color: #2196F3;">(</span>delta<span style="color: #2196F3;">)</span><span style="color: #e91e63;">)</span>
+<pre  class="src src-python"><span style="color: #00796b;">from</span> datetime <span style="color: #00796b;">import</span> date
+<span style="color: #EF6C00;">a</span> = date<span style="color: #e91e63;">(</span><span style="color: #689f38;">2015</span>, <span style="color: #689f38;">3</span>, <span style="color: #689f38;">1</span><span style="color: #e91e63;">)</span>
+<span style="color: #EF6C00;">b</span> = date.today<span style="color: #e91e63;">()</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>a, b<span style="color: #e91e63;">)</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>a.year, a.month, a.day<span style="color: #e91e63;">)</span> <span style="color: #607d8b;"># </span><span style="color: #607d8b;">attribute access</span>
+<span style="color: #EF6C00;">delta</span> = b - a <span style="color: #607d8b;"># </span><span style="color: #607d8b;">difference are a datetime.timedelta object</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>delta<span style="color: #e91e63;">)</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #B71C1C;">type</span><span style="color: #1565C0;">(</span>delta<span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -146,15 +146,15 @@ Representation of dates and times. <a href="https://docs.python.org/2.7/library/
 <h4 id="orgheadline6">datetime</h4>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #fff59d;">from</span> datetime <span style="color: #fff59d;">import</span> date, datetime, timedelta, time
-<span style="color: #ffcc80;">a</span> = date<span style="color: #e91e63;">(</span><span style="color: #9ccc65;">2008</span>, <span style="color: #9ccc65;">5</span>, <span style="color: #9ccc65;">1</span><span style="color: #e91e63;">)</span>
-<span style="color: #ffcc80;">b</span> = time<span style="color: #e91e63;">(</span><span style="color: #9ccc65;">12</span>, <span style="color: #9ccc65;">30</span>, <span style="color: #9ccc65;">15</span><span style="color: #e91e63;">)</span>
-<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>datetime.combine<span style="color: #2196F3;">(</span>a, b<span style="color: #2196F3;">)</span><span style="color: #e91e63;">)</span>
-<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>datetime<span style="color: #2196F3;">(</span><span style="color: #9ccc65;">2008</span>, <span style="color: #9ccc65;">5</span>, <span style="color: #9ccc65;">1</span>, <span style="color: #9ccc65;">12</span>, <span style="color: #9ccc65;">30</span>, <span style="color: #9ccc65;">16</span><span style="color: #2196F3;">)</span><span style="color: #e91e63;">)</span>
-<span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">parsing and formatting</span>
-<span style="color: #ffcc80;">dt</span> = datetime.strptime<span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"21/11/06 16:30"</span>, <span style="color: #9ccc65;">"%d/%m/%y %H:%M"</span><span style="color: #e91e63;">)</span>
-<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>dt<span style="color: #e91e63;">)</span>
-<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>dt.strftime<span style="color: #2196F3;">(</span><span style="color: #9ccc65;">"%A, %d. %B %Y %I:%M%p"</span><span style="color: #2196F3;">)</span><span style="color: #e91e63;">)</span>
+<pre  class="src src-python"><span style="color: #00796b;">from</span> datetime <span style="color: #00796b;">import</span> date, datetime, timedelta, time
+<span style="color: #EF6C00;">a</span> = date<span style="color: #e91e63;">(</span><span style="color: #689f38;">2008</span>, <span style="color: #689f38;">5</span>, <span style="color: #689f38;">1</span><span style="color: #e91e63;">)</span>
+<span style="color: #EF6C00;">b</span> = time<span style="color: #e91e63;">(</span><span style="color: #689f38;">12</span>, <span style="color: #689f38;">30</span>, <span style="color: #689f38;">15</span><span style="color: #e91e63;">)</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>datetime.combine<span style="color: #1565C0;">(</span>a, b<span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>datetime<span style="color: #1565C0;">(</span><span style="color: #689f38;">2008</span>, <span style="color: #689f38;">5</span>, <span style="color: #689f38;">1</span>, <span style="color: #689f38;">12</span>, <span style="color: #689f38;">30</span>, <span style="color: #689f38;">16</span><span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
+<span style="color: #607d8b;"># </span><span style="color: #607d8b;">parsing and formatting</span>
+<span style="color: #EF6C00;">dt</span> = datetime.strptime<span style="color: #e91e63;">(</span><span style="color: #689f38;">"21/11/06 16:30"</span>, <span style="color: #689f38;">"%d/%m/%y %H:%M"</span><span style="color: #e91e63;">)</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>dt<span style="color: #e91e63;">)</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>dt.strftime<span style="color: #1565C0;">(</span><span style="color: #689f38;">"%A, %d. %B %Y %I:%M%p"</span><span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -181,10 +181,10 @@ Mathematical functions and constants.
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #fff59d;">import</span> math
-<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>math.pi, math.e<span style="color: #e91e63;">)</span>
-<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>math.radians<span style="color: #2196F3;">(</span><span style="color: #9ccc65;">180</span><span style="color: #2196F3;">)</span>, math.degrees<span style="color: #2196F3;">(</span><span style="color: #9ccc65;">2</span> * math.pi<span style="color: #2196F3;">)</span><span style="color: #e91e63;">)</span>
-<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>math.sin<span style="color: #2196F3;">(</span>math.pi / <span style="color: #9ccc65;">4</span><span style="color: #2196F3;">)</span><span style="color: #e91e63;">)</span>
+<pre  class="src src-python"><span style="color: #00796b;">import</span> math
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>math.pi, math.e<span style="color: #e91e63;">)</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>math.radians<span style="color: #1565C0;">(</span><span style="color: #689f38;">180</span><span style="color: #1565C0;">)</span>, math.degrees<span style="color: #1565C0;">(</span><span style="color: #689f38;">2</span> * math.pi<span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>math.sin<span style="color: #1565C0;">(</span>math.pi / <span style="color: #689f38;">4</span><span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -213,15 +213,15 @@ These is also cmath for complex numbers.
 
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #fff59d;">import</span> os
-<span style="color: #ffcc80;">p</span> = os.path.join<span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"test"</span>, <span style="color: #9ccc65;">"path"</span>, <span style="color: #9ccc65;">"to"</span>, <span style="color: #9ccc65;">"file.txt"</span><span style="color: #e91e63;">)</span> <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">relative path</span>
-<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>p<span style="color: #e91e63;">)</span>
-<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>os.path.abspath<span style="color: #2196F3;">(</span>p<span style="color: #2196F3;">)</span><span style="color: #e91e63;">)</span> <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">absolute path</span>
-<span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">split into path and filename with extension</span>
-<span style="color: #ffcc80;">path</span>, <span style="color: #ffcc80;">fname_ext</span> = os.path.split<span style="color: #e91e63;">(</span>p<span style="color: #e91e63;">)</span> 
-<span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">split filename and extension</span>
-<span style="color: #ffcc80;">fname</span>, <span style="color: #ffcc80;">extension</span> = os.path.splitext<span style="color: #e91e63;">(</span>fname_ext<span style="color: #e91e63;">)</span> 
-<span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span>path, fname_ext, fname, extension<span style="color: #e91e63;">)</span>
+<pre  class="src src-python"><span style="color: #00796b;">import</span> os
+<span style="color: #EF6C00;">p</span> = os.path.join<span style="color: #e91e63;">(</span><span style="color: #689f38;">"test"</span>, <span style="color: #689f38;">"path"</span>, <span style="color: #689f38;">"to"</span>, <span style="color: #689f38;">"file.txt"</span><span style="color: #e91e63;">)</span> <span style="color: #607d8b;"># </span><span style="color: #607d8b;">relative path</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>p<span style="color: #e91e63;">)</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>os.path.abspath<span style="color: #1565C0;">(</span>p<span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span> <span style="color: #607d8b;"># </span><span style="color: #607d8b;">absolute path</span>
+<span style="color: #607d8b;"># </span><span style="color: #607d8b;">split into path and filename with extension</span>
+<span style="color: #EF6C00;">path</span>, <span style="color: #EF6C00;">fname_ext</span> = os.path.split<span style="color: #e91e63;">(</span>p<span style="color: #e91e63;">)</span> 
+<span style="color: #607d8b;"># </span><span style="color: #607d8b;">split filename and extension</span>
+<span style="color: #EF6C00;">fname</span>, <span style="color: #EF6C00;">extension</span> = os.path.splitext<span style="color: #e91e63;">(</span>fname_ext<span style="color: #e91e63;">)</span> 
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>path, fname_ext, fname, extension<span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -239,10 +239,10 @@ test/path/to file.txt file .txt
 <h2 id="orgheadline11">Naming imported packages</h2>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #fff59d;">import</span> numpy <span style="color: #fff59d;">as</span> np
-<span style="color: #fff59d;">import</span> matplotlib.pyplot <span style="color: #fff59d;">as</span> plt
-<span style="color: #fff59d;">import</span> pandas <span style="color: #fff59d;">as</span> pd
-<span style="color: #fff59d;">from</span> scipy <span style="color: #fff59d;">import</span> optimize
+<pre  class="src src-python"><span style="color: #00796b;">import</span> numpy <span style="color: #00796b;">as</span> np
+<span style="color: #00796b;">import</span> matplotlib.pyplot <span style="color: #00796b;">as</span> plt
+<span style="color: #00796b;">import</span> pandas <span style="color: #00796b;">as</span> pd
+<span style="color: #00796b;">from</span> scipy <span style="color: #00796b;">import</span> optimize
 </pre>
 </div>
 
@@ -293,10 +293,10 @@ use the provided <code>my_code</code> folder as a basis for this demo.
 </ul>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #fff59d;">import</span> hello <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">this works because current path is searched</span>
+<pre  class="src src-python"><span style="color: #00796b;">import</span> hello <span style="color: #607d8b;"># </span><span style="color: #607d8b;">this works because current path is searched</span>
 hello.function<span style="color: #e91e63;">()</span>
 hello.variable
-<span style="color: #8bc34a;">exit</span><span style="color: #e91e63;">()</span>
+<span style="color: #558b2f;">exit</span><span style="color: #e91e63;">()</span>
 </pre>
 </div>
 
@@ -310,8 +310,8 @@ hello.variable
 </ul>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #fff59d;">import</span> my_package.hello <span style="color: #fff59d;">as</span> hello <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">will give error</span>
-<span style="color: #8bc34a;">exit</span><span style="color: #e91e63;">()</span>
+<pre  class="src src-python"><span style="color: #00796b;">import</span> my_package.hello <span style="color: #00796b;">as</span> hello <span style="color: #607d8b;"># </span><span style="color: #607d8b;">will give error</span>
+<span style="color: #558b2f;">exit</span><span style="color: #e91e63;">()</span>
 </pre>
 </div>
 <ul>
@@ -328,7 +328,7 @@ hello.variable
 </ul>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #fff59d;">print</span><span style="color: #e91e63;">(</span><span style="color: #9ccc65;">"code in __init__.py is executed on import"</span><span style="color: #e91e63;">)</span>
+<pre  class="src src-python"><span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"code in __init__.py is executed on import"</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 <p>
@@ -336,8 +336,8 @@ Then try importing again.
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">this should print the text in __init__.py</span>
-<span style="color: #fff59d;">import</span> my_package.hello <span style="color: #fff59d;">as</span> hello
+<pre  class="src src-python"><span style="color: #607d8b;"># </span><span style="color: #607d8b;">this should print the text in __init__.py</span>
+<span style="color: #00796b;">import</span> my_package.hello <span style="color: #00796b;">as</span> hello
 </pre>
 </div>
 
@@ -349,12 +349,12 @@ in the <code>my_code</code> directory run
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-bash">python call.py <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">will throw and ImportError</span>
-<span style="color: #ff8A65;">cd</span> my_package
-<span style="color: #ff8A65;">set</span> <span style="color: #ffcc80;">PYTHONPATH</span>=%__CD__% <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">Windows</span>
-<span style="color: #ff8A65;">export</span> <span style="color: #ffcc80;">PYTHONPATH</span>=$<span style="color: #ffcc80;">PWD</span> <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">Unix</span>
-<span style="color: #ff8A65;">cd</span> ..
-python call.py <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">works</span>
+<pre  class="src src-bash">python call.py <span style="color: #607d8b;"># </span><span style="color: #607d8b;">will throw and ImportError</span>
+<span style="color: #B71C1C;">cd</span> my_package
+<span style="color: #B71C1C;">set</span> <span style="color: #EF6C00;">PYTHONPATH</span>=%__CD__% <span style="color: #607d8b;"># </span><span style="color: #607d8b;">Windows</span>
+<span style="color: #B71C1C;">export</span> <span style="color: #EF6C00;">PYTHONPATH</span>=$<span style="color: #EF6C00;">PWD</span> <span style="color: #607d8b;"># </span><span style="color: #607d8b;">Unix</span>
+<span style="color: #B71C1C;">cd</span> ..
+python call.py <span style="color: #607d8b;"># </span><span style="color: #607d8b;">works</span>
 </pre>
 </div>
 
@@ -366,11 +366,11 @@ Dynamic changes of <code>sys.path</code> are frowned upon
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #fff59d;">import</span> sys
-<span style="color: #fff59d;">import</span> os
+<pre  class="src src-python"><span style="color: #00796b;">import</span> sys
+<span style="color: #00796b;">import</span> os
 sys.path
-<span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">append current path to searchpath</span>
-sys.path.append<span style="color: #e91e63;">(</span>os.path.abspath<span style="color: #2196F3;">(</span><span style="color: #9ccc65;">"."</span><span style="color: #2196F3;">)</span><span style="color: #e91e63;">)</span>
+<span style="color: #607d8b;"># </span><span style="color: #607d8b;">append current path to searchpath</span>
+sys.path.append<span style="color: #e91e63;">(</span>os.path.abspath<span style="color: #1565C0;">(</span><span style="color: #689f38;">"."</span><span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -432,12 +432,12 @@ Fortran code that must be compiled for your platform.
 
 <div class="org-src-container">
 
-<pre  class="src src-bash">pip list <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">list installed packages</span>
-pip install packagename <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">install</span>
-pip install <span style="color: #ffcc80;">packagename</span>==<span style="color: #9ccc65;">1.4</span> <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">specific version</span>
-pip install package1 package2 <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">multiply packages</span>
-pip install packagename -U <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">upgrade the package to newest version</span>
-pip uninstall packagename <span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">uninstall</span>
+<pre  class="src src-bash">pip list <span style="color: #607d8b;"># </span><span style="color: #607d8b;">list installed packages</span>
+pip install packagename <span style="color: #607d8b;"># </span><span style="color: #607d8b;">install</span>
+pip install <span style="color: #EF6C00;">packagename</span>==<span style="color: #689f38;">1.4</span> <span style="color: #607d8b;"># </span><span style="color: #607d8b;">specific version</span>
+pip install package1 package2 <span style="color: #607d8b;"># </span><span style="color: #607d8b;">multiply packages</span>
+pip install packagename -U <span style="color: #607d8b;"># </span><span style="color: #607d8b;">upgrade the package to newest version</span>
+pip uninstall packagename <span style="color: #607d8b;"># </span><span style="color: #607d8b;">uninstall</span>
 </pre>
 </div>
 
@@ -475,13 +475,13 @@ pip uninstall packagename <span style="color: #b0bec5;"># </span><span style="co
 <div class="org-src-container">
 
 <pre  class="src src-bash">conda create -n test_ve pip numpy
-<span style="color: #ff8A65;">source</span> activate test_ve
+<span style="color: #B71C1C;">source</span> activate test_ve
 pip install pygeobase
 pip list
 conda list
 pip uninstall pygeobase
 pip list
-<span style="color: #ff8A65;">source</span> deactivate
+<span style="color: #B71C1C;">source</span> deactivate
 </pre>
 </div>
 
@@ -490,10 +490,10 @@ pip list
 <h4 id="orgheadline24"></h4>
 <div class="org-src-container">
 
-<pre  class="src src-bash"><span style="color: #b0bec5;"># </span><span style="color: #b0bec5;">Dowload package from PyPI as tar.gz</span>
+<pre  class="src src-bash"><span style="color: #607d8b;"># </span><span style="color: #607d8b;">Dowload package from PyPI as tar.gz</span>
 pip install **.tar.gz
 tar -xf 
-<span style="color: #ff8A65;">cd</span>
+<span style="color: #B71C1C;">cd</span>
 python setup.py install
 pip list
 </pre>
