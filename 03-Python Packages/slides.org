@@ -259,6 +259,7 @@ pip uninstall packagename # uninstall
 - Comes with the Anaconda Python Distribution
 - Installs packages supported by Anaconda
 - Also available on pip but precompiled
+- Chart [[http://conda.pydata.org/docs/_downloads/conda-pip-virtualenv-translator.html][conda vs. pip vs. virtualenv]]
 
 ** Virtual Environments
 - Isolates packages into standalone environment. 
@@ -277,7 +278,7 @@ source activate test_ve
 pip install pygeobase
 pip list
 conda list
-pip uninstall antigravity
+pip uninstall pygeobase
 pip list
 source deactivate
 #+end_src
