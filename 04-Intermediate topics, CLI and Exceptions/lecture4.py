@@ -72,26 +72,6 @@ def sub(a, b):
 print(do(add, 2, 3))
 print(do(sub, 3, 2))
 
-name = 2
-assert type(name) == str, "name should be a string"
-def function():
-    pass # can be useful when planning program structure
-
-for n in range(2, 8): # lets debug through this
-    for x in range(2, n):
-        if n % x == 0:
-            print n, 'equals', x, '*', n / x
-            break # breaks out of (ends) current loop
-    else:
-        # loop fell through without finding a factor
-        print n, 'is a prime number'
-
-for num in range(2, 8):
-    if num % 2 == 0: # percent sign is modulo
-        print "Found an even number", num
-        continue # continue with the next iteration of the loop
-    print "Found a number", num
-
 def divide(x, y):
     try:
         result = x / y

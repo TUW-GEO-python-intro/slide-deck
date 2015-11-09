@@ -4,7 +4,7 @@
 #+OPTIONS: reveal_rolling_links:nil reveal_slide_number:t
 #+OPTIONS: reveal_title_slide:t reveal_width:-1
 #+EXCLUDE_TAGS: 
-#+options: toc:nil ^:nil tags:nil
+#+options: toc:nil ^:nil tags:nil num:nil
 #+REVEAL_MARGIN: -1
 #+REVEAL_MIN_SCALE: -1
 #+REVEAL_MAX_SCALE: -1
@@ -35,12 +35,10 @@
 #+Title: Intermediate topics, CLI and Exceptions
 
 * Debugging
-We will use Pyscripter here but should be very similar in most IDE's.
+I will use Spyder and the command line but should be very similar in most IDE's.
 
 #+begin_src bash
-cd WinPython-32bit-2.7.6.2_incl_OPALS\PyScripter-v2.5.3\PyScripter
-open portable Pyscripter by starting "Start PyScripter.bat"
-File->Open->lecture2.py
+Open your editor. It might have Python debugging support (Pycharm, Pydev, Spyder, Emacs ...)
 #+end_src
 
 ** Debugging Actions
@@ -58,6 +56,7 @@ File->Open->lecture2.py
 - Watches :: Watch variables
 
 ** What if we do not have a GUI
+The following code will set a breakpoint:
 #+begin_src python :results output pp :exports both
 import pdb # imports the python debugger
 pdb.set_trace() # sets a breakpoint
@@ -65,16 +64,21 @@ pdb.set_trace() # sets a breakpoint
 # import ipdb
 # ipdb.set_trace()
 #+end_src
+Start a python script in debug mode:
+#+begin_src shell :exports code
+python -m pdb file.py
+#+end_src
 ** 
 #+begin_src python :results output pp :exports both :tangle lecture2.py
 # Debugging
 var1 = "test"
 var2 = [1, 2, 3, 4]
 var3 = {"key1": 1, "key2": 2}
-print(var1, var2, var3) # set a breakpoint here, click on blue dot left of this line
+print(var1, var2, var3) # set a breakpoint here
 var1 = "modified"
 var3["key5"] = "a new value"
 #+end_src
+
 * List and Dict comprehension
 
 - for creation of lists or dictionaries based on some loop
@@ -136,7 +140,7 @@ print(square)
 
 * Advanced function arguments
 
-Arguments to functions given as lists or tuples can be unpacked by python
+Arguments to functions given as lists or tuples can be unpacked by Python
 #+begin_src python :results output pp :exports both :session args :tangle lecture4.py
   def multi(a, b):
       """Documentation does not fit on slide"""
@@ -152,7 +156,7 @@ Arguments to functions given as lists or tuples can be unpacked by python
 : >>> 12
 
 ** 
-The =*= tells python to unpack the arguments
+The =*= tells Python to unpack the arguments
 #+begin_src python :results output pp :exports both :session args :tangle lecture4.py
 print multi(numbers)
 #+end_src
@@ -241,6 +245,41 @@ print(do(sub, 3, 2))
 : subtraction
 : 1
 
+* Exceptions
+
+Are raised when something goes wrong. But can be catched/excepted.
+#+begin_src python :results output pp :exports both :tangle lecture4.py
+  def divide(x, y):
+      try:
+          result = x / y
+      except ZeroDivisionError:
+          print "division by zero!"
+      else:
+          print "result is", result
+      finally:
+          print "executing finally clause"
+  divide(2, 1)
+  divide(2, 0)
+#+end_src
+
+#+RESULTS:
+: result is 2
+: executing finally clause
+: division by zero!
+: executing finally clause
+
+** 
+#+begin_src python
+print(divide("2", "1"))
+#+end_src
+
+#+begin_example
+Traceback (most recent call last):
+  File "<stdin>", line 12, in <module>
+  File "<stdin>", line 3, in divide
+TypeError: unsupported operand type(s) for /: 'str' and 'str'
+#+end_example
+
 
 * Command Line Interface (CLI)
 
@@ -285,42 +324,7 @@ print("This is the number you have given me: {:.2f}".format(num))
 #+end_src
 What happens if we do not give a number?
 
-* Exceptions 
-
-Are raised when something goes wrong. But can be catched.
-#+begin_src python :results output pp :exports both :tangle lecture4.py
-  def divide(x, y):
-      try:
-          result = x / y
-      except ZeroDivisionError:
-          print "division by zero!"
-      else:
-          print "result is", result
-      finally:
-          print "executing finally clause"
-  divide(2, 1)
-  divide(2, 0)
-#+end_src
-
-#+RESULTS:
-: result is 2
-: executing finally clause
-: division by zero!
-: executing finally clause
-
-** 
-#+begin_src python 
-print(divide("2", "1"))
-#+end_src
-
-#+begin_example
-Traceback (most recent call last):
-  File "<stdin>", line 12, in <module>
-  File "<stdin>", line 3, in divide
-TypeError: unsupported operand type(s) for /: 'str' and 'str'
-#+end_example
-
-*** Mini Exercise
+* Mini Exercise
 #+begin_src python :results output pp :exports both :tangle lecture4.py
 ########################################################
 # Mini Exercise
@@ -330,7 +334,7 @@ TypeError: unsupported operand type(s) for /: 'str' and 'str'
 ########################################################
 #+end_src
 
-*** solution                                                       :noexport:
+** solution                                                       :noexport:
 We can fix the user input problem
 #+begin_src python :tangle user_input_solution.py
   def get_float():
