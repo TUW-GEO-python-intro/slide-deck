@@ -1,3 +1,11 @@
+# Debugging
+var1 = "test"
+var2 = [1, 2, 3, 4]
+var3 = {"key1": 1, "key2": 2}
+print(var1, var2, var3) # set a breakpoint here
+var1 = "modified"
+var3["key5"] = "a new value"
+
 dataset1 = [1.73, 80, 2.4122, -4]
 threshold = 2.
 result = [x > threshold for x in dataset1]

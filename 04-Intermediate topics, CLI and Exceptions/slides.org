@@ -69,7 +69,7 @@ Start a python script in debug mode:
 python -m pdb file.py
 #+end_src
 ** 
-#+begin_src python :results output pp :exports both :tangle lecture2.py
+#+begin_src python :results output pp :exports both :tangle lecture4.py
 # Debugging
 var1 = "test"
 var2 = [1, 2, 3, 4]
