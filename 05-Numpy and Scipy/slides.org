@@ -101,19 +101,15 @@ print(v.shape, M.shape)
 #+RESULTS:
 : ((4,), (2, 2))
 *** Numpy array vs. lists
-So far the =numpy.ndarray= looks awefully much like a Python list (or nested
-list). Why not simply use Python lists for computations instead of a new array
-type?
+So far the =numpy.ndarray= looks similar to a Python list (or nested
+list). Why do we need numpy arrays?
 
-There are several reasons:
-- Python lists are very general. Each element can be any kind of object. They
-  are dynamically typed. They do not support mathematical functions such as
-  matrix and dot multiplications, etc. Implementating such functions for Python
-  lists would not be very efficient because of the dynamic typing
-*** 
-- Numpy arrays are statically typed and homogeneous. The type of the elements is
-  determined when the array is created.
-- Numpy arrays are memory efficient and element access is fast.
+- Python lists are very general. Each element can be any kind of object.
+- General is also slow.
+- Numpy arrays have one fixed type set during initialization.
+- They are memory efficient and element access is fast.
+
+***  Additional Background                                         :noexport:
 - Because of the static typing, fast implementation of mathematical functions
   such as multiplication and addition of numpy arrays can be implemented in a
   compiled language (C and Fortran is used).
@@ -138,9 +134,8 @@ M[0, 0] = "hello"
 : Traceback (most recent call last):
 :   File "<stdin>", line 1, in <module>
 : ValueError: invalid literal for long() with base 10: 'hello'
-*** 
-But be aware that the type is defined by the array at the initialization and
-won't be changed if a value from another type is assigned
+*** dtypes are enforced
+The type defined at the initialization won't be changed automatically.
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 M[0, 0] = 1.2345
 print(M[0, 0], M.dtype)
@@ -160,7 +155,7 @@ print(x, x.dtype)
 : 
 : (array([[ 1.,  2.],
 :        [ 3.,  4.]], dtype=float32), dtype('float32'))
-*** 
+*** dtypes can be changed
 If we want, we can explicitly define the data type of the array during creation,
 using the =dtype= keyword argument.
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
@@ -173,9 +168,12 @@ print(M)
 : [[ 1.+0.j  2.+0.j]
 :  [ 3.+0.j  4.+0.j]]
 
-Common types that can be used with =dtype= are, e.g.: =np.int8=, =np.int16=,
-=np.int32=, =np.int64=, =np.uint8=, =np.uint16=, =np.uint32=, =np.uint64=,
-=np.float32=, =np.float64=, =np.complex=, =np.bool=, =np.object=, etc.
+Common =dtypes= are:
+
+| =np.int8=   | =np.int16=  | =np.int32=   | =np.int64=   |
+| =np.uint32= | =np.uint64= | =np.float32= | =np.float64= |
+| =np.bool=   | =np.object= | =np.uint16=  | =np.complex= |
+
 ** Using array-generating functions
 For larger arrays it is unpractical to initialize the data manually, using
 explicit python lists. Instead we can use one of the many functions in Numpy
@@ -245,7 +243,7 @@ print(x)
 ** 
 [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.linspace.html][np.linspace]]
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
-# using linspace, both end points ARE included
+# using linspace, both end points ARE included. [start, stop, n_steps]
 x = np.linspace(0, 10, 11)
 print(x)
 #+end_src
@@ -360,40 +358,43 @@ M.ndim # number of dimensions
   - Index arrays
   - Boolean index arrays
 ** Basic indexing
-Array indexing refers to any use of the square brackets =[]= to index array
-values. There are many options to indexing, which give Numpy indexing great
-power, but with power comes some complexity and the potential for confusion.
+Array indexing refers to any use of =[]= to index array values.
+- Many options for indexing means great power but also the potential for confusion.
 
-We can index elements in an array using the square bracket and indices:
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 # v is a vector, and has only one dimension, taking one index
 v = np.arange(10)
+print(v)
 print(v[0], v[-2])
 #+end_src
 
 #+RESULTS:
-: 
-: >>> (0, 8)
-** Basic indexing
-Unlike lists and tuples, Numpy arrays support multidimensional indexing for
-multidimensional arrays. That means that it is not necessary to separate each
-dimension’s index into its own set of square brackets.
+:
+: >>> [0 1 2 3 4 5 6 7 8 9]
+: 0 8
+** Multidimensional indexing
+Unlike lists and tuples, Numpy arrays support multidimensional indexing. That
+means that it is not necessary to first select a subarray and index it again.
+- For 2D arrays =[row, column]= instead of =[row][column]=.
 
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 v.shape = (2, 5)
 print(v)
 # v is now a 2 dimensional array, taking two indices 
-print(v[1, 1]) # same as v[1][1]
+print(v[1, 4], v[1, 4]==v[1][4])
 #+end_src
 
 #+RESULTS:
-: 
-: [[0 1 2 3 4]
-:  [5 6 7 8 9]]
-: ... 6
-** Basic indexing
-Note that if one indexes a multidimensional array with fewer indices than
-dimensions, one gets a subdimensional array. For example:
+: Traceback (most recent call last):
+:   File "<stdin>", line 1, in <module>
+: ValueError: total size of new array must be unchanged
+: [1 2 0 0 4 0]
+: ... Traceback (most recent call last):
+:   File "<stdin>", line 2, in <module>
+: IndexError: too many indices for array
+** Indexing
+- Note :: indexing a multidimensional array with fewer indices than dimensions,
+     returns a subdimensional array.
 
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 print(v[0])
@@ -406,58 +407,70 @@ The same thing can be achieved with using =:=
 
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 print(v[0, :])
+print(v[:, 3])
 #+end_src
 
 #+RESULTS:
 : [0 1 2 3 4]
-** Basic indexing
-It must be noted that the returned array is not a copy of the original, but
-points *to the same values in memory* as does the original array. In the next
-example, the 1-D array at the first position (0) is returned.
+: [3 8]
+** Common misunderstandings
+- Numpy does not copy values in memory unless explicitly told to to so.
 
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
-print(v[0])
+b = v[0]
+a = v[0].copy()
+print('b:', b)
+b[3] = 999
+print('v:', v)
+print('a:', a)
 #+end_src
 
 #+RESULTS:
-: [0 1 2 3 4]
+:
+: >>> b: [  0   1   2 999   4]
+: >>> v: [[  0   1   2 999   4]
+:  [  5   6   7   8   9]]
+: a: [  0   1   2 999   4]
 
-So using a single index on the returned array, results in a single element being
-returned. That is:
 
-#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
-print(v[0][2])
-#+end_src
-
-#+RESULTS:
-: 2
-
-** Basic indexing
-Note that =v[0, 2] = v[0][2]= though the second case is more inefficient a new
-temporary array is created after the first index that is subsequently indexed
-by 2.
 ** Slicing
-It is possible to slice and stride arrays to extract arrays of the same number
-of dimensions, but of different sizes than the original. The slicing and
-striding works exactly the same way it does for lists and tuples except that
-they can be applied to multiple dimensions as well. 
+Slicing syntax like lists and strings =[start:stop:step]= but for multiple dimensions.
 
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
-x = np.arange(10)
-print(x[2:5])
-print(x[:-7])
-print(x[1:7:2])
+x = np.dstack([np.zeros(4),np.arange(1,5),
+               np.zeros(4), np.arange(6,10)]).reshape(4,4)
+print(x)
+print(x[:, ::2]) # get the zeros
 #+end_src
 
 #+RESULTS:
-: 
-: [2 3 4]
-: [0 1 2]
-: [1 3 5]
+:
+: >>> [[ 0.  1.  0.  6.]
+:  [ 0.  2.  0.  7.]
+:  [ 0.  3.  0.  8.]
+:  [ 0.  4.  0.  9.]]
+: [[ 0.  0.]
+:  [ 0.  0.]
+:  [ 0.  0.]
+:  [ 0.  0.]]
+
+** Slicing
+
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+print(x)
+print(x[:-2])
+print(x[1:4:2, 1:4:2])
+#+end_src
+
+#+RESULTS:
+: [[ 0.  1.  0.  6.]
+:  [ 0.  2.  0.  7.]]
+: [[ 2.  7.]
+:  [ 4.  9.]]
 
 ** Views
-Note that slices of arrays do not copy the internal array data but also produce
-new *views* of the original data.
+Slices of arrays do not copy the internal array data but produce new
+*views* of the original data.
 
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 x = np.arange(5)
@@ -477,7 +490,7 @@ print(y)
 : [3 2 4]
 
 Making changes to the view changes the underlying array!
-** Views
+** Views                                                          :noexport:
 [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.view.html][np.ndarray.view]]
 
 New view of array with the same data and is used two different ways:
@@ -488,18 +501,12 @@ New view of array with the same data and is used two different ways:
    instance of ndarray_subclass that looks at the same array (same shape, dtype,
    etc.) This does not cause a reinterpretation of the memory.
 ** Advanced indexing
-It is possible to index arrays with other arrays for the purposes of selecting
-lists of values out of arrays into new arrays. There are two different ways of
-accomplishing this. 
-- One uses one or more arrays of index values. 
-- The other involves giving a boolean array of the proper shape to indicate
-  the values to be selected. 
-Index arrays are a very powerful tool that allow one to avoid looping
-over individual elements in arrays and thus greatly improve performance.
+Arrays can be indexed with other arrays to select elements into new arrays.
+1. Using index arrays.
+2. Using boolean indexing.
+Index arrays are a very powerful tool.
 ** Index arrays
-The use of index arrays ranges from simple, straightforward cases to complex,
-hard-to-understand cases. For all cases of index arrays, what is returned is a
-*copy* of the original data, not a view as one gets for slices.
+Indexing an array returns a *copy* of the original data, not a view.
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 x = np.arange(10, 1, -1)
 y = x[np.arange(0, 8, 2)]
@@ -518,57 +525,90 @@ print(y)
 : [55  8  6  4]
 
 ** Boolean index arrays
-Boolean arrays used as indices are treated in a different manner entirely than
-index arrays. Boolean arrays must be of the same shape as the initial dimensions
-of the array being indexed.
+Boolean index arrays are used to decide for each element if it should be in the
+output array. So they must have the same shape as array being indexed.
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 y = np.arange(10)
 b = y > 5
-print(b, y[b])
+print(b)
+print(y[b], y[y < 5], y[(y>6) & (y!=9)])
 #+end_src
 
 #+RESULTS:
-: 
-: >>> (array([False, False, False, False, False, False,  True,  True,  True,  True], dtype=bool), array([6, 7, 8, 9]))
+:
+: >>> [False False False False False False  True  True  True  True]
+: [6 7 8 9] [0 1 2 3 4] [7 8]
 
 ** Combining index arrays with slices
 Index arrays may be combined with slices. For example:
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 y = np.arange(64).reshape(8, 8)
+print(y)
 print(y[np.array([0,2,4]),1:3])
 #+end_src
 
 #+RESULTS:
-: 
-: [[ 1  2]
-:  [17 18]
-:  [33 34]]
+#+begin_example
 
+[[ 0  1  2  3  4  5  6  7]
+ [ 8  9 10 11 12 13 14 15]
+ [16 17 18 19 20 21 22 23]
+ [24 25 26 27 28 29 30 31]
+ [32 33 34 35 36 37 38 39]
+ [40 41 42 43 44 45 46 47]
+ [48 49 50 51 52 53 54 55]
+ [56 57 58 59 60 61 62 63]]
+[[ 1  2]
+ [17 18]
+ [33 34]]
+#+end_example
+** Combining boolean indexing and slices
 Likewise, slicing can be combined with broadcasted boolean indices:
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
-b = y < 10
-print(y[b[:, 1], 1:3])
+b = y < 13
+print(y)
+print(y[1:3, b[1, :]])
 #+end_src
 
 #+RESULTS:
-: 
-: [[ 1  2]
-:  [ 9 10]]
+#+begin_example
 
-** Structural indexing tools
-To facilitate easy matching of array shapes with expressions and in assignments,
-the =np.newaxis= object can be used within array indices to add new dimensions
-with a size of 1. For example:
+[[ 0  1  2  3  4  5  6  7]
+ [ 8  9 10 11 12 13 14 15]
+ [16 17 18 19 20 21 22 23]
+ [24 25 26 27 28 29 30 31]
+ [32 33 34 35 36 37 38 39]
+ [40 41 42 43 44 45 46 47]
+ [48 49 50 51 52 53 54 55]
+ [56 57 58 59 60 61 62 63]]
+[ True  True  True  True  True False False False]
+[[ 8  9 10 11 12]
+ [16 17 18 19 20]]
+#+end_example
+
+** Dimension management
+Array shapes in expressions or assignments must be compatible. The =np.newaxis=
+object adds dimension, =np.squeeze= removes dimensions of size 1
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
-y = np.ones((3, 3))
-print(y.shape)
-print(y[:,np.newaxis,:].shape)
+y = np.ones((2, 2))
+print(y, y.shape)
+print(y[:,:, np.newaxis], y[:,:, np.newaxis].shape)
+print(np.squeeze(y), np.squeeze(y).shape)
 #+end_src
 
 #+RESULTS:
-: 
-: (3, 3)
-: (3, 1, 3)
+#+begin_example
+
+[[ 1.  1.]
+ [ 1.  1.]] (2, 2)
+[[[ 1.]
+  [ 1.]]
+
+ [[ 1.]
+  [ 1.]]] (2, 2, 1)
+[[ 1.  1.]
+ [ 1.  1.]] (2, 2)
+#+end_example
 
 * Broadcasting                                                     :noexport:
 The term broadcasting describes how Numpy treats arrays with different shapes
