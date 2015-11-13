@@ -30,7 +30,7 @@
 #+REVEAL_MULTIPLEX_SOCKETIO_URL:
 #+REVEAL_PLUGINS:
 
-#+AUTHOR: Sebastian Hahn
+#+AUTHOR:
 #+EMAIL: 
 #+TITLE: Numpy and Scipy Packages
 
