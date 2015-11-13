@@ -35,11 +35,10 @@
 #+TITLE: Numpy and Scipy Packages
 
 * Numpy
-- The [[http://www.numpy.org][numpy package]] is used in almost all numerical computation using Python
-- It is a package that provide high-performance vector, matrix and
-  higher-dimensional data structures
-- It is implemented in C and Fortran so when calculations are vectorized
-  (formulated with vectors and matrices), performance is very good
+- The [[http://www.numpy.org][numpy package]] is used in almost all numerical computations using Python
+- Provides high-performance vector, matrix and higher-dimensional data
+  structures
+- Fast array, vector and matrix calculations, implemented in C and Fortran
 
 To use numpy you need to import the module
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
