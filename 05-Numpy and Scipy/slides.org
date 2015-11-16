@@ -1103,12 +1103,11 @@ included in Numpy, describing what they are and what they do.
 [[http://docs.scipy.org/doc/][Scipy]] (Scientific Computing Tools for Python) is a Python-based ecosystem of
 open-source software for mathematics, science, and engineering. In particular,
 these are some of the core packages:
-- Python (2.x >= 2.6 or 3.x >= 3.2)
-- NumPy (>= 1.6)
-- Scipy library (>= 0.10)
-- Matplotlib (>= 1.1)
-- dateutil
-- pytz
+- NumPy
+- Scipy
+- Matplotlib
+- Pandas
+- SymPy
 ** Scipy library
 The [[http://docs.scipy.org/doc/][Scipy library]] is one of the core packages that make up the Scipy stack. It
 provides many [[http://docs.scipy.org/doc/scipy/reference/][user-friendly and efficient numerical routines]] such as routines
