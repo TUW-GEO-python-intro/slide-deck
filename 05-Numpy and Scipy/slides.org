@@ -991,20 +991,33 @@ for element in v:
 The position index can be found using the [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.where.html][np.where]] function
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 x = np.arange(10) + 20
-indices = np.where((x >= 20) & (x < 25))
+indices = np.where((x >= 22) & (x < 27))
 print(indices)
 #+end_src
 
 #+RESULTS:
 : 
-: >>> (array([0, 1, 2, 3, 4]),)
+: >>> (array([2, 3, 4, 5, 6]),)
 
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
-print(x)
+print(x[indices])
 #+end_src
 
 #+RESULTS:
-: [20 21 22 23 24 25 26 27 28 29]
+: [22 23 24 25 26]
+
+** =np.where= cont.
+[[http://docs.scipy.org/doc/numpy/reference/generated/numpy.where.html][np.where]] can also be used to choose from  one of two arrays
+#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
+x = np.arange(10) + 20
+y = np.arange(10)
+z = np.where((x >= 22) & (x < 27), x, y)
+print(z)
+#+end_src
+
+#+RESULTS:
+: 
+: >>> >>> [ 0  1 22 23 24 25 26  7  8  9]
 
 ** =np.choose=
 Constructs an array by picking elements form several arrays using
