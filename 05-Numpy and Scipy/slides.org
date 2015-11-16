@@ -48,7 +48,7 @@ print("Numpy version {:}".format(np.__version__))
 
 #+results:
 : 
-: Numpy version 1.8.2
+: Numpy version 1.10.1
 * Getting started
 - [[http://www.scipy.org/scipylib/download.html][Getting Numpy]]
 - [[http://docs.scipy.org/doc/][Numpy and scipy documentation page]]
@@ -90,7 +90,7 @@ print(type(v), type(M))
 #+end_src
 
 #+RESULTS:
-: (<type 'numpy.ndarray'>, <type 'numpy.ndarray'>)
+: <class 'numpy.ndarray'> <class 'numpy.ndarray'>
 The difference between the v and M arrays is only their shapes. The information
 about the shape of an array by using the =ndarray.shape= property.
 
@@ -99,7 +99,7 @@ print(v.shape, M.shape)
 #+end_src
 
 #+RESULTS:
-: ((4,), (2, 2))
+: (4,) (2, 2)
 *** Numpy array vs. lists
 So far the =numpy.ndarray= looks similar to a Python list (or nested
 list). Why do we need numpy arrays?
@@ -121,7 +121,7 @@ print(v.dtype, M.dtype)
 #+end_src
 
 #+RESULTS:
-: (dtype('int64'), dtype('int64'))
+: int64 int64
 
 We get an error if we try to assign a value of an uncastable type to an element
 in a Numpy array:
@@ -133,7 +133,7 @@ M[0, 0] = "hello"
 #+RESULTS:
 : Traceback (most recent call last):
 :   File "<stdin>", line 1, in <module>
-: ValueError: invalid literal for long() with base 10: 'hello'
+: ValueError: invalid literal for int() with base 10: 'hello'
 *** dtypes are enforced
 The type defined at the initialization won't be changed automatically.
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
@@ -143,7 +143,7 @@ print(M[0, 0], M.dtype)
 
 #+RESULTS:
 : 
-: (1, dtype('int64'))
+: 1 int64
 
 However, the data type can be changed later if it is desired (e.g. using =numpy.ndarray.astype=). 
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
@@ -153,8 +153,8 @@ print(x, x.dtype)
 
 #+RESULTS:
 : 
-: (array([[ 1.,  2.],
-:        [ 3.,  4.]], dtype=float32), dtype('float32'))
+: [[ 1.  2.]
+:  [ 3.  4.]] float32
 *** dtypes can be changed
 If we want, we can explicitly define the data type of the array during creation,
 using the =dtype= keyword argument.
@@ -273,11 +273,11 @@ print(x)
 
 #+RESULTS:
 : 
-: >>> [[ 0.77688406  0.60077637  0.28895332  0.52597261  0.73475696]
-:  [ 0.25770059  0.50656579  0.01674128  0.13712927  0.29722719]
-:  [ 0.81340211  0.59936796  0.40895624  0.7483695   0.27826312]
-:  [ 0.64837547  0.59508652  0.99956238  0.95601568  0.67975103]
-:  [ 0.42438832  0.20584127  0.16001517  0.36231514  0.73954523]]
+: >>> [[ 0.31066644  0.27575344  0.19720908  0.07443492  0.32938099]
+:  [ 0.61825939  0.27423665  0.06852286  0.34406263  0.12470873]
+:  [ 0.47382274  0.87902069  0.58383363  0.50476503  0.1419766 ]
+:  [ 0.7353448   0.36619104  0.18798354  0.23796696  0.96839186]
+:  [ 0.69127256  0.62541535  0.11655357  0.05070096  0.49968362]]
 
 The standard normal distribution is available as [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.randn.html][np.random.randn]]
 ** Building matrices
@@ -369,7 +369,7 @@ print(v[0], v[-2])
 #+end_src
 
 #+RESULTS:
-:
+: 
 : >>> [0 1 2 3 4 5 6 7 8 9]
 : 0 8
 ** Multidimensional indexing
@@ -385,13 +385,10 @@ print(v[1, 4], v[1, 4]==v[1][4])
 #+end_src
 
 #+RESULTS:
-: Traceback (most recent call last):
-:   File "<stdin>", line 1, in <module>
-: ValueError: total size of new array must be unchanged
-: [1 2 0 0 4 0]
-: ... Traceback (most recent call last):
-:   File "<stdin>", line 2, in <module>
-: IndexError: too many indices for array
+: 
+: [[0 1 2 3 4]
+:  [5 6 7 8 9]]
+: ... 9 True
 ** Indexing
 - Note :: indexing a multidimensional array with fewer indices than dimensions,
      returns a subdimensional array.
@@ -444,7 +441,7 @@ print(x[:, ::2]) # get the zeros
 #+end_src
 
 #+RESULTS:
-:
+: 
 : >>> [[ 0.  1.  0.  6.]
 :  [ 0.  2.  0.  7.]
 :  [ 0.  3.  0.  8.]
@@ -463,6 +460,10 @@ print(x[1:4:2, 1:4:2])
 #+end_src
 
 #+RESULTS:
+: [[ 0.  1.  0.  6.]
+:  [ 0.  2.  0.  7.]
+:  [ 0.  3.  0.  8.]
+:  [ 0.  4.  0.  9.]]
 : [[ 0.  1.  0.  6.]
 :  [ 0.  2.  0.  7.]]
 : [[ 2.  7.]
@@ -535,7 +536,7 @@ print(y[b], y[y < 5], y[(y>6) & (y!=9)])
 #+end_src
 
 #+RESULTS:
-:
+: 
 : >>> [False False False False False False  True  True  True  True]
 : [6 7 8 9] [0 1 2 3 4] [7 8]
 
@@ -581,7 +582,6 @@ print(y[1:3, b[1, :]])
  [40 41 42 43 44 45 46 47]
  [48 49 50 51 52 53 54 55]
  [56 57 58 59 60 61 62 63]]
-[ True  True  True  True  True False False False]
 [[ 8  9 10 11 12]
  [16 17 18 19 20]]
 #+end_example
@@ -671,7 +671,7 @@ print(v * 2, v + 3, v / 2., v - 5)
 
 #+RESULTS:
 : 
-: (array([0, 2, 4, 6, 8]), array([3, 4, 5, 6, 7]), array([ 0. ,  0.5,  1. ,  1.5,  2. ]), array([-5, -4, -3, -2, -1]))
+: [0 2 4 6 8] [3 4 5 6 7] [ 0.   0.5  1.   1.5  2. ] [-5 -4 -3 -2 -1]
 
 ** Element-wise array-array operations
 When we add, subtract, multiply and divide arrays with each other, the default
@@ -690,9 +690,9 @@ print(m * v)
 >>> [[ 0  1  4]
  [ 9 16 25]
  [36 49 64]]
-[[ 0  1  4]
- [ 9 16 25]
- [36 49 64]]
+[[  0   1   8]
+ [ 27  64 125]
+ [216 343 512]]
 [[ 0  1  4]
  [ 0  4 10]
  [ 0  7 16]]
@@ -1046,13 +1046,13 @@ Return an array drawn from elements in choicelist, depending on conditions using
 x = np.arange(10)
 condlist = [x<3, x>5]
 choicelist = [x, x**2]
-v = np.select(condlist, choicelist)
+v = np.select(condlist, choicelist, default=9999)
 print(v)
 #+end_src
 
 #+RESULTS:
 : 
-: >>> >>> >>> [ 0  1  2  0  0  0 36 49 64 81]
+: >>> >>> >>> [   0    1    2 9999 9999 9999   36   49   64   81]
 
 ** =np.place=
 Change elements of an array based on conditional and input values using [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.place.html][np.place]].
@@ -1060,7 +1060,7 @@ Change elements of an array based on conditional and input values using [[http:/
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 m = np.arange(6).reshape(2, 3)
 print(m)
-np.place(m, m>2, [44, 55])
+np.place(m, m>2, [4, 55])
 print(m)
 #+end_src
 
@@ -1069,7 +1069,7 @@ print(m)
 : [[0 1 2]
 :  [3 4 5]]
 : >>> [[ 0  1  2]
-:  [44 55 44]]
+:  [ 4 55  4]]
 
 ** And many more ...
 The [[http://docs.scipy.org/doc/numpy/reference/index.html][Numpy reference manual]] gives details on functions, modules, and objects
@@ -1139,7 +1139,7 @@ print(mean, var, skew, kurt)
 
 #+RESULTS:
 : 
-: >>> ... ... >>> ... >>> (array(0.0), array(1.0), array(0.0), array(0.0))
+: >>> ... ... >>> ... >>> 0.0 1.0 0.0 0.0
 
 ** Example II - Statistics (scipy.stats)
 #+begin_src python :results output :exports code :tangle lecture5.py :session *python2*
@@ -1154,12 +1154,7 @@ plt.savefig('./graphics/norm_pdf.png')
 
 #+RESULTS:
 : 
-: >>> >>> Traceback (most recent call last):
-:   File "<stdin>", line 1, in <module>
-: NameError: name 'norm' is not defined
-: >>> Traceback (most recent call last):
-:   File "<stdin>", line 1, in <module>
-: NameError: name 'norm' is not defined
+: >>> >>> >>> >>> [<matplotlib.lines.Line2D object at 0x7f801c03fc88>]
 
 #+ATTR_HTML: :width 50%
 #+LABEL: fig:Norm-pdf
@@ -1179,9 +1174,9 @@ print(np.dot(A, np.linalg.inv(A)))
 
 #+RESULTS:
 : 
-: [[  1.00000000e+00   2.77555756e-17  -8.32667268e-17]
-:  [  0.00000000e+00   1.00000000e+00   0.00000000e+00]
-:  [ -4.44089210e-16   0.00000000e+00   1.00000000e+00]]
+: [[  1.00000000e+00   1.38777878e-17  -8.32667268e-17]
+:  [  2.77555756e-17   1.00000000e+00   0.00000000e+00]
+:  [ -4.44089210e-16   1.11022302e-16   1.00000000e+00]]
 *** 2.
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 v = np.array([1, 2, 0, 0, 4, 0])
@@ -1208,8 +1203,8 @@ print(x[:10], x.size)
 
 #+RESULTS:
 : 
-: (array([ 1.85362336,  0.35734623, -1.18495451,  0.34661715, -0.83331732,
-:         1.10816811, -1.41283002, -0.00908539,  0.23967356,  0.71647271]), 1000)
+: [-0.76994695  0.97506539  0.10568746  0.0946075   0.29308117  0.00400586
+:   0.9571636   1.48985835  1.08526921  1.29135193] 1000
 *** 5.
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 x = np.random.randn(1000)
@@ -1218,7 +1213,7 @@ print(x.mean(), x.std(), x.var())
 
 #+RESULTS:
 : 
-: (-0.022173652281563847, 0.99187126462508401, 0.98380860558896355)
+: -0.0222731013401 1.01725623783 1.03481025341
 * Scipy exercise
 1. Define a function of your choice (e.g. x^2 + 10 * sin(x)) and find the roots
    (HINT: [[http://docs.scipy.org/doc/scipy-0.15.1/reference/generated/scipy.optimize.root.html][optimize.root]])
@@ -1268,7 +1263,7 @@ plt.savefig('./graphics/fft_example.png')
 
 #+RESULTS:
 : 
-: >>> >>> >>> >>> >>> >>> ... >>> >>> ... >>> >>> >>> >>> >>> >>> >>> [<matplotlib.lines.Line2D object at 0x7f0c9c8143d0>]
+: >>> >>> >>> ... >>> >>> ... >>> >>> >>> >>> >>> >>> >>> [<matplotlib.lines.Line2D object at 0x7fa914090dd8>]
 *** 2. FFT exercise
 #+ATTR_HTML: :width 50%
 #+LABEL: fig:fft-example
