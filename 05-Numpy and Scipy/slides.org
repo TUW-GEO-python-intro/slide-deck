@@ -660,7 +660,7 @@ behaviour is element-wise operations:
 m = np.arange(9).reshape(3, 3)
 v = np.arange(3)
 print(m * m)
-print(m ** 2)
+print(m ** 3)
 print(m * v)
 #+end_src
 
