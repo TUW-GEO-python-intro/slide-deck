@@ -410,26 +410,6 @@ print(v[:, 3])
 #+RESULTS:
 : [0 1 2 3 4]
 : [3 8]
-** Common misunderstandings
-- Numpy does not copy values in memory unless explicitly told to to so.
-
-#+begin_src python :results output :exports both :tangle lecture5.py :session *python*
-b = v[0]
-a = v[0].copy()
-print('b:', b)
-b[3] = 999
-print('v:', v)
-print('a:', a)
-#+end_src
-
-#+RESULTS:
-:
-: >>> b: [  0   1   2 999   4]
-: >>> v: [[  0   1   2 999   4]
-:  [  5   6   7   8   9]]
-: a: [  0   1   2 999   4]
-
-
 ** Slicing
 Slicing syntax like lists and strings =[start:stop:step]= but for multiple dimensions.
 
@@ -917,11 +897,10 @@ print(x)
 : [[0 1 5]
 :  [2 3 6]]
 
-* Copy and "deep copy"
-To achieve high performance, assignments in Python usually do not copy the
-underlaying objects. This is important for example when objects are passed
-between functions, to avoid an excessive amount of memory copying when it is not
-necessary (technical term: pass by reference).
+* Copy array values
+Assignments in Python usually do not copy the underlaying objects to avoid 
+unnecessary memory usage (technical term: pass by reference).
+
 ** Without copy
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 A = np.array([[1, 2], [3, 4]])
@@ -945,9 +924,8 @@ print(B)
 : [[10  2]
 :  [ 3  4]]
 ** Copy
-If we want to avoid this behavior, so that when we get a new completely
-independent object B copied from A, then we need to do a so-called "deep copy"
-using the function copy:
+To get a new completely independent object B copied from A we can use the
+=copy= function:
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 A = np.array([[1, 2], [3, 4]])
 B = A.copy()
@@ -969,9 +947,8 @@ print(B)
 : [[-5  2]
 :  [ 3  4]]
 * Iterating over array elements
-Generally, we want to avoid iterating over the elements of arrays whenever we
-can (at all costs). The reason is that in a interpreted language like Python (or
-MATLAB), iterations are really slow compared to vectorized operations.
+Generally, we want to avoid iterating over the elements of arrays. Iterations
+are really slow compared to vectorized operations.
 
 #+begin_src python :results output :exports both :tangle lecture5.py :session *python*
 v = np.array([1,2,3,4])
