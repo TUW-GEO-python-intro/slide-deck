@@ -10,13 +10,10 @@ x = random.randn(50) * x_std + x_mean
 y = random.randn(50) * 1.84 - 2.9
 
 # Create a new figure each time this code is run.
-# plt.figure()
+plt.figure()
 
 # Create a plot in memory - not rendered yet
 plt.scatter(x, y)
-
-# Augment the existing plot using further commands, instead of re-writing it.
-plt.hold(True)
 
 # Plot the center of gravity, with 'x'-markers in red.
 plt.scatter(x.mean(), y.mean(), c='r', marker='x')
@@ -34,8 +31,4 @@ plt.savefig("samples_cog.svg")
 # Interpreter will resume execution only after the window has been closed!
 plt.show()
 
-import ipdb
-ipdb.set_trace()
 print("script finished")
-# No IDE supports interactive plotting while debugging :'(
-# But IPython comes to the rescue, partly ...
