@@ -614,39 +614,31 @@ movie_stats.sort([('rating', 'mean')], ascending=False).head()
 #+end_src
 
 #+RESULTS:
-#+begin_example
-                                            rating      
-                                              size  mean
-title                                                   
-Marlene Dietrich: Shadow and Light (1996)        1     5
-Prefontaine (1997)                               3     5
-Santa with Muscles (1996)                        2     5
-Star Kid (1997)                                  3     5
-Someone Else's America (1995)                    1     5
-
-[5 rows x 2 columns]
-#+end_example
+:                                            rating     
+:                                              size mean
+: title                                                 
+: They Made Me a Criminal (1939)                  1    5
+: Marlene Dietrich: Shadow and Light (1996)       1    5
+: Saint of Fort Washington, The (1993)            2    5
+: Someone Else's America (1995)                   1    5
+: Star Kid (1997)                                 3    5
 
 *** Which movies are most highly rated?
 Lets only look at movies rated at least 100 times
 #+begin_src python :results verbatim pp :exports both :session pd
-atleast_100 = movie_stats['rating'].size >= 100
+atleast_100 = movie_stats['rating']['size'] >= 100
 movie_stats[atleast_100].sort([('rating', 'mean')], ascending=False).head()
 #+end_src
 
 #+RESULTS:
-#+begin_example
-                                  rating          
-                                    size      mean
-title                                             
-Close Shave, A (1995)                112  4.491071
-Schindler's List (1993)              298  4.466443
-Wrong Trousers, The (1993)           118  4.466102
-Casablanca (1942)                    243  4.456790
-Shawshank Redemption, The (1994)     283  4.445230
-
-[5 rows x 2 columns]
-#+end_example
+:                                  rating          
+:                                    size      mean
+: title                                            
+: Close Shave, A (1995)               112  4.491071
+: Schindler's List (1993)             298  4.466443
+: Wrong Trousers, The (1993)          118  4.466102
+: Casablanca (1942)                   243  4.456790
+: Shawshank Redemption, The (1994)    283  4.445230
 
 *** Exercise
 #+begin_src python :results output pp :exports source
