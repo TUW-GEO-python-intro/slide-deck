@@ -536,7 +536,7 @@ Extract the ml-100k.zip to a folder =ml-100k= in the same directory as the =lect
 
 #+RESULTS:
 
-*** How does the data look like?
+*** What did we read?
 
 #+begin_src python :results verbatim pp :exports both :session pd
 lens.head(3)
