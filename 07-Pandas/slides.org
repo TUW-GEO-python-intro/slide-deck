@@ -32,7 +32,7 @@
 #+eval: (setq-local org-babel-default-header-args:python '((:tangle . "lecture7.py")))
 #+End:
 
-#+AUTHOR: Christoph Paulik
+#+AUTHOR: 
 #+email: 
 #+Title: Pandas
 
