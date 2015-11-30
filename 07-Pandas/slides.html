@@ -4,7 +4,6 @@
 <head>
 <meta charset="utf-8"/>
 <title>Pandas</title>
-<meta name="author" content="(Christoph Paulik)"/>
 
 <link rel="stylesheet" href="../reveal.js/css/reveal.css"/>
 <link rel="stylesheet" href="../reveal.js/css/theme/black.css" id="theme"/>
@@ -23,46 +22,39 @@
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide" data-background="" data-background-size="" data-background-repeat="">
-<h1>Pandas</h1> <h2>Christoph Paulik</h2> <h2><a href="mailto:"></a></h2> <h2></h2>
+<section id="sec-title-slide" data-background="" data-background-size="" data-background-repeat="" data-background-transition="">
+<h1>Pandas</h1> <h2></h2> <h2><a href="mailto:"></a></h2> <h2></h2>
 </section>
 
 <section>
-<section id="sec-1">
+<section id="slide-orgheadline1">
+<h2 id="orgheadline1">A Python Data Analysis Library</h2>
+<ul>
+<li>Built on top of numpy to make data analysis easier</li>
+<li>Automatic data alignment based on labels or indices</li>
+<li>Data aggregation, transformation and grouping</li>
+<li>Intuitive merging and joining of datasets</li>
+<li>Hierarchical labeling</li>
+<li>Reading and Writing of CSV, Excel and others</li>
 
-<h2>A Python Data Analysis Library</h2>
-<ul class="org-ul">
-<li>Built on top of numpy to make data analysis easier
-</li>
-<li>Automatic data alignment based on labels or indices
-</li>
-<li>Data aggregation, transformation and grouping
-</li>
-<li>Intuitive merging and joining of datasets
-</li>
-<li>Hierarchical labeling
-</li>
-<li>Reading and Writing of CSV, Excel and others
-</li>
 </ul>
-</section>
 
+</section>
 </section>
 <section>
-<section id="sec-2">
+<section id="slide-orgheadline6">
+<h2 id="orgheadline6">Pandas.Series</h2>
+<ul>
+<li>For storing indexed 1D data</li>
 
-<h2>Pandas.Series</h2>
-<ul class="org-ul">
-<li>For storing indexed 1D data
-</li>
 </ul>
 <p>
 creation from numpy array with list as index
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">s</span> = pd.Series<span style="color: #707183;">(</span>np.arange<span style="color: #7388d6;">(</span><span style="color: #F5666D;">5</span><span style="color: #7388d6;">)</span>, index=<span style="color: #7388d6;">[</span><span style="color: #4E9A06;">'a'</span>, <span style="color: #4E9A06;">'b'</span>, <span style="color: #4E9A06;">'c'</span>, <span style="color: #4E9A06;">'d'</span>, <span style="color: #4E9A06;">'e'</span><span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span> s
+<pre  class="src src-python"><span style="color: #EF6C00;">s</span> = pd.Series<span style="color: #e91e63;">(</span>np.arange<span style="color: #1565C0;">(</span><span style="color: #689f38;">5</span><span style="color: #1565C0;">)</span>, index=<span style="color: #1565C0;">[</span><span style="color: #689f38;">'a'</span>, <span style="color: #689f38;">'b'</span>, <span style="color: #689f38;">'c'</span>, <span style="color: #689f38;">'d'</span>, <span style="color: #689f38;">'e'</span><span style="color: #1565C0;">]</span><span style="color: #e91e63;">)</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>s<span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -75,34 +67,32 @@ e    4
 dtype: int64
 </pre>
 </section>
-<section id="sec-2-1">
-
-<h3>Index is created if not set</h3>
+<section id="slide-orgheadline2">
+<h3 id="orgheadline2">Index is created if not set</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python">pd.Series<span style="color: #707183;">(</span>randn<span style="color: #7388d6;">(</span><span style="color: #F5666D;">5</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+<pre  class="src src-python">pd.Series<span style="color: #e91e63;">(</span>randn<span style="color: #1565C0;">(</span><span style="color: #689f38;">5</span><span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
 <pre class="example">
-0    0.677638
-1   -0.413150
-2   -1.252496
-3   -0.717212
-4    0.091973
+0   -0.683954
+1   -0.653830
+2    0.712992
+3    0.333370
+4   -0.769677
 dtype: float64
 </pre>
 </section>
-<section id="sec-2-2">
-
-<h3>Series is like an array</h3>
+<section id="slide-orgheadline3">
+<h3 id="orgheadline3">Series is like an array</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python">s<span style="color: #707183;">[</span><span style="color: #F5666D;">0</span><span style="color: #707183;">]</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"\n"</span><span style="color: #707183;">)</span>
-s<span style="color: #707183;">[</span>s &gt; s.median<span style="color: #7388d6;">()</span><span style="color: #707183;">]</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"\n"</span><span style="color: #707183;">)</span>
-s<span style="color: #707183;">[</span><span style="color: #7388d6;">[</span><span style="color: #F5666D;">3</span>,<span style="color: #F5666D;">2</span>,<span style="color: #F5666D;">1</span><span style="color: #7388d6;">]</span><span style="color: #707183;">]</span>
+<pre  class="src src-python">s<span style="color: #e91e63;">[</span><span style="color: #689f38;">0</span><span style="color: #e91e63;">]</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"\n"</span><span style="color: #e91e63;">)</span>
+s<span style="color: #e91e63;">[</span>s &gt; s.median<span style="color: #1565C0;">()</span><span style="color: #e91e63;">]</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"\n"</span><span style="color: #e91e63;">)</span>
+s<span style="color: #e91e63;">[</span><span style="color: #1565C0;">[</span><span style="color: #689f38;">3</span>,<span style="color: #689f38;">2</span>,<span style="color: #689f38;">1</span><span style="color: #1565C0;">]</span><span style="color: #e91e63;">]</span>
 </pre>
 </div>
 
@@ -119,16 +109,15 @@ b    1
 dtype: int64
 </pre>
 </section>
-<section id="sec-2-3">
-
-<h3>Series is like a dictionary</h3>
+<section id="slide-orgheadline4">
+<h3 id="orgheadline4">Series is like a dictionary</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python">s<span style="color: #707183;">[</span><span style="color: #4E9A06;">'a'</span><span style="color: #707183;">]</span>
-<span style="color: #0084C8; font-weight: bold;">s</span><span style="color: #707183;">[</span><span style="color: #4E9A06;">'e'</span><span style="color: #707183;">]</span> = <span style="color: #F5666D;">6</span>
+<pre  class="src src-python">s<span style="color: #e91e63;">[</span><span style="color: #689f38;">'a'</span><span style="color: #e91e63;">]</span>
+<span style="color: #EF6C00;">s</span><span style="color: #e91e63;">[</span><span style="color: #689f38;">'e'</span><span style="color: #e91e63;">]</span> = <span style="color: #689f38;">6</span>
 s
-<span style="color: #4E9A06;">'e'</span> <span style="color: #A52A2A; font-weight: bold;">in</span> s
-<span style="color: #4E9A06;">'f'</span> <span style="color: #A52A2A; font-weight: bold;">in</span> s
+<span style="color: #689f38;">'e'</span> <span style="color: #00796b;">in</span> s
+<span style="color: #689f38;">'f'</span> <span style="color: #00796b;">in</span> s
 </pre>
 </div>
 
@@ -144,14 +133,13 @@ True
 False
 </pre>
 </section>
-<section id="sec-2-4">
-
-<h3>Operations on Series</h3>
+<section id="slide-orgheadline5">
+<h3 id="orgheadline5">Operations on Series</h3>
 <div class="org-src-container">
 
 <pre  class="src src-python">s+s
-s**<span style="color: #F5666D;">2</span>
-np.exp<span style="color: #707183;">(</span>s<span style="color: #707183;">)</span>
+s**<span style="color: #689f38;">2</span>
+np.exp<span style="color: #e91e63;">(</span>s<span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -175,13 +163,12 @@ d     20.085537
 e    403.428793
 dtype: float64
 </pre>
-</section>
 
+</section>
 </section>
 <section>
-<section id="sec-3">
-
-<h2>Pandas.DataFrame</h2>
+<section id="slide-orgheadline35">
+<h2 id="orgheadline35">Pandas.DataFrame</h2>
 <p>
 A 2D labeled data structure with columns of potentially
 different types. 
@@ -191,28 +178,23 @@ different types.
 Like Series, DataFrame accepts many different kinds of input:
 </p>
 
-<ul class="org-ul">
-<li>Dict of 1D ndarrays, lists, dicts, or Series
-</li>
-<li>2-D numpy.ndarray
-</li>
-<li>Structured or record ndarray
-</li>
-<li>A Series
-</li>
-<li>Another DataFrame
-</li>
+<ul>
+<li>Dict of 1D ndarrays, lists, dicts, or Series</li>
+<li>2-D numpy.ndarray</li>
+<li>Structured or record ndarray</li>
+<li>A Series</li>
+<li>Another DataFrame</li>
+
 </ul>
 
 </section>
-<section id="sec-3-1">
-
-<h3>From dictionary</h3>
+<section id="slide-orgheadline7">
+<h3 id="orgheadline7">From dictionary</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">d</span> = <span style="color: #707183;">{</span><span style="color: #4E9A06;">'one'</span> : pd.Series<span style="color: #7388d6;">(</span><span style="color: #909183;">[</span><span style="color: #F5666D;">1</span>., <span style="color: #F5666D;">2</span>., <span style="color: #F5666D;">3</span>.<span style="color: #909183;">]</span>, index=<span style="color: #909183;">[</span><span style="color: #4E9A06;">'a'</span>, <span style="color: #4E9A06;">'b'</span>, <span style="color: #4E9A06;">'c'</span><span style="color: #909183;">]</span><span style="color: #7388d6;">)</span>,
-     <span style="color: #4E9A06;">'two'</span> : pd.Series<span style="color: #7388d6;">(</span><span style="color: #909183;">[</span><span style="color: #F5666D;">1</span>., <span style="color: #F5666D;">2</span>., <span style="color: #F5666D;">3</span>., <span style="color: #F5666D;">4</span>.<span style="color: #909183;">]</span>, index=<span style="color: #909183;">[</span><span style="color: #4E9A06;">'a'</span>, <span style="color: #4E9A06;">'b'</span>, <span style="color: #4E9A06;">'c'</span>, <span style="color: #4E9A06;">'d'</span><span style="color: #909183;">]</span><span style="color: #7388d6;">)</span><span style="color: #707183;">}</span>
-<span style="color: #0084C8; font-weight: bold;">df</span> = pd.DataFrame<span style="color: #707183;">(</span>d<span style="color: #707183;">)</span>
+<pre  class="src src-python"><span style="color: #EF6C00;">d</span> = <span style="color: #e91e63;">{</span><span style="color: #689f38;">'one'</span> : pd.Series<span style="color: #1565C0;">(</span><span style="color: #EF6C00;">[</span><span style="color: #689f38;">1</span>., <span style="color: #689f38;">2</span>., <span style="color: #689f38;">3</span>.<span style="color: #EF6C00;">]</span>, index=<span style="color: #EF6C00;">[</span><span style="color: #689f38;">'a'</span>, <span style="color: #689f38;">'b'</span>, <span style="color: #689f38;">'c'</span><span style="color: #EF6C00;">]</span><span style="color: #1565C0;">)</span>,
+     <span style="color: #689f38;">'two'</span> : pd.Series<span style="color: #1565C0;">(</span><span style="color: #EF6C00;">[</span><span style="color: #689f38;">1</span>., <span style="color: #689f38;">2</span>., <span style="color: #689f38;">3</span>., <span style="color: #689f38;">4</span>.<span style="color: #EF6C00;">]</span>, index=<span style="color: #EF6C00;">[</span><span style="color: #689f38;">'a'</span>, <span style="color: #689f38;">'b'</span>, <span style="color: #689f38;">'c'</span>, <span style="color: #689f38;">'d'</span><span style="color: #EF6C00;">]</span><span style="color: #1565C0;">)</span><span style="color: #e91e63;">}</span>
+<span style="color: #EF6C00;">df</span> = pd.DataFrame<span style="color: #e91e63;">(</span>d<span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -228,17 +210,14 @@ a    1    1
 b    2    2
 c    3    3
 d  NaN    4
-
-[4 rows x 2 columns]
 </pre>
 
 </section>
-<section id="sec-3-2">
-
-<h3>From other DataFrame</h3>
+<section id="slide-orgheadline8">
+<h3 id="orgheadline8">From other DataFrame</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python">pd.DataFrame<span style="color: #707183;">(</span>df, index=<span style="color: #7388d6;">[</span><span style="color: #4E9A06;">'d'</span>, <span style="color: #4E9A06;">'b'</span>, <span style="color: #4E9A06;">'a'</span><span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<pre  class="src src-python">pd.DataFrame<span style="color: #e91e63;">(</span>df, index=<span style="color: #1565C0;">[</span><span style="color: #689f38;">'d'</span>, <span style="color: #689f38;">'b'</span>, <span style="color: #689f38;">'a'</span><span style="color: #1565C0;">]</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -247,13 +226,11 @@ d  NaN    4
 d  NaN    4
 b    2    2
 a    1    1
-
-[3 rows x 2 columns]
 </pre>
 
 <div class="org-src-container">
 
-<pre  class="src src-python">pd.DataFrame<span style="color: #707183;">(</span>d, index=<span style="color: #7388d6;">[</span><span style="color: #4E9A06;">'d'</span>, <span style="color: #4E9A06;">'b'</span>, <span style="color: #4E9A06;">'a'</span><span style="color: #7388d6;">]</span>, columns=<span style="color: #7388d6;">[</span><span style="color: #4E9A06;">'two'</span>, <span style="color: #4E9A06;">'three'</span><span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
+<pre  class="src src-python">pd.DataFrame<span style="color: #e91e63;">(</span>d, index=<span style="color: #1565C0;">[</span><span style="color: #689f38;">'d'</span>, <span style="color: #689f38;">'b'</span>, <span style="color: #689f38;">'a'</span><span style="color: #1565C0;">]</span>, columns=<span style="color: #1565C0;">[</span><span style="color: #689f38;">'two'</span>, <span style="color: #689f38;">'three'</span><span style="color: #1565C0;">]</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -262,22 +239,19 @@ a    1    1
 d    4   NaN
 b    2   NaN
 a    1   NaN
-
-[3 rows x 2 columns]
 </pre>
 
 </section>
-<section id="sec-3-3">
-
-<h3>Complex cases</h3>
+<section id="slide-orgheadline10">
+<h3 id="orgheadline10">Complex cases</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">df2</span> = pd.DataFrame<span style="color: #707183;">(</span><span style="color: #7388d6;">{</span><span style="color: #4E9A06;">'A'</span>: <span style="color: #F5666D;">1</span>.,
-                    <span style="color: #4E9A06;">'B'</span>: pd.Timestamp<span style="color: #909183;">(</span><span style="color: #4E9A06;">'20130102'</span><span style="color: #909183;">)</span>,
-                    <span style="color: #4E9A06;">'C'</span>: pd.Series<span style="color: #909183;">(</span><span style="color: #F5666D;">1</span>,index=<span style="color: #A020F0;">list</span><span style="color: #709870;">(</span><span style="color: #A020F0;">range</span><span style="color: #907373;">(</span><span style="color: #F5666D;">4</span><span style="color: #907373;">)</span><span style="color: #709870;">)</span>,
-                                   dtype=<span style="color: #4E9A06;">'float32'</span><span style="color: #909183;">)</span>,
-                    <span style="color: #4E9A06;">'D'</span>: np.array<span style="color: #909183;">(</span><span style="color: #709870;">[</span><span style="color: #F5666D;">3</span><span style="color: #709870;">]</span> * <span style="color: #F5666D;">4</span>,dtype=<span style="color: #4E9A06;">'int32'</span><span style="color: #909183;">)</span>,
-                    <span style="color: #4E9A06;">'E'</span>: <span style="color: #4E9A06;">'foo'</span> <span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>
+<pre  class="src src-python"><span style="color: #EF6C00;">df2</span> = pd.DataFrame<span style="color: #e91e63;">(</span><span style="color: #1565C0;">{</span><span style="color: #689f38;">'A'</span>: <span style="color: #689f38;">1</span>.,
+                    <span style="color: #689f38;">'B'</span>: pd.Timestamp<span style="color: #EF6C00;">(</span><span style="color: #689f38;">'20130102'</span><span style="color: #EF6C00;">)</span>,
+                    <span style="color: #689f38;">'C'</span>: pd.Series<span style="color: #EF6C00;">(</span><span style="color: #689f38;">1</span>,index=<span style="color: #B71C1C;">list</span><span style="color: #B388FF;">(</span><span style="color: #B71C1C;">range</span><span style="color: #76ff03;">(</span><span style="color: #689f38;">4</span><span style="color: #76ff03;">)</span><span style="color: #B388FF;">)</span>,
+                                   dtype=<span style="color: #689f38;">'float32'</span><span style="color: #EF6C00;">)</span>,
+                    <span style="color: #689f38;">'D'</span>: np.array<span style="color: #EF6C00;">(</span><span style="color: #B388FF;">[</span><span style="color: #689f38;">3</span><span style="color: #B388FF;">]</span> * <span style="color: #689f38;">4</span>,dtype=<span style="color: #689f38;">'int32'</span><span style="color: #EF6C00;">)</span>,
+                    <span style="color: #689f38;">'E'</span>: <span style="color: #689f38;">'foo'</span> <span style="color: #1565C0;">}</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -293,22 +267,19 @@ a    1   NaN
 1  1 2013-01-02  1  3  foo
 2  1 2013-01-02  1  3  foo
 3  1 2013-01-02  1  3  foo
-
-[4 rows x 5 columns]
 </pre>
 
 </section>
-<section id="sec-3-3-1">
-
-<h4></h4>
+<section id="slide-orgheadline9">
+<h4 id="orgheadline9"></h4>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">df2</span> = pd.DataFrame<span style="color: #707183;">(</span><span style="color: #7388d6;">{</span><span style="color: #4E9A06;">'A'</span>: <span style="color: #F5666D;">1</span>.,
-                    <span style="color: #4E9A06;">'B'</span>: pd.Timestamp<span style="color: #909183;">(</span><span style="color: #4E9A06;">'20130102'</span><span style="color: #909183;">)</span>,
-                    <span style="color: #4E9A06;">'C'</span>: pd.Series<span style="color: #909183;">(</span><span style="color: #F5666D;">1</span>,index=<span style="color: #A020F0;">list</span><span style="color: #709870;">(</span><span style="color: #A020F0;">range</span><span style="color: #907373;">(</span><span style="color: #F5666D;">4</span><span style="color: #907373;">)</span><span style="color: #709870;">)</span>,
-                                   dtype=<span style="color: #4E9A06;">'float32'</span><span style="color: #909183;">)</span>,
-                    <span style="color: #4E9A06;">'D'</span>: np.array<span style="color: #909183;">(</span><span style="color: #709870;">[</span><span style="color: #F5666D;">3</span><span style="color: #709870;">]</span> * <span style="color: #F5666D;">4</span>,dtype=<span style="color: #4E9A06;">'int32'</span><span style="color: #909183;">)</span>,
-                    <span style="color: #4E9A06;">'E'</span>: <span style="color: #4E9A06;">'foo'</span> <span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>
+<pre  class="src src-python"><span style="color: #EF6C00;">df2</span> = pd.DataFrame<span style="color: #e91e63;">(</span><span style="color: #1565C0;">{</span><span style="color: #689f38;">'A'</span>: <span style="color: #689f38;">1</span>.,
+                    <span style="color: #689f38;">'B'</span>: pd.Timestamp<span style="color: #EF6C00;">(</span><span style="color: #689f38;">'20130102'</span><span style="color: #EF6C00;">)</span>,
+                    <span style="color: #689f38;">'C'</span>: pd.Series<span style="color: #EF6C00;">(</span><span style="color: #689f38;">1</span>,index=<span style="color: #B71C1C;">list</span><span style="color: #B388FF;">(</span><span style="color: #B71C1C;">range</span><span style="color: #76ff03;">(</span><span style="color: #689f38;">4</span><span style="color: #76ff03;">)</span><span style="color: #B388FF;">)</span>,
+                                   dtype=<span style="color: #689f38;">'float32'</span><span style="color: #EF6C00;">)</span>,
+                    <span style="color: #689f38;">'D'</span>: np.array<span style="color: #EF6C00;">(</span><span style="color: #B388FF;">[</span><span style="color: #689f38;">3</span><span style="color: #B388FF;">]</span> * <span style="color: #689f38;">4</span>,dtype=<span style="color: #689f38;">'int32'</span><span style="color: #EF6C00;">)</span>,
+                    <span style="color: #689f38;">'E'</span>: <span style="color: #689f38;">'foo'</span> <span style="color: #1565C0;">}</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -328,15 +299,14 @@ dtype: object
 </pre>
 
 </section>
-<section id="sec-3-4">
-
-<h3>Time series</h3>
+<section id="slide-orgheadline11">
+<h3 id="orgheadline11">Time series</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #204A87;"># </span><span style="color: #204A87;">Date range</span>
-<span style="color: #0084C8; font-weight: bold;">dates</span> = pd.date_range<span style="color: #707183;">(</span><span style="color: #4E9A06;">'20130101'</span>, periods=<span style="color: #F5666D;">6</span><span style="color: #707183;">)</span>
-<span style="color: #204A87;"># </span><span style="color: #204A87;">Dataframes</span>
-<span style="color: #0084C8; font-weight: bold;">df</span> = pd.DataFrame<span style="color: #707183;">(</span>np.random.randn<span style="color: #7388d6;">(</span><span style="color: #F5666D;">6</span>, <span style="color: #F5666D;">4</span><span style="color: #7388d6;">)</span>, index=dates, columns=<span style="color: #A020F0;">list</span><span style="color: #7388d6;">(</span><span style="color: #4E9A06;">'ABCD'</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+<pre  class="src src-python"><span style="color: #607d8b;"># </span><span style="color: #607d8b;">Date range</span>
+<span style="color: #EF6C00;">dates</span> = pd.date_range<span style="color: #e91e63;">(</span><span style="color: #689f38;">'20130101'</span>, periods=<span style="color: #689f38;">6</span><span style="color: #e91e63;">)</span>
+<span style="color: #607d8b;"># </span><span style="color: #607d8b;">Dataframes</span>
+<span style="color: #EF6C00;">df</span> = pd.DataFrame<span style="color: #e91e63;">(</span>np.random.randn<span style="color: #1565C0;">(</span><span style="color: #689f38;">6</span>, <span style="color: #689f38;">4</span><span style="color: #1565C0;">)</span>, index=dates, columns=<span style="color: #B71C1C;">list</span><span style="color: #1565C0;">(</span><span style="color: #689f38;">'ABCD'</span><span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 <div class="org-src-container">
@@ -347,54 +317,46 @@ dtype: object
 
 <pre class="example">
                    A         B         C         D
-2013-01-01 -0.597478 -1.766741 -1.228745 -1.019179
-2013-01-02 -0.352587  0.185867 -0.029261  0.668548
-2013-01-03 -1.919182  1.263051 -0.447114 -2.265783
-2013-01-04 -0.768178 -0.992339 -0.539134 -0.716079
-2013-01-05 -1.338250  1.137091 -0.463499  0.166856
-2013-01-06 -0.145799  1.510115  0.199905 -1.671450
-
-[6 rows x 4 columns]
+2013-01-01  1.295060 -1.892445  1.325433 -2.208407
+2013-01-02 -0.188383  0.957533  1.024778  0.827907
+2013-01-03  1.005206 -0.734869  0.685699 -0.092167
+2013-01-04 -0.882230 -0.256595  1.627533 -0.509552
+2013-01-05 -0.193930  2.171011 -1.064996  1.736236
+2013-01-06 -1.995633 -0.536571 -0.043122  0.773973
 </pre>
 
 </section>
-<section id="sec-3-5">
-
-<h3>Inspection</h3>
+<section id="slide-orgheadline12">
+<h3 id="orgheadline12">Inspection</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python">df.head<span style="color: #707183;">()</span>
+<pre  class="src src-python">df.head<span style="color: #e91e63;">()</span>
 </pre>
 </div>
 
 <pre class="example">
                    A         B         C         D
-2013-01-01 -0.597478 -1.766741 -1.228745 -1.019179
-2013-01-02 -0.352587  0.185867 -0.029261  0.668548
-2013-01-03 -1.919182  1.263051 -0.447114 -2.265783
-2013-01-04 -0.768178 -0.992339 -0.539134 -0.716079
-2013-01-05 -1.338250  1.137091 -0.463499  0.166856
-
-[5 rows x 4 columns]
+2013-01-01  1.295060 -1.892445  1.325433 -2.208407
+2013-01-02 -0.188383  0.957533  1.024778  0.827907
+2013-01-03  1.005206 -0.734869  0.685699 -0.092167
+2013-01-04 -0.882230 -0.256595  1.627533 -0.509552
+2013-01-05 -0.193930  2.171011 -1.064996  1.736236
 </pre>
 <div class="org-src-container">
 
-<pre  class="src src-python">df.tail<span style="color: #707183;">(</span><span style="color: #F5666D;">3</span><span style="color: #707183;">)</span>
+<pre  class="src src-python">df.tail<span style="color: #e91e63;">(</span><span style="color: #689f38;">3</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
 <pre class="example">
                    A         B         C         D
-2013-01-04 -0.768178 -0.992339 -0.539134 -0.716079
-2013-01-05 -1.338250  1.137091 -0.463499  0.166856
-2013-01-06 -0.145799  1.510115  0.199905 -1.671450
-
-[3 rows x 4 columns]
+2013-01-04 -0.882230 -0.256595  1.627533 -0.509552
+2013-01-05 -0.193930  2.171011 -1.064996  1.736236
+2013-01-06 -1.995633 -0.536571 -0.043122  0.773973
 </pre>
 </section>
-<section id="sec-3-6">
-
-<h3>Columns and values</h3>
+<section id="slide-orgheadline13">
+<h3 id="orgheadline13">Columns and values</h3>
 <div class="org-src-container">
 
 <pre  class="src src-python">df.columns, df.values
@@ -402,253 +364,229 @@ dtype: object
 </div>
 
 <pre class="example">
-(Index([u'A', u'B', u'C', u'D'], dtype='object'),
- array([[-0.5974781 , -1.7667411 , -1.22874526, -1.01917904],
-       [-0.35258701,  0.18586746, -0.02926123,  0.66854813],
-       [-1.91918192,  1.26305083, -0.44711442, -2.26578336],
-       [-0.76817814, -0.99233886, -0.53913413, -0.71607881],
-       [-1.33825025,  1.13709066, -0.46349936,  0.16685614],
-       [-0.14579853,  1.51011523,  0.19990501, -1.6714503 ]]))
+(Index(['A', 'B', 'C', 'D'], dtype='object'),
+ array([[ 1.29505997, -1.89244519,  1.32543257, -2.20840719],
+       [-0.1883832 ,  0.95753289,  1.02477782,  0.82790719],
+       [ 1.00520553, -0.73486871,  0.68569858, -0.09216724],
+       [-0.88222997, -0.25659454,  1.62753267, -0.50955237],
+       [-0.19392973,  2.17101115, -1.06499636,  1.73623578],
+       [-1.9956328 , -0.53657104, -0.0431219 ,  0.77397318]]))
 </pre>
 </section>
-<section id="sec-3-7">
-
-<h3>Describe a DataFrame</h3>
+<section id="slide-orgheadline14">
+<h3 id="orgheadline14">Describe a DataFrame</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python">df.describe<span style="color: #707183;">()</span>
+<pre  class="src src-python">df.describe<span style="color: #e91e63;">()</span>
 </pre>
 </div>
 
 <pre class="example">
               A         B         C         D
 count  6.000000  6.000000  6.000000  6.000000
-mean  -0.853579  0.222841 -0.417975 -0.806181
-std    0.662607  1.342492  0.491492  1.100386
-min   -1.919182 -1.766741 -1.228745 -2.265783
-25%   -1.195732 -0.697787 -0.520225 -1.508382
-50%   -0.682828  0.661479 -0.455307 -0.867629
-75%   -0.413810  1.231561 -0.133725 -0.053878
-max   -0.145799  1.510115  0.199905  0.668548
-
-[8 rows x 4 columns]
+mean  -0.159985 -0.048656  0.592554  0.087998
+std    1.213921  1.420640  0.995524  1.370964
+min   -1.995633 -1.892445 -1.064996 -2.208407
+25%   -0.710155 -0.685294  0.139083 -0.405206
+50%   -0.191156 -0.396583  0.855238  0.340903
+75%    0.706808  0.654001  1.250269  0.814424
+max    1.295060  2.171011  1.627533  1.736236
 </pre>
 </section>
-<section id="sec-3-8">
-
-<h3>DataFrame Slicing Overview</h3>
+<section id="slide-orgheadline15">
+<h3 id="orgheadline15">DataFrame Slicing Overview</h3>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 
-<col  class="left" />
+<col  class="org-left" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="left">Operation</th>
-<th scope="col" class="left">Syntax</th>
-<th scope="col" class="left">Result</th>
+<th scope="col" class="org-left">Operation</th>
+<th scope="col" class="org-left">Syntax</th>
+<th scope="col" class="org-left">Result</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="left">Select column</td>
-<td class="left"><code>df[col]</code></td>
-<td class="left">Series</td>
+<td class="org-left">Select column</td>
+<td class="org-left"><code>df[col]</code></td>
+<td class="org-left">Series</td>
 </tr>
 
 <tr>
-<td class="left">Select row by label</td>
-<td class="left"><code>df.loc[label]</code></td>
-<td class="left">Series</td>
+<td class="org-left">Select row by label</td>
+<td class="org-left"><code>df.loc[label]</code></td>
+<td class="org-left">Series</td>
 </tr>
 
 <tr>
-<td class="left">Select row by integer location</td>
-<td class="left"><code>df.iloc[loc]</code></td>
-<td class="left">Series</td>
+<td class="org-left">Select row by integer location</td>
+<td class="org-left"><code>df.iloc[loc]</code></td>
+<td class="org-left">Series</td>
 </tr>
 
 <tr>
-<td class="left">Slice rows</td>
-<td class="left"><code>df[5:10]</code></td>
-<td class="left">DataFrame</td>
+<td class="org-left">Slice rows</td>
+<td class="org-left"><code>df[5:10]</code></td>
+<td class="org-left">DataFrame</td>
 </tr>
 
 <tr>
-<td class="left">Select rows by boolean vector</td>
-<td class="left"><code>df[bool_vec]</code></td>
-<td class="left">DataFrame</td>
+<td class="org-left">Select rows by boolean vector</td>
+<td class="org-left"><code>df[bool_vec]</code></td>
+<td class="org-left">DataFrame</td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="sec-3-9">
-
-<h3>By column or row slice</h3>
+<section id="slide-orgheadline16">
+<h3 id="orgheadline16">By column or row slice</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python">df<span style="color: #707183;">[</span><span style="color: #4E9A06;">'A'</span><span style="color: #707183;">]</span>
+<pre  class="src src-python">df<span style="color: #e91e63;">[</span><span style="color: #689f38;">'A'</span><span style="color: #e91e63;">]</span>
 </pre>
 </div>
 
 <pre class="example">
-2013-01-01   -0.597478
-2013-01-02   -0.352587
-2013-01-03   -1.919182
-2013-01-04   -0.768178
-2013-01-05   -1.338250
-2013-01-06   -0.145799
+2013-01-01    1.295060
+2013-01-02   -0.188383
+2013-01-03    1.005206
+2013-01-04   -0.882230
+2013-01-05   -0.193930
+2013-01-06   -1.995633
 Freq: D, Name: A, dtype: float64
 </pre>
 
 <div class="org-src-container">
 
-<pre  class="src src-python">df<span style="color: #707183;">[</span><span style="color: #F5666D;">0</span>:<span style="color: #F5666D;">3</span><span style="color: #707183;">]</span>
+<pre  class="src src-python">df<span style="color: #e91e63;">[</span><span style="color: #689f38;">0</span>:<span style="color: #689f38;">3</span><span style="color: #e91e63;">]</span>
 </pre>
 </div>
 
 <pre class="example">
                    A         B         C         D
-2013-01-01 -0.597478 -1.766741 -1.228745 -1.019179
-2013-01-02 -0.352587  0.185867 -0.029261  0.668548
-2013-01-03 -1.919182  1.263051 -0.447114 -2.265783
-
-[3 rows x 4 columns]
+2013-01-01  1.295060 -1.892445  1.325433 -2.208407
+2013-01-02 -0.188383  0.957533  1.024778  0.827907
+2013-01-03  1.005206 -0.734869  0.685699 -0.092167
 </pre>
 </section>
-<section id="sec-3-10">
-
-<h3>by index</h3>
+<section id="slide-orgheadline17">
+<h3 id="orgheadline17">by index</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python">df<span style="color: #707183;">[</span><span style="color: #4E9A06;">'20130102'</span>:<span style="color: #4E9A06;">'20130104'</span><span style="color: #707183;">]</span>
+<pre  class="src src-python">df<span style="color: #e91e63;">[</span><span style="color: #689f38;">'20130102'</span>:<span style="color: #689f38;">'20130104'</span><span style="color: #e91e63;">]</span>
 </pre>
 </div>
 
 <pre class="example">
                    A         B         C         D
-2013-01-02 -0.352587  0.185867 -0.029261  0.668548
-2013-01-03 -1.919182  1.263051 -0.447114 -2.265783
-2013-01-04 -0.768178 -0.992339 -0.539134 -0.716079
-
-[3 rows x 4 columns]
+2013-01-02 -0.188383  0.957533  1.024778  0.827907
+2013-01-03  1.005206 -0.734869  0.685699 -0.092167
+2013-01-04 -0.882230 -0.256595  1.627533 -0.509552
 </pre>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">from</span> datetime <span style="color: #A52A2A; font-weight: bold;">import</span> date
-df<span style="color: #707183;">[</span>date<span style="color: #7388d6;">(</span><span style="color: #F5666D;">2013</span>,<span style="color: #F5666D;">1</span>,<span style="color: #F5666D;">2</span><span style="color: #7388d6;">)</span>:date<span style="color: #7388d6;">(</span><span style="color: #F5666D;">2013</span>,<span style="color: #F5666D;">1</span>,<span style="color: #F5666D;">4</span><span style="color: #7388d6;">)</span><span style="color: #707183;">]</span>
+<pre  class="src src-python"><span style="color: #00796b;">from</span> datetime <span style="color: #00796b;">import</span> date
+df<span style="color: #e91e63;">[</span>date<span style="color: #1565C0;">(</span><span style="color: #689f38;">2013</span>,<span style="color: #689f38;">1</span>,<span style="color: #689f38;">2</span><span style="color: #1565C0;">)</span>:date<span style="color: #1565C0;">(</span><span style="color: #689f38;">2013</span>,<span style="color: #689f38;">1</span>,<span style="color: #689f38;">4</span><span style="color: #1565C0;">)</span><span style="color: #e91e63;">]</span>
 </pre>
 </div>
 
 <pre class="example">
                    A         B         C         D
-2013-01-02 -0.352587  0.185867 -0.029261  0.668548
-2013-01-03 -1.919182  1.263051 -0.447114 -2.265783
-2013-01-04 -0.768178 -0.992339 -0.539134 -0.716079
-
-[3 rows x 4 columns]
+2013-01-02 -0.188383  0.957533  1.024778  0.827907
+2013-01-03  1.005206 -0.734869  0.685699 -0.092167
+2013-01-04 -0.882230 -0.256595  1.627533 -0.509552
 </pre>
 
 </section>
-<section id="sec-3-11">
-
-<h3>by integer location</h3>
+<section id="slide-orgheadline18">
+<h3 id="orgheadline18">by integer location</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python">df.iloc<span style="color: #707183;">[</span><span style="color: #7388d6;">[</span><span style="color: #F5666D;">4</span>, <span style="color: #F5666D;">2</span><span style="color: #7388d6;">]</span><span style="color: #707183;">]</span>
+<pre  class="src src-python">df.iloc<span style="color: #e91e63;">[</span><span style="color: #1565C0;">[</span><span style="color: #689f38;">4</span>, <span style="color: #689f38;">2</span><span style="color: #1565C0;">]</span><span style="color: #e91e63;">]</span>
 </pre>
 </div>
 
 <pre class="example">
                    A         B         C         D
-2013-01-05 -1.338250  1.137091 -0.463499  0.166856
-2013-01-03 -1.919182  1.263051 -0.447114 -2.265783
-
-[2 rows x 4 columns]
+2013-01-05 -0.193930  2.171011 -1.064996  1.736236
+2013-01-03  1.005206 -0.734869  0.685699 -0.092167
 </pre>
 
 </section>
-<section id="sec-3-12">
-
-<h3>Grouping</h3>
+<section id="slide-orgheadline19">
+<h3 id="orgheadline19">Grouping</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">gp</span> = pd.DataFrame<span style="color: #707183;">(</span><span style="color: #7388d6;">{</span><span style="color: #4E9A06;">'A'</span> : <span style="color: #909183;">[</span><span style="color: #4E9A06;">'foo'</span>, <span style="color: #4E9A06;">'bar'</span>, <span style="color: #4E9A06;">'foo'</span>, <span style="color: #4E9A06;">'bar'</span>,
-                          <span style="color: #4E9A06;">'foo'</span>, <span style="color: #4E9A06;">'bar'</span>, <span style="color: #4E9A06;">'foo'</span>, <span style="color: #4E9A06;">'foo'</span><span style="color: #909183;">]</span>,
-                   <span style="color: #4E9A06;">'B'</span> : <span style="color: #909183;">[</span><span style="color: #4E9A06;">'one'</span>, <span style="color: #4E9A06;">'one'</span>, <span style="color: #4E9A06;">'two'</span>, <span style="color: #4E9A06;">'three'</span>,
-                          <span style="color: #4E9A06;">'two'</span>, <span style="color: #4E9A06;">'two'</span>, <span style="color: #4E9A06;">'one'</span>, <span style="color: #4E9A06;">'three'</span><span style="color: #909183;">]</span>,
-                   <span style="color: #4E9A06;">'C'</span> : np.random.randn<span style="color: #909183;">(</span><span style="color: #F5666D;">8</span><span style="color: #909183;">)</span>,
-                   <span style="color: #4E9A06;">'D'</span> : np.random.randn<span style="color: #909183;">(</span><span style="color: #F5666D;">8</span><span style="color: #909183;">)</span><span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>
+<pre  class="src src-python"><span style="color: #EF6C00;">gp</span> = pd.DataFrame<span style="color: #e91e63;">(</span><span style="color: #1565C0;">{</span><span style="color: #689f38;">'A'</span> : <span style="color: #EF6C00;">[</span><span style="color: #689f38;">'foo'</span>, <span style="color: #689f38;">'bar'</span>, <span style="color: #689f38;">'foo'</span>, <span style="color: #689f38;">'bar'</span>,
+                          <span style="color: #689f38;">'foo'</span>, <span style="color: #689f38;">'bar'</span>, <span style="color: #689f38;">'foo'</span>, <span style="color: #689f38;">'foo'</span><span style="color: #EF6C00;">]</span>,
+                   <span style="color: #689f38;">'B'</span> : <span style="color: #EF6C00;">[</span><span style="color: #689f38;">'one'</span>, <span style="color: #689f38;">'one'</span>, <span style="color: #689f38;">'two'</span>, <span style="color: #689f38;">'three'</span>,
+                          <span style="color: #689f38;">'two'</span>, <span style="color: #689f38;">'two'</span>, <span style="color: #689f38;">'one'</span>, <span style="color: #689f38;">'three'</span><span style="color: #EF6C00;">]</span>,
+                   <span style="color: #689f38;">'C'</span> : np.random.randn<span style="color: #EF6C00;">(</span><span style="color: #689f38;">8</span><span style="color: #EF6C00;">)</span>,
+                   <span style="color: #689f38;">'D'</span> : np.random.randn<span style="color: #EF6C00;">(</span><span style="color: #689f38;">8</span><span style="color: #EF6C00;">)</span><span style="color: #1565C0;">}</span><span style="color: #e91e63;">)</span>
 gp
 </pre>
 </div>
 
 <pre class="example">
      A      B         C         D
-0  foo    one  0.830803 -0.503587
-1  bar    one -0.071898  1.317533
-2  foo    two -0.131731 -0.330722
-3  bar  three -0.610325 -1.898784
-4  foo    two -0.832449 -0.336441
-5  bar    two  1.267449 -0.612326
-6  foo    one -0.335574  0.502221
-7  foo  three  0.936589  0.798455
-
-[8 rows x 4 columns]
+0  foo    one  0.771749 -1.173628
+1  bar    one  0.005310  0.168708
+2  foo    two -1.281703 -0.365025
+3  bar  three  0.296035 -0.569597
+4  foo    two  0.640401  0.015837
+5  bar    two -1.178718 -0.531231
+6  foo    one -0.875578  0.047414
+7  foo  three  0.269448  1.214574
 </pre>
 
 </section>
-<section id="sec-3-13">
-
-<h3></h3>
+<section id="slide-orgheadline20">
+<h3 id="orgheadline20"></h3>
 <div class="org-src-container">
 
-<pre  class="src src-python">gp.groupby<span style="color: #707183;">(</span><span style="color: #4E9A06;">'A'</span><span style="color: #707183;">)</span>.<span style="color: #A020F0;">sum</span><span style="color: #707183;">()</span>
+<pre  class="src src-python">gp.groupby<span style="color: #e91e63;">(</span><span style="color: #689f38;">'A'</span><span style="color: #e91e63;">)</span>.<span style="color: #B71C1C;">sum</span><span style="color: #e91e63;">()</span>
 </pre>
 </div>
 
 <pre class="example">
             C         D
 A                      
-bar  0.585226 -1.193577
-foo  0.467638  0.129927
-
-[2 rows x 2 columns]
+bar -0.877373 -0.932120
+foo -0.475683 -0.260827
 </pre>
 
 <div class="org-src-container">
 
-<pre  class="src src-python">gp.groupby<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span><span style="color: #4E9A06;">'A'</span>,<span style="color: #4E9A06;">'B'</span><span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>.mean<span style="color: #707183;">()</span>
+<pre  class="src src-python">gp.groupby<span style="color: #e91e63;">(</span><span style="color: #1565C0;">[</span><span style="color: #689f38;">'A'</span>,<span style="color: #689f38;">'B'</span><span style="color: #1565C0;">]</span><span style="color: #e91e63;">)</span>.mean<span style="color: #e91e63;">()</span>
 </pre>
 </div>
 
 <pre class="example">
                   C         D
 A   B                        
-bar one   -0.071898  1.317533
-    three -0.610325 -1.898784
-    two    1.267449 -0.612326
-foo one    0.247614 -0.000683
-    three  0.936589  0.798455
-    two   -0.482090 -0.333581
-
-[6 rows x 2 columns]
+bar one    0.005310  0.168708
+    three  0.296035 -0.569597
+    two   -1.178718 -0.531231
+foo one   -0.051915 -0.563107
+    three  0.269448  1.214574
+    two   -0.320651 -0.174594
 </pre>
 
 </section>
-<section id="sec-3-14">
-
-<h3>Merging</h3>
+<section id="slide-orgheadline21">
+<h3 id="orgheadline21">Merging</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">left</span> = pd.DataFrame<span style="color: #707183;">(</span><span style="color: #7388d6;">{</span><span style="color: #4E9A06;">'key'</span>: <span style="color: #909183;">[</span><span style="color: #4E9A06;">'one'</span>, <span style="color: #4E9A06;">'two'</span><span style="color: #909183;">]</span>, <span style="color: #4E9A06;">'lval'</span>: <span style="color: #909183;">[</span><span style="color: #F5666D;">1</span>, <span style="color: #F5666D;">2</span><span style="color: #909183;">]</span><span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>
-<span style="color: #0084C8; font-weight: bold;">right</span> = pd.DataFrame<span style="color: #707183;">(</span><span style="color: #7388d6;">{</span><span style="color: #4E9A06;">'key'</span>: <span style="color: #909183;">[</span><span style="color: #4E9A06;">'two'</span>, <span style="color: #4E9A06;">'one'</span><span style="color: #909183;">]</span>, <span style="color: #4E9A06;">'rval'</span>: <span style="color: #909183;">[</span><span style="color: #F5666D;">4</span>, <span style="color: #F5666D;">5</span><span style="color: #909183;">]</span><span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>
-pd.merge<span style="color: #707183;">(</span>left, right, on=<span style="color: #4E9A06;">'key'</span><span style="color: #707183;">)</span>
+<pre  class="src src-python"><span style="color: #EF6C00;">left</span> = pd.DataFrame<span style="color: #e91e63;">(</span><span style="color: #1565C0;">{</span><span style="color: #689f38;">'key'</span>: <span style="color: #EF6C00;">[</span><span style="color: #689f38;">'one'</span>, <span style="color: #689f38;">'two'</span><span style="color: #EF6C00;">]</span>, <span style="color: #689f38;">'lval'</span>: <span style="color: #EF6C00;">[</span><span style="color: #689f38;">1</span>, <span style="color: #689f38;">2</span><span style="color: #EF6C00;">]</span><span style="color: #1565C0;">}</span><span style="color: #e91e63;">)</span>
+<span style="color: #EF6C00;">right</span> = pd.DataFrame<span style="color: #e91e63;">(</span><span style="color: #1565C0;">{</span><span style="color: #689f38;">'key'</span>: <span style="color: #EF6C00;">[</span><span style="color: #689f38;">'two'</span>, <span style="color: #689f38;">'one'</span><span style="color: #EF6C00;">]</span>, <span style="color: #689f38;">'rval'</span>: <span style="color: #EF6C00;">[</span><span style="color: #689f38;">4</span>, <span style="color: #689f38;">5</span><span style="color: #EF6C00;">]</span><span style="color: #1565C0;">}</span><span style="color: #e91e63;">)</span>
+pd.merge<span style="color: #e91e63;">(</span>left, right, on=<span style="color: #689f38;">'key'</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -656,32 +594,28 @@ pd.merge<span style="color: #707183;">(</span>left, right, on=<span style="color
    key  lval  rval
 0  one     1     5
 1  two     2     4
-
-[2 rows x 3 columns]
 </pre>
 
 </section>
-<section id="sec-3-15">
-
-<h3>Plotting</h3>
+<section id="slide-orgheadline22">
+<h3 id="orgheadline22">Plotting</h3>
 <p>
 Pandas has built-in functions for common plot types
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">import</span> matplotlib.pyplot <span style="color: #A52A2A; font-weight: bold;">as</span> plt
-<span style="color: #0084C8; font-weight: bold;">df</span> = pd.DataFrame<span style="color: #707183;">(</span>randn<span style="color: #7388d6;">(</span><span style="color: #F5666D;">1000</span>, <span style="color: #F5666D;">4</span><span style="color: #7388d6;">)</span>, 
-                  index=pd.date_range<span style="color: #7388d6;">(</span><span style="color: #4E9A06;">'1/1/2000'</span>, periods=<span style="color: #F5666D;">1000</span><span style="color: #7388d6;">)</span>,
-                  columns=<span style="color: #A020F0;">list</span><span style="color: #7388d6;">(</span><span style="color: #4E9A06;">'ABCD'</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
-<span style="color: #0084C8; font-weight: bold;">df</span> = df.cumsum<span style="color: #707183;">()</span>
-<span style="color: #0084C8; font-weight: bold;">ax</span> = df.plot<span style="color: #707183;">()</span>
+<pre  class="src src-python"><span style="color: #00796b;">import</span> matplotlib.pyplot <span style="color: #00796b;">as</span> plt
+<span style="color: #EF6C00;">df</span> = pd.DataFrame<span style="color: #e91e63;">(</span>randn<span style="color: #1565C0;">(</span><span style="color: #689f38;">1000</span>, <span style="color: #689f38;">4</span><span style="color: #1565C0;">)</span>, 
+                  index=pd.date_range<span style="color: #1565C0;">(</span><span style="color: #689f38;">'1/1/2000'</span>, periods=<span style="color: #689f38;">1000</span><span style="color: #1565C0;">)</span>,
+                  columns=<span style="color: #B71C1C;">list</span><span style="color: #1565C0;">(</span><span style="color: #689f38;">'ABCD'</span><span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
+<span style="color: #EF6C00;">df</span> = df.cumsum<span style="color: #e91e63;">()</span>
+<span style="color: #EF6C00;">ax</span> = df.plot<span style="color: #e91e63;">()</span>
 </pre>
 </div>
 
 </section>
-<section id="sec-3-16">
-
-<h3></h3>
+<section id="slide-orgheadline23">
+<h3 id="orgheadline23"></h3>
 
 <div class="figure">
 <p><img src="ts.png" alt="ts.png" />
@@ -689,19 +623,16 @@ Pandas has built-in functions for common plot types
 </div>
 
 </section>
-<section id="sec-3-17">
-
-<h3>Working with a dataset</h3>
+<section id="slide-orgheadline34">
+<h3 id="orgheadline34">Working with a dataset</h3>
 <p>
 Let's try working with the <a href="http://grouplens.org/datasets/movielens/">Movielens</a> 100k dataset
 </p>
-<ul class="org-ul">
-<li>1000 Users
-</li>
-<li>100,000 Ratings
-</li>
-<li>1700 Movies
-</li>
+<ul>
+<li>1000 Users</li>
+<li>100,000 Ratings</li>
+<li>1700 Movies</li>
+
 </ul>
 
 <p>
@@ -709,38 +640,39 @@ Extract the ml-100k.zip to a folder <code>ml-100k</code> in the same directory a
 </p>
 
 </section>
-<section id="sec-3-17-1">
-
-<h4>Reading the data</h4>
+<section id="slide-orgheadline24">
+<h4 id="orgheadline24">Reading the data</h4>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #204A87;"># </span><span style="color: #204A87;">pass in column names for each CSV</span>
-<span style="color: #0084C8; font-weight: bold;">u_cols</span> = <span style="color: #707183;">[</span><span style="color: #4E9A06;">'user_id'</span>, <span style="color: #4E9A06;">'age'</span>, <span style="color: #4E9A06;">'sex'</span>, <span style="color: #4E9A06;">'occupation'</span>, <span style="color: #4E9A06;">'zip_code'</span><span style="color: #707183;">]</span>
-<span style="color: #0084C8; font-weight: bold;">users</span> = pd.read_csv<span style="color: #707183;">(</span><span style="color: #4E9A06;">'ml-100k/u.user'</span>, sep=<span style="color: #4E9A06;">'|'</span>, names=u_cols<span style="color: #707183;">)</span>
+<pre  class="src src-python"><span style="color: #607d8b;"># </span><span style="color: #607d8b;">pass in column names for each CSV</span>
+<span style="color: #EF6C00;">u_cols</span> = <span style="color: #e91e63;">[</span><span style="color: #689f38;">'user_id'</span>, <span style="color: #689f38;">'age'</span>, <span style="color: #689f38;">'sex'</span>, <span style="color: #689f38;">'occupation'</span>, <span style="color: #689f38;">'zip_code'</span><span style="color: #e91e63;">]</span>
+<span style="color: #EF6C00;">users</span> = pd.read_csv<span style="color: #e91e63;">(</span><span style="color: #689f38;">'ml-100k/u.user'</span>, sep=<span style="color: #689f38;">'|'</span>, names=u_cols,
+                    encoding=<span style="color: #689f38;">"latin-1"</span><span style="color: #e91e63;">)</span>
 
-<span style="color: #0084C8; font-weight: bold;">r_cols</span> = <span style="color: #707183;">[</span><span style="color: #4E9A06;">'user_id'</span>, <span style="color: #4E9A06;">'movie_id'</span>, <span style="color: #4E9A06;">'rating'</span>, <span style="color: #4E9A06;">'unix_timestamp'</span><span style="color: #707183;">]</span>
-<span style="color: #0084C8; font-weight: bold;">ratings</span> = pd.read_csv<span style="color: #707183;">(</span><span style="color: #4E9A06;">'ml-100k/u.data'</span>, sep=<span style="color: #4E9A06;">'\t'</span>, names=r_cols<span style="color: #707183;">)</span>
+<span style="color: #EF6C00;">r_cols</span> = <span style="color: #e91e63;">[</span><span style="color: #689f38;">'user_id'</span>, <span style="color: #689f38;">'movie_id'</span>, <span style="color: #689f38;">'rating'</span>, <span style="color: #689f38;">'unix_timestamp'</span><span style="color: #e91e63;">]</span>
+<span style="color: #EF6C00;">ratings</span> = pd.read_csv<span style="color: #e91e63;">(</span><span style="color: #689f38;">'ml-100k/u.data'</span>, sep=<span style="color: #689f38;">'\t'</span>, names=r_cols,
+                      encoding=<span style="color: #689f38;">"latin-1"</span><span style="color: #e91e63;">)</span>
 
-<span style="color: #204A87;"># </span><span style="color: #204A87;">the movies file contains columns indicating the movie's genres</span>
-<span style="color: #204A87;"># </span><span style="color: #204A87;">let's only load the first five columns of the file with usecols</span>
-<span style="color: #0084C8; font-weight: bold;">m_cols</span> = <span style="color: #707183;">[</span><span style="color: #4E9A06;">'movie_id'</span>, <span style="color: #4E9A06;">'title'</span>, <span style="color: #4E9A06;">'release_date'</span>,
-          <span style="color: #4E9A06;">'video_release_date'</span>, <span style="color: #4E9A06;">'imdb_url'</span><span style="color: #707183;">]</span>
-<span style="color: #0084C8; font-weight: bold;">movies</span> = pd.read_csv<span style="color: #707183;">(</span><span style="color: #4E9A06;">'ml-100k/u.item'</span>, sep=<span style="color: #4E9A06;">'|'</span>, 
-                     names=m_cols, usecols=<span style="color: #A020F0;">range</span><span style="color: #7388d6;">(</span><span style="color: #F5666D;">5</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #607d8b;"># </span><span style="color: #607d8b;">the movies file contains columns indicating the movie's genres</span>
+<span style="color: #607d8b;"># </span><span style="color: #607d8b;">let's only load the first five columns of the file with usecols</span>
+<span style="color: #EF6C00;">m_cols</span> = <span style="color: #e91e63;">[</span><span style="color: #689f38;">'movie_id'</span>, <span style="color: #689f38;">'title'</span>, <span style="color: #689f38;">'release_date'</span>,
+          <span style="color: #689f38;">'video_release_date'</span>, <span style="color: #689f38;">'imdb_url'</span><span style="color: #e91e63;">]</span>
+<span style="color: #EF6C00;">movies</span> = pd.read_csv<span style="color: #e91e63;">(</span><span style="color: #689f38;">'ml-100k/u.item'</span>, sep=<span style="color: #689f38;">'|'</span>, 
+                     names=m_cols, usecols=<span style="color: #B71C1C;">range</span><span style="color: #1565C0;">(</span><span style="color: #689f38;">5</span><span style="color: #1565C0;">)</span>,
+                     encoding=<span style="color: #689f38;">'latin-1'</span><span style="color: #e91e63;">)</span>
 
-<span style="color: #204A87;"># </span><span style="color: #204A87;">create one merged DataFrame</span>
-<span style="color: #0084C8; font-weight: bold;">movie_ratings</span> = pd.merge<span style="color: #707183;">(</span>movies, ratings<span style="color: #707183;">)</span>
-<span style="color: #0084C8; font-weight: bold;">lens</span> = pd.merge<span style="color: #707183;">(</span>movie_ratings, users<span style="color: #707183;">)</span>
+<span style="color: #607d8b;"># </span><span style="color: #607d8b;">create one merged DataFrame</span>
+<span style="color: #EF6C00;">movie_ratings</span> = pd.merge<span style="color: #e91e63;">(</span>movies, ratings<span style="color: #e91e63;">)</span>
+<span style="color: #EF6C00;">lens</span> = pd.merge<span style="color: #e91e63;">(</span>movie_ratings, users<span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
 </section>
-<section id="sec-3-17-2">
-
-<h4>How does the data look like?</h4>
+<section id="slide-orgheadline25">
+<h4 id="orgheadline25">What did we read?</h4>
 <div class="org-src-container">
 
-<pre  class="src src-python">lens.head<span style="color: #707183;">(</span><span style="color: #F5666D;">3</span><span style="color: #707183;">)</span>
+<pre  class="src src-python">lens.head<span style="color: #e91e63;">(</span><span style="color: #689f38;">3</span><span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -758,19 +690,16 @@ Extract the ml-100k.zip to a folder <code>ml-100k</code> in the same directory a
    unix_timestamp  age sex occupation zip_code  
 0       887736532   60   M    retired    95076  
 1       887737890   60   M    retired    95076  
-2       887739608   60   M    retired    95076  
-
-[3 rows x 12 columns]
+2       887739608   60   M    retired    95076
 </pre>
 
 </section>
-<section id="sec-3-17-3">
-
-<h4>What are the 10 most rated movies?</h4>
+<section id="slide-orgheadline26">
+<h4 id="orgheadline26">What are the 10 most rated movies?</h4>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">most_rated</span> = lens.groupby<span style="color: #707183;">(</span><span style="color: #4E9A06;">'title'</span><span style="color: #707183;">)</span>.size<span style="color: #707183;">()</span>.order<span style="color: #707183;">(</span>ascending=<span style="color: #F5666D;">False</span><span style="color: #707183;">)[</span>:<span style="color: #F5666D;">10</span><span style="color: #707183;">]</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span> most_rated
+<pre  class="src src-python"><span style="color: #EF6C00;">most_rated</span> = lens.groupby<span style="color: #e91e63;">(</span><span style="color: #689f38;">'title'</span><span style="color: #e91e63;">)</span>.size<span style="color: #e91e63;">()</span>.sort_values<span style="color: #e91e63;">(</span>ascending=<span style="color: #558b2f;">False</span><span style="color: #e91e63;">)[</span>:<span style="color: #689f38;">10</span><span style="color: #e91e63;">]</span>
+<span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span>most_rated<span style="color: #e91e63;">)</span>
 </pre>
 </div>
 
@@ -790,108 +719,90 @@ dtype: int64
 </pre>
 
 </section>
-<section id="sec-3-17-4">
-
-<h4>Which movies are most highly rated?</h4>
+<section id="slide-orgheadline27">
+<h4 id="orgheadline27">Which movies are most highly rated?</h4>
 <p>
 The <code>agg</code> function can take multiple functions that are applied to a column 
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">movie_stats</span> = lens.groupby<span style="color: #707183;">(</span><span style="color: #4E9A06;">'title'</span><span style="color: #707183;">)</span>.agg<span style="color: #707183;">(</span><span style="color: #7388d6;">{</span><span style="color: #4E9A06;">'rating'</span>: <span style="color: #909183;">[</span>np.size, np.mean<span style="color: #909183;">]</span><span style="color: #7388d6;">}</span><span style="color: #707183;">)</span>
-movie_stats.head<span style="color: #707183;">()</span>
+<pre  class="src src-python"><span style="color: #EF6C00;">movie_stats</span> = lens.groupby<span style="color: #e91e63;">(</span><span style="color: #689f38;">'title'</span><span style="color: #e91e63;">)</span>.agg<span style="color: #e91e63;">(</span><span style="color: #1565C0;">{</span><span style="color: #689f38;">'rating'</span>: <span style="color: #EF6C00;">[</span>np.size, np.mean<span style="color: #EF6C00;">]</span><span style="color: #1565C0;">}</span><span style="color: #e91e63;">)</span>
+movie_stats.head<span style="color: #e91e63;">()</span>
 </pre>
 </div>
 
 <pre class="example">
-                           rating          
-                             size      mean
-title                                      
-'Til There Was You (1997)       9  2.333333
-1-900 (1994)                    5  2.600000
-101 Dalmatians (1996)         109  2.908257
-12 Angry Men (1957)           125  4.344000
-187 (1997)                     41  3.024390
-
-[5 rows x 2 columns]
+                          rating          
+                            size      mean
+title                                     
+'Til There Was You (1997)      9  2.333333
+1-900 (1994)                   5  2.600000
+101 Dalmatians (1996)        109  2.908257
+12 Angry Men (1957)          125  4.344000
+187 (1997)                    41  3.024390
 </pre>
 
 </section>
-<section id="sec-3-17-5">
-
-<h4>Which movies are most highly rated?</h4>
+<section id="slide-orgheadline28">
+<h4 id="orgheadline28">Which movies are most highly rated?</h4>
 <p>
 Sort them by mean rating
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-python">movie_stats.sort<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span><span style="color: #909183;">(</span><span style="color: #4E9A06;">'rating'</span>, <span style="color: #4E9A06;">'mean'</span><span style="color: #909183;">)</span><span style="color: #7388d6;">]</span>, ascending=<span style="color: #F5666D;">False</span><span style="color: #707183;">)</span>.head<span style="color: #707183;">()</span>
+<pre  class="src src-python">movie_stats.sort<span style="color: #e91e63;">(</span><span style="color: #1565C0;">[</span><span style="color: #EF6C00;">(</span><span style="color: #689f38;">'rating'</span>, <span style="color: #689f38;">'mean'</span><span style="color: #EF6C00;">)</span><span style="color: #1565C0;">]</span>, ascending=<span style="color: #558b2f;">False</span><span style="color: #e91e63;">)</span>.head<span style="color: #e91e63;">()</span>
 </pre>
 </div>
 
 <pre class="example">
-                                            rating      
-                                              size  mean
-title                                                   
-Marlene Dietrich: Shadow and Light (1996)        1     5
-Prefontaine (1997)                               3     5
-Santa with Muscles (1996)                        2     5
-Star Kid (1997)                                  3     5
-Someone Else's America (1995)                    1     5
-
-[5 rows x 2 columns]
+                                           rating     
+                                             size mean
+title                                                 
+They Made Me a Criminal (1939)                  1    5
+Marlene Dietrich: Shadow and Light (1996)       1    5
+Saint of Fort Washington, The (1993)            2    5
+Someone Else's America (1995)                   1    5
+Star Kid (1997)                                 3    5
 </pre>
 
 </section>
-<section id="sec-3-17-6">
-
-<h4>Which movies are most highly rated?</h4>
+<section id="slide-orgheadline29">
+<h4 id="orgheadline29">Which movies are most highly rated?</h4>
 <p>
 Lets only look at movies rated at least 100 times
 </p>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">atleast_100</span> = movie_stats<span style="color: #707183;">[</span><span style="color: #4E9A06;">'rating'</span><span style="color: #707183;">]</span>.size &gt;= <span style="color: #F5666D;">100</span>
-movie_stats<span style="color: #707183;">[</span>atleast_100<span style="color: #707183;">]</span>.sort<span style="color: #707183;">(</span><span style="color: #7388d6;">[</span><span style="color: #909183;">(</span><span style="color: #4E9A06;">'rating'</span>, <span style="color: #4E9A06;">'mean'</span><span style="color: #909183;">)</span><span style="color: #7388d6;">]</span>, ascending=<span style="color: #F5666D;">False</span><span style="color: #707183;">)</span>.head<span style="color: #707183;">()</span>
+<pre  class="src src-python"><span style="color: #EF6C00;">atleast_100</span> = movie_stats<span style="color: #e91e63;">[</span><span style="color: #689f38;">'rating'</span><span style="color: #e91e63;">]</span>.size &gt;= <span style="color: #689f38;">100</span>
+movie_stats<span style="color: #e91e63;">[</span>atleast_100<span style="color: #e91e63;">]</span>.sort<span style="color: #e91e63;">(</span><span style="color: #1565C0;">[</span><span style="color: #EF6C00;">(</span><span style="color: #689f38;">'rating'</span>, <span style="color: #689f38;">'mean'</span><span style="color: #EF6C00;">)</span><span style="color: #1565C0;">]</span>, ascending=<span style="color: #558b2f;">False</span><span style="color: #e91e63;">)</span>.head<span style="color: #e91e63;">()</span>
 </pre>
 </div>
 
 <pre class="example">
-                                  rating          
-                                    size      mean
-title                                             
-Close Shave, A (1995)                112  4.491071
-Schindler's List (1993)              298  4.466443
-Wrong Trousers, The (1993)           118  4.466102
-Casablanca (1942)                    243  4.456790
-Shawshank Redemption, The (1994)     283  4.445230
-
-[5 rows x 2 columns]
+'org_babel_python_eoe'
 </pre>
 
 </section>
-<section id="sec-3-17-7">
-
-<h4>Exercise</h4>
+<section id="slide-orgheadline30">
+<h4 id="orgheadline30">Exercise</h4>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #204A87;">### </span><span style="color: #204A87;">Exercise ###</span>
-<span style="color: #204A87;">### </span><span style="color: #204A87;">Try to plot the ratings distribution of a movie of your choice.</span>
-<span style="color: #204A87;">### </span><span style="color: #204A87;">you can use the hist() function to produce a histogram</span>
+<pre  class="src src-python"><span style="color: #607d8b;">### </span><span style="color: #607d8b;">Exercise ###</span>
+<span style="color: #607d8b;">### </span><span style="color: #607d8b;">Try to plot the ratings distribution of a movie of your choice.</span>
+<span style="color: #607d8b;">### </span><span style="color: #607d8b;">you can use the hist() function to produce a histogram</span>
 </pre>
 </div>
 
 </section>
-<section id="sec-3-17-8">
-
-<h4>Solution</h4>
+<section id="slide-orgheadline31">
+<h4 id="orgheadline31">Solution</h4>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">toy_story</span> = lens<span style="color: #707183;">[</span>lens.title==<span style="color: #4E9A06;">'Toy Story (1995)'</span><span style="color: #707183;">]</span>
-plt.figure<span style="color: #707183;">()</span>
-<span style="color: #0084C8; font-weight: bold;">ax</span> = toy_story.rating.hist<span style="color: #707183;">()</span>
-plt.savefig<span style="color: #707183;">(</span><span style="color: #4E9A06;">'hist.png'</span><span style="color: #707183;">)</span>
-<span style="color: #4E9A06;">'hist.png'</span>
+<pre  class="src src-python"><span style="color: #EF6C00;">toy_story</span> = lens<span style="color: #e91e63;">[</span>lens.title==<span style="color: #689f38;">'Toy Story (1995)'</span><span style="color: #e91e63;">]</span>
+plt.figure<span style="color: #e91e63;">()</span>
+<span style="color: #EF6C00;">ax</span> = toy_story.rating.hist<span style="color: #e91e63;">()</span>
+plt.savefig<span style="color: #e91e63;">(</span><span style="color: #689f38;">'hist.png'</span><span style="color: #e91e63;">)</span>
+<span style="color: #689f38;">'hist.png'</span>
 </pre>
 </div>
 
@@ -902,27 +813,25 @@ plt.savefig<span style="color: #707183;">(</span><span style="color: #4E9A06;">'
 </div>
 
 </section>
-<section id="sec-3-17-9">
-
-<h4>Exercise 2</h4>
+<section id="slide-orgheadline32">
+<h4 id="orgheadline32">Exercise 2</h4>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #204A87;">### </span><span style="color: #204A87;">Exercise ###</span>
-<span style="color: #204A87;">### </span><span style="color: #204A87;">plot the mean rating by age of user</span>
+<pre  class="src src-python"><span style="color: #607d8b;">### </span><span style="color: #607d8b;">Exercise ###</span>
+<span style="color: #607d8b;">### </span><span style="color: #607d8b;">plot the mean rating by age of user</span>
 </pre>
 </div>
 
 </section>
-<section id="sec-3-17-10">
-
-<h4>Solution</h4>
+<section id="slide-orgheadline33">
+<h4 id="orgheadline33">Solution</h4>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">age_grouped</span> = toy_story.groupby<span style="color: #707183;">(</span><span style="color: #4E9A06;">'age'</span><span style="color: #707183;">)</span>.mean<span style="color: #707183;">()</span>
-plt.figure<span style="color: #707183;">()</span>
-<span style="color: #0084C8; font-weight: bold;">ax</span> = age_grouped<span style="color: #707183;">[</span><span style="color: #4E9A06;">'rating'</span><span style="color: #707183;">]</span>.plot<span style="color: #707183;">()</span>
-plt.savefig<span style="color: #707183;">(</span><span style="color: #4E9A06;">'age-ratings.png'</span><span style="color: #707183;">)</span>
-<span style="color: #4E9A06;">'age-ratings.png'</span>
+<pre  class="src src-python"><span style="color: #EF6C00;">age_grouped</span> = toy_story.groupby<span style="color: #e91e63;">(</span><span style="color: #689f38;">'age'</span><span style="color: #e91e63;">)</span>.mean<span style="color: #e91e63;">()</span>
+plt.figure<span style="color: #e91e63;">()</span>
+<span style="color: #EF6C00;">ax</span> = age_grouped<span style="color: #e91e63;">[</span><span style="color: #689f38;">'rating'</span><span style="color: #e91e63;">]</span>.plot<span style="color: #e91e63;">()</span>
+plt.savefig<span style="color: #e91e63;">(</span><span style="color: #689f38;">'age-ratings.png'</span><span style="color: #e91e63;">)</span>
+<span style="color: #689f38;">'age-ratings.png'</span>
 </pre>
 </div>
 
@@ -934,16 +843,13 @@ plt.savefig<span style="color: #707183;">(</span><span style="color: #4E9A06;">'
 </section>
 </section>
 <section>
-<section id="sec-4">
+<section id="slide-orgheadline36">
+<h2 id="orgheadline36">Additional Resources</h2>
+<ul>
+<li><a href="http://pandas.pydata.org/">Pandas website</a> - The documentation is very thorough and full of examples</li>
+<li><a href="http://pandas.pydata.org/pandas-docs/stable/tutorials.html">List of pandas tutorials</a></li>
+<li><a href="http://www.gregreda.com/2013/10/26/using-pandas-on-the-movielens-dataset/">using pandas on the movielens dataset</a> (blogpost from which I took some examples)</li>
 
-<h2>Additional Resources</h2>
-<ul class="org-ul">
-<li><a href="http://pandas.pydata.org/">Pandas website</a> - The documentation is very thorough and full of examples
-</li>
-<li><a href="http://pandas.pydata.org/pandas-docs/stable/tutorials.html">List of pandas tutorials</a>
-</li>
-<li><a href="http://www.gregreda.com/2013/10/26/using-pandas-on-the-movielens-dataset/">using pandas on the movielens dataset</a> (blogpost from which I took some examples)
-</li>
 </ul>
 </section>
 </section>

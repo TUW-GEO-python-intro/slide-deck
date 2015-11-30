@@ -3,7 +3,7 @@
 #+OPTIONS: reveal_overview:t reveal_progress:t
 #+OPTIONS: reveal_rolling_links:nil reveal_slide_number:t
 #+OPTIONS: reveal_title_slide:t reveal_width:-1
-#+options: toc:nil ^:nil
+#+options: toc:nil ^:nil num:nil
 #+REVEAL_MARGIN: -1
 #+REVEAL_MIN_SCALE: -1
 #+REVEAL_MAX_SCALE: -1
@@ -58,7 +58,7 @@ import pandas as pd
 creation from numpy array with list as index
 #+begin_src python :results output pp :exports both :session pd
 s = pd.Series(np.arange(5), index=['a', 'b', 'c', 'd', 'e'])
-print s
+print(s)
 #+end_src
 
 #+RESULTS:
@@ -517,17 +517,20 @@ Extract the ml-100k.zip to a folder =ml-100k= in the same directory as the =lect
 #+begin_src python :results output pp :exports both :session pd
   # pass in column names for each CSV
   u_cols = ['user_id', 'age', 'sex', 'occupation', 'zip_code']
-  users = pd.read_csv('ml-100k/u.user', sep='|', names=u_cols)
+  users = pd.read_csv('ml-100k/u.user', sep='|', names=u_cols,
+                      encoding="latin-1")
 
   r_cols = ['user_id', 'movie_id', 'rating', 'unix_timestamp']
-  ratings = pd.read_csv('ml-100k/u.data', sep='\t', names=r_cols)
+  ratings = pd.read_csv('ml-100k/u.data', sep='\t', names=r_cols,
+                        encoding="latin-1")
 
   # the movies file contains columns indicating the movie's genres
   # let's only load the first five columns of the file with usecols
   m_cols = ['movie_id', 'title', 'release_date',
             'video_release_date', 'imdb_url']
   movies = pd.read_csv('ml-100k/u.item', sep='|', 
-                       names=m_cols, usecols=range(5))
+                       names=m_cols, usecols=range(5),
+                       encoding='latin-1')
 
   # create one merged DataFrame
   movie_ratings = pd.merge(movies, ratings)
@@ -558,14 +561,12 @@ lens.head(3)
 0       887736532   60   M    retired    95076  
 1       887737890   60   M    retired    95076  
 2       887739608   60   M    retired    95076  
-
-[3 rows x 12 columns]
 #+end_example
 
 *** What are the 10 most rated movies?
 #+begin_src python :results output pp :exports both :session pd
-most_rated = lens.groupby('title').size().order(ascending=False)[:10]
-print most_rated
+most_rated = lens.groupby('title').size().sort_values(ascending=False)[:10]
+print(most_rated)
 #+end_src
 
 #+RESULTS:
