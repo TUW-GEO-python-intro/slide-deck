@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <title>Object oriented programming</title>
-<meta name="author" content="(Sebastian Hahn)"/>
-
 <link rel="stylesheet" href="../reveal.js/css/reveal.css"/>
 <link rel="stylesheet" href="../reveal.js/css/theme/black.css" id="theme"/>
 <link rel="stylesheet" href="../code_formatting.css"/>
+
 <!-- If the query includes 'print-pdf', include the PDF print sheet -->
 <script>
     if( window.location.search.match( /print-pdf/gi ) ) {
@@ -24,12 +22,12 @@
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide" data-background="" data-background-size="" data-background-repeat="" data-background-transition="">
-<h1>Object oriented programming</h1> <h2>Sebastian Hahn</h2> <h2><a href="mailto:"></a></h2> <h2></h2>
+<h1>Object oriented programming</h1> <h2></h2> <h2><a href="mailto:"></a></h2> <h2></h2>
 </section>
 
 <section>
-<section id="slide-sec-1">
-<h2 id="sec-1">Introduction</h2>
+<section id="slide-orgheadline9">
+<h2 id="orgheadline9">Introduction</h2>
 <p>
 <a href="http://en.wikipedia.org/wiki/Object-oriented_programming">Object-oriented programming (OOP)</a> is a programming paradigm based on the concept
 of <b>objects</b>, which are data structures that contain data, in the form of
@@ -37,8 +35,8 @@ fields, often known as attributes; and code, in the form of procedures, often
 known as methods.
 </p>
 </section>
-<section id="slide-sec-1-1">
-<h3 id="sec-1-1">Terminology</h3>
+<section id="slide-orgheadline1">
+<h3 id="orgheadline1">Terminology</h3>
 <dl>
 <dt>Class</dt><dd>A user-defined prototype for an object that defines a set of
 attributes that characterize any object of the class. The attributes
@@ -49,8 +47,8 @@ definition. (e.g. x.mean())</dd>
 
 </dl>
 </section>
-<section id="slide-sec-1-2">
-<h3 id="sec-1-2">Terminology</h3>
+<section id="slide-orgheadline2">
+<h3 id="orgheadline2">Terminology</h3>
 <dl>
 <dt>Data member</dt><dd>represents a variable or instance variable that holds data
 associated with a class and its objects.</dd>
@@ -62,11 +60,11 @@ current instance of a class.</dd>
 
 </dl>
 </section>
-<section id="slide-sec-1-3">
-<h3 id="sec-1-3">Example - Human</h3>
+<section id="slide-orgheadline3">
+<h3 id="orgheadline3">Example - Human</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">class</span> <span style="color: #2F8B58; font-weight: bold;">Human</span><span style="color: #707183;">(</span><span style="color: #A020F0;">object</span><span style="color: #707183;">)</span>:
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">class</span> <span style="color: #2F8B58; font-weight: bold;">Human_1</span><span style="color: #707183;">(</span><span style="color: #A020F0;">object</span><span style="color: #707183;">)</span>:
 
     <span style="color: #204A87;"># </span><span style="color: #204A87;">definition of a class variable</span>
     <span style="color: #0084C8; font-weight: bold;">population</span> = <span style="color: #F5666D;">0</span> 
@@ -74,24 +72,24 @@ current instance of a class.</dd>
     <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">__init__</span><span style="color: #707183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span>, name<span style="color: #707183;">)</span>:
         <span style="color: #204A87;"># </span><span style="color: #204A87;">definition of an instance variable</span>
         <span style="color: #A52A2A; font-weight: bold;">self</span>.name = name
-        <span style="color: #0084C8; font-weight: bold;">Human.population</span> += <span style="color: #F5666D;">1</span>
+        <span style="color: #0084C8; font-weight: bold;">Human_1.population</span> += <span style="color: #F5666D;">1</span>
 
     <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">say_hi</span><span style="color: #707183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span><span style="color: #707183;">)</span>:
-        <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"Hi, my name is {:}"</span>.<span style="color: #A020F0;">format</span><span style="color: #7388d6;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span>.name<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+        <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"Hi, my name is {:}."</span>.<span style="color: #A020F0;">format</span><span style="color: #7388d6;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span>.name<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 
 <span style="color: #204A87;"># </span><span style="color: #204A87;">make an instance of a class</span>
-<span style="color: #0084C8; font-weight: bold;">jason</span> = Human<span style="color: #707183;">(</span><span style="color: #4E9A06;">"Jason"</span><span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">jason</span> = Human_1<span style="color: #707183;">(</span><span style="color: #4E9A06;">"Jason"</span><span style="color: #707183;">)</span>
 jason.say_hi<span style="color: #707183;">()</span>
 </pre>
 </div>
 
 <pre class="example">
-Hi, my name is Jason
+Hi, my name is Jason.
 </pre>
 
 </section>
-<section id="slide-sec-1-4">
-<h3 id="sec-1-4">Terminology</h3>
+<section id="slide-orgheadline4">
+<h3 id="orgheadline4">Terminology</h3>
 <dl>
 <dt>Instance</dt><dd>Represents an individual object of a certain class</dd>
 <dt><code>__init__()</code></dt><dd>Special method, which is called class constructor or
@@ -102,37 +100,37 @@ e.g. when it is no longer referenced.</dd>
 
 </dl>
 </section>
-<section id="slide-sec-1-5">
-<h3 id="sec-1-5">Example - Human</h3>
+<section id="slide-orgheadline5">
+<h3 id="orgheadline5">Example - Human</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">class</span> <span style="color: #2F8B58; font-weight: bold;">Human</span><span style="color: #707183;">(</span><span style="color: #A020F0;">object</span><span style="color: #707183;">)</span>:
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">class</span> <span style="color: #2F8B58; font-weight: bold;">Human_2</span><span style="color: #707183;">(</span><span style="color: #A020F0;">object</span><span style="color: #707183;">)</span>:
 
     <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">__init__</span><span style="color: #707183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span>, name<span style="color: #707183;">)</span>:
         <span style="color: #A52A2A; font-weight: bold;">self</span>.name = name
-        <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"I can see the light"</span><span style="color: #707183;">)</span>
+        <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"I can see the light!"</span><span style="color: #707183;">)</span>
 
     <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">say_hi</span><span style="color: #707183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span><span style="color: #707183;">)</span>:
-        <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"Hi, my name is {:}"</span>.<span style="color: #A020F0;">format</span><span style="color: #7388d6;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span>.name<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+        <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"Hi, my name is {:}."</span>.<span style="color: #A020F0;">format</span><span style="color: #7388d6;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span>.name<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 
     <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">__del__</span><span style="color: #707183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span><span style="color: #707183;">)</span>:
-        <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"Bye bye"</span><span style="color: #707183;">)</span>
+        <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"Bye bye!"</span><span style="color: #707183;">)</span>
 
-<span style="color: #0084C8; font-weight: bold;">jason</span> = Human<span style="color: #707183;">(</span><span style="color: #4E9A06;">"Jason"</span><span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">jason</span> = Human_2<span style="color: #707183;">(</span><span style="color: #4E9A06;">"Jason"</span><span style="color: #707183;">)</span>
 jason.say_hi<span style="color: #707183;">()</span>
 <span style="color: #A52A2A; font-weight: bold;">del</span> jason
 </pre>
 </div>
 
 <pre class="example">
-I can see the light
-Hi, my name is Jason
-Bye bye
+I can see the light!
+Hi, my name is Jason.
+Bye bye!
 </pre>
 
 </section>
-<section id="slide-sec-1-6">
-<h3 id="sec-1-6">self = reference to current instance</h3>
+<section id="slide-orgheadline6">
+<h3 id="orgheadline6">self = reference to current instance</h3>
 <ul>
 <li>When defining your class methods, you must explicitly list <code>self</code> as the first
 argument for each method.</li>
@@ -142,8 +140,8 @@ adds the instance reference for you</li>
 
 </ul>
 </section>
-<section id="slide-sec-1-7">
-<h3 id="sec-1-7">Inheritance, Encapsulation and Polymorphism</h3>
+<section id="slide-orgheadline7">
+<h3 id="orgheadline7">Inheritance, Encapsulation and Polymorphism</h3>
 <dl>
 <dt>Encapsulation</dt><dd>refers to the creation of self-contained modules that bind
 processing functions to the data.</dd>
@@ -155,8 +153,8 @@ major advantage of object technology.</dd>
 
 </dl>
 </section>
-<section id="slide-sec-1-8">
-<h3 id="sec-1-8">Inheritance, Encapsulation and Polymorphism</h3>
+<section id="slide-orgheadline8">
+<h3 id="orgheadline8">Inheritance, Encapsulation and Polymorphism</h3>
 <dl>
 <dt>Polymorphism (takes any shape)</dt><dd>Object-oriented programming lets programmers
 create procedures for objects whose exact type is not known until
@@ -167,8 +165,8 @@ types.</dd>
 </section>
 </section>
 <section>
-<section id="slide-sec-2">
-<h2 id="sec-2">Encapsulation</h2>
+<section id="slide-orgheadline12">
+<h2 id="orgheadline12">Encapsulation</h2>
 <p>
 In programming languages, encapsulation is used to refer to one of two related
 but distinct notions, and sometimes to the combination thereof:
@@ -181,8 +179,8 @@ components.</li>
 
 </ul>
 </section>
-<section id="slide-sec-2-1">
-<h3 id="sec-2-1">Encapsulation in Python</h3>
+<section id="slide-orgheadline10">
+<h3 id="orgheadline10">Encapsulation in Python</h3>
 <ul>
 <li>Python does not really support encapsulation because it does not support data
 hiding through private and protected members (like e.g. Java, C++).</li>
@@ -199,18 +197,18 @@ really protect data from hostile code.</li>
 
 </ul>
 </section>
-<section id="slide-sec-2-2">
-<h3 id="sec-2-2">Example - Human</h3>
+<section id="slide-orgheadline11">
+<h3 id="orgheadline11">Example - Human</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">class</span> <span style="color: #2F8B58; font-weight: bold;">Human</span><span style="color: #707183;">(</span><span style="color: #A020F0;">object</span><span style="color: #707183;">)</span>:
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">class</span> <span style="color: #2F8B58; font-weight: bold;">Human_3</span><span style="color: #707183;">(</span><span style="color: #A020F0;">object</span><span style="color: #707183;">)</span>:
     <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">__init__</span><span style="color: #707183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span>, name, age<span style="color: #707183;">)</span>:
         <span style="color: #A52A2A; font-weight: bold;">self</span>.name = name
         <span style="color: #A52A2A; font-weight: bold;">self</span>.__age = age
 
-<span style="color: #0084C8; font-weight: bold;">jason</span> = Human<span style="color: #707183;">(</span><span style="color: #4E9A06;">"Jason"</span>, <span style="color: #F5666D;">33</span><span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">jason</span> = Human_3<span style="color: #707183;">(</span><span style="color: #4E9A06;">"Jason"</span>, <span style="color: #F5666D;">33</span><span style="color: #707183;">)</span>
 <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"Name: {:}"</span>.<span style="color: #A020F0;">format</span><span style="color: #7388d6;">(</span>jason.name<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"Age: {:}"</span>.<span style="color: #A020F0;">format</span><span style="color: #7388d6;">(</span>jason._Human__age<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"Age: {:}"</span>.<span style="color: #A020F0;">format</span><span style="color: #7388d6;">(</span>jason._Human_3__age<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 <span style="color: #204A87;"># </span><span style="color: #204A87;">print("Age {:}".format(jason.age))</span>
 </pre>
 </div>
@@ -223,8 +221,8 @@ Age: 33
 </section>
 </section>
 <section>
-<section id="slide-sec-3">
-<h2 id="sec-3">Inheritance</h2>
+<section id="slide-orgheadline16">
+<h2 id="orgheadline16">Inheritance</h2>
 <p>
 In object-oriented programming, inheritance is when an object or class is based
 on another object or class, using the same implementation (inheriting from a
@@ -233,22 +231,22 @@ interface; inheriting behavior). A mechanism to transfer the characteristics
 of a class to other classes that are derived from it.
 </p>
 </section>
-<section id="slide-sec-3-1">
-<h3 id="sec-3-1">Example - Human</h3>
+<section id="slide-orgheadline13">
+<h3 id="orgheadline13">Example - Human</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">class</span> <span style="color: #2F8B58; font-weight: bold;">Human</span><span style="color: #707183;">(</span><span style="color: #A020F0;">object</span><span style="color: #707183;">)</span>:
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">class</span> <span style="color: #2F8B58; font-weight: bold;">Human_4</span><span style="color: #707183;">(</span><span style="color: #A020F0;">object</span><span style="color: #707183;">)</span>:
     <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">__init__</span><span style="color: #707183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span>, name, age<span style="color: #707183;">)</span>:
         <span style="color: #A52A2A; font-weight: bold;">self</span>.name = name
         <span style="color: #A52A2A; font-weight: bold;">self</span>.age = age
     <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">say_hi</span><span style="color: #707183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span><span style="color: #707183;">)</span>:
         <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"Hi, my name is {:}"</span>.<span style="color: #A020F0;">format</span><span style="color: #7388d6;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span>.name<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 
-<span style="color: #A52A2A; font-weight: bold;">class</span> <span style="color: #2F8B58; font-weight: bold;">Student</span><span style="color: #707183;">(</span>Human<span style="color: #707183;">)</span>:
+<span style="color: #A52A2A; font-weight: bold;">class</span> <span style="color: #2F8B58; font-weight: bold;">Student</span><span style="color: #707183;">(</span>Human_4<span style="color: #707183;">)</span>:
     <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">say_hi</span><span style="color: #707183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span><span style="color: #707183;">)</span>:
         <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"Hey, I'm {:} and {:}"</span>.<span style="color: #A020F0;">format</span><span style="color: #7388d6;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span>.name, <span style="color: #A52A2A; font-weight: bold;">self</span>.age<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 
-<span style="color: #A52A2A; font-weight: bold;">class</span> <span style="color: #2F8B58; font-weight: bold;">Teacher</span><span style="color: #707183;">(</span>Human<span style="color: #707183;">)</span>:
+<span style="color: #A52A2A; font-weight: bold;">class</span> <span style="color: #2F8B58; font-weight: bold;">Teacher</span><span style="color: #707183;">(</span>Human_4<span style="color: #707183;">)</span>:
     <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">say_bye</span><span style="color: #707183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span><span style="color: #707183;">)</span>:
         <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"Bye"</span><span style="color: #707183;">)</span>
 
@@ -267,8 +265,8 @@ Bye
 </pre>
 
 </section>
-<section id="slide-sec-3-2">
-<h3 id="sec-3-2">Example - Pizza</h3>
+<section id="slide-orgheadline14">
+<h3 id="orgheadline14">Example - Pizza</h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">import</span> math
@@ -299,8 +297,8 @@ CF=51.42
 </pre>
 
 </section>
-<section id="slide-sec-3-3">
-<h3 id="sec-3-3">Special function to override</h3>
+<section id="slide-orgheadline15">
+<h3 id="orgheadline15">Special function to override</h3>
 <ul>
 <li><a href="https://docs.python.org/2/reference/datamodel.html#basic-customization">String representation</a>
 <ul>
@@ -318,8 +316,8 @@ CF=51.42
 </section>
 </section>
 <section>
-<section id="slide-sec-4">
-<h2 id="sec-4">Function overloading</h2>
+<section id="slide-orgheadline18">
+<h2 id="orgheadline18">Function overloading</h2>
 <p>
 Function overloading (or method overloading) is the ability to create multiple
 methods of the same name with different implementations. Calls to an overloaded
@@ -336,8 +334,8 @@ depending on context.
 </div>
 
 </section>
-<section id="slide-sec-4-1">
-<h3 id="sec-4-1">Method overloading is not supported in Python, but</h3>
+<section id="slide-orgheadline17">
+<h3 id="orgheadline17">Method overloading is not supported in Python, but</h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">class</span> <span style="color: #2F8B58; font-weight: bold;">A</span>:
@@ -349,11 +347,12 @@ depending on context.
             <span style="color: #A52A2A; font-weight: bold;">print</span> <span style="color: #4E9A06;">'second method'</span>, i
 </pre>
 </div>
+
 </section>
 </section>
 <section>
-<section id="slide-sec-5">
-<h2 id="sec-5">Operator overloading</h2>
+<section id="slide-orgheadline21">
+<h2 id="orgheadline21">Operator overloading</h2>
 <p>
 In programming, operator overloading (less commonly known as operator ad hoc
 polymorphism) is a specific case of polymorphism, where different operators have
@@ -361,8 +360,8 @@ different implementations depending on their arguments. Operator overloading is
 generally defined by the language, the programmer, or both.
 </p>
 </section>
-<section id="slide-sec-5-1">
-<h3 id="sec-5-1">Example - Vector</h3>
+<section id="slide-orgheadline19">
+<h3 id="orgheadline19">Example - Vector</h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">import</span> math
@@ -394,8 +393,8 @@ generally defined by the language, the programmer, or both.
 </pre>
 
 </section>
-<section id="slide-sec-5-2">
-<h3 id="sec-5-2">Operators to overload</h3>
+<section id="slide-orgheadline20">
+<h3 id="orgheadline20">Operators to overload</h3>
 <p>
 More information can be found in the <a href="https://docs.python.org/2/reference/datamodel.html#special-method-names">Python documentation</a>, some examples:
 </p>
@@ -407,8 +406,8 @@ More information can be found in the <a href="https://docs.python.org/2/referenc
 </section>
 </section>
 <section>
-<section id="slide-sec-6">
-<h2 id="sec-6">Static methods</h2>
+<section id="slide-orgheadline23">
+<h2 id="orgheadline23">Static methods</h2>
 <ul>
 <li>Static methods are a special case of methods.</li>
 <li>Sometimes, you'll write code that belongs to a class, but that doesn't use the
@@ -419,30 +418,30 @@ the class before using them</li>
 </ul>
 
 </section>
-<section id="slide-sec-6-1">
-<h3 id="sec-6-1">Example - Human</h3>
+<section id="slide-orgheadline22">
+<h3 id="orgheadline22">Example - Human</h3>
 <div class="org-src-container">
 
-<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">class</span> <span style="color: #2F8B58; font-weight: bold;">Human</span><span style="color: #707183;">(</span><span style="color: #A020F0;">object</span><span style="color: #707183;">)</span>:
+<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">class</span> <span style="color: #2F8B58; font-weight: bold;">Human_5</span><span style="color: #707183;">(</span><span style="color: #A020F0;">object</span><span style="color: #707183;">)</span>:
 
     <span style="color: #0084C8; font-weight: bold;">population</span> = <span style="color: #F5666D;">0</span> 
 
     <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">__init__</span><span style="color: #707183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span>, name<span style="color: #707183;">)</span>:
         <span style="color: #A52A2A; font-weight: bold;">self</span>.name = name
-        <span style="color: #0084C8; font-weight: bold;">Human.population</span> += <span style="color: #F5666D;">1</span>
+        <span style="color: #0084C8; font-weight: bold;">Human_5.population</span> += <span style="color: #F5666D;">1</span>
 
     <span style="color: #2F8B58; font-weight: bold;">@staticmethod</span>
     <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">how_many</span><span style="color: #707183;">()</span>:
-        <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"Population: {:}"</span>.<span style="color: #A020F0;">format</span><span style="color: #7388d6;">(</span>Human.population<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+        <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"Population: {:}"</span>.<span style="color: #A020F0;">format</span><span style="color: #7388d6;">(</span>Human_5.population<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 
     <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">__del__</span><span style="color: #707183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span><span style="color: #707183;">)</span>:
-        <span style="color: #0084C8; font-weight: bold;">Human.population</span> -= <span style="color: #F5666D;">1</span>
+        <span style="color: #A020F0;">type</span><span style="color: #707183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span><span style="color: #707183;">)</span><span style="color: #0084C8; font-weight: bold;">.population</span> -= <span style="color: #F5666D;">1</span>
 
-<span style="color: #0084C8; font-weight: bold;">jason</span> = Human<span style="color: #707183;">(</span><span style="color: #4E9A06;">"Jason"</span><span style="color: #707183;">)</span>
-<span style="color: #0084C8; font-weight: bold;">betty</span> = Human<span style="color: #707183;">(</span><span style="color: #4E9A06;">"Betty"</span><span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">jason</span> = Human_5<span style="color: #707183;">(</span><span style="color: #4E9A06;">"Jason"</span><span style="color: #707183;">)</span>
+<span style="color: #0084C8; font-weight: bold;">betty</span> = Human_5<span style="color: #707183;">(</span><span style="color: #4E9A06;">"Betty"</span><span style="color: #707183;">)</span>
 jason.how_many<span style="color: #707183;">()</span>
-<span style="color: #0084C8; font-weight: bold;">robin</span> = Human<span style="color: #707183;">(</span><span style="color: #4E9A06;">"Robin"</span><span style="color: #707183;">)</span>
-Human.how_many<span style="color: #707183;">()</span>
+<span style="color: #0084C8; font-weight: bold;">robin</span> = Human_5<span style="color: #707183;">(</span><span style="color: #4E9A06;">"Robin"</span><span style="color: #707183;">)</span>
+Human_5.how_many<span style="color: #707183;">()</span>
 </pre>
 </div>
 
@@ -454,8 +453,8 @@ Population: 3
 </section>
 </section>
 <section>
-<section id="slide-sec-7">
-<h2 id="sec-7">Duck typing</h2>
+<section id="slide-orgheadline26">
+<h2 id="orgheadline26">Duck typing</h2>
 <ul>
 <li>In computer programming with object-oriented programming languages, <a href="http://en.wikipedia.org/wiki/Duck_typing">duck
 typing</a> is a layer of programming language and design rules on top of typing</li>
@@ -468,8 +467,8 @@ object</li>
 
 </ul>
 </section>
-<section id="slide-sec-7-1">
-<h3 id="sec-7-1">Duck typing</h3>
+<section id="slide-orgheadline24">
+<h3 id="orgheadline24">Duck typing</h3>
 <p>
 The name of the concept refers to the duck test, attributed to James Whitcomb
 Riley, which may be phrased as follows:
@@ -481,8 +480,8 @@ duck, I call that bird a duck."
 </p>
 </blockquote>
 </section>
-<section id="slide-sec-7-2">
-<h3 id="sec-7-2">Duck typing in Python</h3>
+<section id="slide-orgheadline25">
+<h3 id="orgheadline25">Duck typing in Python</h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">class</span> <span style="color: #2F8B58; font-weight: bold;">Duck</span><span style="color: #707183;">(</span><span style="color: #A020F0;">object</span><span style="color: #707183;">)</span>:
@@ -516,8 +515,8 @@ I'm Flyin'!
 </section>
 </section>
 <section>
-<section id="slide-sec-8">
-<h2 id="sec-8">Built-in class attributes</h2>
+<section id="slide-orgheadline28">
+<h2 id="orgheadline28">Built-in class attributes</h2>
 <dl>
 <dt><code>__dict__</code></dt><dd>Dictionary containing the class's namespace</dd>
 <dt><code>__doc__</code></dt><dd>Class documentation string (or None if not defined)</dd>
@@ -530,8 +529,8 @@ order of their occurrence in the base class list</dd>
 </dl>
 
 </section>
-<section id="slide-sec-8-1">
-<h3 id="sec-8-1">Example - Employee</h3>
+<section id="slide-orgheadline27">
+<h3 id="orgheadline27">Example - Employee</h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">class</span> <span style="color: #2F8B58; font-weight: bold;">Employee</span><span style="color: #707183;">(</span><span style="color: #A020F0;">object</span><span style="color: #707183;">)</span>:
@@ -542,29 +541,27 @@ order of their occurrence in the base class list</dd>
         <span style="color: #A52A2A; font-weight: bold;">self</span>.name = name
         <span style="color: #A52A2A; font-weight: bold;">self</span>.salary = salary
 
-<span style="color: #A52A2A; font-weight: bold;">print</span> <span style="color: #4E9A06;">"Employee.__doc__:"</span>, Employee.<span style="color: #A020F0;">__doc__</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span> <span style="color: #4E9A06;">"Employee.__name__:"</span>, Employee.<span style="color: #A020F0;">__name__</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span> <span style="color: #4E9A06;">"Employee.__module__:"</span>, Employee.__module__
-<span style="color: #A52A2A; font-weight: bold;">print</span> <span style="color: #4E9A06;">"Employee.__bases__:"</span>, Employee.__bases__
-<span style="color: #A52A2A; font-weight: bold;">print</span> <span style="color: #4E9A06;">"Employee.__dict__:"</span>, Employee.__dict__
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"Employee.__doc__:"</span>, Employee.<span style="color: #A020F0;">__doc__</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"Employee.__name__:"</span>, Employee.<span style="color: #A020F0;">__name__</span><span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"Employee.__module__:"</span>, Employee.__module__<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"Employee.__bases__:"</span>, Employee.__bases__<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"Employee.__dict__: "</span>, Employee.__dict__<span style="color: #707183;">)</span>
 </pre>
 </div>
 
 <pre class="example">
-Employee.__doc__: 
-    Class docstring.
-    
-Employee.__name__: Employee
-Employee.__module__: __main__
-Employee.__bases__: (&lt;type 'object'&gt;,)
-Employee.__dict__: {'__dict__': &lt;attribute '__dict__' of 'Employee' objects&gt;, '__module__': '__main__', '__weakref__': &lt;attribute '__weakref__' of 'Employee' objects&gt;, '__doc__': '\n    Class docstring.\n    ', '__init__': &lt;function __init__ at 0x7f75719fce60&gt;}
+('Employee.__doc__:', '\n    Class docstring.\n    ')
+('Employee.__name__:', 'Employee')
+('Employee.__module__:', '__main__')
+('Employee.__bases__:', (&lt;type 'object'&gt;,))
+('Employee.__dict__: ', dict_proxy({'__dict__': &lt;attribute '__dict__' of 'Employee' objects&gt;, '__module__': '__main__', '__weakref__': &lt;attribute '__weakref__' of 'Employee' objects&gt;, '__doc__': '\n    Class docstring.\n    ', '__init__': &lt;function __init__ at 0x7fa43b2f7758&gt;}))
 </pre>
 
 </section>
 </section>
 <section>
-<section id="slide-sec-9">
-<h2 id="sec-9">More stuff</h2>
+<section id="slide-orgheadline31">
+<h2 id="orgheadline31">More stuff</h2>
 <ul>
 <li>Functions like <code>issubclass(sub,sup)</code>, <code>isinstance(obj, Class)</code>, &#x2026;</li>
 <li>Subclass from several parents 
@@ -578,10 +575,37 @@ Employee.__dict__: {'__dict__': &lt;attribute '__dict__' of 'Employee' objects&g
 
 </ul>
 </section>
+<section id="slide-orgheadline29">
+<h3 id="orgheadline29">References</h3>
+<p>
+Python 3 book
+</p>
+<ul>
+<li>D. Phillips, Python 3 object-oriented programming: unleash the power of Python
+3 objects. 2015. ISBN: 978-1-78439-595-7</li>
+
+</ul>
+
+<p>
+Python magic methods
+</p>
+<ul>
+<li><a href="http://www.rafekettler.com/magicmethods.html">http://www.rafekettler.com/magicmethods.html</a></li>
+
+</ul>
+</section>
+<section id="slide-orgheadline30">
+<h3 id="orgheadline30">Python magic methods - How to call magic methods</h3>
+
+<div class="figure">
+<p><img src="magicmethods.png" alt="magicmethods.png" />
+</p>
+</div>
+</section>
 </section>
 <section>
-<section id="slide-sec-10">
-<h2 id="sec-10">Exercise</h2>
+<section id="slide-orgheadline32">
+<h2 id="orgheadline32">Exercise</h2>
 <p>
 Create a python module implementing 
 </p>
@@ -606,82 +630,9 @@ Create a python module implementing
 
 </ul>
 </section>
-<section id="slide-sec-10-1">
-<h3 id="sec-10-1">Solution</h3>
-<div class="org-src-container">
-
-<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">import</span> numpy <span style="color: #A52A2A; font-weight: bold;">as</span> np
-
-<span style="color: #A52A2A; font-weight: bold;">class</span> <span style="color: #2F8B58; font-weight: bold;">Shape</span><span style="color: #707183;">(</span><span style="color: #A020F0;">object</span><span style="color: #707183;">)</span>:
-    <span style="color: #0084C8; font-weight: bold;">num</span> = <span style="color: #F5666D;">0</span>
-
-    <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">__init__</span><span style="color: #707183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span>, color<span style="color: #707183;">)</span>:
-        <span style="color: #A52A2A; font-weight: bold;">self</span>.color = color
-        <span style="color: #0084C8; font-weight: bold;">Shape.num</span> += <span style="color: #F5666D;">1</span>
-
-    <span style="color: #2F8B58; font-weight: bold;">@staticmethod</span>
-    <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">how_many</span><span style="color: #707183;">()</span>:
-        <span style="color: #A52A2A; font-weight: bold;">return</span> Shape.num
-</pre>
-</div>
-
-</section>
-<section id="slide-sec-10-2">
-<h3 id="sec-10-2">Solution</h3>
-<div class="org-src-container">
-
-<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">class</span> <span style="color: #2F8B58; font-weight: bold;">Rectangle</span><span style="color: #707183;">(</span>Shape<span style="color: #707183;">)</span>:
-
-    <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">__init__</span><span style="color: #707183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span>, width, height, color<span style="color: #707183;">)</span>:
-        <span style="color: #A020F0;">super</span><span style="color: #707183;">(</span>Rectangle, <span style="color: #A52A2A; font-weight: bold;">self</span><span style="color: #707183;">)</span>.__init__<span style="color: #707183;">(</span>color<span style="color: #707183;">)</span>
-        <span style="color: #A52A2A; font-weight: bold;">self</span>.width = width
-        <span style="color: #A52A2A; font-weight: bold;">self</span>.height = height
-
-    <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">calculate_area</span><span style="color: #707183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span><span style="color: #707183;">)</span>:
-        <span style="color: #A52A2A; font-weight: bold;">return</span> <span style="color: #A52A2A; font-weight: bold;">self</span>.width * <span style="color: #A52A2A; font-weight: bold;">self</span>.height
-</pre>
-</div>
-
-</section>
-<section id="slide-sec-10-3">
-<h3 id="sec-10-3">Solution</h3>
-<div class="org-src-container">
-
-<pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">class</span> <span style="color: #2F8B58; font-weight: bold;">Circle</span><span style="color: #707183;">(</span>Shape<span style="color: #707183;">)</span>:
-
-    <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">__init__</span><span style="color: #707183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span>, radius, color<span style="color: #707183;">)</span>:
-        <span style="color: #A020F0;">super</span><span style="color: #707183;">(</span>Circle, <span style="color: #A52A2A; font-weight: bold;">self</span><span style="color: #707183;">)</span>.__init__<span style="color: #707183;">(</span>color<span style="color: #707183;">)</span>
-        <span style="color: #A52A2A; font-weight: bold;">self</span>.radius = radius
-
-    <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">calculate_area</span><span style="color: #707183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span><span style="color: #707183;">)</span>:
-        <span style="color: #A52A2A; font-weight: bold;">return</span> np.pi * <span style="color: #A52A2A; font-weight: bold;">self</span>.radius ** <span style="color: #F5666D;">2</span>
-</pre>
-</div>
-
-</section>
-<section id="slide-sec-10-4">
-<h3 id="sec-10-4">Solution</h3>
-<div class="org-src-container">
-
-<pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">rect1</span> = Rectangle<span style="color: #707183;">(</span><span style="color: #F5666D;">10</span>, <span style="color: #F5666D;">10</span>, <span style="color: #4E9A06;">'white'</span><span style="color: #707183;">)</span>
-<span style="color: #0084C8; font-weight: bold;">circ1</span> = Circle<span style="color: #707183;">(</span><span style="color: #F5666D;">2</span>, <span style="color: #4E9A06;">'blue'</span><span style="color: #707183;">)</span>
-
-<span style="color: #A52A2A; font-weight: bold;">print</span> rect1.calculate_area<span style="color: #707183;">()</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span> circ1.calculate_area<span style="color: #707183;">()</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span> Shape.how_many<span style="color: #707183;">()</span>
-</pre>
-</div>
-
-<pre class="example">
-&gt;&gt;&gt; &gt;&gt;&gt; 100
-12.5663706144
-2
-</pre>
-</section>
 </section>
 </div>
 </div>
-
 <script src="../reveal.js/lib/js/head.min.js"></script>
 <script src="../reveal.js/js/reveal.js"></script>
 
@@ -694,7 +645,7 @@ controls: true,
 progress: true,
 history: false,
 center: true,
-slideNumber: true,
+slideNumber: 't',
 rollingLinks: false,
 keyboard: true,
 overview: true,
@@ -710,8 +661,11 @@ multiplex: {
 
 // Optional libraries used to extend on reveal.js
 dependencies: [
-
-]
+ { src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: '../reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: '../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
 });
 </script>
 </body>

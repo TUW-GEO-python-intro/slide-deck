@@ -29,8 +29,9 @@
 #+REVEAL_MULTIPLEX_URL:
 #+REVEAL_MULTIPLEX_SOCKETIO_URL:
 #+REVEAL_PLUGINS:
+#+PROPERTY: header-args :results output :exports both :tangle lecture10.py 
 
-#+AUTHOR: Sebastian Hahn
+#+AUTHOR:
 #+EMAIL: 
 #+TITLE: Object oriented programming
 
@@ -55,8 +56,8 @@ known as methods.
 - Instance variable :: is defined inside a method and belongs only to the
      current instance of a class.
 ** Example - Human
-#+begin_src python :results output :exports both :tangle lecture10.py 
-class Human(object):
+#+begin_src python 
+class Human_1(object):
      
     # definition of a class variable
     population = 0 
@@ -64,18 +65,18 @@ class Human(object):
     def __init__(self, name):
         # definition of an instance variable
         self.name = name
-        Human.population += 1
+        Human_1.population += 1
     
     def say_hi(self):
-        print("Hi, my name is {:}".format(self.name))
+        print("Hi, my name is {:}.".format(self.name))
 
 # make an instance of a class
-jason = Human("Jason")
+jason = Human_1("Jason")
 jason.say_hi()
 #+end_src
 
 #+RESULTS:
-: Hi, my name is Jason
+: None
 
 ** Terminology
 - Instance :: Represents an individual object of a certain class
@@ -85,28 +86,26 @@ jason.say_hi()
 - =__del__()= :: is a special method, which is called when an instance is destroyed;
              e.g. when it is no longer referenced.
 ** Example - Human
-#+begin_src python :results output :exports both :tangle lecture10.py
-class Human(object):
+#+begin_src python
+class Human_2(object):
      
     def __init__(self, name):
         self.name = name
-        print("I can see the light")
+        print("I can see the light!")
     
     def say_hi(self):
-        print("Hi, my name is {:}".format(self.name))
+        print("Hi, my name is {:}.".format(self.name))
     
     def __del__(self):
-        print("Bye bye")
+        print("Bye bye!")
 
-jason = Human("Jason")
+jason = Human_2("Jason")
 jason.say_hi()
 del jason
 #+end_src
 
 #+RESULTS:
-: I can see the light
-: Hi, my name is Jason
-: Bye bye
+: None
 
 ** self = reference to current instance
 - When defining your class methods, you must explicitly list =self= as the first
@@ -145,15 +144,15 @@ but distinct notions, and sometimes to the combination thereof:
   really protect data from hostile code.
 - This works for attributes and methods
 ** Example - Human
-#+begin_src python :results output :exports both :tangle lecture10.py
-class Human(object):
+#+begin_src python
+class Human_3(object):
     def __init__(self, name, age):
         self.name = name
         self.__age = age
 
-jason = Human("Jason", 33)
+jason = Human_3("Jason", 33)
 print("Name: {:}".format(jason.name))
-print("Age: {:}".format(jason._Human__age))
+print("Age: {:}".format(jason._Human_3__age))
 # print("Age {:}".format(jason.age))
 #+end_src
 
@@ -168,19 +167,19 @@ class) specifying implementation to maintain the same behavior (realizing an
 interface; inheriting behavior). A mechanism to transfer the characteristics
 of a class to other classes that are derived from it.
 ** Example - Human
-#+begin_src python :results output :exports both :tangle lecture10.py
-class Human(object):
+#+begin_src python
+class Human_4(object):
     def __init__(self, name, age):
         self.name = name
         self.age = age
     def say_hi(self):
         print("Hi, my name is {:}".format(self.name))
 
-class Student(Human):
+class Student(Human_4):
     def say_hi(self):
         print("Hey, I'm {:} and {:}".format(self.name, self.age))
 
-class Teacher(Human):
+class Teacher(Human_4):
     def say_bye(self):
         print("Bye")
 
@@ -198,7 +197,7 @@ betty.say_bye()
 
 ** Example - Pizza
 
-#+begin_src python :results output :exports both :tangle lecture10.py
+#+begin_src python
 import math
 
 class Pizza(object):
@@ -229,21 +228,23 @@ print(p2)
   - =__str__()=, =__repr__()=, =__unicode__()=
 - [[https://docs.python.org/2/reference/datamodel.html#customizing-attribute-access][Customize attribute access]] 
   - =__setattr__()=, =__getattr__()=, =__delattr__()=
-
+    
 * Function overloading 
 Function overloading (or method overloading) is the ability to create multiple
 methods of the same name with different implementations. Calls to an overloaded
 function will run a specific implementation of that function appropriate to the
 context of the call, allowing one function call to perform different tasks
 depending on context.  
-#+begin_src python :results output :exports code
+#+begin_src python :tangle no
 def add_bullet(sprite, start, direction, speed):
 def add_bullet(sprite, start, headto, spead, acceleration):
 def add_bullet(sprite, curve, speed):
 #+end_src
 
+#+RESULTS:
+
 ** Method overloading is not supported in Python, but
-#+begin_src python :results output :exports code
+#+begin_src python :tangle no
 class A:
 
     def method_a(self, i=None):    
@@ -252,13 +253,16 @@ class A:
         else:
             print 'second method', i
 #+end_src
+
+#+RESULTS:
+
 * Operator overloading
 In programming, operator overloading (less commonly known as operator ad hoc
 polymorphism) is a specific case of polymorphism, where different operators have
 different implementations depending on their arguments. Operator overloading is
 generally defined by the language, the programmer, or both.
 ** Example - Vector
-#+begin_src python :results output :exports both :tangle lecture10.py
+#+begin_src python
 import math
 
 class Vector(object):
@@ -298,27 +302,27 @@ More information can be found in the [[https://docs.python.org/2/reference/datam
 
 ** Example - Human
 
-#+begin_src python :results output :exports both :tangle lecture10.py
-class Human(object):
+#+begin_src python
+class Human_5(object):
      
     population = 0 
       
     def __init__(self, name):
         self.name = name
-        Human.population += 1
+        Human_5.population += 1
      
     @staticmethod
     def how_many():
-        print("Population: {:}".format(Human.population))
+        print("Population: {:}".format(Human_5.population))
      
     def __del__(self):
-        Human.population -= 1
+        type(self).population -= 1
 
-jason = Human("Jason")
-betty = Human("Betty")
+jason = Human_5("Jason")
+betty = Human_5("Betty")
 jason.how_many()
-robin = Human("Robin")
-Human.how_many()
+robin = Human_5("Robin")
+Human_5.how_many()
 #+end_src
 
 #+RESULTS:
@@ -342,7 +346,7 @@ Riley, which may be phrased as follows:
 duck, I call that bird a duck."
 #+end_quote
 ** Duck typing in Python
-#+begin_src python :results output :exports both :tangle lecture10.py
+#+begin_src python
 class Duck(object):
     def quack(self):
         print "Quack, quack!"
@@ -379,7 +383,7 @@ in_the_forest(Person())
                  order of their occurrence in the base class list
 
 ** Example - Employee
-#+begin_src python :results output :exports both :tangle lecture10.py
+#+begin_src python
 class Employee(object):
     """
     Class docstring.
@@ -388,11 +392,11 @@ class Employee(object):
         self.name = name
         self.salary = salary
 
-print "Employee.__doc__:", Employee.__doc__
-print "Employee.__name__:", Employee.__name__
-print "Employee.__module__:", Employee.__module__
-print "Employee.__bases__:", Employee.__bases__
-print "Employee.__dict__:", Employee.__dict__
+print("Employee.__doc__:", Employee.__doc__)
+print("Employee.__name__:", Employee.__name__)
+print("Employee.__module__:", Employee.__module__)
+print("Employee.__bases__:", Employee.__bases__)
+print("Employee.__dict__: ", Employee.__dict__)
 #+end_src
 
 #+RESULTS:
@@ -402,7 +406,7 @@ print "Employee.__dict__:", Employee.__dict__
 : Employee.__name__: Employee
 : Employee.__module__: __main__
 : Employee.__bases__: (<type 'object'>,)
-: Employee.__dict__: {'__module__': '__main__', 'empCount': 0, '__dict__': <attribute '__dict__' of 'Employee' objects>, '__weakref__': <attribute '__weakref__' of 'Employee' objects>, '__doc__': '\n    Class docstring.\n    ', '__init__': <function __init__ at 0x7f125c6bfcf8>}
+: Employee.__dict__: {'__dict__': <attribute '__dict__' of 'Employee' objects>, '__module__': '__main__', '__weakref__': <attribute '__weakref__' of 'Employee' objects>, '__doc__': '\n    Class docstring.\n    ', '__init__': <function __init__ at 0x7f919f7f5758>}
 
 * More stuff
 - Functions like =issubclass(sub,sup)=, =isinstance(obj, Class)=, ...
@@ -411,6 +415,15 @@ print "Employee.__dict__:", Employee.__dict__
 - Defining class methods or abtract methods
 - Inheritance from build-in types (e.g. lists, dicts)
 - Metaclasses, class factory, descriptors
+** References
+Python 3 book
+- D. Phillips, Python 3 object-oriented programming: unleash the power of Python
+  3 objects. 2015. ISBN: 978-1-78439-595-7
+
+Python magic methods
+- http://www.rafekettler.com/magicmethods.html
+** Python magic methods - How to call magic methods
+file:magicmethods.png
 * Exercise
 Create a python module implementing 
 - =class Shape(object)=
@@ -421,8 +434,8 @@ Create a python module implementing
 - =class Circle(Shape)=
   - Instance variable: radius
   - Methods: calculate_area()
-** Solution
-#+begin_src python :results output :exports both :tangle lecture10.py :session *pylect10solution*
+** Solution                                                       :noexport:
+#+begin_src python :tangle solution.py :session *pylect10solution*
 import numpy as np
 
 class Shape(object):
@@ -437,8 +450,10 @@ class Shape(object):
         return Shape.num
 #+end_src
 
-** Solution
-#+begin_src python :results output :exports both :tangle lecture10.py :session *pylect10solution*
+#+RESULTS:
+
+** Solution                                                       :noexport:
+#+begin_src python :tangle solution.py :session *pylect10solution*
 class Rectangle(Shape):
     
     def __init__(self, width, height, color):
@@ -449,8 +464,11 @@ class Rectangle(Shape):
     def calculate_area(self):
         return self.width * self.height
 #+end_src
-** Solution
-#+begin_src python :results output :exports both :tangle lecture10.py :session *pylect10solution*
+
+#+RESULTS:
+
+** Solution                                                       :noexport:
+#+begin_src python :tangle solution.py :session *pylect10solution*
 class Circle(Shape):
     
     def __init__(self, radius, color):
@@ -460,9 +478,11 @@ class Circle(Shape):
     def calculate_area(self):
         return np.pi * self.radius ** 2
 #+end_src
-** Solution
 
-#+begin_src python :results output :exports both :tangle lecture10.py :session *pylect10solution*
+#+RESULTS:
+
+** Solution                                                       :noexport:
+#+begin_src python :tangle solution.py :session *pylect10solution*
 rect1 = Rectangle(10, 10, 'white')
 circ1 = Circle(2, 'blue')
 
@@ -470,3 +490,10 @@ print rect1.calculate_area()
 print circ1.calculate_area()
 print Shape.how_many()
 #+end_src
+
+#+RESULTS:
+: 
+: >>> >>> 100
+: 12.5663706144
+: 2
+
