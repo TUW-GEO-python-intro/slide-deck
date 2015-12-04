@@ -3,7 +3,7 @@
 #+OPTIONS: reveal_overview:t reveal_progress:t
 #+OPTIONS: reveal_rolling_links:nil reveal_slide_number:t
 #+OPTIONS: reveal_title_slide:t reveal_width:-1
-#+options: toc:nil ^:nil num:nil
+#+OPTIONS: toc:nil ^:nil num:nil
 #+REVEAL_MARGIN: -1
 #+REVEAL_MIN_SCALE: -1
 #+REVEAL_MAX_SCALE: -1
@@ -20,7 +20,6 @@
 #+REVEAL_TITLE_SLIDE_BACKGROUND_REPEAT:
 #+REVEAL_TITLE_SLIDE_BACKGROUND_TRANSITION:
 #+REVEAL_MATHJAX_URL: http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
-#+REVEAL_SLIDE_NUMBER: t
 #+REVEAL_PREAMBLE:
 #+REVEAL_HEAD_PREAMBLE:
 #+REVEAL_POSTAMBLE:
@@ -29,8 +28,9 @@
 #+REVEAL_MULTIPLEX_URL:
 #+REVEAL_MULTIPLEX_SOCKETIO_URL:
 #+REVEAL_PLUGINS:
+#+PROPERTY: header-args :tangle lecture8.py
 
-#+AUTHOR: Sebastian Hahn
+#+AUTHOR:
 #+EMAIL: 
 #+TITLE: File IO
 
@@ -49,15 +49,13 @@
   code.
 - Contrast with a binary file, in which there is no one-to-one mapping between
   bytes and characters.
-- Files that have been formatted with a word processor must be stored and
-  transmitted as binary files to preserve the formatting.
 ** Python standard library
 [[https://docs.python.org/2/tutorial/inputoutput.html][Input output routines]]
 - =open()=, =close()=
 - =read()=, =readline()=, =readlines()=
 - =write()=, =writelines()=
 ** Before we start
-#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+#+begin_src python :results output pp :exports both :session fio
 import os
 
 f_dir = os.path.join('.', 'files')
@@ -73,21 +71,20 @@ if not os.path.exists(f_dir):
 #+RESULTS:
 
 ** ASCII example 1
-#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+#+begin_src python :results output pp :exports both :session fio :no-expand
 filename = os.path.join(f_dir, 'example1.txt')
-
 f = open(filename, 'w')
 f.write("Hello World!")
 f.close()
 
-# Using the context manager
 with open(filename) as f:
     print(f.read())
 #+end_src
 
 #+RESULTS:
 : 
-: >>> >>> >>> >>> >>> ... ... ... Hello World!
+: >>> >>> >>> >>> ... ... Hello World!
+
 ** numpy
 - [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.fromregex.html][np.fromregex]]: Construct an array from a text file, using regular expression
   parsing.
@@ -109,7 +106,7 @@ with open(filename) as f:
 - =read()=, =readline()=, =readlines()=
 - =write()=, =writelines()=
 ** CSV example 1
-#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+#+begin_src python :results output pp :exports both :session fio
 filename = os.path.join(f_dir, 'example1.csv')
 
 with open(filename, 'w') as f:
@@ -138,7 +135,7 @@ with open(filename) as f:
 - [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.genfromtxt.html][np.genfromtxt]]: Load data from a text file, with missing values handled as
   specified.
 ** CSV example 2
-#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+#+begin_src python :results output pp :exports both :session fio
 import numpy as np
 
 filename = os.path.join(f_dir, 'example2.csv')
@@ -163,7 +160,7 @@ The [[http://pandas.pydata.org/pandas-docs/dev/io.html][pandas I/O]] API is a se
 - The two workhorse functions for reading text files are [[http://pandas.pydata.org/pandas-docs/dev/io.html#io-read-csv-table][read_csv()]] and
   [[http://pandas.pydata.org/pandas-docs/dev/generated/pandas.io.parsers.read_table.html#pandas.io.parsers.read_table][read_table()]]. They both use the same parsing code to intelligently convert
   tabular data into a DataFrame object. See the [[http://pandas.pydata.org/pandas-docs/dev/cookbook.html#cookbook-csv][cookbook]] for some advanced
-  strategies
+  strategies.
 * Binary
 - A binary file is a computer file that is not a text file.
 - Binary files typically contain bytes that are intended to be interpreted as
@@ -180,7 +177,7 @@ The [[http://pandas.pydata.org/pandas-docs/dev/io.html][pandas I/O]] API is a se
 - =read()=, =readline()=, =readlines()=
 - =write()=, =writelines()=
 ** Binary example 1
-#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+#+begin_src python :results output pp :exports both :session fio
 import struct
 
 filename = os.path.join(f_dir, 'example1.bin')
@@ -209,7 +206,7 @@ with open(filename, 'rb') as f:
 - [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.fromfile.html][np.fromfile]]: Construct an array from data in a text or binary file
 - [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.tofile.html#numpy.ndarray.tofile][ndarray.tofile]]: Write array to a file as text or binary (default)
 ** Binary example 2
-#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+#+begin_src python :results output :exports both :session fio
 filename = os.path.join(f_dir, 'example2.bin')
 
 points = np.array([(1, 2), (3, 4), (9, 10), (23, 14), (50, 90)], 
@@ -237,7 +234,7 @@ print(data['x'], data['y'])
 - [[http://docs.scipy.org/doc/numpy/reference/generated/numpy.savez_compressed.html#numpy.savez_compressed][np.savez_compressed]]: Save several arrays into a single file in compressed .npz
   format.
 ** Numpy example 1
-#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+#+begin_src python :results output pp :exports both :session fio
 filename = os.path.join(f_dir, 'example1.npy')
 x = np.arange(10)
 
@@ -253,7 +250,7 @@ print(data)
 : 
 : >>> >>> ... >>> >>> ... >>> [0 1 2 3 4 5 6 7 8 9]
 ** Numpy example 2
-#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+#+begin_src python :results output pp :exports both :session fio
 filename = os.path.join(f_dir, 'example2.npz')
 x = np.arange(4).reshape(2, 2)
 y = np.sin(x)
@@ -271,7 +268,7 @@ print('y:', data['y'])
 
 #+RESULTS:
 : 
-: >>> >>> >>> ... >>> >>> ... >>> >>> <numpy.lib.npyio.NpzFile object at 0x7efec1156dd0>
+: >>> >>> >>> ... >>> >>> ... >>> >>> <numpy.lib.npyio.NpzFile object at 0x7f1c9ac1af90>
 : ('x:', array([[0, 1],
 :        [2, 3]]))
 : ('y:', array([[ 0.        ,  0.84147098],
@@ -286,7 +283,7 @@ print('y:', data['y'])
 - [[https://docs.scipy.org/doc/scipy/reference/generated/scipy.io.savemat.html][savemat]]: Save a dictionary of names and arrays into a MATLAB-style .mat file.
 - [[https://docs.scipy.org/doc/scipy/reference/generated/scipy.io.whosmat.html][whosmat]]: List variables inside a MATLAB file
 ** Matlab example 1
-#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+#+begin_src python :results output pp :exports both :session fio
 from scipy.io import loadmat, savemat, whosmat
 
 filename = os.path.join(f_dir, 'example1.mat')
@@ -305,7 +302,7 @@ print(data['var1'])
 : 
 : >>> >>> >>> >>> ... >>> >>> ... >>> >>> [[0 1 2 3 4 5 6 7 8 9]]
 ** Matlab example 2
-#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+#+begin_src python :results output pp :exports both :session fio
 filename = os.path.join(f_dir, 'example2.mat')
 x = np.arange(4).reshape(2, 2)
 y = np.sin(x)
@@ -355,7 +352,7 @@ recovered from a SAVE file.
     current and future versions of the software.
 - Python package: [[https://code.google.com/p/netcdf4-python/][netCDF4]]
 ** netCDF4 example 1 - part 1
-#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+#+begin_src python :results output pp :exports both :session fio
 import netCDF4
 
 filename = os.path.join(f_dir, 'example1.nc')
@@ -371,12 +368,12 @@ print(grp_temp.groups)
 #+RESULTS:
 #+begin_example
 
->>> >>> >>> >>> >>> >>> >>> >>> OrderedDict([('air', <type 'netCDF4.Group'>
+>>> >>> >>> >>> >>> >>> >>> >>> OrderedDict([('air', <type 'netCDF4._netCDF4.Group'>
 group /temperature/air:
     dimensions(sizes): 
     variables(dimensions): 
     groups: 
-), ('soil', <type 'netCDF4.Group'>
+), ('soil', <type 'netCDF4._netCDF4.Group'>
 group /temperature/soil:
     dimensions(sizes): 
     variables(dimensions): 
@@ -384,12 +381,11 @@ group /temperature/soil:
 )])
 #+end_example
 ** netCDF4 example 1 - part 2
-#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+#+begin_src python :results output pp :exports both :session fio
 # Create Dimension
 lat = f.createDimension('lat', 50)
 lon = f.createDimension('lon', 50)
 time = f.createDimension('time', None)
-print(f.dimensions)
 
 # Datasets and Attributes
 soil_temp = np.ones((50, 50))
@@ -405,13 +401,8 @@ f.close()
 #+end_src
 
 #+RESULTS:
-: 
-: >>> >>> >>> OrderedDict([('lat', <type 'netCDF4.Dimension'>: name = 'lat', size = 50
-: ), ('lon', <type 'netCDF4.Dimension'>: name = 'lon', size = 50
-: ), ('time', <type 'netCDF4.Dimension'> (unlimited): name = 'time', size = 0
-: )])
 ** netCDF4 example 1 - part 3
-#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+#+begin_src python :results output pp :exports both :session fio
 with netCDF4.Dataset(filename) as f:
     print(f.dimensions)
     print(f.groups['temperature'].groups['soil'].variables['Soil Temperature'])
@@ -420,11 +411,11 @@ with netCDF4.Dataset(filename) as f:
 #+RESULTS:
 #+begin_example
 
-... ... OrderedDict([(u'lat', <type 'netCDF4.Dimension'>: name = 'lat', size = 50
-), (u'lon', <type 'netCDF4.Dimension'>: name = 'lon', size = 50
-), (u'time', <type 'netCDF4.Dimension'> (unlimited): name = 'time', size = 0
+... ... OrderedDict([(u'lat', <type 'netCDF4._netCDF4.Dimension'>: name = 'lat', size = 50
+), (u'lon', <type 'netCDF4._netCDF4.Dimension'>: name = 'lon', size = 50
+), (u'time', <type 'netCDF4._netCDF4.Dimension'> (unlimited): name = 'time', size = 0
 )])
-<type 'netCDF4.Variable'>
+<type 'netCDF4._netCDF4.Variable'>
 float64 Soil Temperature(lat, lon)
     unit: degree celsius
     scaling: 1
@@ -434,7 +425,7 @@ current shape = (50, 50)
 filling on, default _FillValue of 9.96920996839e+36 used
 #+end_example
 ** netCDF4 example 1 - part 4
-#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+#+begin_src python :results output pp :exports both :session fio
 with netCDF4.Dataset(filename) as f:
     print(f.groups['temperature'].groups['soil'].\
         variables['Soil Temperature'][:])
@@ -460,7 +451,7 @@ with netCDF4.Dataset(filename) as f:
   use of HDF5.
 - Python package [[http://www.h5py.org/][h5py]]
 ** hdf5 example 1 - part 1
-#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+#+begin_src python :results output pp :exports both :session fio
 import h5py
 
 filename = os.path.join(f_dir, 'example1.hdf5')
@@ -478,7 +469,7 @@ with h5py.File(filename, 'w') as f:
 : 
 : >>> >>> >>> ... ... ... ... ... ... ... ... <HDF5 dataset "Soil Temperature": shape (400,), type "<i8">
 ** hdf5 example 1 - part 2
-#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+#+begin_src python :results output pp :exports both :session fio
 filename = os.path.join(f_dir, 'example1.hdf5')
 
 with h5py.File(filename) as f:
@@ -498,13 +489,11 @@ with h5py.File(filename) as f:
   the Office Open XML format.
 - The package openpyxl is used by [[http://pandas.pydata.org/][Pandas]] to store e.g. DataFrames in Excel
   sheets
-** excel example 1 - part 1
-There is currently an [[https://github.com/pydata/pandas/issues/8342][issue]] between pandas (0.16.0) and the latest openpyxl
-(2.2.2) version, but it works with an older version of openpyxl (1.8.6)
-- pip install [[https://pypi.python.org/pypi/openpyxl/][openpyxl==1.8.6]]
+** Package requirements
+- pip install [[https://pypi.python.org/pypi/openpyxl/][openpyxl]]
 - pip install [[https://pypi.python.org/pypi/xlrd][xlrd]]
-** excel example 1 - part 2
-#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+** Excel example 
+#+begin_src python :results output pp :exports both :session fio
 import pandas as pd
 
 filename = os.path.join(f_dir, 'example1.xlsx')
@@ -530,7 +519,7 @@ print(type(data), data)
   converted back into an object hierarchy.
 - [[https://docs.python.org/2/library/pickle.html][This documentation]] describes both the pickle module and the cPickle module.
 ** Pickle example 1 
-#+begin_src python :results output :exports both :tangle lecture8.py :session *python*
+#+begin_src python :results output pp :exports both :session fio
 import pickle
 
 filename = os.path.join(f_dir, 'example1.pickle')
@@ -562,7 +551,7 @@ z = 98, 95, 92, ..., 82
 And try to read the file you just wrote using =np.loadtxt()=
 HINT: =data = np.vstack((x, y, z)).T=
 *** Solution                                                     :noexport:
-#+begin_src python :results output :exports both :session *python*
+#+begin_src python :results output pp :exports both :session fio
 filename = os.path.join(f_dir, 'exercise.csv')
 
 x = np.arange(2, 20, 2)
@@ -574,17 +563,37 @@ np.savetxt(filename, data)
 
 print(np.loadtxt(filename))
 #+end_src
+
+#+RESULTS:
+#+begin_example
+
+>>> >>> >>> >>> >>> >>> >>> >>> [[  2.   4.  98.]
+ [  4.   8.  96.]
+ [  6.  12.  94.]
+ [  8.  16.  92.]
+ [ 10.  20.  90.]
+ [ 12.  24.  88.]
+ [ 14.  28.  86.]
+ [ 16.  32.  84.]
+ [ 18.  36.  82.]]
+#+end_example
+
 ** NPZ
 Use x, y, z again and save them using =np.savez()= and read them using
 =np.load()=
 *** Solution                                                     :noexport:
-#+begin_src python :results output :exports both :session *python*
+#+begin_src python :results output pp :exports both :session fio
 filename = os.path.join(f_dir, 'exercise.npz')
 
 np.savez(filename, x=x, y=y, z=z)
 data = np.load(filename)
 print(data['x'], data['y'], data['z'])
 #+end_src
+
+#+RESULTS:
+: 
+: >>> >>> >>> (array([ 2,  4,  6,  8, 10, 12, 14, 16, 18]), array([ 4,  8, 12, 16, 20, 24, 28, 32, 36]), array([98, 96, 94, 92, 90, 88, 86, 84, 82]))
+
 ** Binary
 Write a binary file using =ndarray.tofile()= with 10 records, where a record looks
 like: 
@@ -597,7 +606,7 @@ dtype = np.dtype([('id', np.float64),
 
 And read it using =np.fromfile()=
 *** Solution                                                     :noexport:
-#+begin_src python :results output :exports both :session *python*
+#+begin_src python :results output pp :exports both :session fio
 filename = os.path.join(f_dir, 'exercise.bin')
 
 dtype = np.dtype([('id', np.float64),
@@ -609,3 +618,10 @@ records.tofile(filename)
 
 print(np.fromfile(filename, dtype=dtype))
 #+end_src
+
+#+RESULTS:
+: 
+: >>> ... ... >>> >>> >>> >>> >>> [(0.0, 0.0, 0.0) (0.0, 0.0, 0.0) (0.0, 0.0, 0.0) (0.0, 0.0, 0.0)
+:  (0.0, 0.0, 0.0) (0.0, 0.0, 0.0) (0.0, 0.0, 0.0) (0.0, 0.0, 0.0)
+:  (0.0, 0.0, 0.0) (0.0, 0.0, 0.0)]
+

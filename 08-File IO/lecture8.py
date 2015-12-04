@@ -1,12 +1,4 @@
 import os
-import struct
-import pickle
-
-import numpy as np
-import netCDF4
-import h5py
-import pandas as pd
-from scipy.io import loadmat, savemat, whosmat
 
 f_dir = os.path.join('.', 'files')
 if not os.path.exists(f_dir):
@@ -18,12 +10,10 @@ if not os.path.exists(f_dir):
         print("Failed creating files folder")
 
 filename = os.path.join(f_dir, 'example1.txt')
-
 f = open(filename, 'w')
 f.write("Hello World!")
 f.close()
 
-# Using the context manager
 with open(filename) as f:
     print(f.read())
 
@@ -40,18 +30,20 @@ with open(filename) as f:
     for record in f.readlines():
         print(record)
 
+import numpy as np
 
 filename = os.path.join(f_dir, 'example2.csv')
-data = np.tile(np.arange(0, 5), (3, 1)).T
+data =  np.tile(np.arange(0, 5), (3, 1)).T
 
 # save data
 np.savetxt(filename, data, header='x,y,z', delimiter=',')
 
 # load data
-x, y, z = np.loadtxt(filename, skiprows=1,
-                     delimiter=',', unpack=True)
+x, y, z = np.loadtxt(filename, skiprows=1, \
+    delimiter=',', unpack=True)
 print(x, y, z)
 
+import struct
 
 filename = os.path.join(f_dir, 'example1.bin')
 points = [(1, 2), (3, 4), (9, 10), (23, 14), (50, 90)]
@@ -68,17 +60,17 @@ with open(filename, 'wb') as f:
 
 # read data
 with open(filename, 'rb') as f:
-    n_points = struct.unpack('I', f.read(4))[0]
-    print(n_points)
+     n_points = struct.unpack('I', f.read(4))[0]
+     print(n_points)
 
 filename = os.path.join(f_dir, 'example2.bin')
 
-points = np.array([(1, 2), (3, 4), (9, 10), (23, 14), (50, 90)],
-                  dtype=np.int32)
+points = np.array([(1, 2), (3, 4), (9, 10), (23, 14), (50, 90)], 
+    dtype=np.int32)
 points.tofile(filename)
 
-data = np.fromfile(filename, dtype=[('x', np.int32),
-                                    ('y', np.int32)])
+data = np.fromfile(filename, dtype=[('x', np.int32), 
+    ('y', np.int32)])
 print(data['x'], data['y'])
 
 filename = os.path.join(f_dir, 'example1.npy')
@@ -105,6 +97,7 @@ print(data)
 print('x:', data['arr_0'])
 print('y:', data['y'])
 
+from scipy.io import loadmat, savemat, whosmat
 
 filename = os.path.join(f_dir, 'example1.mat')
 x = np.arange(10)
@@ -132,6 +125,7 @@ data = loadmat(filename)
 
 print(data['y'])
 
+import netCDF4
 
 filename = os.path.join(f_dir, 'example1.nc')
 
@@ -146,12 +140,11 @@ print(grp_temp.groups)
 lat = f.createDimension('lat', 50)
 lon = f.createDimension('lon', 50)
 time = f.createDimension('time', None)
-print(f.dimensions)
 
 # Datasets and Attributes
 soil_temp = np.ones((50, 50))
 soil_dset = subgrp_soil.createVariable("Soil Temperature",
-                                       soil_temp.dtype.name, ('lat', 'lon'))
+    soil_temp.dtype.name, ('lat', 'lon'))
 soil_dset[:] = soil_temp
 
 # http://docs.python.org/2/library/functions.html#setattr
@@ -165,10 +158,12 @@ with netCDF4.Dataset(filename) as f:
     print(f.groups['temperature'].groups['soil'].variables['Soil Temperature'])
 
 with netCDF4.Dataset(filename) as f:
-    print(f.groups['temperature'].groups['soil'].
-          variables['Soil Temperature'][:])
-    print(f.groups['temperature'].groups['soil'].
-          variables['Soil Temperature'].unit)
+    print(f.groups['temperature'].groups['soil'].\
+        variables['Soil Temperature'][:])
+    print(f.groups['temperature'].groups['soil'].\
+        variables['Soil Temperature'].unit)
+
+import h5py
 
 filename = os.path.join(f_dir, 'example1.hdf5')
 
@@ -176,8 +171,8 @@ with h5py.File(filename, 'w') as f:
     grp_temp = f.create_group("temp")
     subgrp_soil = grp_temp.create_group("soil")
     soil_temp = np.arange(400)
-    soil_dset = subgrp_soil.create_dataset("Soil Temperature",
-                                           data=soil_temp)
+    soil_dset = subgrp_soil.create_dataset("Soil Temperature", \
+        data=soil_temp)
     soil_dset.attrs['unit'] = 'degree celsius'
     print(soil_dset)
 
@@ -188,18 +183,21 @@ with h5py.File(filename) as f:
     print(f['temp/soil/Soil Temperature'])
     print(f['temp/soil/Soil Temperature'][20:40])
 
-# filename = os.path.join(f_dir, 'example1.xlsx')
+import pandas as pd
 
-# df = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})
-# df.to_excel(filename)
+filename = os.path.join(f_dir, 'example1.xlsx')
 
-# data = pd.io.excel.read_excel(filename)
-# print(type(data), data)
+df = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})
+df.to_excel(filename)
 
+data = pd.io.excel.read_excel(filename)
+print(type(data), data)
+
+import pickle
 
 filename = os.path.join(f_dir, 'example1.pickle')
 
-data = {'a': [1, 2.0, 3, 4 + 6j],
+data = {'a': [1, 2.0, 3, 4+6j],
         'b': ('string', u'Unicode string'),
         'c': None}
 
@@ -208,3 +206,31 @@ with open(filename, 'wb') as f:
 
 with open(filename, 'rb') as f:
     print(pickle.load(f))
+
+filename = os.path.join(f_dir, 'exercise.csv')
+
+x = np.arange(2, 20, 2)
+y = x * 2
+z = np.arange(98, 80, -2)
+
+data = np.vstack((x, y, z)).T
+np.savetxt(filename, data)
+
+print(np.loadtxt(filename))
+
+filename = os.path.join(f_dir, 'exercise.npz')
+
+np.savez(filename, x=x, y=y, z=z)
+data = np.load(filename)
+print(data['x'], data['y'], data['z'])
+
+filename = os.path.join(f_dir, 'exercise.bin')
+
+dtype = np.dtype([('id', np.float64),
+                  ('height', np.float32),
+                  ('weight', np.float32)])
+
+records = np.zeros(10, dtype=dtype)
+records.tofile(filename)
+
+print(np.fromfile(filename, dtype=dtype))

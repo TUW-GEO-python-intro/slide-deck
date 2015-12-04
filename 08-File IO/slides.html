@@ -1,14 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
 <title>File IO</title>
-<meta name="author" content="(Sebastian Hahn)"/>
-
 <link rel="stylesheet" href="../reveal.js/css/reveal.css"/>
 <link rel="stylesheet" href="../reveal.js/css/theme/black.css" id="theme"/>
 <link rel="stylesheet" href="../code_formatting.css"/>
+
 <!-- If the query includes 'print-pdf', include the PDF print sheet -->
 <script>
     if( window.location.search.match( /print-pdf/gi ) ) {
@@ -24,13 +22,13 @@
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide" data-background="" data-background-size="" data-background-repeat="" data-background-transition="">
-<h1>File IO</h1> <h2>Sebastian Hahn</h2> <h2><a href="mailto:"></a></h2> <h2></h2>
+<h1>File IO</h1> <h2></h2> <h2><a href="mailto:"></a></h2> <h2></h2>
 </section>
 
 <section>
-<section id="slide-unnumbered-1">
-<h2 id="unnumbered-1">File formats</h2>
-<ul >
+<section id="slide-orgheadline1">
+<h2 id="orgheadline1">File formats</h2>
+<ul>
 <li>ASCII</li>
 <li>Binary</li>
 <li>Numpy</li>
@@ -45,32 +43,30 @@
 </section>
 </section>
 <section>
-<section id="slide-unnumbered-2">
-<h2 id="unnumbered-2">ASCII</h2>
-<ul >
+<section id="slide-orgheadline6">
+<h2 id="orgheadline6">ASCII</h2>
+<ul>
 <li>A text file in which each byte represents one character according to the ASCII
 code.</li>
 <li>Contrast with a binary file, in which there is no one-to-one mapping between
 bytes and characters.</li>
-<li>Files that have been formatted with a word processor must be stored and
-transmitted as binary files to preserve the formatting.</li>
 
 </ul>
 </section>
-<section id="slide-unnumbered-3">
-<h3 id="unnumbered-3">Python standard library</h3>
+<section id="slide-orgheadline2">
+<h3 id="orgheadline2">Python standard library</h3>
 <p>
 <a href="https://docs.python.org/2/tutorial/inputoutput.html">Input output routines</a>
 </p>
-<ul >
+<ul>
 <li><code>open()</code>, <code>close()</code></li>
 <li><code>read()</code>, <code>readline()</code>, <code>readlines()</code></li>
 <li><code>write()</code>, <code>writelines()</code></li>
 
 </ul>
 </section>
-<section id="slide-unnumbered-4">
-<h3 id="unnumbered-4">Before we start</h3>
+<section id="slide-orgheadline3">
+<h3 id="orgheadline3">Before we start</h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">import</span> os
@@ -91,29 +87,28 @@ transmitted as binary files to preserve the formatting.</li>
 </pre>
 
 </section>
-<section id="slide-unnumbered-5">
-<h3 id="unnumbered-5">ASCII example 1</h3>
+<section id="slide-orgheadline4">
+<h3 id="orgheadline4">ASCII example 1</h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">filename</span> = os.path.join<span style="color: #707183;">(</span>f_dir, <span style="color: #4E9A06;">'example1.txt'</span><span style="color: #707183;">)</span>
-
 <span style="color: #0084C8; font-weight: bold;">f</span> = <span style="color: #A020F0;">open</span><span style="color: #707183;">(</span>filename, <span style="color: #4E9A06;">'w'</span><span style="color: #707183;">)</span>
 f.write<span style="color: #707183;">(</span><span style="color: #4E9A06;">"Hello World!"</span><span style="color: #707183;">)</span>
 f.close<span style="color: #707183;">()</span>
 
-<span style="color: #204A87;"># </span><span style="color: #204A87;">Using the context manager</span>
 <span style="color: #A52A2A; font-weight: bold;">with</span> <span style="color: #A020F0;">open</span><span style="color: #707183;">(</span>filename<span style="color: #707183;">)</span> <span style="color: #A52A2A; font-weight: bold;">as</span> f:
     <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>f.read<span style="color: #7388d6;">()</span><span style="color: #707183;">)</span>
 </pre>
 </div>
 
 <pre class="example">
-&gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; ... ... ... Hello World!
+&gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; ... ... Hello World!
 </pre>
+
 </section>
-<section id="slide-unnumbered-6">
-<h3 id="unnumbered-6">numpy</h3>
-<ul >
+<section id="slide-orgheadline5">
+<h3 id="orgheadline5">numpy</h3>
+<ul>
 <li><a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.fromregex.html">np.fromregex</a>: Construct an array from a text file, using regular expression
 parsing.</li>
 <li><a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.fromstring.html">np.fromstring</a>: A new 1-D array initialized from raw binary or text data in a
@@ -124,9 +119,9 @@ string.</li>
 </section>
 </section>
 <section>
-<section id="slide-unnumbered-7">
-<h2 id="unnumbered-7">CSV</h2>
-<ul >
+<section id="slide-orgheadline12">
+<h2 id="orgheadline12">CSV</h2>
+<ul>
 <li>A comma-separated values (CSV) file stores <b>tabular data</b> (numbers and text)
 in plain-text form.</li>
 <li>Plain text means that the file is a sequence of characters, with no data that
@@ -138,20 +133,20 @@ string, most commonly a literal comma or tab.</li>
 
 </ul>
 </section>
-<section id="slide-unnumbered-8">
-<h3 id="unnumbered-8">Python standard library</h3>
+<section id="slide-orgheadline7">
+<h3 id="orgheadline7">Python standard library</h3>
 <p>
 <a href="https://docs.python.org/2/tutorial/inputoutput.html">Input output routines</a>
 </p>
-<ul >
+<ul>
 <li><code>open()</code>, <code>close()</code></li>
 <li><code>read()</code>, <code>readline()</code>, <code>readlines()</code></li>
 <li><code>write()</code>, <code>writelines()</code></li>
 
 </ul>
 </section>
-<section id="slide-unnumbered-9">
-<h3 id="unnumbered-9">CSV example 1</h3>
+<section id="slide-orgheadline8">
+<h3 id="orgheadline8">CSV example 1</h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">filename</span> = os.path.join<span style="color: #707183;">(</span>f_dir, <span style="color: #4E9A06;">'example1.csv'</span><span style="color: #707183;">)</span>
@@ -178,9 +173,9 @@ string, most commonly a literal comma or tab.</li>
 18,48,18
 </pre>
 </section>
-<section id="slide-unnumbered-10">
-<h3 id="unnumbered-10">numpy</h3>
-<ul >
+<section id="slide-orgheadline9">
+<h3 id="orgheadline9">numpy</h3>
+<ul>
 <li><a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.savetxt.html">np.savetxt</a>: Save an array to a text file.</li>
 <li><a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.loadtxt.html">np.loadtxt</a>: Load data from a text file.</li>
 <li><a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.genfromtxt.html">np.genfromtxt</a>: Load data from a text file, with missing values handled as
@@ -188,8 +183,8 @@ specified.</li>
 
 </ul>
 </section>
-<section id="slide-unnumbered-11">
-<h3 id="unnumbered-11">CSV example 2</h3>
+<section id="slide-orgheadline10">
+<h3 id="orgheadline10">CSV example 2</h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">import</span> numpy <span style="color: #A52A2A; font-weight: bold;">as</span> np
@@ -211,26 +206,26 @@ np.savetxt<span style="color: #707183;">(</span>filename, data, header=<span sty
 &gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; ... &gt;&gt;&gt; &gt;&gt;&gt; ... ... &gt;&gt;&gt; (array([ 0.,  1.,  2.,  3.,  4.]), array([ 0.,  1.,  2.,  3.,  4.]), array([ 0.,  1.,  2.,  3.,  4.]))
 </pre>
 </section>
-<section id="slide-unnumbered-12">
-<h3 id="unnumbered-12">pandas</h3>
+<section id="slide-orgheadline11">
+<h3 id="orgheadline11">pandas</h3>
 <p>
 The <a href="http://pandas.pydata.org/pandas-docs/dev/io.html">pandas I/O</a> API is a set of top level reader functions, e.g. for CSV
 </p>
-<ul >
+<ul>
 <li>The Series and DataFrame objects have an instance method <a href="http://pandas.pydata.org/pandas-docs/dev/io.html#io-store-in-csv">to_csv()</a> which allows
 storing the contents of the object as a comma-separated-values file.</li>
 <li>The two workhorse functions for reading text files are <a href="http://pandas.pydata.org/pandas-docs/dev/io.html#io-read-csv-table">read_csv()</a> and
 <a href="http://pandas.pydata.org/pandas-docs/dev/generated/pandas.io.parsers.read_table.html#pandas.io.parsers.read_table">read_table()</a>. They both use the same parsing code to intelligently convert
 tabular data into a DataFrame object. See the <a href="http://pandas.pydata.org/pandas-docs/dev/cookbook.html#cookbook-csv">cookbook</a> for some advanced
-strategies</li>
+strategies.</li>
 
 </ul>
 </section>
 </section>
 <section>
-<section id="slide-unnumbered-13">
-<h2 id="unnumbered-13">Binary</h2>
-<ul >
+<section id="slide-orgheadline17">
+<h2 id="orgheadline17">Binary</h2>
+<ul>
 <li>A binary file is a computer file that is not a text file.</li>
 <li>Binary files typically contain bytes that are intended to be interpreted as
 something other than text characters.</li>
@@ -243,20 +238,20 @@ what should be done with each bit, byte, word or block.</li>
 
 </ul>
 </section>
-<section id="slide-unnumbered-14">
-<h3 id="unnumbered-14">Python standard library</h3>
+<section id="slide-orgheadline13">
+<h3 id="orgheadline13">Python standard library</h3>
 <p>
 <a href="https://docs.python.org/2/tutorial/inputoutput.html">Input output routines</a>
 </p>
-<ul >
+<ul>
 <li><code>open()</code>, <code>close()</code></li>
 <li><code>read()</code>, <code>readline()</code>, <code>readlines()</code></li>
 <li><code>write()</code>, <code>writelines()</code></li>
 
 </ul>
 </section>
-<section id="slide-unnumbered-15">
-<h3 id="unnumbered-15">Binary example 1</h3>
+<section id="slide-orgheadline14">
+<h3 id="orgheadline14">Binary example 1</h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">import</span> struct
@@ -285,16 +280,16 @@ msg.extend<span style="color: #707183;">(</span>struct.pack<span style="color: #
 &gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; ... ... &gt;&gt;&gt; ... ... ... &gt;&gt;&gt; ... ... ... ... 5
 </pre>
 </section>
-<section id="slide-unnumbered-16">
-<h3 id="unnumbered-16">numpy</h3>
-<ul >
+<section id="slide-orgheadline15">
+<h3 id="orgheadline15">numpy</h3>
+<ul>
 <li><a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.fromfile.html">np.fromfile</a>: Construct an array from data in a text or binary file</li>
 <li><a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.tofile.html#numpy.ndarray.tofile">ndarray.tofile</a>: Write array to a file as text or binary (default)</li>
 
 </ul>
 </section>
-<section id="slide-unnumbered-17">
-<h3 id="unnumbered-17">Binary example 2</h3>
+<section id="slide-orgheadline16">
+<h3 id="orgheadline16">Binary example 2</h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">filename</span> = os.path.join<span style="color: #707183;">(</span>f_dir, <span style="color: #4E9A06;">'example2.bin'</span><span style="color: #707183;">)</span>
@@ -315,9 +310,9 @@ points.tofile<span style="color: #707183;">(</span>filename<span style="color: #
 </section>
 </section>
 <section>
-<section id="slide-unnumbered-18">
-<h2 id="unnumbered-18">Numpy</h2>
-<ul >
+<section id="slide-orgheadline21">
+<h2 id="orgheadline21">Numpy</h2>
+<ul>
 <li>There are a number of various <a href="http://docs.scipy.org/doc/numpy/reference/routines.io.html">Numpy IO routines</a> (e.g. text, binary and NPZ)</li>
 <li><b>NPZ</b>: a standard binary file format for persisting a single arbitrary Numpy
 array on disk. The format stores all of the shape and dtype information
@@ -326,9 +321,9 @@ different architecture.</li>
 
 </ul>
 </section>
-<section id="slide-unnumbered-19">
-<h3 id="unnumbered-19">numpy</h3>
-<ul >
+<section id="slide-orgheadline18">
+<h3 id="orgheadline18">numpy</h3>
+<ul>
 <li><a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.load.html#numpy.load">np.load</a>: load arrays or pickled objects from .npy, .npz or pickled files.</li>
 <li><a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.save.html#numpy.save">np.save</a>: Save an array to a binary file in NumPy .npy format.</li>
 <li><a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.savez.html#numpy.savez">np.savez</a>: Save several arrays into a single file in uncompressed .npz format.</li>
@@ -337,8 +332,8 @@ format.</li>
 
 </ul>
 </section>
-<section id="slide-unnumbered-20">
-<h3 id="unnumbered-20">Numpy example 1</h3>
+<section id="slide-orgheadline19">
+<h3 id="orgheadline19">Numpy example 1</h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">filename</span> = os.path.join<span style="color: #707183;">(</span>f_dir, <span style="color: #4E9A06;">'example1.npy'</span><span style="color: #707183;">)</span>
@@ -357,8 +352,8 @@ np.save<span style="color: #707183;">(</span>filename, x<span style="color: #707
 &gt;&gt;&gt; &gt;&gt;&gt; ... &gt;&gt;&gt; &gt;&gt;&gt; ... &gt;&gt;&gt; [0 1 2 3 4 5 6 7 8 9]
 </pre>
 </section>
-<section id="slide-unnumbered-21">
-<h3 id="unnumbered-21">Numpy example 2</h3>
+<section id="slide-orgheadline20">
+<h3 id="orgheadline20">Numpy example 2</h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">filename</span> = os.path.join<span style="color: #707183;">(</span>f_dir, <span style="color: #4E9A06;">'example2.npz'</span><span style="color: #707183;">)</span>
@@ -378,7 +373,7 @@ np.savez<span style="color: #707183;">(</span>filename, x, y=y<span style="color
 </div>
 
 <pre class="example">
-&gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; ... &gt;&gt;&gt; &gt;&gt;&gt; ... &gt;&gt;&gt; &gt;&gt;&gt; &lt;numpy.lib.npyio.NpzFile object at 0x7fe392ec3190&gt;
+&gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; ... &gt;&gt;&gt; &gt;&gt;&gt; ... &gt;&gt;&gt; &gt;&gt;&gt; &lt;numpy.lib.npyio.NpzFile object at 0x7f1c9ac1a890&gt;
 ('x:', array([[0, 1],
        [2, 3]]))
 ('y:', array([[ 0.        ,  0.84147098],
@@ -387,30 +382,30 @@ np.savez<span style="color: #707183;">(</span>filename, x, y=y<span style="color
 </section>
 </section>
 <section>
-<section id="slide-unnumbered-22">
-<h2 id="unnumbered-22">Matlab</h2>
-<ul >
+<section id="slide-orgheadline25">
+<h2 id="orgheadline25">Matlab</h2>
+<ul>
 <li>Scipy.io has many <a href="http://docs.scipy.org/doc/scipy/reference/io.html">modules, classes, and functions</a> available to read data from and
 write data to a variety of file formats.</li>
 <li>Saving and loading Matlab files (.mat)
-<ul >
+<ul>
 <li>supports: v4 (Level 1.0), v6 and v7 to 7.2 matfiles</li>
 
 </ul></li>
 
 </ul>
 </section>
-<section id="slide-unnumbered-23">
-<h3 id="unnumbered-23">scipy.io</h3>
-<ul >
+<section id="slide-orgheadline22">
+<h3 id="orgheadline22">scipy.io</h3>
+<ul>
 <li><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.io.loadmat.html#scipy.io.loadmat">loadmat</a>: Load MATLAB file</li>
 <li><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.io.savemat.html">savemat</a>: Save a dictionary of names and arrays into a MATLAB-style .mat file.</li>
 <li><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.io.whosmat.html">whosmat</a>: List variables inside a MATLAB file</li>
 
 </ul>
 </section>
-<section id="slide-unnumbered-24">
-<h3 id="unnumbered-24">Matlab example 1</h3>
+<section id="slide-orgheadline23">
+<h3 id="orgheadline23">Matlab example 1</h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">from</span> scipy.io <span style="color: #A52A2A; font-weight: bold;">import</span> loadmat, savemat, whosmat
@@ -432,8 +427,8 @@ savemat<span style="color: #707183;">(</span>filename, <span style="color: #7388
 &gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; ... &gt;&gt;&gt; &gt;&gt;&gt; ... &gt;&gt;&gt; &gt;&gt;&gt; [[0 1 2 3 4 5 6 7 8 9]]
 </pre>
 </section>
-<section id="slide-unnumbered-25">
-<h3 id="unnumbered-25">Matlab example 2</h3>
+<section id="slide-orgheadline24">
+<h3 id="orgheadline24">Matlab example 2</h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">filename</span> = os.path.join<span style="color: #707183;">(</span>f_dir, <span style="color: #4E9A06;">'example2.mat'</span><span style="color: #707183;">)</span>
@@ -461,12 +456,12 @@ savemat<span style="color: #707183;">(</span>filename, <span style="color: #7388
 </section>
 </section>
 <section>
-<section id="slide-unnumbered-26">
-<h2 id="unnumbered-26">IDL (Exelis VIS)</h2>
+<section id="slide-orgheadline26">
+<h2 id="orgheadline26">IDL (Exelis VIS)</h2>
 <p>
 Scipy.io also supports reading IDL (.sav) files
 </p>
-<ul >
+<ul>
 <li><a href="http://docs.scipy.org/doc/scipy/reference/generated/scipy.io.readsav.html#scipy.io.readsav">readsav</a>: Read an IDL .sav file</li>
 
 </ul>
@@ -482,14 +477,14 @@ recovered from a SAVE file.
 </section>
 </section>
 <section>
-<section id="slide-unnumbered-27">
-<h2 id="unnumbered-27">NetCDF</h2>
-<ul >
+<section id="slide-orgheadline32">
+<h2 id="orgheadline32">NetCDF</h2>
+<ul>
 <li><a href="http://www.unidata.ucar.edu/software/netcdf/">NetCDF</a> (Network Common Data Form) is a set of software libraries and self-
 describing, machine-independent data formats that support the creation,
 access, and sharing of array-oriented scientific data.</li>
 <li>NetCDF data is:
-<ul >
+<ul>
 <li><b>Self-Describing</b>: Metadata information about the data are included.</li>
 <li><b>Portable</b>: Accessable by computers with different ways of storing integers,
 characters, and floating-point numbers.</li>
@@ -498,11 +493,11 @@ characters, and floating-point numbers.</li>
 
 </ul>
 </section>
-<section id="slide-unnumbered-28">
-<h3 id="unnumbered-28">NetCDF</h3>
-<ul >
+<section id="slide-orgheadline27">
+<h3 id="orgheadline27">NetCDF</h3>
+<ul>
 <li>NetCDF data is:
-<ul >
+<ul>
 <li><b>Scalable</b>: A small subset of a large dataset may be accessed efficiently.</li>
 <li><b>Appendable</b>: Data may be appended to a properly structured netCDF file.</li>
 <li><b>Sharable</b>: One writer and multiple readers may simultaneously access the same
@@ -515,8 +510,8 @@ current and future versions of the software.</li>
 
 </ul>
 </section>
-<section id="slide-unnumbered-29">
-<h3 id="unnumbered-29">netCDF4 example 1 - part 1</h3>
+<section id="slide-orgheadline28">
+<h3 id="orgheadline28">netCDF4 example 1 - part 1</h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">import</span> netCDF4
@@ -533,12 +528,12 @@ current and future versions of the software.</li>
 </div>
 
 <pre class="example">
-&gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; OrderedDict([('air', &lt;type 'netCDF4.Group'&gt;
+&gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; OrderedDict([('air', &lt;type 'netCDF4._netCDF4.Group'&gt;
 group /temperature/air:
     dimensions(sizes): 
     variables(dimensions): 
     groups: 
-), ('soil', &lt;type 'netCDF4.Group'&gt;
+), ('soil', &lt;type 'netCDF4._netCDF4.Group'&gt;
 group /temperature/soil:
     dimensions(sizes): 
     variables(dimensions): 
@@ -546,15 +541,14 @@ group /temperature/soil:
 )])
 </pre>
 </section>
-<section id="slide-unnumbered-30">
-<h3 id="unnumbered-30">netCDF4 example 1 - part 2</h3>
+<section id="slide-orgheadline29">
+<h3 id="orgheadline29">netCDF4 example 1 - part 2</h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #204A87;"># </span><span style="color: #204A87;">Create Dimension</span>
 <span style="color: #0084C8; font-weight: bold;">lat</span> = f.createDimension<span style="color: #707183;">(</span><span style="color: #4E9A06;">'lat'</span>, <span style="color: #F5666D;">50</span><span style="color: #707183;">)</span>
 <span style="color: #0084C8; font-weight: bold;">lon</span> = f.createDimension<span style="color: #707183;">(</span><span style="color: #4E9A06;">'lon'</span>, <span style="color: #F5666D;">50</span><span style="color: #707183;">)</span>
 <span style="color: #0084C8; font-weight: bold;">time</span> = f.createDimension<span style="color: #707183;">(</span><span style="color: #4E9A06;">'time'</span>, <span style="color: #F5666D;">None</span><span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>f.dimensions<span style="color: #707183;">)</span>
 
 <span style="color: #204A87;"># </span><span style="color: #204A87;">Datasets and Attributes</span>
 <span style="color: #0084C8; font-weight: bold;">soil_temp</span> = np.ones<span style="color: #707183;">(</span><span style="color: #7388d6;">(</span><span style="color: #F5666D;">50</span>, <span style="color: #F5666D;">50</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
@@ -569,16 +563,9 @@ group /temperature/soil:
 f.close<span style="color: #707183;">()</span>
 </pre>
 </div>
-
-<pre class="example">
-&gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; OrderedDict([('lat', &lt;type 'netCDF4.Dimension'&gt;: name = 'lat', size = 50
-), ('lon', &lt;type 'netCDF4.Dimension'&gt;: name = 'lon', size = 50
-), ('time', &lt;type 'netCDF4.Dimension'&gt; (unlimited): name = 'time', size = 0
-)])
-</pre>
 </section>
-<section id="slide-unnumbered-31">
-<h3 id="unnumbered-31">netCDF4 example 1 - part 3</h3>
+<section id="slide-orgheadline30">
+<h3 id="orgheadline30">netCDF4 example 1 - part 3</h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">with</span> netCDF4.Dataset<span style="color: #707183;">(</span>filename<span style="color: #707183;">)</span> <span style="color: #A52A2A; font-weight: bold;">as</span> f:
@@ -588,11 +575,11 @@ f.close<span style="color: #707183;">()</span>
 </div>
 
 <pre class="example">
-... ... OrderedDict([(u'lat', &lt;type 'netCDF4.Dimension'&gt;: name = 'lat', size = 50
-), (u'lon', &lt;type 'netCDF4.Dimension'&gt;: name = 'lon', size = 50
-), (u'time', &lt;type 'netCDF4.Dimension'&gt; (unlimited): name = 'time', size = 0
+... ... OrderedDict([(u'lat', &lt;type 'netCDF4._netCDF4.Dimension'&gt;: name = 'lat', size = 50
+), (u'lon', &lt;type 'netCDF4._netCDF4.Dimension'&gt;: name = 'lon', size = 50
+), (u'time', &lt;type 'netCDF4._netCDF4.Dimension'&gt; (unlimited): name = 'time', size = 0
 )])
-&lt;type 'netCDF4.Variable'&gt;
+&lt;type 'netCDF4._netCDF4.Variable'&gt;
 float64 Soil Temperature(lat, lon)
     unit: degree celsius
     scaling: 1
@@ -602,8 +589,8 @@ current shape = (50, 50)
 filling on, default _FillValue of 9.96920996839e+36 used
 </pre>
 </section>
-<section id="slide-unnumbered-32">
-<h3 id="unnumbered-32">netCDF4 example 1 - part 4</h3>
+<section id="slide-orgheadline31">
+<h3 id="orgheadline31">netCDF4 example 1 - part 4</h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">with</span> netCDF4.Dataset<span style="color: #707183;">(</span>filename<span style="color: #707183;">)</span> <span style="color: #A52A2A; font-weight: bold;">as</span> f:
@@ -627,9 +614,9 @@ degree celsius
 </section>
 </section>
 <section>
-<section id="slide-unnumbered-33">
-<h2 id="unnumbered-33">HDF5</h2>
-<ul >
+<section id="slide-orgheadline35">
+<h2 id="orgheadline35">HDF5</h2>
+<ul>
 <li><a href="https://www.hdfgroup.org/HDF5/">HDF5</a> is a data model, library, and file format for storing and managing data.</li>
 <li>It supports an unlimited variety of datatypes, and is designed for flexible
 and efficient I/O and for high volume and complex data.</li>
@@ -639,8 +626,8 @@ use of HDF5.</li>
 
 </ul>
 </section>
-<section id="slide-unnumbered-34">
-<h3 id="unnumbered-34">hdf5 example 1 - part 1</h3>
+<section id="slide-orgheadline33">
+<h3 id="orgheadline33">hdf5 example 1 - part 1</h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">import</span> h5py
@@ -661,8 +648,8 @@ use of HDF5.</li>
 &gt;&gt;&gt; &gt;&gt;&gt; &gt;&gt;&gt; ... ... ... ... ... ... ... ... &lt;HDF5 dataset "Soil Temperature": shape (400,), type "&lt;i8"&gt;
 </pre>
 </section>
-<section id="slide-unnumbered-35">
-<h3 id="unnumbered-35">hdf5 example 1 - part 2</h3>
+<section id="slide-orgheadline34">
+<h3 id="orgheadline34">hdf5 example 1 - part 2</h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #0084C8; font-weight: bold;">filename</span> = os.path.join<span style="color: #707183;">(</span>f_dir, <span style="color: #4E9A06;">'example1.hdf5'</span><span style="color: #707183;">)</span>
@@ -681,9 +668,9 @@ use of HDF5.</li>
 </section>
 </section>
 <section>
-<section id="slide-unnumbered-36">
-<h2 id="unnumbered-36">Excel</h2>
-<ul >
+<section id="slide-orgheadline38">
+<h2 id="orgheadline38">Excel</h2>
+<ul>
 <li><a href="https://openpyxl.readthedocs.org/">Openpyxl</a> is a Python library for reading and writing Excel 2010
 xlsx/xlsm/xltx/xltm files.</li>
 <li>It was born from lack of existing library to read/write natively from Python
@@ -693,20 +680,16 @@ sheets</li>
 
 </ul>
 </section>
-<section id="slide-unnumbered-37">
-<h3 id="unnumbered-37">excel example 1 - part 1</h3>
-<p>
-There is currently an <a href="https://github.com/pydata/pandas/issues/8342">issue</a> between pandas (0.16.0) and the latest openpyxl
-(2.2.2) version, but it works with an older version of openpyxl (1.8.6)
-</p>
-<ul >
-<li>pip install <a href="https://pypi.python.org/pypi/openpyxl/">openpyxl==1.8.6</a></li>
+<section id="slide-orgheadline36">
+<h3 id="orgheadline36">Package requirements</h3>
+<ul>
+<li>pip install <a href="https://pypi.python.org/pypi/openpyxl/">openpyxl</a></li>
 <li>pip install <a href="https://pypi.python.org/pypi/xlrd">xlrd</a></li>
 
 </ul>
 </section>
-<section id="slide-unnumbered-38">
-<h3 id="unnumbered-38">excel example 1 - part 2</h3>
+<section id="slide-orgheadline37">
+<h3 id="orgheadline37">Excel example</h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">import</span> pandas <span style="color: #A52A2A; font-weight: bold;">as</span> pd
@@ -730,9 +713,9 @@ df.to_excel<span style="color: #707183;">(</span>filename<span style="color: #70
 </section>
 </section>
 <section>
-<section id="slide-unnumbered-39">
-<h2 id="unnumbered-39">Pickle</h2>
-<ul >
+<section id="slide-orgheadline40">
+<h2 id="orgheadline40">Pickle</h2>
+<ul>
 <li>The pickle module implements a fundamental, but powerful algorithm for
 serializing and de-serializing a Python object structure.</li>
 <li>Pickling is the process whereby a Python object hierarchy is converted into a
@@ -742,8 +725,8 @@ converted back into an object hierarchy.</li>
 
 </ul>
 </section>
-<section id="slide-unnumbered-40">
-<h3 id="unnumbered-40">Pickle example 1</h3>
+<section id="slide-orgheadline39">
+<h3 id="orgheadline39">Pickle example 1</h3>
 <div class="org-src-container">
 
 <pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">import</span> pickle
@@ -768,12 +751,12 @@ converted back into an object hierarchy.</li>
 </section>
 </section>
 <section>
-<section id="slide-unnumbered-41">
-<h2 id="unnumbered-41">Exercise</h2>
-<div class="outline-text-2" id="text-unnumbered-41">
+<section id="slide-orgheadline44">
+<h2 id="orgheadline44">Exercise</h2>
+<div class="outline-text-2" id="text-orgheadline44">
 </div></section>
-<section id="slide-unnumbered-42">
-<h3 id="unnumbered-42">CSV</h3>
+<section id="slide-orgheadline41">
+<h3 id="orgheadline41">CSV</h3>
 <p>
 Write a text file using <code>np.savetxt()</code> which contains 3 columns x, y, z:
 </p>
@@ -790,16 +773,16 @@ HINT: <code>data = np.vstack((x, y, z)).T</code>
 </p>
 
 </section>
-<section id="slide-unnumbered-43">
-<h3 id="unnumbered-43">NPZ</h3>
+<section id="slide-orgheadline42">
+<h3 id="orgheadline42">NPZ</h3>
 <p>
 Use x, y, z again and save them using <code>np.savez()</code> and read them using
 <code>np.load()</code>
 </p>
 
 </section>
-<section id="slide-unnumbered-44">
-<h3 id="unnumbered-44">Binary</h3>
+<section id="slide-orgheadline43">
+<h3 id="orgheadline43">Binary</h3>
 <p>
 Write a binary file using <code>ndarray.tofile()</code> with 10 records, where a record looks
 like: 
@@ -818,7 +801,6 @@ And read it using <code>np.fromfile()</code>
 </section>
 </div>
 </div>
-
 <script src="../reveal.js/lib/js/head.min.js"></script>
 <script src="../reveal.js/js/reveal.js"></script>
 
@@ -831,7 +813,7 @@ controls: true,
 progress: true,
 history: false,
 center: true,
-slideNumber: true,
+slideNumber: 't',
 rollingLinks: false,
 keyboard: true,
 overview: true,
@@ -847,8 +829,11 @@ multiplex: {
 
 // Optional libraries used to extend on reveal.js
 dependencies: [
-
-]
+ { src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+ { src: '../reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: '../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }]
 });
 </script>
 </body>
