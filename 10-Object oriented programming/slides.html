@@ -342,9 +342,9 @@ depending on context.
 
     <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">method_a</span><span style="color: #707183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span>, i=<span style="color: #F5666D;">None</span><span style="color: #707183;">)</span>:    
         <span style="color: #A52A2A; font-weight: bold;">if</span> i == <span style="color: #F5666D;">None</span>:
-            <span style="color: #A52A2A; font-weight: bold;">print</span> <span style="color: #4E9A06;">'first method'</span>
+            <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"first method"</span><span style="color: #707183;">)</span>
         <span style="color: #A52A2A; font-weight: bold;">else</span>:
-            <span style="color: #A52A2A; font-weight: bold;">print</span> <span style="color: #4E9A06;">'second method'</span>, i
+            <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"second method {:}"</span>.<span style="color: #A020F0;">format</span><span style="color: #7388d6;">(</span>i<span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
 </pre>
 </div>
 
@@ -375,21 +375,21 @@ generally defined by the language, the programmer, or both.
         <span style="color: #A52A2A; font-weight: bold;">return</span> <span style="color: #A020F0;">str</span><span style="color: #707183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span>.coords<span style="color: #707183;">)</span>
 
     <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">__add__</span><span style="color: #707183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span>, other<span style="color: #707183;">)</span>:
-        <span style="color: #0084C8; font-weight: bold;">coords</span> = <span style="color: #A020F0;">tuple</span><span style="color: #707183;">(</span><span style="color: #A020F0;">map</span><span style="color: #7388d6;">(</span><span style="color: #A020F0;">sum</span>, <span style="color: #A020F0;">zip</span><span style="color: #909183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span>.coords, other.coords<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span>
+        <span style="color: #0084C8; font-weight: bold;">coords</span> = <span style="color: #A020F0;">tuple</span><span style="color: #707183;">(</span><span style="color: #A020F0;">map</span><span style="color: #7388d6;">(</span><span style="color: #A020F0;">sum</span>, <span style="color: #A020F0;">zip</span><span style="color: #909183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span>.coords, other.coords<span style="color: #909183;">)</span><span style="color: #7388d6;">)</span><span style="color: #707183;">)</span> 
         <span style="color: #A52A2A; font-weight: bold;">return</span> Vector<span style="color: #707183;">(</span>*coords<span style="color: #707183;">)</span>
 
     <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">__getitem__</span><span style="color: #707183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span>, index<span style="color: #707183;">)</span>:
         <span style="color: #A52A2A; font-weight: bold;">return</span> <span style="color: #A52A2A; font-weight: bold;">self</span>.coords<span style="color: #707183;">[</span>index<span style="color: #707183;">]</span>
 
 <span style="color: #0084C8; font-weight: bold;">v1</span>, <span style="color: #0084C8; font-weight: bold;">v2</span> = Vector<span style="color: #707183;">(</span><span style="color: #F5666D;">2</span>, <span style="color: #F5666D;">10</span><span style="color: #707183;">)</span>, Vector<span style="color: #707183;">(</span><span style="color: #F5666D;">5</span>, -<span style="color: #F5666D;">2</span><span style="color: #707183;">)</span>
-<span style="color: #A52A2A; font-weight: bold;">print</span> v1 + v2
-<span style="color: #A52A2A; font-weight: bold;">print</span> v2<span style="color: #707183;">[</span><span style="color: #F5666D;">1</span><span style="color: #707183;">]</span>, v2.coords<span style="color: #707183;">[</span><span style="color: #F5666D;">1</span><span style="color: #707183;">]</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>v1 + v2<span style="color: #707183;">)</span>
+<span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span>v2<span style="color: #7388d6;">[</span><span style="color: #F5666D;">1</span><span style="color: #7388d6;">]</span>, v2.coords<span style="color: #7388d6;">[</span><span style="color: #F5666D;">1</span><span style="color: #7388d6;">]</span><span style="color: #707183;">)</span>
 </pre>
 </div>
 
 <pre class="example">
 (7, 8)
--2 -2
+(-2, -2)
 </pre>
 
 </section>
@@ -486,15 +486,15 @@ duck, I call that bird a duck."
 
 <pre  class="src src-python"><span style="color: #A52A2A; font-weight: bold;">class</span> <span style="color: #2F8B58; font-weight: bold;">Duck</span><span style="color: #707183;">(</span><span style="color: #A020F0;">object</span><span style="color: #707183;">)</span>:
     <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">quack</span><span style="color: #707183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span><span style="color: #707183;">)</span>:
-        <span style="color: #A52A2A; font-weight: bold;">print</span> <span style="color: #4E9A06;">"Quack, quack!"</span>
+        <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"Quack, quack!"</span><span style="color: #707183;">)</span>
     <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">fly</span><span style="color: #707183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span><span style="color: #707183;">)</span>:
-        <span style="color: #A52A2A; font-weight: bold;">print</span> <span style="color: #4E9A06;">"Flap, Flap!"</span>
+        <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"Flap, Flap!"</span><span style="color: #707183;">)</span>
 
 <span style="color: #A52A2A; font-weight: bold;">class</span> <span style="color: #2F8B58; font-weight: bold;">Person</span><span style="color: #707183;">(</span><span style="color: #A020F0;">object</span><span style="color: #707183;">)</span>:
     <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">quack</span><span style="color: #707183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span><span style="color: #707183;">)</span>:
-        <span style="color: #A52A2A; font-weight: bold;">print</span> <span style="color: #4E9A06;">"I'm Quackin'!"</span>
+        <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"I'm Quackin'!"</span><span style="color: #707183;">)</span>
     <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">fly</span><span style="color: #707183;">(</span><span style="color: #A52A2A; font-weight: bold;">self</span><span style="color: #707183;">)</span>:
-        <span style="color: #A52A2A; font-weight: bold;">print</span> <span style="color: #4E9A06;">"I'm Flyin'!"</span>
+        <span style="color: #A52A2A; font-weight: bold;">print</span><span style="color: #707183;">(</span><span style="color: #4E9A06;">"I'm Flyin'!"</span><span style="color: #707183;">)</span>
 
 <span style="color: #A52A2A; font-weight: bold;">def</span> <span style="color: #00578E; font-weight: bold;">in_the_forest</span><span style="color: #707183;">(</span>mallard<span style="color: #707183;">)</span>:
     mallard.quack<span style="color: #707183;">()</span>
@@ -554,7 +554,7 @@ order of their occurrence in the base class list</dd>
 ('Employee.__name__:', 'Employee')
 ('Employee.__module__:', '__main__')
 ('Employee.__bases__:', (&lt;type 'object'&gt;,))
-('Employee.__dict__: ', dict_proxy({'__dict__': &lt;attribute '__dict__' of 'Employee' objects&gt;, '__module__': '__main__', '__weakref__': &lt;attribute '__weakref__' of 'Employee' objects&gt;, '__doc__': '\n    Class docstring.\n    ', '__init__': &lt;function __init__ at 0x7fa43b2f7758&gt;}))
+('Employee.__dict__: ', dict_proxy({'__dict__': &lt;attribute '__dict__' of 'Employee' objects&gt;, '__module__': '__main__', '__weakref__': &lt;attribute '__weakref__' of 'Employee' objects&gt;, '__doc__': '\n    Class docstring.\n    ', '__init__': &lt;function __init__ at 0x7f6ceeed51b8&gt;}))
 </pre>
 
 </section>

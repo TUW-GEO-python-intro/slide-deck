@@ -249,14 +249,15 @@ class A:
 
     def method_a(self, i=None):    
         if i == None:
-            print 'first method'
+            print("first method")
         else:
-            print 'second method', i
+            print("second method {:}".format(i))
 #+end_src
 
 #+RESULTS:
 
 * Operator overloading
+
 In programming, operator overloading (less commonly known as operator ad hoc
 polymorphism) is a specific case of polymorphism, where different operators have
 different implementations depending on their arguments. Operator overloading is
@@ -274,15 +275,15 @@ class Vector(object):
         return str(self.coords)
 
     def __add__(self, other):
-        coords = tuple(map(sum, zip(self.coords, other.coords)))
+        coords = tuple(map(sum, zip(self.coords, other.coords))) 
         return Vector(*coords)
 
     def __getitem__(self, index):
         return self.coords[index]
 
 v1, v2 = Vector(2, 10), Vector(5, -2)
-print v1 + v2
-print v2[1], v2.coords[1]
+print(v1 + v2)
+print(v2[1], v2.coords[1])
 #+end_src
 
 #+RESULTS:
@@ -349,15 +350,15 @@ duck, I call that bird a duck."
 #+begin_src python
 class Duck(object):
     def quack(self):
-        print "Quack, quack!"
+        print("Quack, quack!")
     def fly(self):
-        print "Flap, Flap!"
+        print("Flap, Flap!")
  
 class Person(object):
     def quack(self):
-        print "I'm Quackin'!"
+        print("I'm Quackin'!")
     def fly(self):
-        print "I'm Flyin'!"
+        print("I'm Flyin'!")
 
 def in_the_forest(mallard):
     mallard.quack()
@@ -434,7 +435,7 @@ Create a python module implementing
 - =class Circle(Shape)=
   - Instance variable: radius
   - Methods: calculate_area()
-** Solution                                                       :noexport:
+** Solution
 #+begin_src python :tangle solution.py :session *pylect10solution*
 import numpy as np
 
@@ -452,7 +453,7 @@ class Shape(object):
 
 #+RESULTS:
 
-** Solution                                                       :noexport:
+** Solution
 #+begin_src python :tangle solution.py :session *pylect10solution*
 class Rectangle(Shape):
     
@@ -467,7 +468,7 @@ class Rectangle(Shape):
 
 #+RESULTS:
 
-** Solution                                                       :noexport:
+** Solution
 #+begin_src python :tangle solution.py :session *pylect10solution*
 class Circle(Shape):
     
@@ -481,14 +482,14 @@ class Circle(Shape):
 
 #+RESULTS:
 
-** Solution                                                       :noexport:
+** Solution
 #+begin_src python :tangle solution.py :session *pylect10solution*
 rect1 = Rectangle(10, 10, 'white')
 circ1 = Circle(2, 'blue')
 
-print rect1.calculate_area()
-print circ1.calculate_area()
-print Shape.how_many()
+print(rect1.calculate_area())
+print(circ1.calculate_area())
+print(Shape.how_many())
 #+end_src
 
 #+RESULTS:

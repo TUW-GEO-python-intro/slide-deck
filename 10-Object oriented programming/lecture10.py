@@ -93,15 +93,15 @@ class Vector(object):
         return str(self.coords)
 
     def __add__(self, other):
-        coords = tuple(map(sum, zip(self.coords, other.coords)))
+        coords = tuple(map(sum, zip(self.coords, other.coords))) 
         return Vector(*coords)
 
     def __getitem__(self, index):
         return self.coords[index]
 
 v1, v2 = Vector(2, 10), Vector(5, -2)
-print v1 + v2
-print v2[1], v2.coords[1]
+print(v1 + v2)
+print(v2[1], v2.coords[1])
 
 class Human_5(object):
      
@@ -126,15 +126,15 @@ Human_5.how_many()
 
 class Duck(object):
     def quack(self):
-        print "Quack, quack!"
+        print("Quack, quack!")
     def fly(self):
-        print "Flap, Flap!"
+        print("Flap, Flap!")
  
 class Person(object):
     def quack(self):
-        print "I'm Quackin'!"
+        print("I'm Quackin'!")
     def fly(self):
-        print "I'm Flyin'!"
+        print("I'm Flyin'!")
 
 def in_the_forest(mallard):
     mallard.quack()
