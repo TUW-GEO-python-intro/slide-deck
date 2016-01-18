@@ -32,7 +32,7 @@
 #+eval: (setq-local org-babel-default-header-args:python '((:tangle . "lecture7.py")))
 #+End:
 
-#+AUTHOR: Christoph Paulik
+#+AUTHOR: 
 #+email: 
 #+Title: GDAL, OGR - Raster Data
 
@@ -94,9 +94,9 @@
 
 * Package installation
 
-#+begin_src shell
+#+begin_example
 conda install -c https://conda.anaconda.org/ioos rasterio
-#+end_src
+#+end_example
 
 * Practical part
 See GDAL-rasterio-comparion IPython Notebook
