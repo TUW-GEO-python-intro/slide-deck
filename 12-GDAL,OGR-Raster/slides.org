@@ -77,9 +77,9 @@
 - ogr2ogr :: Converter for vector data
 - orgtindex :: Creates a tileindex
 - ... ::
-
+     
 * Rasterio
-- python package mainly developed by mapbox 
+- Python package mainly developed by mapbox 
 - aims to make working with GDAL less cumbersome and more pythonic
 - https://github.com/mapbox/rasterio
 - [[https://github.com/mapbox/rasterio/tree/master/examples][More Examples]]
@@ -91,6 +91,12 @@
 - http://jgomezdans.github.io/gdal_notes/reprojection.html
 - http://gis.stackexchange.com/questions/138914/calculating-ndvi-with-rasterio
 - http://snorf.net/blog/2014/06/26/using-cartopy-with-rasterio/
+
+* Package installation
+
+#+begin_src shell
+conda install -c https://conda.anaconda.org/ioos rasterio
+#+end_src
 
 * Practical part
 See GDAL-rasterio-comparion IPython Notebook
