@@ -85,6 +85,14 @@ WKT can represent 18 distinct geometric objects:
 - Means that you can plot filled polygons instead of just lines.
 - Not really necessary but nice for plotting.
 - [[https://pypi.python.org/pypi/descartes][PyPi Site]]
+  
+** Installation with conda
+
+#+begin_example
+conda install -c https://conda.anaconda.org/scitools shapely pyproj fiona
+pip install descartes
+#+end_example
+
 * Example
 - We will work with some open data from the city of Vienna.
 - Ipython notebook Wien-Ubahn.ipynb contains the code
