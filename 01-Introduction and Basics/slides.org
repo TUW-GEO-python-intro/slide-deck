@@ -21,7 +21,7 @@
 #+REVEAL_TITLE_SLIDE_BACKGROUND_TRANSITION:
 #+REVEAL_MATHJAX_URL: http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 #+REVEAL_PREAMBLE:
-#+REVEAL_HEAD_PREAMBLE:<script src="../skulpt_python/skulpt.min.js" type="text/javascript"></script> <script src="../run_interpreter.js" type="text/javascript"></script> <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+#+REVEAL_HEAD_PREAMBLE:
 #+REVEAL_POSTAMBLE:
 #+REVEAL_MULTIPLEX_ID:
 #+REVEAL_MULTIPLEX_SECRET:
@@ -81,7 +81,7 @@ There will be a lecture after the course in week 3.
 of Tutorials]]
 
 ** Github
-[[http://www.github.com][Github]] is a code hosting site which is the the most popular solution for hosting
+[[http://www.github.com][Github]] is a code hosting site which is the most popular solution for hosting
 open source projects at the moment.
 
 * What is Programming
@@ -154,13 +154,13 @@ packages should work on both versions.
 [[http://python3wos.appspot.com/][List of most popular packages and
 Python 3 status]]
 
-We use Python 3.4 in this course.
+We use Python 3.5 in this course.
 
 * Getting started
 
 - Install Anaconda in a directory of your choice. You can set it as the default
   if you do not have other Python installations on your system.
-- Today: Open Anaconda Python command prompt and start typing
+- Today: Open Anaconda Python command prompt and start typing or got to [[http://www.python.org/shell][www.python.org/shell]]
 - Next lecture: For longer scripts you will need a text editor or a Python IDE
   - (non complete) list on [[https://github.com/TUW-GEO-python-intro/General-Information#editing-python-code][Website of the Course]]
 - Python files have ~.py~  extension
@@ -175,7 +175,6 @@ print("Hello World!")
 
 #+RESULTS:
 : Hello World!
-
 
 * Python Syntax
 
@@ -236,7 +235,7 @@ print(keyword.kwlist)
 
 #+RESULTS:
 : 5 6
-: ['False', 'None', 'True', 'and', 'as', 'assert', 'break', 'class', 'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']
+: ['False', 'None', 'True', 'and', 'as', 'assert', 'break', 'class', 'continue', 'def', 
 
 ** Python as a calculator
 
