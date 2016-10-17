@@ -10,6 +10,7 @@
     color: #ffffff;
     border: solid 1px !important;
     padding: 20px !important;
+    overflow: auto;
 }
 h1 {font-size: 3em !important;}
 h2 {font-size: 2em !important;}
