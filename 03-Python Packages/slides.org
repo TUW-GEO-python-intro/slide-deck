@@ -64,7 +64,7 @@ Example - Open =Anaconda Command Prompt= or =Shell=
 * Where do I look for packages?
 
 - [[http://docs.python.org/2/library/][Standard library]]
-- [[https://pypi.python.org/pypi][Python Package Index (PyPI)]] (67508 packages last week)
+- [[https://pypi.python.org/pypi][Python Package Index (PyPI)]] (91078 packages last week)
 - Search Engine „python <your problem here>“
   - Project websites
   - Stackoverflow

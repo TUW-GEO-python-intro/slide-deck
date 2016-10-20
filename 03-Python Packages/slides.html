@@ -81,8 +81,7 @@ code in <code>__init__.py</code> is executed during import!
 </pre>
 </div>
 <ul>
-<li>Avoid <code class="src src-python"><span style="color: #00796b;">from</span> package <span style="color: #00796b;">import</span> *
-</code> -&gt; dirty namespace</li>
+<li>Avoid <code class="src src-python">from package import *</code> -&gt; dirty namespace</li>
 
 </ul>
 
@@ -97,7 +96,7 @@ Example - Open <code>Anaconda Command Prompt</code> or <code>Shell</code>
 <h2 id="orgheadline5">Where do I look for packages?</h2>
 <ul>
 <li><a href="http://docs.python.org/2/library/">Standard library</a></li>
-<li><a href="https://pypi.python.org/pypi">Python Package Index (PyPI)</a> (67508 packages last week)</li>
+<li><a href="https://pypi.python.org/pypi">Python Package Index (PyPI)</a> (91078 packages last week)</li>
 <li>Search Engine „python &lt;your problem here&gt;“
 <ul>
 <li>Project websites</li>
@@ -135,10 +134,10 @@ Representation of dates and times. <a href="https://docs.python.org/2.7/library/
 </div>
 
 <pre class="example">
-2015-03-01 2015-10-19
-2015 3 1
-232 days, 0:00:00
-&lt;class 'datetime.timedelta'&gt;
+(datetime.date(2015, 3, 1), datetime.date(2016, 10, 20))
+(2015, 3, 1)
+599 days, 0:00:00
+&lt;type 'datetime.timedelta'&gt;
 </pre>
 
 </section>
@@ -189,9 +188,9 @@ Mathematical functions and constants.
 </div>
 
 <pre class="example">
-3.141592653589793 2.718281828459045
-3.141592653589793 360.0
-0.7071067811865475
+(3.141592653589793, 2.718281828459045)
+(3.141592653589793, 360.0)
+0.707106781187
 </pre>
 
 <p>
@@ -227,8 +226,8 @@ These is also cmath for complex numbers.
 
 <pre class="example">
 test/path/to/file.txt
-/home/cp/workspace/Teaching/120.050 Introduction to Python for Geoscience/slide-deck/03-Python Packages/test/path/to/file.txt
-test/path/to file.txt file .txt
+/data/Development/python/workspace/Teaching/Python/slide-deck/03-Python Packages/test/path/to/file.txt
+('test/path/to', 'file.txt', 'file', '.txt')
 </pre>
 
 
