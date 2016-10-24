@@ -445,7 +445,7 @@ Stored in <code>sys.argv</code>
 <h3 id="orgheadline21">Getting user input</h3>
 <div class="org-src-container">
 <label class="org-src-name">contents of file <code>user_input.py</code></label>
-<pre  class="src src-python"><span style="color: #EF6C00;">num</span> = <span style="color: #B71C1C;">raw_input</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"Give me a number: "</span><span style="color: #e91e63;">)</span>
+<pre  class="src src-python"><span style="color: #EF6C00;">num</span> = <span style="color: #B71C1C;">input</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"Give me a number: "</span><span style="color: #e91e63;">)</span>
 <span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #B71C1C;">type</span><span style="color: #1565C0;">(</span>num<span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
 <span style="color: #EF6C00;">num</span> = <span style="color: #B71C1C;">float</span><span style="color: #e91e63;">(</span>num<span style="color: #e91e63;">)</span>
 <span style="color: #00796b;">print</span><span style="color: #e91e63;">(</span><span style="color: #689f38;">"This is the number you have given me: {:.2f}"</span>.<span style="color: #B71C1C;">format</span><span style="color: #1565C0;">(</span>num<span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
@@ -482,7 +482,7 @@ We can fix the user input problem
 <pre  class="src src-python"><span style="color: #00796b;">def</span> <span style="color: #0097A7;">get_float</span><span style="color: #e91e63;">()</span>:
     <span style="color: #00796b;">while</span> <span style="color: #558b2f;">True</span>:
         <span style="color: #00796b;">try</span>:
-            <span style="color: #EF6C00;">num</span> = <span style="color: #B71C1C;">float</span><span style="color: #e91e63;">(</span><span style="color: #B71C1C;">raw_input</span><span style="color: #1565C0;">(</span><span style="color: #689f38;">"Give me a number: "</span><span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
+            <span style="color: #EF6C00;">num</span> = <span style="color: #B71C1C;">float</span><span style="color: #e91e63;">(</span><span style="color: #B71C1C;">input</span><span style="color: #1565C0;">(</span><span style="color: #689f38;">"Give me a number: "</span><span style="color: #1565C0;">)</span><span style="color: #e91e63;">)</span>
             <span style="color: #00796b;">break</span>
         <span style="color: #00796b;">except</span> <span style="color: #0097A7;">ValueError</span>:
             <span style="color: #00796b;">print</span> <span style="color: #689f38;">"Oops!  That was no valid number.  Try again..."</span>

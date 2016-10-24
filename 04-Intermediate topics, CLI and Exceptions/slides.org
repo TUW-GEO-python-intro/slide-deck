@@ -317,7 +317,7 @@ python cli_1.py test -m hello
 ** Getting user input
 #+caption: contents of file =user_input.py=
 #+begin_src python :tangle user_input.py
-num = raw_input("Give me a number: ")
+num = input("Give me a number: ")
 print(type(num))
 num = float(num)
 print("This is the number you have given me: {:.2f}".format(num))
@@ -340,7 +340,7 @@ We can fix the user input problem
   def get_float():
       while True:
           try:
-              num = float(raw_input("Give me a number: "))
+              num = float(input("Give me a number: "))
               break
           except ValueError:
               print "Oops!  That was no valid number.  Try again..."

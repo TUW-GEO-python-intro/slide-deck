@@ -1,7 +1,7 @@
 def get_float():
     while True:
         try:
-            num = float(raw_input("Give me a number: "))
+            num = float(input("Give me a number: "))
             break
         except ValueError:
             print "Oops!  That was no valid number.  Try again..."
