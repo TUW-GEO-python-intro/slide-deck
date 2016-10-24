@@ -134,10 +134,10 @@ Representation of dates and times. <a href="https://docs.python.org/2.7/library/
 </div>
 
 <pre class="example">
-(datetime.date(2015, 3, 1), datetime.date(2016, 10, 20))
-(2015, 3, 1)
-599 days, 0:00:00
-&lt;type 'datetime.timedelta'&gt;
+2015-03-01 2016-10-24
+2015 3 1
+603 days, 0:00:00
+&lt;class 'datetime.timedelta'&gt;
 </pre>
 
 </section>
@@ -188,9 +188,9 @@ Mathematical functions and constants.
 </div>
 
 <pre class="example">
-(3.141592653589793, 2.718281828459045)
-(3.141592653589793, 360.0)
-0.707106781187
+3.141592653589793 2.718281828459045
+3.141592653589793 360.0
+0.7071067811865475
 </pre>
 
 <p>
@@ -227,7 +227,7 @@ These is also cmath for complex numbers.
 <pre class="example">
 test/path/to/file.txt
 /data/Development/python/workspace/Teaching/Python/slide-deck/03-Python Packages/test/path/to/file.txt
-('test/path/to', 'file.txt', 'file', '.txt')
+test/path/to file.txt file .txt
 </pre>
 
 
@@ -282,11 +282,22 @@ Example - Open <code>Anaconda Command Prompt.exe</code> or your <code>Shell</cod
 </section>
 <section id="slide-orgheadline12">
 <h3 id="orgheadline12">Demo</h3>
-<p>
-use the provided <code>my_code</code> folder as a basis for this demo.
-</p>
 <ul>
+<li>We will make the following folder structure</li>
+
+<li>my_code
+<ul>
+<li>my_package
+<ul>
+<li>hello.py</li>
+
+</ul></li>
+<li>call.py</li>
+
+</ul></li>
+
 <li>navigate to the <code>my_code/my_package</code> folder in you shell</li>
+<li>Edit hello.py to define a function and a variable</li>
 <li>start a python interpreter</li>
 
 </ul>
@@ -343,6 +354,10 @@ Then try importing again.
 </section>
 <section id="slide-orgheadline15">
 <h3 id="orgheadline15">working with the PYTHONPATH</h3>
+<p>
+write the line <code>import hello</code> into <code>call.py</code> 
+</p>
+
 <p>
 in the <code>my_code</code> directory run
 </p>

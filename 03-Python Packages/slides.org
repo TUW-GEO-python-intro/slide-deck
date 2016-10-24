@@ -170,8 +170,15 @@ from scipy import optimize
 Example - Open =Anaconda Command Prompt.exe= or your =Shell=
 
 ** Demo
-use the provided =my_code= folder as a basis for this demo.
+- We will make the following folder structure
+
+- my_code
+  - my_package
+    - hello.py
+  - call.py
+
 - navigate to the =my_code/my_package= folder in you shell
+- Edit hello.py to define a function and a variable
 - start a python interpreter
 #+begin_src python 
 import hello # this works because current path is searched
@@ -201,6 +208,8 @@ import my_package.hello as hello
 #+end_src
 
 ** working with the PYTHONPATH
+write the line =import hello= into =call.py= 
+
 in the =my_code= directory run
 #+begin_src bash
 python call.py # will throw and ImportError
